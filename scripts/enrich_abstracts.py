@@ -67,16 +67,36 @@ def from_crossref(doi: str) -> str:
 
 
 def from_s2_batch(ids: list[str]) -> dict[str, str]:
-    """ids like 'DOI:10.x/y', 'ARXIV:2101.00001', '<s2 paperId>'; returns {id: abstract}."""
+    """ids like 'DOI:10.x/y', 'ARXIV:2101.00001', '<s2 paperId>'; returns {id: abstract}.
+
+    The keyless pool is shared and often answers 429, but one batch request covers 500 ids,
+    so without a key we wait patiently (up to ~1 h per chunk) instead of giving up.
+    """
     out = {}
-    headers = {"Content-Type": "application/json"}
-    if os.environ.get("S2_API_KEY"):
-        headers["x-api-key"] = os.environ["S2_API_KEY"]
+    headers = {**UA, "Content-Type": "application/json"}
+    key = os.environ.get("S2_API_KEY", "")
+    if key:
+        headers["x-api-key"] = key
+    waits = [5, 15, 30, 60] if key else [30, 60, 120, 300, 600, 900, 1200, 1200]
+    url = "https://api.semanticscholar.org/graph/v1/paper/batch?fields=abstract"
     for i in range(0, len(ids), 500):
         chunk = ids[i : i + 500]
-        res = get_json("https://api.semanticscholar.org/graph/v1/paper/batch?fields=abstract",
-                       headers, json.dumps({"ids": chunk}).encode(), tries=6)
-        for qid, paper in zip(chunk, res or []):
+        res = None
+        for attempt, wait in enumerate([0] + waits):
+            time.sleep(wait)
+            try:
+                req = urllib.request.Request(url, data=json.dumps({"ids": chunk}).encode(), headers=headers)
+                with urllib.request.urlopen(req, timeout=120) as r:
+                    res = json.loads(r.read())
+                break
+            except urllib.error.HTTPError as e:
+                print(f"  semantic scholar chunk {i // 500 + 1}: HTTP {e.code} (attempt {attempt + 1})", flush=True)
+            except (TimeoutError, urllib.error.URLError, ConnectionError) as e:
+                print(f"  semantic scholar chunk {i // 500 + 1}: {e} (attempt {attempt + 1})", flush=True)
+        if res is None:
+            print(f"  semantic scholar chunk {i // 500 + 1}: GAVE UP, {len(chunk)} ids not looked up", flush=True)
+            continue
+        for qid, paper in zip(chunk, res):
             if paper and paper.get("abstract"):
                 out[qid] = clean(paper["abstract"])
         time.sleep(3)
