@@ -1,0 +1,150 @@
+"""Fill the review extraction form for one paper with a local Ollama model.
+
+Usage: python scripts/llm_extract.py PAPER.txt OUT.json [--think | --no-think]
+       [--model gemma4:26b] [--host http://172.16.0.239:11434]
+
+Every field comes back with a verbatim evidence quote; the script checks each
+quote against the paper text so hallucinated support can be flagged.
+"""
+import argparse
+import difflib
+import json
+import re
+import time
+import urllib.request
+from pathlib import Path
+
+FIELDS = {
+    "datasets": "names of all datasets used for training or testing",
+    "dataset_public": "yes/no/partly: are the datasets publicly available",
+    "label_source": "one of sandbox, blacklist_cert, blacklist_ja3, ids_alert, manual, synthetic_attack, unknown (semicolon list allowed)",
+    "label_feature_overlap": "yes/no/unclear: does any classifier feature use the same signal the labels were derived from (e.g. certificate features with certificate-blacklist labels)",
+    "feature_groups": "semicolon list of G1 flow statistics, G2 packet size/timing sequences, G3 handshake fields, G4 certificate fields, G5 fingerprints (JA3/JA4)",
+    "feature_visibility_tier": "weakest tier where all used features stay visible: tls12, tls13, tls13_ech",
+    "model_family": "ML/DL model types evaluated",
+    "split_protocol": "one of random, temporal, host_grouped, cross_dataset, mixed, unclear",
+    "host_grouped": "yes/no/unclear: are splits grouped so the same host/IP/capture is not in both train and test",
+    "cross_dataset": "yes/no: trained on one dataset and tested on a different one",
+    "temporal": "yes/no: test data strictly later in time than training data",
+    "granularity": "one of packet, flow, session, host",
+    "early_detection": "yes/no: classifies before the flow ends using only the first packets",
+    "first_n_packets": "number of packets/records used if limited, else none",
+    "cost_reported": "one of none, inference_only, end_to_end",
+    "hardware": "hardware used for timing/cost measurements, else none",
+    "tls_versions": "TLS versions present in the evaluation data",
+    "ech_considered": "yes/no: is Encrypted Client Hello evaluated or simulated",
+    "ja4_used": "yes/no",
+    "metrics": "evaluation metrics reported",
+    "best_reported_score": "headline best result with metric name",
+    "code_released": "yes/no",
+    "data_released": "yes/no/partly",
+}
+
+PROMPT = """You are coding a research paper for a systematic review of malicious TLS traffic detection.
+Read the paper and fill every field. Rules:
+- Use only what the paper states. If it is not stated, use "unclear" (or "none" where that fits).
+- For each field give "value" and "evidence": a short VERBATIM quote (max 40 words) copied exactly from the paper that supports the value, or "" if there is none.
+- Output a single JSON object: {{"<field>": {{"value": ..., "evidence": "..."}}, ...}}.
+
+Fields:
+{fields}
+
+PAPER TEXT:
+<<<
+{text}
+>>>"""
+
+
+def clean_text(raw: str, max_chars: int) -> str:
+    # Drop the reference list and collapse whitespace to save context.
+    m = re.search(r"\n\s*(REFERENCES|References|Bibliography)\s*\n", raw)
+    body = raw[: m.start()] if m and m.start() > len(raw) * 0.4 else raw
+    body = re.sub(r"-\n(\w)", r"\1", body)
+    body = re.sub(r"\s+", " ", body)
+    return body[:max_chars]
+
+
+def norm(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
+
+
+def quote_found(quote: str, text_norm: str) -> float:
+    """1.0 if the quote occurs verbatim (after normalisation), else best fuzzy ratio."""
+    q = norm(quote)
+    if not q:
+        return 0.0
+    if q in text_norm:
+        return 1.0
+    m = difflib.SequenceMatcher(None, text_norm, q, autojunk=False)
+    blk = m.find_longest_match(0, len(text_norm), 0, len(q))
+    start = max(0, blk.a - blk.b)
+    window = text_norm[start : start + len(q) + 20]
+    return round(difflib.SequenceMatcher(None, window, q).ratio(), 3)
+
+
+def call_ollama(host: str, model: str, prompt: str, think: bool, num_ctx: int) -> dict:
+    body = {
+        "model": model,
+        "prompt": prompt,
+        "stream": False,
+        "format": "json",
+        "think": think,
+        "options": {"temperature": 0, "num_ctx": num_ctx},
+    }
+    req = urllib.request.Request(
+        f"{host}/api/generate", data=json.dumps(body).encode(), headers={"Content-Type": "application/json"}
+    )
+    with urllib.request.urlopen(req, timeout=3600) as r:
+        return json.loads(r.read())
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("paper")
+    ap.add_argument("out")
+    ap.add_argument("--think", action=argparse.BooleanOptionalAction, default=True)
+    ap.add_argument("--model", default="gemma4:26b")
+    ap.add_argument("--host", default="http://172.16.0.239:11434")
+    ap.add_argument("--max-chars", type=int, default=90000)
+    # Reasoning can use >10k tokens on top of a ~21k-token paper, so leave headroom.
+    ap.add_argument("--num-ctx", type=int, default=49152)
+    a = ap.parse_args()
+
+    raw = Path(a.paper).read_text(errors="replace")
+    text = clean_text(raw, a.max_chars)
+    fields = "\n".join(f"- {k}: {v}" for k, v in FIELDS.items())
+    t0 = time.time()
+    resp = call_ollama(a.host, a.model, PROMPT.format(fields=fields, text=text), a.think, a.num_ctx)
+    elapsed = time.time() - t0
+
+    try:
+        answer = json.loads(resp.get("response", ""))
+    except json.JSONDecodeError:
+        answer = {"_parse_error": resp.get("response", "")[:2000]}
+
+    text_norm = norm(raw)
+    for k, v in answer.items():
+        if isinstance(v, dict):
+            v["quote_match"] = quote_found(str(v.get("evidence", "")), text_norm)
+
+    out = {
+        "paper": a.paper,
+        "model": a.model,
+        "think": a.think,
+        "elapsed_s": round(elapsed, 1),
+        "done_reason": resp.get("done_reason"),
+        "num_ctx": a.num_ctx,
+        "prompt_tokens": resp.get("prompt_eval_count"),
+        "output_tokens": resp.get("eval_count"),
+        "thinking_chars": len(resp.get("thinking", "") or ""),
+        "chars_sent": len(text),
+        "missing_fields": [k for k in FIELDS if k not in answer],
+        "fields": answer,
+    }
+    Path(a.out).write_text(json.dumps(out, indent=2, ensure_ascii=False))
+    print(json.dumps({k: out[k] for k in ("paper", "think", "elapsed_s", "prompt_tokens", "output_tokens",
+                                           "thinking_chars", "missing_fields")}))
+
+
+if __name__ == "__main__":
+    main()
