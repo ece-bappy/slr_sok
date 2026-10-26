@@ -1,0 +1,86 @@
+{
+ "P01_raid2024_barradas": {
+  "datasets": {
+   "\"Malware Traffic Analysis (MTA), Tranco, Metasploit (MS), DoHBrw, UCNet\"": "C",
+   "\"MTA, Tranco, Metasploit (MS), DoHBrw, UCNet\"": "C",
+   "\"Malware Traffic Analysis (MTA), Tranco, Metasploit (MS), DoHBrw, and UCNet\"": "C",
+   "[\"Malware Traffic Analysis (MTA)\", \"Tranco\", \"Metasploit (MS)\", \"DoHBrw\", \"UCNet\"]": "C",
+   "[\"Malware Traffic Analysis (MTA)\", \"Tranco\", \"Metasploit (MS)\", \"CIRA-CIC-DoHBrw-2020\", \"UCNet\"]": "C"
+  },
+  "model_family": {
+   "\"ML\"": "P",
+   "\"DTC;RF\"": "C",
+   "\"ML (DTC, RF)\"": "C",
+   "\"Decision Trees and Random Forests\"": "C",
+   "\"Decision tree classifiers and Random Forests\"": "C",
+   "\"Decision trees and Random Forests\"": "C"
+  },
+  "first_n_packets": {
+   "\"20\"": "C"
+  },
+  "hardware": {
+   "\"Dell Inc. PowerEdge R650xs server\"": "W",
+   "\"none\"": "C"
+  },
+  "best_reported_score": {
+   "\"100% TPR\"": "C",
+   "\"100% TPR (C-Cert)\"": "C",
+   "\"100% (TPR)\"": "C",
+   "\"100% true positive rate\"": "C"
+  }
+ },
+ "P02_jip2025_kanda": {
+  "datasets": {
+   "\"Malware Traffic Analysis (MTA)\"": "C",
+   "\"Malware Traﬃc Analysis (MTA)\"": "C",
+   "[\"Malware Traffic Analysis (MTA)\"]": "C"
+  },
+  "model_family": {
+   "\"none\"": "C"
+  },
+  "first_n_packets": {
+   "\"none\"": "C",
+   "\"1\"": "C"
+  },
+  "hardware": {
+   "\"none\"": "C"
+  },
+  "best_reported_score": {
+   "\"0.94 precision\"": "C",
+   "\"unclear\"": "W",
+   "\"precision 0.94\"": "C",
+   "\"0.94\"": "C"
+  }
+ },
+ "P03_arxiv2109.03878": {
+  "datasets": {
+   "\"SB-small, SB-medium, SB-all, Benign01, Benign02, Benign03, Comp.Train, Comp.Test\"": "C",
+   "[\"SB-small\", \"SB-medium\", \"SB-all\", \"Benign01\", \"Benign02\", \"Benign03\", \"Comp.Train\", \"Comp.Test\"]": "C"
+  },
+  "model_family": {
+   "\"clustering / HDBSCAN\"": "C",
+   "\"HDBSCAN\"": "C",
+   "\"unsupervised clustering (HDBSCAN)\"": "C",
+   "\"ML\"": "P",
+   "\"Unsupervised Clustering (HDBSCAN)\"": "C",
+   "\"Unsupervised (HDBSCAN)\"": "C",
+   "\"unsupervised clustering-based detector\"": "C"
+  },
+  "first_n_packets": {
+   "\"none\"": "C",
+   "\"first three RRPs (six sequences)\"": "C",
+   "\"first 3 RRPs\"": "C",
+   "\"first three RRPs\"": "C",
+   "\"6 sequences\"": "W"
+  },
+  "hardware": {
+   "\"none\"": "C"
+  },
+  "best_reported_score": {
+   "\"F1 score 0.993\"": "C",
+   "\"F1 score of 0.91\"": "P",
+   "\"F1 score of 0.993\"": "C",
+   "\"0.993 F1 score\"": "C"
+  }
+ }
+}

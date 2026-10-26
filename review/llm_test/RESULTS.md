@@ -58,6 +58,27 @@ Same fixed prompt and denoised text, `--backend gemini --model gemini-3.1-flash-
 - New error type: r1 reported the RAID paper's *capture* server as cost-measurement hardware.
 - About 12× faster. Free-tier limits: 15 requests/min, 250k tokens/min, 500 requests/day; one paper ≈ 10–20k input tokens, so the per-day request cap is the constraint, not tokens.
 
+## Round 4: field groups + fixed schema + checking pass (Gemini 3.1 Flash Lite)
+
+`scripts/llm_extract_grouped.py`: 5 calls per paper, one per field group (data & labels, features & visibility, evaluation protocol, deployment, reporting), each under a JSON schema that restricts categorical fields to their allowed values; then 1 checking call that sees all 23 draft answers with their quotes and keeps or corrects each. 3 runs per paper. `llm_vote.py` takes the majority answer per field.
+
+From this round on, scoring is automatic (`scripts/llm_score.py`): scalar fields against `gold.json`, list fields against `gold_sets.json` (required/optional items), free-text answers graded once per distinct answer in `free_text_grades.json`. Earlier rounds were rescored the same way, so the counts differ slightly from the hand counts above.
+
+| Method | Correct per run (of 69) | Mean | Wrong (mean) |
+|---|---|---|---|
+| Gemma 4 26B, single prompt (round 2) | 63, 63 | 63.0 | 5 |
+| Gemini Flash Lite, single prompt (round 3) | 60, 65 | 62.5 | 4 |
+| Gemini, field groups + schema (draft) | 64, 63, 68 | 65.0 | 3.0 |
+| Gemini, field groups + schema + check | 67, 63, 66 | 65.3 | 3.0 |
+| Majority vote of 3 drafts | 66 | | 3 |
+| **Majority vote of 3 checked runs** | **67 (97%)** | | **2** |
+
+- **Field groups with a fixed schema are the main gain** (+2.5 correct per run vs a single prompt): no more vague answers like "ML", and enum fields can't drift.
+- **The checking pass has almost no net effect**: it fixed some answers (RAID visibility tier) but broke others (clustering paper's split → "random"), and its corrected "evidence" is sometimes a paraphrase rather than a quote (low quote_match exposes this). It adds one full-text call (~+20% tokens).
+- **Majority vote over 3 runs is the best combination.** The 2 remaining errors are judgement calls: Kanda granularity = packet (the unit is the ClientHello, i.e. per connection), and the clustering paper's 4-month research-network evaluation counted as temporal.
+- Non-unanimous fields (6–8 of 23 per paper, many only wording differences) show the reviewer where to look.
+- Cost: 6 requests and ~60–115k tokens per run; 3 runs per paper = 18 requests, so 30–40 papers need ~2 days of the 500-requests/day free quota (or ~1.5 days without the check).
+
 ## Recommendation
 
 Use **denoised input + reasoning**, fix the two field definitions above, and keep human review of every paper (30–40 papers × ~3 min of Gemma time is about 2 hours unattended). Consider running reasoning twice and flagging fields where the two runs disagree for closer human review.

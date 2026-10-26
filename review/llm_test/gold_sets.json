@@ -1,0 +1,21 @@
+{
+  "_note": "Scoring rules for list-valued fields: correct if required <= answer <= required+optional, partial if they overlap, else wrong. Optional items are ones a reasonable coder could add. Scalar fields are scored against gold.json; free-text fields (datasets, model_family, first_n_packets, hardware, best_reported_score) are graded by hand in free_text_grades.json.",
+  "P01_raid2024_barradas": {
+    "label_source": {"required": ["blacklist_cert", "synthetic_attack"], "optional": ["manual"]},
+    "feature_groups": {"required": ["G2", "G4"], "optional": []},
+    "tls_versions": {"required": ["1.2", "1.3"], "optional": []},
+    "metrics": {"required": ["tpr", "tnr"], "optional": ["f1", "average error"]}
+  },
+  "P02_jip2025_kanda": {
+    "label_source": {"required": [], "optional": ["sandbox", "manual"], "nonempty": true},
+    "feature_groups": {"required": ["G3", "G5"], "optional": []},
+    "tls_versions": {"required": ["1.2", "1.3"], "optional": ["1.0", "1.1"]},
+    "metrics": {"required": ["precision"], "optional": []}
+  },
+  "P03_arxiv2109.03878": {
+    "label_source": {"required": ["sandbox"], "optional": ["manual"]},
+    "feature_groups": {"required": ["G2", "G3", "G4"], "optional": ["G1"]},
+    "tls_versions": {"required": ["1.0", "1.2", "1.3"], "optional": ["1.1"]},
+    "metrics": {"required": ["f1", "precision", "recall"], "optional": ["fdr"]}
+  }
+}

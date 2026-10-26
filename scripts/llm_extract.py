@@ -139,9 +139,12 @@ def gemini_key() -> str:
     raise SystemExit("Gemini API key not found (GEMINI_API_KEY / Gemini_API_KEY)")
 
 
-def call_gemini(model: str, prompt: str, thinking_level: str | None, temperature: float | None) -> dict:
+def call_gemini(model: str, prompt: str, thinking_level: str | None, temperature: float | None,
+                schema: dict | None = None) -> dict:
     """Call generateContent and return a dict shaped like Ollama's response."""
     gen = {"responseMimeType": "application/json"}
+    if schema:
+        gen["responseSchema"] = schema
     if temperature is not None:
         gen["temperature"] = temperature
     if thinking_level:
@@ -158,7 +161,7 @@ def call_gemini(model: str, prompt: str, thinking_level: str | None, temperature
         _GEMINI_STAMP.write_text(str(time.time()))
         req = urllib.request.Request(url, data=json.dumps(body).encode(), headers=headers)
         try:
-            with urllib.request.urlopen(req, timeout=600) as r:
+            with urllib.request.urlopen(req, timeout=300) as r:
                 data = json.loads(r.read())
             break
         except urllib.error.HTTPError as e:
@@ -168,6 +171,11 @@ def call_gemini(model: str, prompt: str, thinking_level: str | None, temperature
                 time.sleep(int(m.group(1)) + 1 if m else 15 * (attempt + 1))
                 continue
             raise SystemExit(f"Gemini HTTP {e.code}: {detail[:500]}")
+        except (TimeoutError, urllib.error.URLError, ConnectionError) as e:
+            if attempt < 5:
+                time.sleep(15 * (attempt + 1))
+                continue
+            raise SystemExit(f"Gemini request failed: {e}")
 
     cand = (data.get("candidates") or [{}])[0]
     parts = cand.get("content", {}).get("parts", [])

@@ -29,7 +29,7 @@
     "datasets": ["MTA"],
     "dataset_public": ["yes"],
     "label_source": ["sandbox", "manual*"],
-    "label_feature_overlap": ["no", "unclear*"],
+    "label_feature_overlap": ["not_applicable", "no", "unclear*"],
     "feature_groups": ["G3", "G5"],
     "feature_visibility_tier": ["tls13", "tls13_ech*"],
     "model_family": ["fingerprint matching", "edit distance clustering", "none"],
