@@ -74,7 +74,7 @@ def from_s2_batch(ids: list[str]) -> dict[str, str]:
     """
     out = {}
     headers = {**UA, "Content-Type": "application/json"}
-    key = os.environ.get("S2_API_KEY", "")
+    key = user_env("S2_API_KEY")
     if key:
         headers["x-api-key"] = key
     waits = [5, 15, 30, 60] if key else [30, 60, 120, 300, 600, 900, 1200, 1200]
@@ -103,17 +103,22 @@ def from_s2_batch(ids: list[str]) -> dict[str, str]:
     return out
 
 
-def openalex_key() -> str:
-    k = os.environ.get("OPENALEX_API_KEY", "")
+def user_env(name: str) -> str:
+    """Environment variable, falling back to the Windows user environment (setx) for older shells."""
+    k = os.environ.get(name, "")
     if not k and os.name == "nt":
         import winreg
 
         try:
             with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as h:
-                k = winreg.QueryValueEx(h, "OPENALEX_API_KEY")[0]
+                k = winreg.QueryValueEx(h, name)[0]
         except OSError:
             pass
-    return k
+    return k.strip()
+
+
+def openalex_key() -> str:
+    return user_env("OPENALEX_API_KEY")
 
 
 def from_openalex(doi: str, key: str) -> str:

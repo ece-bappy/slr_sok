@@ -34,6 +34,20 @@ class QueryTimeoutError(Exception):
     pass
 
 
+def user_env(name: str) -> str:
+    """Environment variable, falling back to the Windows user environment (setx) for older shells."""
+    k = os.environ.get(name, "")
+    if not k and os.name == "nt":
+        import winreg
+
+        try:
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as h:
+                k = winreg.QueryValueEx(h, name)[0]
+        except OSError:
+            pass
+    return k.strip()
+
+
 def clean_doi(doi: str | None) -> str:
     """Normalize DOI by stripping URL prefix and converting to lowercase."""
     if not doi:
@@ -855,12 +869,12 @@ def main() -> None:
     )
     parser.add_argument(
         "--openalex-key",
-        default=os.environ.get("OPENALEX_API_KEY", ""),
+        default=user_env("OPENALEX_API_KEY"),
         help="OpenAlex API key (default: env OPENALEX_API_KEY)",
     )
     parser.add_argument(
         "--s2-key",
-        default=os.environ.get("S2_API_KEY", ""),
+        default=user_env("S2_API_KEY"),
         help="Semantic Scholar API key (default: env S2_API_KEY)",
     )
     parser.add_argument(
