@@ -34,7 +34,8 @@ EXCLUDE only when the title/abstract clearly shows one of these criteria:
   encryption such as IPsec/VPN tunnels, with no TLS/HTTPS/encrypted-traffic results
 - benign_only: only classifies benign applications, services, websites, devices or users (no malicious class)
 - decryption: requires decrypting or intercepting TLS (man-in-the-middle, SSL inspection)
-- secondary: survey, review, SoK, tutorial, editorial, thesis summary, dataset description or book
+- secondary: survey, review, SoK, tutorial, editorial, erratum, retraction notice, book, or a record that is
+  only a dataset or software release without detection experiments (record type is given as type=...)
 - no_ml: no learned model (only rules, signatures, statistics without learning)
 - no_eval: proposal or position paper without quantitative results
 - out_of_range: published before 2019
@@ -71,9 +72,10 @@ SCHEMA = {
 
 
 def format_record(r: dict) -> str:
-    abstract = r["abstract"].strip() or "(no abstract available)"
-    return (f"[{r['id']}] year={r['year']} type={r['type'] or 'unknown'} venue={r['venue'] or 'unknown'}\n"
-            f"TITLE: {r['title']}\nABSTRACT: {abstract[:2500]}")
+    abstract = r["abstract"].strip() if r.get("abstract_source", "search") != "none" else ""
+    rtype = r.get("type_norm") or r["type"] or "unknown"
+    return (f"[{r['id']}] year={r['year']} type={rtype} venue={r['venue'] or 'unknown'}\n"
+            f"TITLE: {r['title']}\nABSTRACT: {abstract[:2500] or '(no abstract available)'}")
 
 
 def call(host: str, model: str, prompt: str, think: bool) -> tuple[dict, dict]:
@@ -99,10 +101,12 @@ def main() -> None:
     ap.add_argument("--think", action="store_true")
     ap.add_argument("--model", default="gemma4:26b")
     ap.add_argument("--host", default="http://172.16.0.239:11434")
-    ap.add_argument("--merged", default=str(ROOT / "review" / "search" / "merged.csv"))
+    enriched = ROOT / "review" / "search" / "records.csv"  # abstracts filled + type_norm
+    ap.add_argument("--merged", default=str(enriched if enriched.exists() else ROOT / "review" / "search" / "merged.csv"))
     a = ap.parse_args()
 
     records = {r["id"]: r for r in csv.DictReader(open(a.merged, encoding="utf-8"))}
+    print(f"reading records from {a.merged}")
     if a.ids:
         ids = a.ids.split(",")
     elif a.ids_file:
