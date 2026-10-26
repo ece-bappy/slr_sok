@@ -44,6 +44,20 @@ Changes: explicit rules for `feature_visibility_tier` (certificate fields → tl
 - 7 of 69 cells disagree between runs (`repeat_flags.csv`); 2 are cosmetic ("100% TPR" vs "100% TPR (C-Cert)").
 - Disagreement flags caught 2 of the 4 distinct errors. The other 2 were wrong the same way in both runs: P02 `data_released` = yes (the paper only uses public MTA data; definition reworded afterwards, not yet re-tested) and P01 `temporal` = yes (TLS 1.2 → 1.3 transfer is not a later time period). **So flags help prioritise, but every paper still needs human review.**
 
+## Round 3: Gemini 3.1 Flash Lite (AI Studio API)
+
+Same fixed prompt and denoised text, `--backend gemini --model gemini-3.1-flash-lite`, thinking level high, Google's default sampling. Two runs per paper.
+
+| Model | Run | Correct | Partial | Wrong | Run-to-run disagreements | Time / paper |
+|---|---|---|---|---|---|---|
+| Gemma 4 26B (local) | r1 / r2 | 62 / 62 | 4 / 4 | 3 / 3 | 7 of 69 | ~3 min |
+| Gemini 3.1 Flash Lite | r1 / r2 | 59 / 64 | 8 / 4 | 2 / 1 | 12 of 69 | ~15 s |
+
+- Accuracy is comparable (3 papers cannot separate them); Gemini makes fewer outright errors but varies more between runs. Its errors were mostly caught by the disagreement flags (e.g. `early_detection` no/yes, `split_protocol` cross_dataset/random), unlike Gemma's repeated errors.
+- The reworded `data_released` definition worked (P02 = no in both runs).
+- New error type: r1 reported the RAID paper's *capture* server as cost-measurement hardware.
+- About 12× faster. Free-tier limits: 15 requests/min, 250k tokens/min, 500 requests/day; one paper ≈ 10–20k input tokens, so the per-day request cap is the constraint, not tokens.
+
 ## Recommendation
 
 Use **denoised input + reasoning**, fix the two field definitions above, and keep human review of every paper (30–40 papers × ~3 min of Gemma time is about 2 hours unattended). Consider running reasoning twice and flagging fields where the two runs disagree for closer human review.
