@@ -31,7 +31,11 @@ INCLUDE only if the title/abstract shows ALL of:
 1. a primary study (new method, system, measurement or benchmark with experiments), not a survey or overview;
 2. its MAIN subject is detecting or classifying malicious traffic (malware, botnet, C2, intrusion, attack,
    phishing or malicious servers) in network traffic;
-3. that traffic is TLS, HTTPS, SSL or explicitly "encrypted" traffic, analysed without decrypting it;
+3. that traffic is TLS, HTTPS, SSL or explicitly "encrypted" traffic, analysed without decrypting it, AND the
+   evaluation data actually contains such traffic. Calling the work "encrypted traffic detection" is not enough:
+   generic IDS benchmarks (UNSW-NB15, CIC-IDS2017/2018, NSL-KDD, KDD99, ToN_IoT, CICIoT...) or VPN/app
+   classification datasets (e.g. ISCX VPN-nonVPN) do not count, unless the abstract says the encrypted/TLS
+   flows were isolated or a TLS/HTTPS/malware-over-TLS dataset (e.g. CTU, MTA, CIRA-CIC-DoHBrw) is used;
 4. the method uses machine learning, deep learning or a learned fingerprint/model;
 5. some quantitative evaluation is reported or clearly implied.
 
@@ -49,8 +53,13 @@ EXCLUDE with the FIRST criterion that applies:
   that merely mentions encryption)
 - out_of_range: published before 2019
 
-MAYBE only if a single key criterion (usually 3, the traffic type) is genuinely not determinable from the
-title/abstract while the others clearly hold. Do not use maybe for weak or partial relevance; exclude those.
+MAYBE only if a single key criterion (usually 3, the traffic type or the evaluation data) is genuinely not
+determinable from the title/abstract while the others clearly hold. Do not use maybe for weak or partial
+relevance; exclude those.
+
+MISSING ABSTRACT: a missing abstract is NEVER a reason to exclude (never use no_eval for it). Judge from the
+title, venue and type: exclude only if the title itself clearly fails a criterion; include if the title
+clearly meets criteria 2-4; otherwise maybe.
 
 For every record give a reason of at most 25 words. criterion is "none" unless decision is exclude.
 Return one decision per record.
@@ -117,6 +126,15 @@ def main() -> None:
         ids = [r["id"] for r in csv.DictReader(open(a.kept_by, encoding="utf-8")) if r["decision"] != "exclude"]
 
     out = Path(a.out)
+    if out.exists():  # drop placeholder rows from failed calls so a resume retries them
+        old = list(csv.DictReader(open(out, encoding="utf-8")))
+        good = [r for r in old if r["reason"] != "NO VALID ANSWER"]
+        if len(good) < len(old):
+            with open(out, "w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, fieldnames=list(old[0].keys()))
+                w.writeheader()
+                w.writerows(good)
+            print(f"removed {len(old) - len(good)} failed rows; retrying them", flush=True)
     done = {r["id"] for r in csv.DictReader(open(out, encoding="utf-8"))} if out.exists() else set()
     todo = [i for i in ids if i not in done]
     fields = ["id", "decision", "criterion", "reason", "judge"]

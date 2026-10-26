@@ -154,7 +154,10 @@ def call_gemini(model: str, prompt: str, thinking_level: str | None, temperature
     headers = {"Content-Type": "application/json", "x-goog-api-key": gemini_key()}
 
     for attempt in range(6):
-        last = float(_GEMINI_STAMP.read_text()) if _GEMINI_STAMP.exists() else 0.0
+        try:  # the stamp can be left corrupt if a process is killed mid-write
+            last = float(_GEMINI_STAMP.read_text().strip("\x00 \n"))
+        except (OSError, ValueError):
+            last = 0.0
         wait = GEMINI_MIN_GAP_S - (time.time() - last)
         if wait > 0:
             time.sleep(wait)
