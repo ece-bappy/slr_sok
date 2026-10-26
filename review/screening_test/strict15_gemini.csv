@@ -1,0 +1,16 @@
+id,decision,criterion,reason,judge
+S0967,exclude,secondary,"This is a dataset release, not a primary research study evaluating a detection method.",gemini/gemini-3.1-flash-lite
+S0054,include,,Meets all criteria for inclusion as it proposes a machine learning method for detecting malicious DoH tunneling.,gemini/gemini-3.1-flash-lite
+S2290,exclude,non_tls,"The paper focuses on generic DDoS attacks, not specifically encrypted or TLS-based traffic analysis.",gemini/gemini-3.1-flash-lite
+S3214,include,,Meets all criteria for inclusion as it proposes an AI-based method for detecting SlowDoS in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S0158,exclude,off_topic,"This study focuses on URL-based phishing detection, which is not network traffic-based analysis.",gemini/gemini-3.1-flash-lite
+S0746,exclude,non_tls,The paper uses generic IoT benchmark datasets without a specific focus on encrypted or TLS-based traffic detection.,gemini/gemini-3.1-flash-lite
+S1100,exclude,no_eval,"No abstract available to confirm study content, methods, or experimental evaluation.",gemini/gemini-3.1-flash-lite
+S0083,exclude,non_tls,"The study focuses on generic DoS/intrusion detection using Kaggle datasets, without a specific focus on TLS/HTTPS traffic.",gemini/gemini-3.1-flash-lite
+S0244,exclude,off_topic,"The study focuses on machine learning model compression and interpretability, not malicious traffic detection.",gemini/gemini-3.1-flash-lite
+S2986,exclude,off_topic,"Website fingerprinting is not detection of malicious attack traffic, but rather traffic analysis for deanonymization.",gemini/gemini-3.1-flash-lite
+S0720,include,,Meets all criteria for inclusion as a measurement study of IDS performance against TLS handshake exhaustion attacks.,gemini/gemini-3.1-flash-lite
+S3044,exclude,non_tls,"The paper focuses on general IoT malware, not specifically TLS-based traffic detection.",gemini/gemini-3.1-flash-lite
+S1627,include,,Meets all criteria for inclusion as it proposes a semi-supervised ML approach for encrypted traffic anomaly detection.,gemini/gemini-3.1-flash-lite
+S1103,include,,Meets all criteria for inclusion as it proposes a graph attention method for detecting malicious TLS/SSL traffic.,gemini/gemini-3.1-flash-lite
+S0568,include,,Meets all criteria for inclusion as it evaluates ML models for detecting attacks in encrypted traffic.,gemini/gemini-3.1-flash-lite

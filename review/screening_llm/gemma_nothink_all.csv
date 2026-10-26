@@ -167,7 +167,6 @@ S0165,maybe,,"Detects cloud anomalies using ML, but it is unclear if the traffic
 S0166,exclude,secondary,This is a systematic literature review (survey) of existing studies.,gemma4:26b,False,40.8
 S0167,maybe,,"Discusses phishing and HTTPS, but focuses on URL feature analysis rather than ML-based traffic detection.",gemma4:26b,False,40.8
 S0168,include,,"Uses hybrid ML (RF, IF, LSTM) to detect anomalies in encrypted proxy traffic.",gemma4:26b,False,40.8
-S0169,maybe,,"Abstract is missing; title suggests phishing/URL analysis, but relevance to TLS traffic is unclear.",gemma4:26b,False,40.8
 S0170,exclude,off_topic,"Focuses on securing a data intelligence platform/RAG pipeline, not network traffic detection.",gemma4:26b,False,40.8
 S0171,exclude,off_topic,"Focuses on URL/webpage safety scanning via URL features, not network traffic analysis.",gemma4:26b,False,18.2
 S0172,include,,,gemma4:26b,False,18.2
@@ -3502,3 +3501,4 @@ S2414,exclude,non_tls,Focuses on web session/request logs (HTTP) rather than enc
 S2482,maybe,,"Detects DDoS attacks using deep learning, but it is unclear if the traffic is TLS/encrypted or plaintext.",gemma4:26b,False,35.9
 S2820,exclude,off_topic,Focuses on adversarial defense in computer vision (images) rather than network traffic.,gemma4:26b,False,35.9
 S3337,exclude,secondary,Record is a retraction/withdrawn notice.,gemma4:26b,False,35.9
+S0169,exclude,off_topic,"Focuses on URL lexical features and phishing detection via URL expansion, not the analysis of TLS/HTTPS encrypted network traffic.",gemma4:26b,False,28.9

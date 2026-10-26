@@ -1,0 +1,16 @@
+id,decision,criterion,reason
+S0967,exclude,off_topic,Phishing-website dataset (URL/HTML/WHOIS features); not network traffic; also a dataset release
+S0054,include,,Detects DoH (HTTPS) tunnelling/C2/exfiltration without decryption using CNN-LSTM on 2.5M flows
+S2290,exclude,non_tls,DDoS detection on time-based features with stacking; no TLS or encrypted traffic
+S3214,include,,Real-time SlowDoS detection over encrypted (HTTPS) traffic with clustering + deep learning; 98% success rate
+S0158,exclude,off_topic,Phishing URL classification with MLP; URL features only
+S0746,exclude,non_tls,SD-IoT threat detection on generic IoT/IDS datasets (CICIoT2023, ToN_IoT, UNSW-NB15); no TLS focus
+S1100,include,,"Title: anomaly-based DDoS detection in encrypted traffic with autoencoders; no abstract, but every criterion is clear from the title"
+S0083,exclude,non_tls,Multiclass DoS/intrusion prediction on a Kaggle IDS dataset; no TLS or encrypted traffic
+S0244,exclude,off_topic,ML methodology (bottleneck analysis of sample difficulty); IDS datasets used only as benchmarks
+S2986,exclude,benign_only,Website fingerprinting of benign webpages over TLS; no malicious-traffic detection
+S0720,include,,"Measures deep-learning IDS (e.g. HyperVision) detecting TLS handshake-exhaustion DDoS under post-quantum TLS; testbed experiments"
+S3044,exclude,non_tls,IoT malware traffic detection via binary visualisation; no TLS or encryption mentioned
+S1627,exclude,non_tls,"Framed as encrypted-traffic anomaly detection but evaluated only on generic flow IDS benchmarks (UNSW-NB15, CSE-CIC-IDS2018)"
+S1103,maybe,,"Claims malicious TLS/SSL traffic detection, but the only dataset (ISCX VPN-nonVPN) has no malicious class; needs full text"
+S0568,include,,"Attack detection on encrypted-traffic metadata, encrypted flows separated by security protocol (UNSW-NB15, CICIoT2023); F1 reported"
