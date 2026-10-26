@@ -1,6 +1,6 @@
 """Fill the review extraction form for one paper with a local Ollama model.
 
-Usage: python scripts/llm_extract.py PAPER.txt OUT.json [--think | --no-think]
+Usage: python scripts/llm_extract.py PAPER.(pdf|txt) OUT.json [--think | --no-think]
        [--model gemma4:26b] [--host http://172.16.0.239:11434]
 
 Every field comes back with a verbatim evidence quote; the script checks each
@@ -82,14 +82,14 @@ def quote_found(quote: str, text_norm: str) -> float:
     return round(difflib.SequenceMatcher(None, window, q).ratio(), 3)
 
 
-def call_ollama(host: str, model: str, prompt: str, think: bool, num_ctx: int) -> dict:
+def call_ollama(host: str, model: str, prompt: str, think: bool, num_ctx: int, options: dict) -> dict:
     body = {
         "model": model,
         "prompt": prompt,
         "stream": False,
         "format": "json",
         "think": think,
-        "options": {"temperature": 0, "num_ctx": num_ctx},
+        "options": {"num_ctx": num_ctx, **options},
     }
     req = urllib.request.Request(
         f"{host}/api/generate", data=json.dumps(body).encode(), headers={"Content-Type": "application/json"}
@@ -106,15 +106,43 @@ def main() -> None:
     ap.add_argument("--model", default="gemma4:26b")
     ap.add_argument("--host", default="http://172.16.0.239:11434")
     ap.add_argument("--max-chars", type=int, default=90000)
-    # Reasoning can use >10k tokens on top of a ~21k-token paper, so leave headroom.
-    ap.add_argument("--num-ctx", type=int, default=49152)
+    # Default: sized to the prompt plus the output budget, since a larger context pushes model
+    # layers off the GPU and slows everything down.
+    ap.add_argument("--num-ctx", type=int, default=None)
+    # Greedy decoding (temperature 0) makes Gemma's reasoning loop ("Wait, <field>..." until the
+    # context is full), so reasoning runs use Google's recommended sampling instead.
+    ap.add_argument("--temperature", type=float, default=None)
+    ap.add_argument("--num-predict", type=int, default=None)
     a = ap.parse_args()
+    if a.temperature is None:
+        a.temperature = 1.0 if a.think else 0.0
+    if a.num_predict is None:
+        a.num_predict = 16000 if a.think else 3000
+    options = {"temperature": a.temperature, "num_predict": a.num_predict}
+    if a.think:
+        options.update(top_k=64, top_p=0.95)
 
-    raw = Path(a.paper).read_text(errors="replace")
-    text = clean_text(raw, a.max_chars)
+    dropped = []
+    if a.paper.lower().endswith(".pdf"):
+        import fitz  # PyMuPDF
+
+        from pdf_sections import extract as extract_sections
+
+        with fitz.open(a.paper) as doc:
+            raw = "\n".join(page.get_text() for page in doc)
+        body, report = extract_sections(a.paper)
+        dropped = [h for act, h, _ in report if act == "drop"]
+    else:
+        raw = Path(a.paper).read_text(errors="replace")
+        body = raw
+    text = clean_text(body, a.max_chars)
     fields = "\n".join(f"- {k}: {v}" for k, v in FIELDS.items())
+    prompt = PROMPT.format(fields=fields, text=text)
+    if a.num_ctx is None:
+        need = len(prompt) / 3.3 + a.num_predict + 512
+        a.num_ctx = int(-(-need // 2048) * 2048)
     t0 = time.time()
-    resp = call_ollama(a.host, a.model, PROMPT.format(fields=fields, text=text), a.think, a.num_ctx)
+    resp = call_ollama(a.host, a.model, prompt, a.think, a.num_ctx, options)
     elapsed = time.time() - t0
 
     try:
@@ -134,16 +162,20 @@ def main() -> None:
         "elapsed_s": round(elapsed, 1),
         "done_reason": resp.get("done_reason"),
         "num_ctx": a.num_ctx,
+        "options": options,
         "prompt_tokens": resp.get("prompt_eval_count"),
         "output_tokens": resp.get("eval_count"),
         "thinking_chars": len(resp.get("thinking", "") or ""),
         "chars_sent": len(text),
+        "sections_dropped": dropped,
         "missing_fields": [k for k in FIELDS if k not in answer],
         "fields": answer,
     }
-    Path(a.out).write_text(json.dumps(out, indent=2, ensure_ascii=False))
-    print(json.dumps({k: out[k] for k in ("paper", "think", "elapsed_s", "prompt_tokens", "output_tokens",
-                                           "thinking_chars", "missing_fields")}))
+    Path(a.out).write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
+    if resp.get("thinking"):
+        Path(a.out).with_suffix(".thinking.txt").write_text(resp["thinking"], encoding="utf-8")
+    print(json.dumps({k: out[k] for k in ("paper", "think", "elapsed_s", "done_reason", "num_ctx", "prompt_tokens",
+                                           "output_tokens", "thinking_chars", "missing_fields")}))
 
 
 if __name__ == "__main__":
