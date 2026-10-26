@@ -1,0 +1,48 @@
+{
+  "run_timestamp_utc": "2026-10-26T09:37:32.715628+00:00",
+  "sources": {
+    "openalex": {
+      "hits_reported": 2757,
+      "records_retrieved": 2756,
+      "error_message": null,
+      "error": null,
+      "query": "https://api.openalex.org/works?filter=title_and_abstract.search:(TLS OR HTTPS OR SSL OR \"encrypted traffic\") AND (malicious OR malware OR \"command and control\" OR C2 OR botnet OR intrusion OR attack) AND (\"machine learning\" OR \"deep learning\" OR classifier OR fingerprint OR JA3 OR JA4) AND (detection OR classification),publication_year:2019-2026&select=id,doi,title,publication_year,type,primary_location,authorships,abstract_inverted_index,cited_by_count,open_access,best_oa_location,ids&per-page=200&cursor=*"
+    },
+    "arxiv": {
+      "hits_reported": 416,
+      "records_retrieved": 416,
+      "error_message": null,
+      "error": null,
+      "query": "http://export.arxiv.org/api/query?search_query=(abs:\"TLS\" OR abs:\"HTTPS\" OR abs:\"SSL\" OR abs:\"encrypted traffic\") AND (abs:\"malicious\" OR abs:\"malware\" OR abs:\"command and control\" OR abs:\"C2\" OR abs:\"botnet\" OR abs:\"intrusion\" OR abs:\"attack\") AND (abs:\"machine learning\" OR abs:\"deep learning\" OR abs:\"classifier\" OR abs:\"fingerprint\" OR abs:\"JA3\" OR abs:\"JA4\") AND (abs:\"detection\" OR abs:\"classification\") AND submittedDate:[201901010000 TO 202612312359]&max_results=200"
+    },
+    "semanticscholar": {
+      "hits_reported": 1873,
+      "records_retrieved": 1873,
+      "error_message": null,
+      "error": null,
+      "query": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=(\"TLS\" | \"HTTPS\" | \"SSL\" | \"encrypted traffic\") + (\"malicious\" | \"malware\" | \"command and control\" | \"C2\" | \"botnet\" | \"intrusion\" | \"attack\") + (\"machine learning\" | \"deep learning\" | \"classifier\" | \"fingerprint\" | \"JA3\" | \"JA4\") + (\"detection\" | \"classification\")&year=2019-2026&fields=title,abstract,year,venue,publicationVenue,externalIds,authors,citationCount,openAccessPdf,publicationTypes,url"
+    }
+  },
+  "queries": {
+    "openalex": "https://api.openalex.org/works?filter=title_and_abstract.search:(TLS OR HTTPS OR SSL OR \"encrypted traffic\") AND (malicious OR malware OR \"command and control\" OR C2 OR botnet OR intrusion OR attack) AND (\"machine learning\" OR \"deep learning\" OR classifier OR fingerprint OR JA3 OR JA4) AND (detection OR classification),publication_year:2019-2026&select=id,doi,title,publication_year,type,primary_location,authorships,abstract_inverted_index,cited_by_count,open_access,best_oa_location,ids&per-page=200&cursor=*",
+    "arxiv": "http://export.arxiv.org/api/query?search_query=(abs:\"TLS\" OR abs:\"HTTPS\" OR abs:\"SSL\" OR abs:\"encrypted traffic\") AND (abs:\"malicious\" OR abs:\"malware\" OR abs:\"command and control\" OR abs:\"C2\" OR abs:\"botnet\" OR abs:\"intrusion\" OR abs:\"attack\") AND (abs:\"machine learning\" OR abs:\"deep learning\" OR abs:\"classifier\" OR abs:\"fingerprint\" OR abs:\"JA3\" OR abs:\"JA4\") AND (abs:\"detection\" OR abs:\"classification\") AND submittedDate:[201901010000 TO 202612312359]&max_results=200",
+    "semanticscholar": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=(\"TLS\" | \"HTTPS\" | \"SSL\" | \"encrypted traffic\") + (\"malicious\" | \"malware\" | \"command and control\" | \"C2\" | \"botnet\" | \"intrusion\" | \"attack\") + (\"machine learning\" | \"deep learning\" | \"classifier\" | \"fingerprint\" | \"JA3\" | \"JA4\") + (\"detection\" | \"classification\")&year=2019-2026&fields=title,abstract,year,venue,publicationVenue,externalIds,authors,citationCount,openAccessPdf,publicationTypes,url"
+  },
+  "hit_counts_reported": {
+    "openalex": 2757,
+    "arxiv": 416,
+    "semanticscholar": 1873
+  },
+  "records_retrieved": {
+    "openalex": 2756,
+    "arxiv": 416,
+    "semanticscholar": 1873,
+    "total": 5045
+  },
+  "errors": {
+    "openalex": null,
+    "arxiv": null,
+    "semanticscholar": null
+  },
+  "records_after_dedup": 3018
+}

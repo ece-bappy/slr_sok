@@ -24,7 +24,8 @@ SEARCH_GROUPS = [
     ["TLS", "HTTPS", "SSL", "encrypted traffic"],
     ["malicious", "malware", "command and control", "C2", "botnet", "intrusion", "attack"],
     ["machine learning", "deep learning", "classifier", "fingerprint", "JA3", "JA4"],
-    ["detection", "classification"],
+    # v2 (2026-10-26): + detect/identify/identification; v1 missed abstracts saying "detect ..."
+    ["detection", "classification", "detect", "identify", "identification"],
 ]
 
 
@@ -436,8 +437,8 @@ def build_semanticscholar_query() -> str:
 
 
 def fetch_s2_page(url: str, headers: dict[str, str]) -> tuple[dict | None, str | None]:
-    """Fetch Semantic Scholar page with 429 backoff (5, 10, 20, 40 s)."""
-    backoffs = [5, 10, 20, 40]
+    """Fetch Semantic Scholar page with 429 backoff (the shared keyless pool is often saturated)."""
+    backoffs = [10, 30, 60, 120, 240, 300, 300]
     backoff_idx = 0
     req = urllib.request.Request(url, headers=headers)
     while True:
@@ -456,7 +457,7 @@ def fetch_s2_page(url: str, headers: dict[str, str]) -> tuple[dict | None, str |
                     backoff_idx += 1
                     continue
                 else:
-                    msg = "HTTP 429 rate limit exceeded after backoff retries (5, 10, 20, 40 s)"
+                    msg = f"HTTP 429 rate limit exceeded after backoff retries {backoffs} s"
                     print(f"[SemanticScholar] Stopped early: {msg}.")
                     return None, msg
             elif 500 <= e.code < 600 and backoff_idx < 3:
@@ -862,10 +863,28 @@ def main() -> None:
         default=os.environ.get("S2_API_KEY", ""),
         help="Semantic Scholar API key (default: env S2_API_KEY)",
     )
+    parser.add_argument(
+        "--reuse-raw",
+        action="store_true",
+        help="For sources not in --sources, load <source>_raw.csv and its log entry from --out and include them in the merge",
+    )
     args = parser.parse_args()
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
+    prev_log = {}
+    if args.reuse_raw and (out_dir / "search_log.json").exists():
+        prev_log = json.loads((out_dir / "search_log.json").read_text(encoding="utf-8")).get("sources", {})
+
+    def reuse(name: str) -> tuple[list[dict], int, str, str | None]:
+        path = out_dir / f"{name}_raw.csv"
+        if not (args.reuse_raw and path.exists()):
+            return [], 0, "", None
+        with open(path, encoding="utf-8") as f:
+            recs = list(csv.DictReader(f))
+        p = prev_log.get(name, {})
+        print(f"[{name}] reused {len(recs)} records from {path}")
+        return recs, p.get("hits_reported", 0), p.get("query", ""), p.get("error_message")
 
     sources_to_run = [s.strip().lower() for s in args.sources.split(",") if s.strip()]
 
@@ -894,6 +913,8 @@ def main() -> None:
             "venue", "type", "cited_by", "oa_url", "abstract", "source"
         ]
         write_csv(out_dir / "openalex_raw.csv", openalex_fields, openalex_records)
+    else:
+        openalex_records, openalex_hits, openalex_query, openalex_error = reuse("openalex")
 
     if "arxiv" in sources_to_run:
         arxiv_records, arxiv_hits, arxiv_query, arxiv_error = fetch_arxiv(
@@ -904,6 +925,8 @@ def main() -> None:
             "type", "cited_by", "oa_url", "abstract", "primary_category", "source"
         ]
         write_csv(out_dir / "arxiv_raw.csv", arxiv_fields, arxiv_records)
+    else:
+        arxiv_records, arxiv_hits, arxiv_query, arxiv_error = reuse("arxiv")
 
     if "semanticscholar" in sources_to_run:
         s2_records, s2_hits, s2_query, s2_error = fetch_semanticscholar(
@@ -914,7 +937,12 @@ def main() -> None:
             "s2_id", "doi", "arxiv_id", "title", "authors", "year",
             "venue", "type", "cited_by", "oa_url", "abstract", "source"
         ]
-        write_csv(out_dir / "semanticscholar_raw.csv", s2_fields, s2_records)
+        if s2_records or not (out_dir / "semanticscholar_raw.csv").exists():
+            write_csv(out_dir / "semanticscholar_raw.csv", s2_fields, s2_records)
+        else:
+            print("[SemanticScholar] fetch returned nothing; keeping existing semanticscholar_raw.csv out of the merge")
+    else:
+        s2_records, s2_hits, s2_query, s2_error = reuse("semanticscholar")
 
     merged = merge_records(openalex_records, arxiv_records, s2_records)
     merged_fields = [
