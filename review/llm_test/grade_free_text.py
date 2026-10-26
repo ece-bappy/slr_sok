@@ -6,7 +6,8 @@ def grade(paper, field, ans):
     a = ans.lower()
     if field == "datasets":
         if paper.startswith("P01"):
-            return "C" if all(x in a for x in ["mta", "tranco", "metasploit", "dohbrw", "ucnet"]) else "P"
+            names = ["mta", "tranco", "dohbrw", "ucnet"]
+            return "C" if all(x in a for x in names) and re.search(r"metasploit|\bms\b", a) else "P"
         if paper.startswith("P02"):
             return "C" if "mta" in a else "W"
         return "C" if ("sb-" in a or "sandbox" in a) and ("benign" in a or "research network" in a) else "P"
@@ -26,7 +27,7 @@ def grade(paper, field, ans):
         return "C" if re.search(r"none|unclear|not_applicable", a) else "W"
     if field == "best_reported_score":
         if paper.startswith("P01"):
-            return "C" if "100" in a and re.search(r"tpr|true positive", a) else "P"
+            return "C" if "100" in a and re.search(r"tpr|true positive|detection rate", a) else "P"
         if paper.startswith("P02"):
             return "C" if "0.94" in a else "W"
         return "C" if "0.993" in a else ("P" if "0.9" in a else "W")

@@ -5,7 +5,8 @@
    "\"MTA, Tranco, Metasploit (MS), DoHBrw, UCNet\"": "C",
    "\"Malware Traffic Analysis (MTA), Tranco, Metasploit (MS), DoHBrw, and UCNet\"": "C",
    "[\"Malware Traffic Analysis (MTA)\", \"Tranco\", \"Metasploit (MS)\", \"DoHBrw\", \"UCNet\"]": "C",
-   "[\"Malware Traffic Analysis (MTA)\", \"Tranco\", \"Metasploit (MS)\", \"CIRA-CIC-DoHBrw-2020\", \"UCNet\"]": "C"
+   "[\"Malware Traffic Analysis (MTA)\", \"Tranco\", \"Metasploit (MS)\", \"CIRA-CIC-DoHBrw-2020\", \"UCNet\"]": "C",
+   "[\"MTA\", \"Tranco\", \"MS\", \"DoHBrw\", \"UCNet\"]": "C"
   },
   "model_family": {
    "\"ML\"": "P",
@@ -13,7 +14,8 @@
    "\"ML (DTC, RF)\"": "C",
    "\"Decision Trees and Random Forests\"": "C",
    "\"Decision tree classifiers and Random Forests\"": "C",
-   "\"Decision trees and Random Forests\"": "C"
+   "\"Decision trees and Random Forests\"": "C",
+   "\"Decision Tree, Random Forest\"": "C"
   },
   "first_n_packets": {
    "\"20\"": "C"
@@ -26,7 +28,8 @@
    "\"100% TPR\"": "C",
    "\"100% TPR (C-Cert)\"": "C",
    "\"100% (TPR)\"": "C",
-   "\"100% true positive rate\"": "C"
+   "\"100% true positive rate\"": "C",
+   "\"100% detection rate\"": "C"
   }
  },
  "P02_jip2025_kanda": {

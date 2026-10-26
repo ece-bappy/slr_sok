@@ -29,7 +29,10 @@ def main(run_dir: str, tag: str, out_tag: str) -> None:
             counts = Counter(key(v.get("value")) for v in vals)
             best, n = counts.most_common(1)[0]
             pick = next(v for v in vals if key(v.get("value")) == best)
-            voted[field] = {**pick, "votes": f"{n}/{len(vals)}",
+            flags = list(pick.get("review_flags", []))
+            if n < len(vals):
+                flags.append("not_unanimous")
+            voted[field] = {**pick, "votes": f"{n}/{len(vals)}", "review_flags": flags,
                             "alternatives": [v.get("value") for v in vals if key(v.get("value")) != best]}
         out = Path(run_dir) / f"{paper}__{out_tag}.json"
         out.write_text(json.dumps({"paper": paper, "method": f"majority vote over {len(answers)} x {tag}",

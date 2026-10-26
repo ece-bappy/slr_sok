@@ -1,5 +1,8 @@
 """Field-group extraction with a fixed answer schema and a checking pass (Gemini API).
 
+Evidence must be one verbatim passage; answers whose quote matches the paper text below
+QUOTE_MATCH_FLAG, spliced quotes ("...") and answers changed by the check carry review_flags.
+
 For one paper: 5 calls, each filling one group of extraction-form fields under a JSON schema
 that restricts categorical fields to their allowed values, then 1 checking call that sees all
 draft answers with their evidence quotes and either keeps or corrects each one.
@@ -65,21 +68,35 @@ HINTS = {
     "hardware": "only hardware used to MEASURE runtime/latency/throughput of the method; capture or training "
                 "machines without timing results do not count",
     "split_protocol": "describe how the paper's own main evaluation splits train and test data; use mixed when "
-                      "several protocols are used",
+                      "several protocols are used. The main evaluation is the one behind the paper's headline "
+                      "detection results, not side experiments (sensitivity, false-negative or ablation tests)",
     "temporal": "a TLS-version transfer (train on TLS 1.2, test on TLS 1.3) is NOT temporal unless the test "
                 "traffic was also collected later",
-    "label_source": "how the paper decided which flows are malicious; list every source used",
-    "feature_groups": "G1 = whole-flow statistics (duration, byte/packet totals, rates); G2 = sequences of "
-                      "packet/record sizes, directions or timing; G3 = ClientHello/ServerHello fields; "
-                      "G4 = certificate fields (incl. certificate size); G5 = JA3/JA4-style fingerprints",
+    "label_source": "the signal used to decide which flows are malicious vs benign (e.g. a certificate blacklist, "
+                    "IDS alerts, manual inspection), NOT where the traffic came from: traffic recorded in a sandbox "
+                    "counts as sandbox only if every flow of a sandbox run is labelled malicious because of that; "
+                    "list every labelling signal used",
+    "host_grouped": "answer for the main detection experiment (see split_protocol); yes only if the paper states "
+                    "that train and test are separated by host, sample, capture or trace",
+    "ech_considered": "yes if the paper evaluates, simulates or explicitly assumes Encrypted Client Hello (e.g. a "
+                      "threat model or feature design where ECH hides the SNI/inner ClientHello); no if ECH is only "
+                      "mentioned as background or future work",
+    "feature_groups": "count only features the classifier or detector actually uses as input; fields extracted "
+                      "only to filter, label or group flows do NOT count. G1 = whole-flow statistics (duration, "
+                      "byte/packet totals, rates); G2 = sequences of packet/record sizes, directions or timing; "
+                      "G3 = ClientHello/ServerHello fields; G4 = certificate fields (incl. certificate size); "
+                      "G5 = JA3/JA4-style fingerprints",
+    "feature_visibility_tier": "decide from the features the classifier uses as input only (see feature_groups), "
+                               "not from fields used for filtering or labelling",
 }
 
 
 def field_schema(names: list[str], check: bool = False) -> dict:
     props = {}
     for n in names:
-        p = {"value": VALUE_SCHEMA[n], "evidence": {"type": "STRING"}}
-        req = ["value", "evidence"]
+        p = {"value": VALUE_SCHEMA[n], "evidence": {"type": "STRING"},
+             "evidence_source": {"type": "STRING", "enum": ["text", "table", "figure", "none"]}}
+        req = ["value", "evidence", "evidence_source"]
         if check:
             p["check"] = {"type": "STRING", "enum": ["kept", "changed"]}
             p["reason"] = {"type": "STRING"}
@@ -98,11 +115,19 @@ def describe(names: list[str]) -> str:
     return "\n".join(lines)
 
 
+QUOTE_RULES = """- "evidence" is ONE contiguous passage (max 40 words) copied character-for-character from the paper.
+  Never join separate sentences, never use "..." and never paraphrase or summarise. If the support is spread
+  over several places, quote the single most decisive passage.
+- "evidence_source" says where it comes from: "text", "table" or "figure" (for a table or figure, copy the
+  caption or the row as it appears), or "none" with evidence "" if nothing in the paper supports the value."""
+
+QUOTE_MATCH_FLAG = 0.9  # answers whose quote matches the paper text less than this go to human review
+
 EXTRACT_PROMPT = """You are coding a research paper for a systematic review of malicious TLS traffic detection.
 This request covers only the "{group}" part of the coding form. Rules:
 - Use only what the paper states about ITS OWN method and experiments (not related work or baselines).
 - If it is not stated, use "unclear" (or "none"/"not_applicable" where the definition allows).
-- "evidence" is a short VERBATIM quote (max 40 words) copied exactly from the paper, or "" if none.
+{quote_rules}
 
 Fields:
 {fields}
@@ -115,9 +140,12 @@ PAPER TEXT:
 CHECK_PROMPT = """You are the second coder in a systematic review of malicious TLS traffic detection.
 Below are draft answers for one paper, each with the quote that was given as support, followed by the paper.
 For EVERY field: verify the value against the paper and the field definition.
-- If the value is correct and supported, return it unchanged with check = "kept".
-- If it is wrong, unsupported, or violates the definition, return the corrected value, a supporting
-  VERBATIM quote, and check = "changed", with a one-sentence reason.
+- Keep the draft (check = "kept", value and evidence unchanged) unless you can quote a passage of the paper that
+  contradicts it or shows it violates the field definition.
+- Only then return the corrected value, that contradicting passage as evidence, and check = "changed", with a
+  one-sentence reason. Do not change an answer just because another reading is also possible, and do not
+  replace a main-experiment answer with one from a side experiment.
+{quote_rules}
 
 Field definitions:
 {fields}
@@ -158,7 +186,8 @@ def main() -> None:
     t0, calls, tokens = time.time(), [], {"prompt": 0, "output": 0}
     draft: dict = {}
     for group, names in GROUPS.items():
-        prompt = EXTRACT_PROMPT.format(group=group.replace("_", " "), fields=describe(names), text=text)
+        prompt = EXTRACT_PROMPT.format(group=group.replace("_", " "), fields=describe(names), text=text,
+                                       quote_rules=QUOTE_RULES)
         resp = call_gemini(a.model, prompt, a.thinking_level, None, field_schema(names))
         ans = parse(resp)
         draft.update({k: v for k, v in ans.items() if k in names})
@@ -169,7 +198,8 @@ def main() -> None:
     all_names = list(FIELDS)
     draft_view = json.dumps({k: draft.get(k, {"value": "MISSING", "evidence": ""}) for k in all_names},
                             indent=1, ensure_ascii=False)
-    resp = call_gemini(a.model, CHECK_PROMPT.format(fields=describe(all_names), draft=draft_view, text=text),
+    resp = call_gemini(a.model, CHECK_PROMPT.format(fields=describe(all_names), draft=draft_view, text=text,
+                                                    quote_rules=QUOTE_RULES),
                        a.thinking_level, None, field_schema(all_names, check=True))
     checked = parse(resp)
     calls.append({"group": "check", "done_reason": resp.get("done_reason")})
@@ -181,7 +211,16 @@ def main() -> None:
     for ans in (draft, checked):
         for v in ans.values():
             if isinstance(v, dict):
-                v["quote_match"] = quote_found(str(v.get("evidence", "")), raw_norm)
+                ev = str(v.get("evidence", ""))
+                v["quote_match"] = quote_found(ev, raw_norm)
+                flags = []
+                if ev and v["quote_match"] < QUOTE_MATCH_FLAG:
+                    flags.append("quote_not_verbatim")
+                if "..." in ev or "…" in ev:
+                    flags.append("spliced_quote")
+                if v.get("check") == "changed":
+                    flags.append("changed_by_check")
+                v["review_flags"] = flags
 
     meta = {
         "paper": a.paper, "backend": "gemini", "model": a.model, "method": "grouped+schema+check",
@@ -189,16 +228,17 @@ def main() -> None:
         "sections_dropped": [h for act, h, _ in report if act == "drop"], "chars_sent": len(text),
     }
     changed = [k for k, v in checked.items() if isinstance(v, dict) and v.get("check") == "changed"]
+    flagged = {k: v["review_flags"] for k, v in checked.items() if isinstance(v, dict) and v.get("review_flags")}
     out = Path(a.out)
     m = re.match(r"(.+__)([^_]+)(_r\d+\.json)$", out.name)
     draft_out = out.with_name(f"{m.group(1)}{m.group(2)}draft{m.group(3)}") if m else out.with_suffix(".draft.json")
     draft_out.write_text(json.dumps({**meta, "stage": "draft", "missing_fields": [k for k in FIELDS if k not in draft],
                                      "fields": draft}, indent=2, ensure_ascii=False), encoding="utf-8")
-    out.write_text(json.dumps({**meta, "stage": "checked", "changed_by_check": changed,
+    out.write_text(json.dumps({**meta, "stage": "checked", "changed_by_check": changed, "review_flags": flagged,
                                "missing_fields": [k for k in FIELDS if k not in checked], "fields": checked},
                               indent=2, ensure_ascii=False), encoding="utf-8")
     print(json.dumps({"paper": Path(a.paper).name, "elapsed_s": meta["elapsed_s"], "tokens": tokens,
-                      "changed_by_check": changed,
+                      "changed_by_check": changed, "review_flags": flagged,
                       "done_reasons": [c["done_reason"] for c in calls]}))
 
 
