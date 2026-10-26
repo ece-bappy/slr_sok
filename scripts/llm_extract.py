@@ -20,14 +20,27 @@ FIELDS = {
     "label_source": "one of sandbox, blacklist_cert, blacklist_ja3, ids_alert, manual, synthetic_attack, unknown (semicolon list allowed)",
     "label_feature_overlap": "yes/no/unclear: does any classifier feature use the same signal the labels were derived from (e.g. certificate features with certificate-blacklist labels)",
     "feature_groups": "semicolon list of G1 flow statistics, G2 packet size/timing sequences, G3 handshake fields, G4 certificate fields, G5 fingerprints (JA3/JA4)",
-    "feature_visibility_tier": "weakest tier where all used features stay visible: tls12, tls13, tls13_ech",
-    "model_family": "ML/DL model types evaluated",
-    "split_protocol": "one of random, temporal, host_grouped, cross_dataset, mixed, unclear",
-    "host_grouped": "yes/no/unclear: are splits grouped so the same host/IP/capture is not in both train and test",
-    "cross_dataset": "yes/no: trained on one dataset and tested on a different one",
-    "temporal": "yes/no: test data strictly later in time than training data",
+    "feature_visibility_tier": (
+        "one of tls12, tls13, tls13_ech, decided by the features the proposed method uses, applying the first rule that matches: "
+        "(1) any field read from the server Certificate message (issuer, subject, validity, SAN, self-signed, chain length, "
+        "certificate read in cleartext) -> tls12, because TLS 1.3 encrypts certificates; "
+        "(2) otherwise any ClientHello/ServerHello field, SNI, ALPN, or JA3/JA4/JA3S/JA4S fingerprint -> tls13, because ECH hides the inner ClientHello; "
+        "(3) otherwise only packet or record sizes, directions, counts, timing or flow statistics (including a certificate size "
+        "INFERRED from encrypted record lengths) -> tls13_ech"
+    ),
+    "model_family": "ML/DL model types of the paper's own method (not baselines from other papers), or none if no learned model",
+    "split_protocol": (
+        "one of random, temporal, host_grouped, cross_dataset, mixed, unclear, not_applicable. "
+        "Use not_applicable when no model is trained and then tested (e.g. a measurement or fingerprint analysis)"
+    ),
+    "host_grouped": "yes/no/unclear/not_applicable: are train/test splits grouped so the same host/IP/capture is never in both",
+    "cross_dataset": "yes/no/not_applicable: a model trained on one dataset is tested on a different dataset",
+    "temporal": (
+        "yes/no/unclear/not_applicable: yes ONLY if a trained model is tested on data collected strictly after its training data. "
+        "Comparing statistics between time periods without training and testing a model is not_applicable"
+    ),
     "granularity": "one of packet, flow, session, host",
-    "early_detection": "yes/no: classifies before the flow ends using only the first packets",
+    "early_detection": "yes/no/not_applicable: the method decides before the flow ends using only its first packets or records",
     "first_n_packets": "number of packets/records used if limited, else none",
     "cost_reported": "one of none, inference_only, end_to_end",
     "hardware": "hardware used for timing/cost measurements, else none",
@@ -37,7 +50,10 @@ FIELDS = {
     "metrics": "evaluation metrics reported",
     "best_reported_score": "headline best result with metric name",
     "code_released": "yes/no",
-    "data_released": "yes/no/partly",
+    "data_released": (
+        "yes/no/partly: did THESE authors publish data they created (captures, labels, features)? "
+        "Merely using an existing public dataset is no"
+    ),
 }
 
 PROMPT = """You are coding a research paper for a systematic review of malicious TLS traffic detection.

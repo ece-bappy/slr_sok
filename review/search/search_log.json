@@ -1,0 +1,48 @@
+{
+  "run_timestamp_utc": "2026-10-26T09:28:57.278344+00:00",
+  "sources": {
+    "openalex": {
+      "hits_reported": 0,
+      "records_retrieved": 0,
+      "error_message": null,
+      "error": null,
+      "query": ""
+    },
+    "arxiv": {
+      "hits_reported": 416,
+      "records_retrieved": 416,
+      "error_message": null,
+      "error": null,
+      "query": "http://export.arxiv.org/api/query?search_query=(abs:\"TLS\" OR abs:\"HTTPS\" OR abs:\"SSL\" OR abs:\"encrypted traffic\") AND (abs:\"malicious\" OR abs:\"malware\" OR abs:\"command and control\" OR abs:\"C2\" OR abs:\"botnet\" OR abs:\"intrusion\" OR abs:\"attack\") AND (abs:\"machine learning\" OR abs:\"deep learning\" OR abs:\"classifier\" OR abs:\"fingerprint\" OR abs:\"JA3\" OR abs:\"JA4\") AND (abs:\"detection\" OR abs:\"classification\") AND submittedDate:[201901010000 TO 202612312359]&max_results=200"
+    },
+    "semanticscholar": {
+      "hits_reported": 1873,
+      "records_retrieved": 1873,
+      "error_message": null,
+      "error": null,
+      "query": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=(\"TLS\" | \"HTTPS\" | \"SSL\" | \"encrypted traffic\") + (\"malicious\" | \"malware\" | \"command and control\" | \"C2\" | \"botnet\" | \"intrusion\" | \"attack\") + (\"machine learning\" | \"deep learning\" | \"classifier\" | \"fingerprint\" | \"JA3\" | \"JA4\") + (\"detection\" | \"classification\")&year=2019-2026&fields=title,abstract,year,venue,publicationVenue,externalIds,authors,citationCount,openAccessPdf,publicationTypes,url"
+    }
+  },
+  "queries": {
+    "openalex": "",
+    "arxiv": "http://export.arxiv.org/api/query?search_query=(abs:\"TLS\" OR abs:\"HTTPS\" OR abs:\"SSL\" OR abs:\"encrypted traffic\") AND (abs:\"malicious\" OR abs:\"malware\" OR abs:\"command and control\" OR abs:\"C2\" OR abs:\"botnet\" OR abs:\"intrusion\" OR abs:\"attack\") AND (abs:\"machine learning\" OR abs:\"deep learning\" OR abs:\"classifier\" OR abs:\"fingerprint\" OR abs:\"JA3\" OR abs:\"JA4\") AND (abs:\"detection\" OR abs:\"classification\") AND submittedDate:[201901010000 TO 202612312359]&max_results=200",
+    "semanticscholar": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=(\"TLS\" | \"HTTPS\" | \"SSL\" | \"encrypted traffic\") + (\"malicious\" | \"malware\" | \"command and control\" | \"C2\" | \"botnet\" | \"intrusion\" | \"attack\") + (\"machine learning\" | \"deep learning\" | \"classifier\" | \"fingerprint\" | \"JA3\" | \"JA4\") + (\"detection\" | \"classification\")&year=2019-2026&fields=title,abstract,year,venue,publicationVenue,externalIds,authors,citationCount,openAccessPdf,publicationTypes,url"
+  },
+  "hit_counts_reported": {
+    "openalex": 0,
+    "arxiv": 416,
+    "semanticscholar": 1873
+  },
+  "records_retrieved": {
+    "openalex": 0,
+    "arxiv": 416,
+    "semanticscholar": 1873,
+    "total": 2289
+  },
+  "errors": {
+    "openalex": null,
+    "arxiv": null,
+    "semanticscholar": null
+  },
+  "records_after_dedup": 1934
+}

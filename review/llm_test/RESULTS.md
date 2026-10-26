@@ -31,6 +31,19 @@ Denoised = Related Work, Conclusion, Acknowledgments, Ethics and References remo
    - `temporal` / `split_protocol`: P02 has no train/test split, but every run marks it temporal because the paper compares "before/after TLS 1.3". Needs a `not_applicable` option.
 5. **Evidence quotes** mostly match the paper text (quote match 1.0 for most denoised answers), so a reviewer can check each answer quickly.
 
+## Round 2: fixed definitions, two runs per paper
+
+Changes: explicit rules for `feature_visibility_tier` (certificate fields → tls12; hello/SNI/JA3/JA4 → tls13; only sizes/timing or inferred certificate size → tls13_ech), a `not_applicable` option for split/temporal/host/cross-dataset/early detection, and "own method only" for `model_family`. Denoised input, reasoning on, sampling as above.
+
+| Run | Correct | Partial | Wrong |
+|---|---|---|---|
+| r1 | 62 (90%) | 4 | 3 |
+| r2 | 62 (90%) | 4 | 3 |
+
+- Visibility tier correct in 6/6 runs (was wrong in most before); P02's not-applicable fields correct in both runs.
+- 7 of 69 cells disagree between runs (`repeat_flags.csv`); 2 are cosmetic ("100% TPR" vs "100% TPR (C-Cert)").
+- Disagreement flags caught 2 of the 4 distinct errors. The other 2 were wrong the same way in both runs: P02 `data_released` = yes (the paper only uses public MTA data; definition reworded afterwards, not yet re-tested) and P01 `temporal` = yes (TLS 1.2 → 1.3 transfer is not a later time period). **So flags help prioritise, but every paper still needs human review.**
+
 ## Recommendation
 
 Use **denoised input + reasoning**, fix the two field definitions above, and keep human review of every paper (30–40 papers × ~3 min of Gemma time is about 2 hours unattended). Consider running reasoning twice and flagging fields where the two runs disagree for closer human review.
