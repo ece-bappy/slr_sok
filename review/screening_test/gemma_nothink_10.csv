@@ -1,0 +1,11 @@
+id,decision,criterion,reason,model,think,batch_seconds
+S1132,include,,,gemma4:26b,False,39.0
+S0058,exclude,off_topic,"Focuses on phishing email text and OSINT features, not network traffic detection.",gemma4:26b,False,39.0
+S1926,include,,,gemma4:26b,False,39.0
+S2414,maybe,,Abstract is missing/only a DOI; cannot determine if it meets all criteria.,gemma4:26b,False,39.0
+S1265,include,,,gemma4:26b,False,39.0
+S2441,exclude,off_topic,Theoretical machine learning paper about neural collapse; not about network traffic security.,gemma4:26b,False,39.0
+S3414,exclude,benign_only,"Focuses on classifying Internet devices using HTTP, not detecting malicious traffic.",gemma4:26b,False,39.0
+S3055,include,,,gemma4:26b,False,39.0
+S2424,exclude,non_tls,"Focuses on plaintext HTTP flood attacks, not encrypted/TLS traffic.",gemma4:26b,False,39.0
+S0509,exclude,off_topic,Relates to EEG signals and eye state detection; not network traffic.,gemma4:26b,False,39.0

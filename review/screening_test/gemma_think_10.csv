@@ -1,0 +1,11 @@
+id,decision,criterion,reason,model,think,batch_seconds
+S1132,include,,,gemma4:26b,True,70.5
+S0058,exclude,off_topic,Focuses on phishing email content detection rather than network traffic.,gemma4:26b,True,70.5
+S1926,include,,,gemma4:26b,True,70.5
+S2414,maybe,,The abstract is missing (only a DOI is provided).,gemma4:26b,True,70.5
+S1265,include,,,gemma4:26b,True,70.5
+S2441,exclude,off_topic,"Discusses fundamental neural network theory and robustness, not network traffic security.",gemma4:26b,True,70.5
+S3414,exclude,benign_only,Focuses on classifying Internet devices rather than malicious traffic.,gemma4:26b,True,70.5
+S3055,include,,,gemma4:26b,True,70.5
+S2424,exclude,non_tls,Focuses on HTTP flood (plaintext) using non-encrypted datasets (KDD/NSL-KDD).,gemma4:26b,True,70.5
+S0509,exclude,off_topic,Focuses on EEG signals and eye state detection.,gemma4:26b,True,70.5

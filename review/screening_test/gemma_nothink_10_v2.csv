@@ -1,0 +1,11 @@
+id,decision,criterion,reason,model,think,batch_seconds
+S1132,include,,Detects novel encrypted botnet traffic using deep learning with quantitative evaluation on public datasets.,gemma4:26b,False,38.9
+S0058,exclude,off_topic,"Focuses on phishing email detection and text classification, not network traffic.",gemma4:26b,False,38.9
+S1926,include,,Classifies malicious C2 traffic in TLS 1.3 using machine learning/feature extraction with quantitative results.,gemma4:26b,False,38.9
+S2414,maybe,,"Title suggests malicious web session detection via ML, but abstract is missing/empty.",gemma4:26b,False,38.9
+S1265,include,,Uses Graph Convolutional Networks to detect malicious behaviors in encrypted power grid network traffic.,gemma4:26b,False,38.9
+S2441,exclude,off_topic,Theoretical study of neural network geometry (Neural Collapse); not about network traffic security.,gemma4:26b,False,38.9
+S3414,exclude,benign_only,"Focuses on classifying Internet devices using HTTP features, not detecting malicious traffic.",gemma4:26b,False,38.9
+S3055,include,,Classifies encrypted malicious HTTPS traffic using DCGAN and 1D-CNN with quantitative evaluation.,gemma4:26b,False,38.9
+S2424,exclude,non_tls,"Focuses on plaintext HTTP flood DDoS attacks, not encrypted/TLS traffic.",gemma4:26b,False,38.9
+S0509,exclude,off_topic,Relates to EEG signals and eye state detection; not network traffic.,gemma4:26b,False,38.9

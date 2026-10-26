@@ -1,0 +1,11 @@
+id,decision,criterion,reason
+S1132,include,,Detects/classifies encrypted botnet traffic with deep learning on public encrypted traffic datasets; protocol not named but encrypted botnet traffic is in scope at title/abstract stage
+S0058,exclude,off_topic,Phishing e-mail text classification; SSL certificate validity is only an OSINT feature; not network traffic
+S1926,include,,Classifies malicious C2 traffic in TLS 1.2/1.3 flows without decryption; quantitative evaluation
+S2414,maybe,,No abstract available; malicious web session detection with ML could involve HTTPS traffic; needs full text
+S1265,include,,Encrypted malicious traffic detection in power systems with graph convolutional networks
+S2441,exclude,off_topic,Theory of neural collapse and adversarial robustness; not traffic detection
+S3414,exclude,off_topic,Classifies Internet devices from plaintext HTTP responses; not malicious-traffic detection and not TLS
+S3055,include,,Malicious HTTPS (encrypted) traffic classification with DCGAN + 1D-CNN on CICAndMal2017; F1 reported
+S2424,exclude,non_tls,HTTP flood DDoS detection with Isolation Forest; plaintext HTTP application-layer traffic; no TLS/encrypted traffic
+S0509,exclude,off_topic,EEG synthetic dataset; unrelated to network security
