@@ -8,6 +8,8 @@ human screener:
   B_check             any include/maybe left (disagreement or maybe)
   C_strict_exclude    Gemma kept it, the strict pass excluded it (spot-check a sample)
   D_gemma_exclude     Gemma excluded it in the first pass (spot-check a sample)
+  E_low_venue         would be A or B, but fails the venue-quality criterion (venue_check.py);
+                      exclude as low_venue unless the screener overrides with a reason
 """
 import csv
 from collections import Counter
@@ -27,6 +29,7 @@ def main() -> None:
     gemini.update(load(D / "gemini_strict_manual.csv"))  # re-screens after hand-entered abstracts
     agy = load(D / "agy_title_only.csv")
     recs = load(ROOT / "review" / "search" / "records.csv")
+    venue = load(ROOT / "review" / "search" / "venue_check.csv")
 
     print("Gemma first pass:", dict(Counter(r["decision"] for r in gemma.values())))
     kept = [i for i, r in gemma.items() if r["decision"] != "exclude"]
@@ -54,13 +57,17 @@ def main() -> None:
             bucket = "C_strict_exclude"
         else:
             bucket = "B_check"
+        v = venue.get(i, {})
+        if bucket in ("A_both_include", "B_check") and v.get("venue_ok") == "False":
+            bucket = "E_low_venue"
         r = recs.get(i, {})
         rows.append({"id": i, "suggested_bucket": bucket, "title": r.get("title", ""), "year": r.get("year", ""),
                      "type": r.get("type_norm", ""), "flags": r.get("flags", ""),
                      "gemma": g["decision"], "gemma_reason": g["reason"],
                      "gemini_strict": s.get("decision", ""), "gemini_criterion": s.get("criterion", ""),
                      "gemini_reason": s.get("reason", ""),
-                     "agy_title_only": t.get("decision", ""), "agy_reason": t.get("reason", "")})
+                     "agy_title_only": t.get("decision", ""), "agy_reason": t.get("reason", ""),
+                     "venue": r.get("venue", ""), "venue_rule": v.get("venue_rule", "")})
     rows.sort(key=lambda r: (r["suggested_bucket"], r["id"]))
     with open(D / "combined_suggestions.csv", "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
