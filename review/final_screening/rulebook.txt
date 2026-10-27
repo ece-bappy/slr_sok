@@ -1,0 +1,109 @@
+FINAL TITLE/ABSTRACT SCREENING - RULEBOOK (STRICT)
+SoK: Machine-learning detection of malicious TLS traffic
+Version 1, 27 Oct 2026. Applies to final_screening_325.xlsx. Change only by adding a dated rule at the end.
+
+=====================================================================
+1. HOW TO DECIDE
+=====================================================================
+Read the title and abstract (open the link if the abstract is missing or cut). Then:
+
+  INCLUDE  only if EVERY criterion in section 2 is CLEARLY met by the title/abstract.
+  EXCLUDE  if ANY exclusion code in section 3 applies. Use the FIRST code in the list that applies.
+  MAYBE    only if exactly ONE criterion cannot be determined from the title/abstract (usually
+           C3, which dataset/traffic was used) while all the others are clearly met.
+           A maybe goes to full-text screening. Write in my_note what must be checked.
+
+Strict means:
+  - Doubt about relevance is not a maybe. If the paper is only partly about our topic, exclude it.
+  - Do not give credit for what the paper "might" do. Judge only what is written.
+  - The LLM suggestion (current_decision) is advice. final_decision is yours.
+  - A missing abstract alone is never a reason to exclude. Open the link and judge the paper.
+
+=====================================================================
+2. INCLUSION CRITERIA (all must hold)
+=====================================================================
+C1 Primary study: proposes or evaluates a method, system, measurement or benchmark with its own
+   experiments. Not a survey, review, SoK, tutorial, editorial or position paper.
+C2 Main subject is DETECTING or CLASSIFYING MALICIOUS traffic: malware, botnet, C2, intrusion,
+   attack, DoS, phishing, tunnelling/exfiltration, or malicious servers/certificates seen in traffic.
+C3 That traffic is TLS/HTTPS/SSL (incl. QUIC and DoH, which carry TLS), analysed WITHOUT decryption,
+   AND the evaluation data actually contains such traffic.
+C4 Uses machine learning, deep learning or a learned fingerprint/model.
+C5 Reports quantitative evaluation results.
+C6 Published 2019-2026 in an acceptable venue (see low_venue).
+
+=====================================================================
+3. EXCLUSION CODES (use the first that applies; write it in exclusion_criterion)
+=====================================================================
+duplicate       Same study as another record (preprint vs. published, conference vs. journal
+                extension with the same results). Keep the peer-reviewed / most complete version;
+                name the kept id in my_note.
+low_venue       Fails the venue rule (venue_rule column = unindexed or retracted): other preprint
+                servers (SSRN, Research Square, OSF, TechRxiv), Zenodo/Figshare/DataPort deposits,
+                theses, patents, unindexed journals/conferences, retracted or withdrawn work.
+                Override ONLY for an established venue that DBLP has not indexed yet; then write
+                "venue override: <reason>" in my_note and judge the paper normally.
+out_of_range    Published before 2019.
+not_english     Full text is not in English.
+secondary       Survey, review, SoK, tutorial, editorial, book overview, pure dataset/software
+                description without detection experiments.
+off_topic       Not about network-traffic security: URLs/web pages/HTML only, e-mail content,
+                binaries/apps/APIs, images, audio, hardware, ML methodology using IDS data only as
+                a benchmark.
+non_tls         Traffic is plaintext or non-TLS only, OR the evaluation uses only generic IDS
+                benchmarks (KDD99, NSL-KDD, UNSW-NB15, CIC-IDS2017/2018/2019, ToN_IoT, CICIoT2023,
+                Bot-IoT, ...) without isolating TLS/encrypted flows, OR only VPN/Tor/IPsec traffic,
+                OR only app/VPN datasets with no malicious class (e.g. ISCX VPN-nonVPN).
+benign_only     Classifies only benign classes: applications, services, websites (website
+                fingerprinting), devices, users, video titles, or "is this DoH or not".
+decryption      Needs decryption, TLS interception, keys or plaintext payload.
+no_ml           Rules, signatures, blocklists, thresholds or plain statistics only.
+no_eval         No quantitative results (proposal, framework description, demo).
+not_main_focus  Malicious encrypted traffic is a minor side case of a broader study (e.g. a
+                generic IDS that only mentions encryption in its motivation).
+
+=====================================================================
+4. RULINGS FOR RECURRING CASES
+=====================================================================
+R1  Calling the work "encrypted traffic detection" is not enough. Check the dataset. Accept TLS
+    malware/C2 datasets (CTU-13 TLS subsets, Stratosphere, MTA, CIRA-CIC-DoHBrw-2020, CESNET-TLS,
+    HIKARI-2021, RAID-2024 C2, DoH tunnel datasets, own TLS captures) or explicitly isolated TLS
+    flows from a generic benchmark.
+R2  USTC-TFC2016 / mixed malware-traffic datasets: include only if the abstract says the traffic is
+    encrypted/TLS or TLS flows are analysed; otherwise maybe if all else is clear.
+R3  DoH: detecting MALICIOUS DoH (tunnels, C2, exfiltration, DGA over DoH) -> include.
+    Detecting DoH vs. non-DoH only -> benign_only.
+R4  Phishing: include only if detected from TLS traffic features (handshake, SNI, certificate as
+    seen on the wire, flow statistics). URL/HTML/lexical only -> off_topic.
+R5  Certificates: classifying certificates observed in network traffic -> include.
+    Certificates only from CT logs or Internet-wide scans, no traffic -> off_topic.
+R6  TLS-layer DoS (handshake exhaustion, renegotiation, slow HTTPS attacks): include if detection
+    works on the TLS traffic and the dataset contains it. Generic DDoS benchmark -> non_tls.
+R7  Attacks on classifiers (adversarial evasion, poisoning, backdoors): include only if the
+    attacked classifier detects malicious TLS traffic and results are reported. If the classifier
+    is an app/website classifier -> benign_only.
+R8  Generic "encrypted traffic classification" papers that also report a malware/attack class:
+    include only if malicious detection is a main result (own table/metric). Otherwise
+    not_main_focus.
+R9  QUIC and HTTP/3 count as TLS (TLS 1.3 inside). Tor, VPN, IPsec, SSH-only -> non_tls.
+R10 IoT/IIoT: include only if the abstract states TLS/encrypted traffic in the evaluation data.
+R11 Dataset papers: include if they release malicious TLS traffic AND run detection experiments.
+    Data descriptor only -> secondary.
+R12 Measurement papers (e.g. how malware uses TLS) count as primary only if they train/evaluate a
+    detector (C4, C5); otherwise no_ml.
+
+=====================================================================
+5. SHEET COLUMNS YOU FILL IN (yellow)
+=====================================================================
+final_decision       include / exclude / maybe (drop-down)
+exclusion_criterion  code from section 3 (drop-down); required when final_decision = exclude
+my_note              required for: every maybe (what to check), every venue override, every
+                     duplicate (kept id), and every case where you go against current_decision.
+                     Optional otherwise.
+
+current_decision / current_criterion are the LLM suggestions (A = both Gemma and strict Gemini
+said include; B = mixed). Never edit them.
+
+=====================================================================
+6. ADDED RULES (date, rule, why)
+=====================================================================
