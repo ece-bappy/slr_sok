@@ -1,0 +1,16 @@
+id,decision,criterion,reason
+S0967,exclude,off_topic,"Phishing website/URL feature dataset; not network-traffic detection, and also a dataset release."
+S0054,include,,"CNN-LSTM detects DoH tunneling/C2 in encrypted DoH flows without decryption; large DoH dataset, accuracy and FPR reported."
+S2290,exclude,non_tls,DDoS detection with time-based features; no TLS or encrypted traffic focus.
+S3214,include,,AI-based detection of SlowDoS attacks over encrypted HTTP traffic; testbed evaluation with 98% success rate.
+S0158,exclude,off_topic,"URL-based phishing detection from lexical features, not network traffic."
+S0746,exclude,non_tls,SD-IoT threat detection on generic IDS benchmarks; no TLS/encrypted traffic focus.
+S1100,include,,No abstract; title clearly states autoencoder-based DDoS detection in encrypted network traffic.
+S0083,exclude,non_tls,Multiclass DoS/intrusion prediction on generic Kaggle IDS data; no encrypted traffic focus.
+S0244,exclude,off_topic,"Neural compression bottleneck method for sample difficulty; intrusion datasets only incidental, not traffic security."
+S2986,exclude,benign_only,Website fingerprinting over TLS identifies visited webpages; not malicious traffic detection.
+S0720,include,,PQC-TLS handshake exhaustion testbed; evaluates DL IDS detection of TLS DDoS traffic with quantitative results.
+S3044,exclude,non_tls,IoT malware traffic analysis via binary visualisation; no TLS or encrypted traffic mentioned.
+S1627,exclude,non_tls,Evaluated only on UNSW-NB15 and CSE-CIC-IDS2018 without isolating encrypted/TLS flows.
+S1103,exclude,non_tls,"Evaluated only on ISCX VPN-nonVPN, a VPN/app classification dataset, not malicious TLS traffic."
+S0568,include,,Encrypted flows isolated by security protocol from UNSW-NB15/CICIoT-2023; ML/DL attack detection with F1 reported.

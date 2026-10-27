@@ -1,0 +1,16 @@
+id,decision,criterion,reason,judge
+S0967,exclude,off_topic,Dataset for phishing website detection based on URL and web page features rather than network traffic analysis.,agy/gemini-3.8-flash-high
+S0054,include,,Proposes a hybrid CNN-LSTM framework to detect tunneling and C2 activity in DNS-over-HTTPS traffic without decrypting payloads.,agy/gemini-3.8-flash-high
+S2290,exclude,non_tls,"Focuses on detecting DDoS attacks using time-based features without any focus on TLS, HTTPS, or encrypted traffic.",agy/gemini-3.8-flash-high
+S3214,include,,"Proposes an AI system combining clustering and deep learning for real-time SlowDoS detection over encrypted traffic, evaluated on a real testbed.",agy/gemini-3.8-flash-high
+S0158,exclude,off_topic,Focuses on URL-based phishing detection using lexical and webpage features rather than network traffic flow analysis.,agy/gemini-3.8-flash-high
+S0746,exclude,non_tls,"Evaluates generic IoT and intrusion datasets (UNSW-NB15, ToN_IoT, CICIoT2023) without isolating or focusing on TLS or encrypted traffic.",agy/gemini-3.8-flash-high
+S1100,maybe,,"Title indicates autoencoder-based DDoS detection in encrypted traffic, but the specific encryption protocol and evaluation data cannot be verified without an abstract.",agy/gemini-3.8-flash-high
+S0083,exclude,non_tls,"Focuses on multiclass DoS and intrusion prediction using a Kaggle dataset without any focus on TLS, HTTPS, or encrypted traffic.",agy/gemini-3.8-flash-high
+S0244,exclude,off_topic,"Proposes a general neural network compression method for measuring sample difficulty across image and generic IDS datasets, not network-traffic security.",agy/gemini-3.8-flash-high
+S2986,exclude,benign_only,Focuses on website fingerprinting to identify benign webpages visited by users rather than detecting malicious traffic.,agy/gemini-3.8-flash-high
+S0720,include,,Empirical study benchmarking deep learning IDS degradation when detecting TLS handshake exhaustion attacks under post-quantum cryptography without decryption.,agy/gemini-3.8-flash-high
+S3044,exclude,non_tls,"Focuses on IoT malware traffic analysis using binary visualization without any focus on TLS, HTTPS, or encrypted traffic.",agy/gemini-3.8-flash-high
+S1627,exclude,non_tls,Evaluated only on generic IDS benchmarks (UNSW-NB15 and CSE-CIC-IDS2018) without isolating encrypted or TLS flows.,agy/gemini-3.8-flash-high
+S1103,exclude,non_tls,"Evaluated only on the ISCX VPN-nonVPN dataset, which contains benign application and VPN traffic rather than malicious TLS traffic.",agy/gemini-3.8-flash-high
+S0568,include,,Evaluates machine learning and deep learning models on isolated encrypted traffic from IoT/IDS datasets for attack detection without decryption.,agy/gemini-3.8-flash-high
