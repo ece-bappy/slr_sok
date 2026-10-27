@@ -24,6 +24,7 @@ def load(p: Path) -> dict:
 def main() -> None:
     gemma = load(D / "gemma_nothink_all.csv")
     gemini = load(D / "gemini_strict_all.csv")
+    gemini.update(load(D / "gemini_strict_manual.csv"))  # re-screens after hand-entered abstracts
     agy = load(D / "agy_title_only.csv")
     recs = load(ROOT / "review" / "search" / "records.csv")
 

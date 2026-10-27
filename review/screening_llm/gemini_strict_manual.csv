@@ -1,0 +1,28 @@
+id,decision,criterion,reason,judge
+S0217,include,,"This is a primary study on C2 traffic detection, addressing encrypted channels using machine learning and quantitative evaluation.",gemini/gemini-3.1-flash-lite
+S0230,exclude,non_tls,Uses generic IDS benchmark CIC-IDS2018 without explicit focus or isolation of TLS/encrypted traffic.,gemini/gemini-3.1-flash-lite
+S0334,exclude,non_tls,Uses generic IDS benchmark CICIDS2017 without explicit isolation of TLS/encrypted traffic.,gemini/gemini-3.1-flash-lite
+S0366,include,,"This is a primary study on malicious encrypted traffic detection using GNNs, with quantitative evaluation on self-constructed datasets.",gemini/gemini-3.1-flash-lite
+S0485,include,,This is a primary study proposing a backdoor attack on encrypted traffic classification systems.,gemini/gemini-3.1-flash-lite
+S0490,include,,"This is a primary study focusing on encrypted traffic classification in the Internet of Vehicles, using GNNs.",gemini/gemini-3.1-flash-lite
+S0557,exclude,non_tls,"Uses generic IDS benchmarks (UNSW-NB-15, CIC-IDS-2017) without explicit focus or isolation of encrypted traffic.",gemini/gemini-3.1-flash-lite
+S0747,include,,This is a primary study on encrypted IoT traffic classification using GNNs with quantitative evaluation.,gemini/gemini-3.1-flash-lite
+S0939,include,,"This is a primary study on encrypted traffic classification, including malware communication and using diverse encrypted traffic datasets.",gemini/gemini-3.1-flash-lite
+S1191,exclude,non_tls,"Uses generic IDS benchmark NSL-KDD, which is not an encrypted traffic dataset.",gemini/gemini-3.1-flash-lite
+S1208,exclude,non_tls,Uses generic IDS benchmark CICIDS2019 without explicit focus on encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1217,include,,This is a primary study on detecting and categorizing malicious DNS over HTTPS (encrypted) traffic.,gemini/gemini-3.1-flash-lite
+S1451,exclude,non_tls,"Focuses on unencrypted web session logs and generic HTTP web attack datasets (e.g., CSIC 2010).",gemini/gemini-3.1-flash-lite
+S1607,exclude,non_tls,Focuses on general network intrusion detection without explicit focus on encrypted or TLS traffic.,gemini/gemini-3.1-flash-lite
+S1682,include,,Primary study proposing an adversarial attack framework to evaluate the robustness of ML-based DoH tunnel detection.,gemini/gemini-3.1-flash-lite
+S1717,include,,Primary study proposing a method for early identification of malicious DoH tunnel tools in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1748,exclude,non_tls,The paper focuses on generic malware traffic classification without evidence of TLS or encrypted traffic focus.,gemini/gemini-3.1-flash-lite
+S1774,include,,Primary study proposing an ensemble ML method for phishing detection specifically in encrypted TLS traffic.,gemini/gemini-3.1-flash-lite
+S1778,include,,Primary study using ML to detect DGA domains within encrypted DoH traffic.,gemini/gemini-3.1-flash-lite
+S1887,include,,Primary study proposing flow-based feature extraction and ML to detect malware in encrypted traffic without decryption.,gemini/gemini-3.1-flash-lite
+S1972,include,,Primary study proposing a stacking ensemble ML model to detect malware in encrypted traffic without decryption.,gemini/gemini-3.1-flash-lite
+S2221,exclude,benign_only,Focuses on the detection of DoH traffic itself rather than the detection of malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S2576,include,,Primary study using adaptive online ML analysis to detect malware in encrypted IIoT traffic.,gemini/gemini-3.1-flash-lite
+S2577,exclude,not_main_focus,The work focuses on generic malicious traffic detection rather than specifically addressing encrypted or TLS traffic.,gemini/gemini-3.1-flash-lite
+S2706,include,,Primary study evaluating the robustness of encrypted traffic classifiers against adversarial attacks.,gemini/gemini-3.1-flash-lite
+S2753,exclude,not_main_focus,"This is a generic intrusion detection system evaluation using a standard benchmark, lacking focus on encrypted traffic.",gemini/gemini-3.1-flash-lite
+S3014,exclude,benign_only,The paper focuses on general classification of DoH traffic rather than detecting malicious activity.,gemini/gemini-3.1-flash-lite
