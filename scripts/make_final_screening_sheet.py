@@ -84,7 +84,7 @@ def main() -> None:
     last = len(sug) + 1
     col = {h: ws.cell(1, i).column_letter for i, (h, _, _) in enumerate(COLS, 1)}
 
-    dv1 = DataValidation(type="list", formula1='"include,exclude,maybe"', allow_blank=True)
+    dv1 = DataValidation(type="list", formula1='"include,exclude"', allow_blank=True)
     dv2 = DataValidation(type="list", formula1=f'"{",".join(CODES)}"', allow_blank=True)
     ws.add_data_validation(dv1)
     ws.add_data_validation(dv2)
@@ -102,10 +102,9 @@ def main() -> None:
             ("Decided", f"=COUNTA({fd})"),
             ("Still open", "=B2-B3"),
             ("include", f'=COUNTIF({fd},"include")'),
-            ("maybe", f'=COUNTIF({fd},"maybe")'),
             ("exclude", f'=COUNTIF({fd},"exclude")'),
             ("exclude without a code (fix)", f'=COUNTIFS({fd},"exclude",{ec},"")'),
-            ("maybe without a note (fix)", f'=COUNTIFS({fd},"maybe",Screening!${col["my_note"]}$2:${col["my_note"]}${last},"")'),
+            ("include with a code (fix)", f'=COUNTIFS({fd},"include",{ec},"<>")'),
             ("A bucket included", f'=COUNTIFS({bk},"A",{fd},"include")'),
             ("B bucket included", f'=COUNTIFS({bk},"B",{fd},"include")'),
             ("Agreement with current_decision (decided rows)",
@@ -131,9 +130,10 @@ def main() -> None:
         ("How to use", ""),
         ("Rules", "review/final_screening/rulebook.txt (strict). Read it first."),
         ("Fill in", "Only the yellow columns on Screening: final_decision, exclusion_criterion, my_note."),
-        ("final_decision", "include / exclude / maybe (drop-down)."),
+        ("final_decision", "include / exclude (drop-down). No maybe: check the paper, else exclude as unresolved."),
         ("exclusion_criterion", "Required for exclude; first code in rulebook section 3 that applies."),
-        ("my_note", "Required for maybe, venue overrides, duplicates and when you disagree with current_decision."),
+        ("my_note", "Required when you decided from the paper (say where), for 'unresolved', venue overrides, "
+                    "duplicates and when you disagree with current_decision."),
         ("link", "Click 'open' to go to the DOI / arXiv / Semantic Scholar page."),
         ("Summary sheet", "Counts update as you type; the two '(fix)' rows should end at 0."),
         ("", ""),

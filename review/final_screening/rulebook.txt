@@ -7,14 +7,19 @@ Version 1, 27 Oct 2026. Applies to final_screening_325.xlsx. Change only by addi
 =====================================================================
 Read the title and abstract (open the link if the abstract is missing or cut). Then:
 
-  INCLUDE  only if EVERY criterion in section 2 is CLEARLY met by the title/abstract.
+  INCLUDE  only if EVERY criterion in section 2 is CLEARLY met.
   EXCLUDE  if ANY exclusion code in section 3 applies. Use the FIRST code in the list that applies.
-  MAYBE    only if exactly ONE criterion cannot be determined from the title/abstract (usually
-           C3, which dataset/traffic was used) while all the others are clearly met.
-           A maybe goes to full-text screening. Write in my_note what must be checked.
+
+There is no "maybe". Every record ends as include or exclude in this round.
+If the title/abstract does not settle a criterion (usually C3, which dataset/traffic was used):
+  1. Open the link and check the paper itself: the dataset/experiment section, tables, or the
+     publisher page's keywords and figures.
+  2. Decide from what you find, and write in my_note where you found it ("dataset: CTU-13, p.5").
+  3. If it is still unclear after that, EXCLUDE with the code of the criterion that could not be
+     shown, and write "unresolved" in my_note. Unproven = not met.
 
 Strict means:
-  - Doubt about relevance is not a maybe. If the paper is only partly about our topic, exclude it.
+  - If the paper is only partly about our topic, exclude it.
   - Do not give credit for what the paper "might" do. Judge only what is written.
   - The LLM suggestion (current_decision) is advice. final_decision is yours.
   - A missing abstract alone is never a reason to exclude. Open the link and judge the paper.
@@ -69,8 +74,8 @@ R1  Calling the work "encrypted traffic detection" is not enough. Check the data
     malware/C2 datasets (CTU-13 TLS subsets, Stratosphere, MTA, CIRA-CIC-DoHBrw-2020, CESNET-TLS,
     HIKARI-2021, RAID-2024 C2, DoH tunnel datasets, own TLS captures) or explicitly isolated TLS
     flows from a generic benchmark.
-R2  USTC-TFC2016 / mixed malware-traffic datasets: include only if the abstract says the traffic is
-    encrypted/TLS or TLS flows are analysed; otherwise maybe if all else is clear.
+R2  USTC-TFC2016 / mixed malware-traffic datasets: include only if the paper says the traffic is
+    encrypted/TLS or TLS flows are analysed; otherwise non_tls.
 R3  DoH: detecting MALICIOUS DoH (tunnels, C2, exfiltration, DGA over DoH) -> include.
     Detecting DoH vs. non-DoH only -> benign_only.
 R4  Phishing: include only if detected from TLS traffic features (handshake, SNI, certificate as
@@ -95,14 +100,15 @@ R12 Measurement papers (e.g. how malware uses TLS) count as primary only if they
 =====================================================================
 5. SHEET COLUMNS YOU FILL IN (yellow)
 =====================================================================
-final_decision       include / exclude / maybe (drop-down)
+final_decision       include / exclude (drop-down)
 exclusion_criterion  code from section 3 (drop-down); required when final_decision = exclude
-my_note              required for: every maybe (what to check), every venue override, every
-                     duplicate (kept id), and every case where you go against current_decision.
-                     Optional otherwise.
+my_note              required for: every decision made from the paper rather than the abstract
+                     (where you found it), every "unresolved" exclude, every venue override,
+                     every duplicate (kept id), and every case where you go against
+                     current_decision. Optional otherwise.
 
 current_decision / current_criterion are the LLM suggestions (A = both Gemma and strict Gemini
-said include; B = mixed). Never edit them.
+said include; B = mixed, may say maybe). Never edit them.
 
 =====================================================================
 6. ADDED RULES (date, rule, why)
