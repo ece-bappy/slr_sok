@@ -1,0 +1,401 @@
+name,year,malware,pcap_bytes,ssl_log_bytes
+CTU-Malware-Capture-Botnet-90,2009,Conficker,13000000,890
+CTU-Malware-Capture-Botnet-92,2009,Wootbot,11000000,0
+CTU-Malware-Capture-Botnet-91,2010,Conficker,40000000,0
+CTU-Malware-Capture-Botnet-42,2011,Neeris,1256000000,12000000
+CTU-Malware-Capture-Botnet-48,2011,Sogou,124000000,817000
+CTU-Malware-Capture-Botnet-43,2011,Neeris,1135000000,8300000
+CTU-Malware-Capture-Botnet-44,2011,RBot,2623000000,22000000
+CTU-Malware-Capture-Botnet-45,2011,RBot,5976000000,9500000
+CTU-Malware-Capture-Botnet-46,2011,Virut,103000000,915000
+CTU-Malware-Capture-Botnet-54,2011,Virut,952000000,6900000
+CTU-Malware-Capture-Botnet-47,2011,Trojan Bagsu,580000000,4300000
+CTU-Malware-Capture-Botnet-49,2011,Murlo,507000000,13000000
+CTU-Malware-Capture-Botnet-50,2011,Neeris,2702500000,11000000
+CTU-Malware-Capture-Botnet-51,2011,RBot,66596000000,8800000
+CTU-Malware-Capture-Botnet-52,2011,RBot,4080000000,767000
+CTU-Malware-Capture-Botnet-53,2011,NSIS Agent,500000000,2200000
+CTU-Malware-Capture-Botnet-116-1,2012,Trojan MSIL Inject,12000000,5100
+CTU-Malware-Capture-Botnet-116-4,2012,Trojan MSIL Inject,106000000,11000
+CTU-Malware-Capture-Botnet-116-2,2012,Trojan MSIL Inject,13000000,6000
+CTU-Malware-Capture-Botnet-116-3,2012,Trojan MSIL Inject,186000000,0
+CTU-Malware-Capture-Botnet-64,2013,EyePyramid,1600000,0
+CTU-Malware-Capture-Botnet-1,2013,Zeus Variant,-1,-1
+CTU-Malware-Capture-Botnet-138-1,2013,FluBot,1400000000,1100
+CTU-Malware-Capture-Botnet-10,2013,Trojan Downloader,736000000,0
+CTU-Malware-Capture-Botnet-7,2013,PushDo,2984000000,0
+CTU-Malware-Capture-Botnet-9,2013,Adware Conduit,584000,0
+CTU-Malware-Capture-Botnet-6,2013,Zbot,1525000000,0
+CTU-Malware-Capture-Botnet-2,2013,Zbot,3400000,0
+CTU-Malware-Capture-Botnet-4,2013,PushDo,2526000000,0
+CTU-Malware-Capture-Botnet-5,2013,PushDo,4445000000,0
+CTU-Malware-Capture-Botnet-3,2013,Kelihos,409000000,0
+CTU-Malware-Capture-Botnet-11,2013,PUA,1600000,0
+CTU-Malware-Capture-Botnet-16,2013,Trojan Bulta!rfn,961000000,0
+CTU-Malware-Capture-Botnet-17-1,2013,PUA 4Shared,254000000,9400
+CTU-Malware-Capture-Botnet-17-2,2013,PUA 4Shared,254000000,9100
+CTU-Malware-Capture-Botnet-14,2013,Trojan Medfos,466000,0
+CTU-Malware-Capture-Botnet-13,2013,Zbot,40012000000,0
+CTU-Malware-Capture-Botnet-25-1,2013,Zbot,884000000,1400000
+CTU-Malware-Capture-Botnet-8,2013,Zbot,687000000,0
+CTU-Malware-Capture-Botnet-15,2013,Trojan Adkuadu,20000000,0
+CTU-Malware-Capture-Botnet-28,2013,Sirefef,60000000,0
+CTU-Malware-Capture-Botnet-12,2013,Kelihos,742000000,0
+CTU-Malware-Capture-Botnet-24,2013,Trojan Scoreem,116000000,0
+CTU-Malware-Capture-Botnet-26,2013,Trojan Adkuadu,113000000,0
+CTU-Malware-Capture-Botnet-22,2013,Trojan Dynamer,2800000,0
+CTU-Malware-Capture-Botnet-23,2013,PUA Multibar,23000000,0
+CTU-Malware-Capture-Botnet-27-1,2013,Upatre,11000000000,101000
+CTU-Malware-Capture-Botnet-27-2,2013,Upatre,3100000000,1100
+CTU-Malware-Capture-Botnet-31-1,2013,Papras,8199999999,38000000
+CTU-Malware-Capture-Botnet-36,2014,Trojan Hicrazyk,347000000,0
+CTU-Malware-Capture-Botnet-25-2,2014,Zbot,75000000,38000
+CTU-Malware-Capture-Botnet-35-1,2014,Cutwail,168000000,1300
+CTU-Malware-Capture-Botnet-25-3,2014,Zbot,846000,1000
+CTU-Malware-Capture-Botnet-25-4,2014,Zbot,29000000,19000
+CTU-Malware-Capture-Botnet-25-5,2014,Zbot,282000000,225000
+CTU-Malware-Capture-Botnet-55,2014,Neeris,706000,0
+CTU-Malware-Capture-Botnet-66-1,2014,Sality,395139000,0
+CTU-Malware-Capture-Botnet-60,2014,PUA InstallCore,29000000,0
+CTU-Malware-Capture-Botnet-65,2014,PUA VOPackage,35000000,0
+CTU-Malware-Capture-Botnet-69,2014,Caphaw,650000000,8700000
+CTU-Malware-Capture-Botnet-59,2014,PUA InstallCore,40000000,0
+CTU-Malware-Capture-Botnet-78-1,2014,Zbot,6000000000,8300000
+CTU-Malware-Capture-Botnet-73,2014,Website: www[.]magnetikum.cz,1100000,0
+CTU-Malware-Capture-Botnet-78-2,2014,Zbot,2400000000,3600000
+CTU-Malware-Capture-Botnet-89-1,2014,PUA Skymix,250000000,0
+CTU-Malware-Capture-Botnet-25-6,2014,Zbot,134000000,606000
+CTU-Malware-Capture-Botnet-100,2014,Matsnu,36000000,0
+CTU-Malware-Capture-Botnet-101,2014,Adware Adpeak,15000000,0
+CTU-Malware-Capture-Botnet-102,2015,Website: www[.]cafecaterers.com/x/,2500000,2800
+CTU-Malware-Capture-Botnet-103,2015,Trojan MSIL Inject,569000,0
+CTU-Malware-Capture-Botnet-104-1,2015,Dridex,22000000,0
+CTU-Malware-Capture-Botnet-105-1,2015,Dridex,21000000,0
+CTU-Malware-Capture-Botnet-106-1,2015,Dridex,22000000,0
+CTU-Malware-Capture-Botnet-107-1,2015,Cridex,11000000,0
+CTU-Malware-Capture-Botnet-108-1,2015,Cridex,11000000,0
+CTU-Malware-Capture-Botnet-109-1,2015,Cridex,93000000,0
+CTU-Malware-Capture-Botnet-110-1,2015,HTBot,83000000,231000
+CTU-Malware-Capture-Botnet-110-2,2015,HTBot,24000000,31000
+CTU-Malware-Capture-Botnet-112-1,2015,HTBot,68000000,329000
+CTU-Malware-Capture-Botnet-110-3,2015,HTBot,1300000000,0
+CTU-Malware-Capture-Botnet-111-1,2015,HTBot,94000000,86000
+CTU-Malware-Capture-Botnet-111-2,2015,HTBot,648000000,0
+CTU-Malware-Capture-Botnet-112-2,2015,HTBot,3999000000,11000000
+CTU-Malware-Capture-Botnet-113-1,2015,Dridex,16000000,0
+CTU-Malware-Capture-Botnet-115-1,2015,Volatile Cedar,47000000,0
+CTU-Malware-Capture-Botnet-114-1,2015,Emotet,1900000,0
+CTU-Malware-Capture-Botnet-110-4,2015,HTBot,762000000,2200000
+CTU-Malware-Capture-Botnet-111-3,2015,HTBot,1300000000,0
+CTU-Malware-Capture-Botnet-112-3,2015,HTBot,74000000,455000
+CTU-Malware-Capture-Botnet-114-2,2015,Emotet,8700000,0
+CTU-Malware-Capture-Botnet-117-1,2015,NjRAT,46000000,1100
+CTU-Malware-Capture-Botnet-120-1,2015,NjRAT,9400000,9400
+CTU-Malware-Capture-Botnet-118-1,2015,Upatre,2100000,0
+CTU-Malware-Capture-Botnet-119-1,2015,Emotet,4200000,0
+CTU-Malware-Capture-Botnet-122-1,2015,Emotet,5000000,0
+CTU-Malware-Capture-Botnet-123-1,2015,Website: http[:]//sansarall.ru/,1100000,791
+CTU-Malware-Capture-Botnet-121-1,2015,Trojan SpyAgent,4800,0
+CTU-Malware-Capture-Botnet-110-5,2015,HTBot,5900000,43000
+CTU-Malware-Capture-Botnet-111-4,2015,HTBot,2300000000,0
+CTU-Malware-Capture-Botnet-112-4,2015,HTBot,2100000000,3800000
+CTU-Malware-Capture-Botnet-114-3,2015,Emotet,40000000,0
+CTU-Malware-Capture-Botnet-119-2,2015,Emotet,30000000,0
+CTU-Malware-Capture-Botnet-120-2,2015,NjRAT,305000000,0
+CTU-Malware-Capture-Botnet-122-2,2015,Emotet,28000000,0
+CTU-Malware-Capture-Botnet-110-6,2015,HTBot,4400000000,15000000
+CTU-Malware-Capture-Botnet-124-1,2015,Geodo,1200000,0
+CTU-Malware-Capture-Botnet-125-1,2015,Geodo,1700000000,0
+CTU-Malware-Capture-Botnet-126-1,2015,Geodo,1200000000,0
+CTU-Malware-Capture-Botnet-127-1,2015,Miuref,16000000,0
+CTU-Malware-Capture-Botnet-128-1,2015,Miuref,337000000,0
+CTU-Malware-Capture-Botnet-111-5,2015,HTBot,4800000000,8500000
+CTU-Malware-Capture-Botnet-114-4,2015,Emotet,45000000,0
+CTU-Malware-Capture-Botnet-119-3,2015,Emotet,45000000,0
+CTU-Malware-Capture-Botnet-125-2,2015,Geodo,107000000,0
+CTU-Malware-Capture-Botnet-127-2,2015,Miuref,97000000,0
+CTU-Malware-Capture-Botnet-128-2,2015,Miuref,1100000000,0
+CTU-Malware-Capture-Botnet-129-1,2015,Upatre,2300000,1300
+CTU-Malware-Capture-Botnet-130-1,2015,ShinoBot,7700000,0
+CTU-Malware-Capture-Botnet-131-1,2015,PUA Bubble,24000000,0
+CTU-Malware-Capture-Botnet-135-1,2015,XORDDoS,497000000,0
+CTU-Malware-Capture-Botnet-132-1,2015,Trojan CCleaner,2700000,0
+CTU-Malware-Capture-Botnet-133-1,2015,Trojan CCleaner,2000000,0
+CTU-Malware-Capture-Botnet-134-1,2015,Cryptowall,302000,0
+CTU-Malware-Capture-Botnet-147-1,2015,Trojan Nitol,13000000,0
+CTU-Malware-Capture-Botnet-144-1,2015,uTorrent,283000000,16000
+CTU-Malware-Capture-Botnet-145-1,2015,uTorrent,273000000,54000
+CTU-Malware-Capture-Botnet-142-1,2015,Shifu,236000000,258000
+CTU-Malware-Capture-Botnet-143-1,2015,Upatre,6600000,942
+CTU-Malware-Capture-Botnet-148-1,2015,Trojan Rebhip,47000000,0
+CTU-Malware-Capture-Botnet-141-1,2015,Bunitu,323000000,969000
+CTU-Malware-Capture-Botnet-137-1,2015,bab0,54000000,12000
+CTU-Malware-Capture-Botnet-140-1,2015,Bunitu,222000000,797000
+CTU-Malware-Capture-Botnet-141-2,2015,Bunitu,384000000,1100000
+CTU-Malware-Capture-Botnet-140-2,2015,Bunitu,281000000,686000
+CTU-Malware-Capture-Botnet-149-1,2015,Kelihos,201000000,0
+CTU-Malware-Capture-Botnet-150-1,2015,Tinba,1100000000,0
+CTU-Malware-Capture-Botnet-161-1,2015,NjRAT,903000,0
+CTU-Malware-Capture-Botnet-149-2,2015,Kelihos,186000000,0
+CTU-Malware-Capture-Botnet-153-1,2016,Dridex,16000000,300000
+CTU-Malware-Capture-Botnet-151-1,2016,Gh0st RAT,6400000,0
+CTU-Malware-Capture-Botnet-152-1,2016,Zbot,8800000,0
+CTU-Malware-Capture-Botnet-157-1,2016,Linux Malware,70000000,783
+CTU-Malware-Capture-Botnet-155-1,2016,Ursnif,11000000,0
+CTU-Malware-Capture-Botnet-164-1,2016,Vawtrak,12000000000,3800000
+CTU-Malware-Capture-Botnet-156-1,2016,Trojan Fynloski,57000000,0
+CTU-Malware-Capture-Botnet-171-1,2016,Trojan Omaneat,133000000,0
+CTU-Malware-Capture-Botnet-158-1,2016,Tinba,52000000,0
+CTU-Malware-Capture-Botnet-159-1,2016,Tinba,55000000,0
+CTU-Malware-Capture-Botnet-160-1,2016,Tinba,54000000,0
+CTU-Malware-Capture-Botnet-166-1,2016,Tinba,155000000,0
+CTU-Malware-Capture-Botnet-165-1,2016,Zbot,213000000,0
+CTU-Malware-Capture-Botnet-167-1,2016,Zbot,756000000,0
+CTU-Malware-Capture-Botnet-162-1,2016,Upatre,1500000,9900
+CTU-Malware-Capture-Botnet-162-2,2016,Upatre,53000000,330000
+CTU-Malware-Capture-Botnet-163-1,2016,Trojan Dynamer,1500000,3400
+CTU-Malware-Capture-Botnet-172-1,2016,PUA InstallMonetizer,8900000,0
+CTU-Malware-Capture-Botnet-175-1,2016,Website: https[:]//goo.gl/NrGdrX,6900000,1300
+CTU-Malware-Capture-Botnet-317-1,2016,Website: https[:]//goo.gl/NrGdrX,452000000,859000
+CTU-Malware-Capture-Botnet-177-1,2016,PUA Yantai,575000000,224000
+CTU-Malware-Capture-Botnet-178-1,2016,PUA Yantai,679000000,892000
+CTU-Malware-Capture-Botnet-179-1,2016,Trojan Nagoot,4500000,914
+CTU-Malware-Capture-Botnet-180-1,2016,Trojan Dynamer,7700000,898
+CTU-Malware-Capture-Botnet-181-1,2016,Trojan Omaneat,11000000,901
+CTU-Malware-Capture-Botnet-182-1,2016,PUA Creprote,4500000,0
+CTU-Malware-Capture-Botnet-170-1,2016,Necurs,20000000,0
+CTU-Malware-Capture-Botnet-176-1,2016,Necurs,57000000,0
+CTU-Malware-Capture-Botnet-183-1,2016,Locky Ransomware,1100000,4400
+CTU-Malware-Capture-Botnet-184-1,2016,Cerber Ransomware,55000000,36000
+CTU-Malware-Capture-Botnet-168-1,2016,Gamarue,69000000,0
+CTU-Malware-Capture-Botnet-168-2,2016,Gamarue,364000000,0
+CTU-Malware-Capture-Botnet-169-1,2016,Miuref,39000000,87000
+CTU-Malware-Capture-Botnet-169-3,2016,Miuref,211000000,1300000
+CTU-Malware-Capture-Botnet-169-2,2016,Miuref,247000000,493000
+CTU-Malware-Capture-Botnet-173-1,2016,Miuref,116000000,0
+CTU-Malware-Capture-Botnet-174-1,2016,Zbot,1500000000,4200000
+CTU-Malware-Capture-Botnet-189-1,2016,Vawtrak,1000000000,18000000
+CTU-Malware-Capture-Botnet-187-1,2016,LuminosityLink,58000000,3500
+CTU-Malware-Capture-Botnet-185-1,2016,Trojan Dynamer,5700000,6800
+CTU-Malware-Capture-Botnet-188-1,2016,Trojan Dynamer,687000000,14000
+CTU-Malware-Capture-Botnet-188-2,2016,Trojan Dynamer,171000000,39000
+CTU-Malware-Capture-Botnet-191-1,2016,Upatre,10000000000,0
+CTU-Malware-Capture-Botnet-194-1,2016,uTorrent,494000000,96000
+CTU-Malware-Capture-Botnet-186-1,2016,RemoteAdmin Ammyy,46000000,131000
+CTU-Malware-Capture-Botnet-190-1,2016,RemoteAdmin Ammyy,14000000,0
+CTU-Malware-Capture-Botnet-190-2,2016,RemoteAdmin Ammyy,426000000,0
+CTU-Malware-Capture-Botnet-193-1,2016,PUA Piriform Bundle,260000000,113000
+CTU-Malware-Capture-Botnet-187-2,2016,LuminosityLink,240000000,0
+CTU-Malware-Capture-Botnet-192-2,2016,RemoteAdmin Ammyy,239000000,0
+CTU-Malware-Capture-Botnet-188-3,2016,Trojan Dynamer,929000000,7000
+CTU-Malware-Capture-Botnet-188-4,2016,Trojan Dynamer,263000000,45000
+CTU-Malware-Capture-Botnet-192-1,2016,RemoteAdmin Ammyy,120000000,0
+CTU-Malware-Capture-Botnet-193-2,2016,PUA Piriform Bundle,251000000,37000
+CTU-Malware-Capture-Botnet-205-1,2016,Website: http[:]//downloadming.tv/mirzya-2016-mp3-songs,357000000,26000
+CTU-Malware-Capture-Botnet-205-2,2016,Website: http[:]//downloadming.tv/mirzya-2016-mp3-songs,437000000,1500000
+CTU-Malware-Capture-Botnet-198-1,2016,Trojan Allaple,384000000,134000
+CTU-Malware-Capture-Botnet-195-1,2016,Cheat Engine,92000000,2400
+CTU-Malware-Capture-Botnet-197-1,2016,PUA FusionCore,91000000,0
+CTU-Malware-Capture-Botnet-199-1,2016,PUA MediaGet,617000000,35000
+CTU-Malware-Capture-Botnet-200-1,2016,Trojan Ymacco,114000000,2400
+CTU-Malware-Capture-Botnet-201-1,2016,PUA Creprote,254000000,9900
+CTU-Malware-Capture-Botnet-196-1,2016,PUA ReImage,108000000,1800
+CTU-Malware-Capture-Botnet-206-1,2016,Kovter,1100000000,0
+CTU-Malware-Capture-Botnet-199-2,2016,PUA MediaGet,117000000,741
+CTU-Malware-Capture-Botnet-203-1,2016,Trojan Nadrac,867000000,421000
+CTU-Malware-Capture-Botnet-204-1,2016,PUA Toolbar,210000000,29000
+CTU-Malware-Capture-Botnet-202-1,2016,PUA RelevantKnowledge,232000000,12000
+CTU-Malware-Capture-Botnet-208-1,2016,PUA OpenCandy,417000000,0
+CTU-Malware-Capture-Botnet-209-1,2016,PUA DsNet,132000000,4100
+CTU-Malware-Capture-Botnet-211-1,2016,NetCut,12000000000,1000
+CTU-Malware-Capture-Botnet-207-1,2016,Mailpassview,757000,0
+CTU-Malware-Capture-Botnet-210-1,2016,TeamViewer,25000000,1000
+CTU-Malware-Capture-Botnet-208-2,2016,PUA OpenCandy,223000000,27000
+CTU-Malware-Capture-Botnet-213-1,2016,PUA OpenCandy,109000000,946
+CTU-Malware-Capture-Botnet-192-3,2016,RemoteAdmin Ammyy,363000000,0
+CTU-Malware-Capture-Botnet-214-1,2016,Locky,259000000,0
+CTU-Malware-Capture-Botnet-192-4,2016,RemoteAdmin Ammyy,36000000,0
+CTU-Malware-Capture-Botnet-215-1,2016,AnyDesk,3100000000,138000000
+CTU-Malware-Capture-Botnet-211-2,2016,NetCut,27000000000,1800
+CTU-Malware-Capture-Botnet-371-1,2017,Trojan Dynamer,464247000,0
+CTU-Malware-Capture-Botnet-216-1,2017,VBInject,73000000,0
+CTU-Malware-Capture-Botnet-218-1,2017,Dridex,79000000,3700
+CTU-Malware-Capture-Botnet-222-1,2017,PUA SpeedingUpMyPC,120000000,1200
+CTU-Malware-Capture-Botnet-226-1,2017,Trojan NetSky,1100000000,0
+CTU-Malware-Capture-Botnet-370-1,2017,-,61000000,18100
+CTU-Malware-Capture-Botnet-226-2,2017,Trojan NetSky,892000000,0
+CTU-Malware-Capture-Botnet-219-1,2017,Kovter,31000000,218000
+CTU-Malware-Capture-Botnet-219-2,2017,Kovter,362000000,269000
+CTU-Malware-Capture-Botnet-219-3,2017,Kovter,738000000,213000
+CTU-Malware-Capture-Botnet-220-1,2017,Unknown,42000,1200
+CTU-Malware-Capture-Botnet-221-1,2017,Locky,299000,10000
+CTU-Malware-Capture-Botnet-221-2,2017,Locky,607000000,11000000
+CTU-Malware-Capture-Botnet-229-1,2017,NanoCore,183000000,0
+CTU-Malware-Capture-Botnet-217-1,2017,Firefox Installer,155000000,887000
+CTU-Malware-Capture-Botnet-231-1,2017,CoreBot,167000000,2100000
+CTU-Malware-Capture-Botnet-232-1,2017,PUA TaoBao,314000000,3900000
+CTU-Malware-Capture-Botnet-227-1,2017,Dridex,144000000,1300000
+CTU-Malware-Capture-Botnet-223-1,2017,Fareit,76000,0
+CTU-Malware-Capture-Botnet-225-1,2017,Tinba,171000000,0
+CTU-Malware-Capture-Botnet-224-1,2017,Ransomware,52000000,143000
+CTU-Malware-Capture-Botnet-228-1,2017,Dridex,57000000,396000
+CTU-Malware-Capture-Botnet-230-1,2017,NjRAT,15000000,11100
+CTU-Malware-Capture-Botnet-237-1,2017,PUA TaoBao,272000000,7400000
+CTU-Malware-Capture-Botnet-238-1,2017,Trickbot,89000000,6000000
+CTU-Malware-Capture-Botnet-239-1,2017,Trickbot,90000000,6000000
+CTU-Malware-Capture-Botnet-240-1,2017,Trickbot,83000000,6000000
+CTU-Malware-Capture-Botnet-241-1,2017,Trickbot,88000000,4800000
+CTU-Malware-Capture-Botnet-242-1,2017,Trickbot,81000000,5800000
+CTU-Malware-Capture-Botnet-243-1,2017,Trickbot,288000000,35000000
+CTU-Malware-Capture-Botnet-244-1,2017,Trickbot,115000000,9000000
+CTU-Malware-Capture-Botnet-247-1,2017,Trickbot,142000000,19000000
+CTU-Malware-Capture-Botnet-261-1,2017,Trickbot,204000000,16000000
+CTU-Malware-Capture-Botnet-215-2,2017,AnyDesk,2000000000,91000000
+CTU-Malware-Capture-Botnet-233-1,2017,Tinba,14000,0
+CTU-Malware-Capture-Botnet-246-1,2017,Dridex,68000000,9200000
+CTU-Malware-Capture-Botnet-234-1,2017,Nemucod,171000,0
+CTU-Malware-Capture-Botnet-235-1,2017,Trojan Banker,298000,5900
+CTU-Malware-Capture-Botnet-236-1,2017,Locky Ransomware,176000,0
+CTU-Malware-Capture-Botnet-245-1,2017,Dridex,44000000,6000000
+CTU-Malware-Capture-Botnet-248-1,2017,Dridex,66000000,7700000
+CTU-Malware-Capture-Botnet-262-1,2017,Zbot,261000000,0
+CTU-Malware-Capture-Botnet-249-1,2017,Dridex,47000000,5500000
+CTU-Malware-Capture-Botnet-189-3,2017,Vawtrak,222000,0
+CTU-Malware-Capture-Botnet-192-5,2017,RemoteAdmin Ammyy,16000000,0
+CTU-Malware-Capture-Botnet-251-1,2017,Dridex,31000000,3100000
+CTU-Malware-Capture-Botnet-257-1,2017,Dridex,52000000,8700000
+CTU-Malware-Capture-Botnet-260-1,2017,Dridex,33000000,3500000
+CTU-Malware-Capture-Botnet-280-1,2017,Pony Downloader,10000000,279000
+CTU-Malware-Capture-Botnet-255-1,2017,Trojan Tagarep,225000,0
+CTU-Malware-Capture-Botnet-259-1,2017,Dridex,7400000,0
+CTU-Malware-Capture-Botnet-261-2,2017,Trickbot,211000000,28000000
+CTU-Malware-Capture-Botnet-261-3,2017,Trickbot,214000000,28000000
+CTU-Malware-Capture-Botnet-261-4,2017,Trickbot,228000000,27000000
+CTU-Malware-Capture-Botnet-189-2,2017,Vawtrak,399000000,6500000
+CTU-Malware-Capture-Botnet-254-1,2017,WannaCry Ransomware,3600000,2800
+CTU-Malware-Capture-Botnet-252-1,2017,WannaCry Ransomware,499000,0
+CTU-Malware-Capture-Botnet-253-1,2017,WannaCry Ransomware,11000000,3400
+CTU-Malware-Capture-Botnet-256-1,2017,WannaCry Ransomware,13000000,0
+CTU-Malware-Capture-Botnet-258-1,2017,WannaCry Ransomware,20000,0
+CTU-Malware-Capture-Botnet-270-1,2017,WannaCry Ransomware,444000000,418000
+CTU-Malware-Capture-Botnet-264-1,2017,Emotet,83000000,2600000
+CTU-Malware-Capture-Botnet-264-2,2017,Emotet,71000000,0
+CTU-Malware-Capture-Botnet-276-1,2017,Emotet,71000000,0
+CTU-Malware-Capture-Botnet-268-1,2017,Emotet,60000000,0
+CTU-Malware-Capture-Botnet-269-1,2017,Emotet,60000000,0
+CTU-Malware-Capture-Botnet-271-1,2017,Emotet,59000000,0
+CTU-Malware-Capture-Botnet-272-1,2017,Emotet,59000000,0
+CTU-Malware-Capture-Botnet-265-1,2017,Trickbot,77000000,9300000
+CTU-Malware-Capture-Botnet-266-1,2017,Trickbot,76000000,9000000
+CTU-Malware-Capture-Botnet-267-1,2017,Trickbot,78000000,9300000
+CTU-Malware-Capture-Botnet-273-1,2017,Trickbot,44000000,5100000
+CTU-Malware-Capture-Botnet-274-1,2017,Dridex,20000000,1900000
+CTU-Malware-Capture-Botnet-276-2,2017,Emotet,21000000,0
+CTU-Malware-Capture-Botnet-263-1,2017,Dridex,16000000,1500000
+CTU-Malware-Capture-Botnet-275-1,2017,Trickbot,37000000,4300000
+CTU-Malware-Capture-Botnet-277-1,2017,Trickbot,52000000,6200000
+CTU-Malware-Capture-Botnet-278-1,2017,Trickbot,67000000,7900000
+CTU-Malware-Capture-Botnet-279-1,2017,Trickbot,70000000,7300000
+CTU-Malware-Capture-Botnet-281-1,2017,Ursnif,10000,1200
+CTU-Malware-Capture-Botnet-282-1,2017,Ursnif,521000,8100
+CTU-Malware-Capture-Botnet-283-1,2017,WannaCry Ransomware,1600000,0
+CTU-Malware-Capture-Botnet-284-1,2017,WannaCry Ransomware,7600000,0
+CTU-Malware-Capture-Botnet-285-1,2017,WannaCry Ransomware,7300000,1700
+CTU-Malware-Capture-Botnet-286-1,2017,WannaCry Ransomware,7100000,0
+CTU-Malware-Capture-Botnet-287-1,2017,WannaCry Ransomware,6800000,1700
+CTU-Malware-Capture-Botnet-288-1,2017,NotPetya Ransomware,735000,0
+CTU-Malware-Capture-Botnet-289-1,2017,NotPetya Ransomware,750000,0
+CTU-Malware-Capture-Botnet-290-1,2017,WannaCry Ransomware,3100000,4600
+CTU-Malware-Capture-Botnet-291-1,2017,WannaCry Ransomware,28000,2900
+CTU-Malware-Capture-Botnet-292-1,2017,WannaCry Ransomware,6300000,2900
+CTU-Malware-Capture-Botnet-293-1,2017,WannaCry Ransomware,6100000,3400
+CTU-Malware-Capture-Botnet-294-1,2017,WannaCry Ransomware,6200000,1200
+CTU-Malware-Capture-Botnet-295-1,2017,WannaCry Ransomware,14000000,2900
+CTU-Malware-Capture-Botnet-296-1,2017,WannaCry Ransomware,6800000,2900
+CTU-Malware-Capture-Botnet-297-1,2017,WannaCry Ransomware,6700000,3500
+CTU-Malware-Capture-Botnet-298-1,2017,NotPetya Ransomware,1400000,0
+CTU-Malware-Capture-Botnet-299-1,2017,NotPetya Ransomware,1200000,1200
+CTU-Malware-Capture-Botnet-300-1,2017,Sathurbot,61000000000,62000000
+CTU-Malware-Capture-Botnet-301-1,2017,Sathurbot,1900000000,4099999
+CTU-Malware-Capture-Botnet-305-1,2017,Qakbot,772000000,44000000
+CTU-Malware-Capture-Botnet-302-1,2017,Trickbot,6400000,355000
+CTU-Malware-Capture-Botnet-305-2,2017,Qakbot,492000000,13000000
+CTU-Malware-Capture-Botnet-306-1,2017,Qakbot,336000000,17000000
+CTU-Malware-Capture-Botnet-308-1,2017,Qakbot,21000,1700
+CTU-Malware-Capture-Botnet-309-1,2017,Qakbot,11000000000,0
+CTU-Malware-Capture-Botnet-303-1,2017,Sathurbot,244000000,778000
+CTU-Malware-Capture-Botnet-310-1,2017,Trojan Skeeyah,1500000,0
+CTU-Malware-Capture-Botnet-311-1,2017,Trojan Skeeyah,153000000,0
+CTU-Malware-Capture-Botnet-312-1,2017,Trojan Chesir,1400000,0
+CTU-Malware-Capture-Botnet-313-1,2017,Ursnif,149000000,0
+CTU-Malware-Capture-Botnet-314-1,2017,Upatre,1400000,0
+CTU-Malware-Capture-Botnet-315-1,2017,Zboter,1600000,14000
+CTU-Malware-Capture-Botnet-316-1,2017,Ursnif,146000000,0
+CTU-Malware-Capture-Botnet-272-3,2017,Emotet,645000000,0
+CTU-Malware-Capture-Botnet-319-1,2017,Fareit,2100000000,0
+CTU-Malware-Capture-Botnet-320-1,2017,Trojan CCleaner,384000000,156000
+CTU-Malware-Capture-Botnet-318-1,2017,Trojan Magic Hound,353000000,8400
+CTU-Malware-Capture-Botnet-320-2,2017,Trojan CCleaner,452000000,2000000
+CTU-Malware-Capture-Botnet-322-1,2017,Dridex,309000000,3700000
+CTU-Malware-Capture-Botnet-323-1,2017,Trickbot,252000000,5600000
+CTU-Malware-Capture-Botnet-325-1,2017,Trickbot,212000000,3000000
+CTU-Malware-Capture-Botnet-326-1,2017,Dridex,193000000,960000
+CTU-Malware-Capture-Botnet-327-1,2017,Trickbot,197000000,2900000
+CTU-Malware-Capture-Botnet-324-1,2018,Trickbot,33000000,1000000
+CTU-Malware-Capture-Botnet-328-1,2018,Trojan AutoIT,16000000,1300
+CTU-Malware-Capture-Botnet-329-1,2018,JRAT,4900000,660
+CTU-Malware-Capture-Botnet-330-1,2018,PUA DownloadGuide,4400000,0
+CTU-Malware-Capture-Botnet-331-1,2018,PUA DownloadGuide,32000000,0
+CTU-Malware-Capture-Botnet-332-1,2018,PUA DownloadGuide,4400000,0
+CTU-Malware-Capture-Botnet-331-2,2018,PUA DownloadGuide,55000000,0
+CTU-Malware-Capture-Botnet-334-1,2018,PUA DownloadGuide,35000000,1900
+CTU-Malware-Capture-Botnet-230-2,2018,NjRAT,44000000,744
+CTU-Malware-Capture-Botnet-335-1,2018,Trojan Unknown,29000000,10000
+CTU-Malware-Capture-Botnet-339-1,2018,Trojan WebCompanion,226000000,674000
+CTU-Malware-Capture-Botnet-336-1,2018,PUA YTDDownloader,76000000,2200
+CTU-Malware-Capture-Botnet-337-1,2018,PUA SpeedChecker,53000000,0
+CTU-Malware-Capture-Botnet-338-1,2018,Trojan Coin Miner,53000000,0
+CTU-Malware-Capture-Botnet-340-1,2018,Website: node[.]viaxmr.com,167000000,1100
+CTU-Malware-Capture-Botnet-327-2,2018,Trickbot,67000000,1445000
+CTU-Malware-Capture-Botnet-342-1,2018,Trojan Coin Miner,309000000,0
+CTU-Malware-Capture-Botnet-343-1,2018,Ramnit,3200000,0
+CTU-Malware-Capture-Botnet-341-1,2018,Hancitor,184000000,2700
+CTU-Malware-Capture-Botnet-347-1,2018,Trojan Coin Miner,251000000,0
+CTU-Malware-Capture-Botnet-344-1,2018,Website: http[:]//5.8.88.175,212000000,31000
+CTU-Malware-Capture-Botnet-345-1,2018,Trojan Cobalt,143000000,69000
+CTU-Malware-Capture-Botnet-346-1,2018,Dridex,223000000,5000000
+CTU-Malware-Capture-Botnet-348-1,2018,HTBot,804000000,1700000
+CTU-Malware-Capture-Botnet-354-1,2018,PUA Bundler,2500000000,25000
+CTU-Malware-Capture-Botnet-349-1,2018,PUA Spygot,122000000,814
+CTU-Malware-Capture-Botnet-350-1,2018,Trickbot,170000000,2600000
+CTU-Malware-Capture-Botnet-351-1,2018,Trojan Coin Miner,174000000,0
+CTU-Malware-Capture-Botnet-352-1,2018,Trojan Coin Miner,547000000,1100
+CTU-Malware-Capture-Botnet-353-1,2018,Simda,33845000,0
+CTU-Malware-Capture-Botnet-355-1,2018,Simda,2800000000,0
+CTU-IoT-Malware-Capture-1-1,2018,Hide-and-Seek,-1,-1
+CTU-IoT-Malware-Capture-3-1,2018,Muhstik,-1,-1
+CTU-IoT-Malware-Capture-7-1,2018,Okiru,-1,-1
+CTU-IoT-Malware-Capture-9-1,2018,Hajime,-1,-1
+CTU-IoT-Malware-Capture-8-1,2018,Hakai,-1,-1
+CTU-IoT-Malware-Capture-17-1,2018,Kenjiro,-1,-1
+CTU-Malware-Capture-Botnet-368-1,2018,Sality,492000000,0
+CTU-IoT-Malware-Capture-20-1,2018,Torii,-1,-1
+CTU-IoT-Malware-Capture-21-1,2018,Torii,-1,-1
+CTU-Malware-Capture-Botnet-367-1,2018,Adylkuzz,10000000,0
+CTU-Malware-Capture-Botnet-372-1,2018,HTBot,1900000000,316000
+CTU-Malware-Capture-Botnet-373-1,2018,HTBot,69000000,0
+CTU-IoT-Malware-Capture-33-1,2018,Kenjiro,-1,-1
+CTU-IoT-Malware-Capture-34-1,2018,Mirai,-1,-1
+CTU-IoT-Malware-Capture-34-2,2018,Mirai,-1,-1
+CTU-IoT-Malware-Capture-35-1,2018,Mirai,-1,-1
+CTU-IoT-Malware-Capture-36-1,2018,Okiru,-1,-1
+CTU-IoT-Malware-Capture-39-1,2019,IRCBot,-1,-1
+CTU-IoT-Malware-Capture-41-1,2019,X-Bash,-1,-1
+CTU-IoT-Malware-Capture-42-1,2019,Linux Shell Downloader,-1,-1
+CTU-IoT-Malware-Capture-43-1,2019,Mirai,-1,-1
+CTU-IoT-Malware-Capture-44-1,2019,Mirai,-1,-1
+CTU-IoT-Malware-Capture-48-1,2019,Mirai,-1,-1
+CTU-IoT-Malware-Capture-49-1,2019,Mirai,-1,-1
+CTU-IoT-Malware-Capture-52-1,2019,Mirai,-1,-1
+CTU-IoT-Malware-Capture-60-1,2019,Gafgyt,-1,-1
+CTU-Malware-Capture-Botnet-374-1,2020,Trojan Scar,86000,0
