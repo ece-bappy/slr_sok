@@ -9,3 +9,7 @@ __pycache__/
 data/
 out/
 papers/
+# full paper texts prepared for agents (copyrighted, like papers/)
+results/**/S*.txt
+# Excel lock files
+~$*

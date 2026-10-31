@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2326",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "For the 5-dimensional feature vector, we select {[0], [0, 1], [0, 1, 2], [0, 1, 2, 3], [0, 1, 2, 3, 4]} (denote fea1, fea2, fea3, fea4, fea5) to evaluation, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "Prior arts [10]–[13], [46] have demonstrated that the sequence of packet length is a valid feature as the fingerprint of flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/TDSCCode/ERNN/tree/main/transition', 'https://github.com/TDSCCode/ERNN', 'https://github.com/TDSCCode/ERNN/tree/main/metrics', 'https://github.com/TDSCCode/ERNN/tree/main/decision_boundary']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "unclear",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "['unclear']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "we divide all PCAP traffic into 5-tuples flow and extract the feature vector (such as packet length sequence).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The IDS2017 consists of 225,745 packets collected from specific network activities, including both normal and intrusion activities",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIC-IDS2017 (train_and_test); CSE-CIC-IDS2018 (train_and_test); CIC-AndMal2017 (train_and_test); {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'To facilitate a fair comparison, we use two public datasets IDS2017 [50] and IDS2018 [51] for our ev'}; {'name': 'CSE-CIC-IDS2018', 'role': 'train_and_test', 'quote': 'To facilitate a fair comparison, we use two public datasets IDS2017 [50] and IDS2018 [51] for our ev'}; {'name': 'CIC-AndMal2017', 'role': 'train_and_test', 'quote': 'To facilitate a fair comparison, we use two public datasets IDS2017 [50] and IDS2018 [51] for our ev'}",
+      "evidence": "To facilitate a fair comparison, we use two public datasets IDS2017 [50] and IDS2018 [51] for our evaluations.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIC-IDS2017 (train_and_test); CSE-CIC-IDS2018 (train_and_test); CIC-AndMal2017 (train_and_test)",
+        "gemini38": "[{'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'To facilitate a fair comparison, we use two public datasets IDS2017 [50] and IDS2018 [51] for our ev'}, {'name': 'CSE-CIC-IDS2018', 'role': 'train_and_test', 'quote': 'To facilitate a fair comparison, we use two public datasets IDS2017 [50] and IDS2018 [51] for our ev'}, {'name': 'CIC-AndMal2017', 'role': 'train_and_test', 'quote': 'To facilitate a fair comparison, we use two public datasets IDS2017 [50] and IDS2018 [51] for our ev'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "In this experiment, we divide all PCAP traffic into 5-tuples flow and extract the feature vector (such as packet length sequence).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "RNN (LSTM-based)",
+      "evidence": "In this paper, we present ERNN, a robust and end-to-end RNN model that is specially designed against network-induced phenomena.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "RNN (LSTM-based)",
+        "gemini38": "RNN (LSTM-based)"
+      }
+    },
+    "hardware": {
+      "value": "Intel i7-9700 CPU (3.00 GHz, 8 cores), a GTX 1070 GPU, and 16 GB memory",
+      "evidence": "the malware detection equipment installs an Intel i7-9700 CPU (3.00 GHz, 8 cores), a GTX 1070 GPU, and 16 GB memory.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Intel i7-9700 CPU (3.00 GHz, 8 cores), a GTX 1070 GPU, and 16 GB memory",
+        "gemini38": "Intel i7-9700 CPU (3.00 GHz, 8 cores), a GTX 1070 GPU, and 16 GB memory"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "In Fig. 12(a), the traditional LSTM will need about 123.7 μs to execute per-sample inference on average. And ERNN uses about 124.5 μs",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "packet length; timestamp delta; time to live; sum of TCP flags; window size value",
+      "evidence": "Our extended feature vector includes five parts: (i) dim0: the packet length in the session; (ii) dim1: the timestamp delta (s) in the session; (iii) dim2: the “time to live” field in the IP layer; (iv) dim3: the sum of TCP flags; (v) the “window size value” field",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet length; timestamp delta; time to live; sum of TCP flags; window size value",
+        "gemini38": "['packet length', 'timestamp delta', 'time to live', 'sum of TCP flags', 'window size value']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; f1-score",
+      "evidence": "Acc (%) and F1 (%) represent accuracy and F1-score respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; f1-score",
+        "gemini38": "['accuracy', 'f1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "128 packets",
+      "evidence": "For each layer, it includes 128 time steps, which means the first 128 packets will be analyzed for each flow (n = 128).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "128 packets",
+        "gemini38": "128 packets"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/TDSCCode/ERNN/tree/main/transition', 'https://github.com/TDSCCode/ERNN', 'https://github.com/TDSCCode/ERNN/tree/main/metrics', 'https://github.com/TDSCCode/ERNN/tree/main/decision_boundary']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "unclear"
+      }
+    }
+  }
+}

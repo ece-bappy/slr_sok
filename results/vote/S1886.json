@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1886",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "The Status Request extension was nondeterministic in our measurements (Section V-B); therefore, we removed the extension from the fingerprints, trading the information about the OCSP stapling support of a server for consistency.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G3",
+      "evidence": "For each CH, we collect the TLS version, cipher, and TLS extension data from different types of TLS messages to construct the fingerprint.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G3",
+        "gemini38": "['G3']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "1.0; 1.1; 1.2; 1.3",
+      "evidence": "We only initiate handshakes with TLS versions 1.0 to 1.3 but construct a fingerprint from any version the server sends as a response.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1.0; 1.1; 1.2; 1.3",
+        "gemini38": "['1.0', '1.1', '1.2', '1.3']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://tumi8.github.io/active-tls-fingerprinting/TABLE', 'https://tumi8.github.io/active-tls-fingerprinting/', 'https://github.com/tumi8/goscanner']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "temporal",
+      "evidence": "It was trained with the data from weeks [1..n] and evaluated using the data from week n + 1.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "temporal",
+        "gemini38": "['temporal']"
+      }
+    },
+    "granularity": {
+      "value": "host",
+      "evidence": "In this work, we propose a methodology based on active measurements to acquire Transport Layer Security (TLS) metadata from servers and leverage it for fingerprinting.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "host",
+        "gemini38": "host"
+      }
+    },
+    "fingerprints_used": {
+      "value": "other",
+      "evidence": "In this work, we propose a methodology based on active measurements to acquire Transport Layer Security (TLS) metadata from servers and leverage it for fingerprinting.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "other",
+        "gemini38": "['other']"
+      }
+    },
+    "label_source": {
+      "value": "blocklist_cert; dataset_provided",
+      "evidence": "A server was labeled a “C2 server” if its IP address was on the Feodo Tracker or the certificate was on the SSLBL.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "blocklist_cert; dataset_provided",
+        "gemini38": "['blocklist_cert', 'dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "We excluded information depending on the current TLS session, a specific server instance, or the TLS certificate.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Tranco browsing captures (Barradas et al.) (train_and_test); SSLBL (train_and_test); Feodo Tracker (train_and_test); {'name': 'Tranco browsing captures (Barradas et al.)', 'role': 'train_and_test', 'quote': 'We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], '}; {'name': 'SSLBL', 'role': 'train_and_test', 'quote': 'We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], '}; {'name': 'Feodo Tracker', 'role': 'train_and_test', 'quote': 'We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], '}",
+      "evidence": "We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], while the current list was utilized for the Feodo Tracker [43].",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Tranco browsing captures (Barradas et al.) (train_and_test); SSLBL (train_and_test); Feodo Tracker (train_and_test)",
+        "gemini38": "[{'name': 'Tranco browsing captures (Barradas et al.)', 'role': 'train_and_test', 'quote': 'We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], '}, {'name': 'SSLBL', 'role': 'train_and_test', 'quote': 'We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], '}, {'name': 'Feodo Tracker', 'role': 'train_and_test', 'quote': 'We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], '}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We excluded information depending on the current TLS session, a specific server instance, or the TLS certificate.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "threshold-based classifier",
+      "evidence": "This work uses a threshold-based classifier to implement different active TLS fingerprinting use cases.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "threshold-based classifier",
+        "gemini38": "threshold-based classifier"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "TLS version; selected cipher suite; received alerts; TLS extension data; order of extensions",
+      "evidence": "Features are the selected version, cipher suite, received alerts and extension data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TLS version; selected cipher suite; received alerts; TLS extension data; order of extensions",
+        "gemini38": "['TLS version', 'selected cipher suite', 'received alerts', 'TLS extension data', 'order of extensions']"
+      }
+    },
+    "metrics": {
+      "value": "precision; recall",
+      "evidence": "Well-known classification metrics allow the evaluation of this classifier, particularly precision and recall.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "precision; recall",
+        "gemini38": "['precision', 'recall']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "10 Client Hellos",
+      "evidence": "We generated 10 general-purpose Client Hellos. They served as scanning probes to create an extensive database of TLS configurations to classify servers.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "10 Client Hellos",
+        "gemini38": "10 Client Hellos"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://tumi8.github.io/active-tls-fingerprinting/TABLE', 'https://tumi8.github.io/active-tls-fingerprinting/', 'https://github.com/tumi8/goscanner']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "temporal",
+      "evidence": "It was trained with the data from weeks [1..n] and evaluated using the data from week n + 1.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "temporal",
+        "gemini38": "temporal"
+      }
+    }
+  }
+}

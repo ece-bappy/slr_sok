@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0905",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "The original feature set comprises 76 flow-level statistics derived from the CICIDS2017 dataset using CICFlowMeter.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "1.3",
+      "evidence": "The JDWP dataset comprises encrypted flows collected from 50 distinct pages across three separate sessions in 2023, captured under TLS 1.3.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1.3",
+        "gemini38": "['1.3']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "All datasets splits are performed at the flow level. Each flow, identified by its 5-tuple (source IP, destination IP, source port, destination port, protocol), is assigned exclusively to either the training (70%), validation (15%), or test (15%) partition.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "All datasets splits are performed at the flow level.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "Incorporating side-channel features such as TLS fingerprinting or session timing may improve this further.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided; other",
+      "evidence": "The experiments are conducted using three public datasets and one proprietary dataset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided; other",
+        "gemini38": "['dataset_provided', 'other']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "TARL operates on PCA-selected statistical flow features and introduces a Service Type Prediction (STP) objective that captures inter-flow service-pair semantics",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "ISCX VPN-nonVPN 2016 (train_and_test); CIC-IDS2017 (train_and_test); MAWI (train); JDWP (train_and_test); {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}; {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}; {'name': 'MAWI', 'role': 'train', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}; {'name': 'JDWP', 'role': 'train_and_test', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}",
+      "evidence": "The experiments are conducted using three public datasets and one proprietary dataset.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "ISCX VPN-nonVPN 2016 (train_and_test); CIC-IDS2017 (train_and_test); MAWI (train); JDWP (train_and_test)",
+        "gemini38": "[{'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}, {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}, {'name': 'MAWI', 'role': 'train', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}, {'name': 'JDWP', 'role': 'train_and_test', 'quote': 'The experiments are conducted using three public datasets and one proprietary dataset.'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The original featureset comprises 76 flow-level statistics derived from the CICIDS2017 dataset using CICFlowMeter.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Multi-task Transformer",
+      "evidence": "In this paper, we propose TARL, a novel Task-Adaptive Representation Learning framework for secure encrypted traffic analysis.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Multi-task Transformer",
+        "gemini38": "Multi-task Transformer"
+      }
+    },
+    "hardware": {
+      "value": "NVIDIA A100 80GB GPU",
+      "evidence": "on a single NVIDIA A100 80GB GPU.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "NVIDIA A100 80GB GPU",
+        "gemini38": "NVIDIA A100 80GB GPU"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "All datasets splits are performed at the flow level. Each flow, identified by its 5-tuple (source IP, destination IP, source port, destination port, protocol), is assigned exclusively to either the training (70%), validation (15%), or test (15%) partition.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Table 5. Computational efficiency comparison. Params: number of trainable parameters (M); Latency: average per-sample inference time on one NVIDIA A100 GPU (ms); GPU Mem.: peak GPU memory (GB).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "packet length; inter-arrival time (IAT) features; 76 flow-level statistics",
+      "evidence": "Firstly in 1 , encrypted network traffic is processed to extract packet length and inter-arrival time (IAT) features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet length; inter-arrival time (IAT) features; 76 flow-level statistics",
+        "gemini38": "['packet length', 'inter-arrival time (IAT) features', '76 flow-level statistics']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-score; AUC",
+      "evidence": "We adopt several standard metrics widely used in security and machine learning research. Accuracy (Acc.), Precision (P.), Recall (R.), F1-score (F1). And Area under the ROC curve (AUC).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-score; AUC",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-score', 'AUC']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "TARL operates on PCA-selected statistical flow features and introduces a Service Type Prediction (STP) objective that captures inter-flow service-pair semantics",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The original features set comprises 76 flow-level statistics derived from the CICIDS2017 dataset using CICFlowMeter.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "All datasets splits are performed at the flow level. Each flow, identified by its 5-tuple (source IP, destination IP, source port, destination port, protocol), is assigned exclusively to either the training (70%), validation (15%), or test (15%) partition.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

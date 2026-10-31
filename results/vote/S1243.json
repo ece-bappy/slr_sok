@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1243",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "Additionally, we perform ablation experiments to assess the impact of channel attention and residual connections on the performance of the LWG model.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "We utilize depthwise separable convolutions and the channel attention mechanism to capture interpacket contextual information for feature extraction",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "unclear",
+      "evidence": "To evaluate the ETC performance of LWG, we conduct multiclass experiments on three datasets, USTC-TFC, ISCX-VPN and CICIOT2023",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "['unclear']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "we propose an efficient traffic feature extraction method that requires only K packets (where K = 5 in this article) from a single flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China (USTC)-TFC, ISCX-VPN and IOT 2023.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "we fix the length of each packet to 100 bytes. For packets longer than 100 bytes, we truncate them to the first 100 bytes, and for packets shorter than 100 bytes, we pad them with zeros",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "USTC-TFC2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); CICIoT2023 (train_and_test); {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China '}; {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China '}; {'name': 'CICIoT2023', 'role': 'train_and_test', 'quote': 'We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China '}",
+      "evidence": "We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China (USTC)-TFC, ISCX-VPN and IOT 2023.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "USTC-TFC2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); CICIoT2023 (train_and_test)",
+        "gemini38": "[{'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China '}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China '}, {'name': 'CICIoT2023', 'role': 'train_and_test', 'quote': 'We evaluate DLET-Classifier on three public datasets, University of Science and Technology of China '}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The dataset includes both encrypted and nonencrypted VPN traffic and is categorized into two subdatasets: 1) ISCX-VPN-App and 2) ISCX-VPN-Service, corresponding to 17 and 12 different application and service categories, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "CNN, MLP, channel attention",
+      "evidence": "the dynamic and lightweight encrypted traffic classifier (DLET-Classifier), which uses the depthwise separable convolutional neural network and the channel attention mechanism to extract features from encrypted traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "CNN, MLP, channel attention",
+        "gemini38": "CNN, MLP, channel attention"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "To evaluate the ETC performance of LWG, we conduct multiclass experiments on three datasets, USTC-TFC, ISCX-VPN and CICIOT2023",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "In this experiment, we use Flow/s (the number of flows processed per second) as the evaluation metric to measure the throughput of different methods.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "first 100 bytes of each of the first five consecutive packets",
+      "evidence": "In this work, we fix the length of each packet to 100 bytes. For packets longer than 100 bytes, we truncate them to the first 100 bytes, and for packets shorter than 100 bytes, we pad them with zeros.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "first 100 bytes of each of the first five consecutive packets",
+        "gemini38": "['first 100 bytes of each of the first five consecutive packets']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-Score",
+      "evidence": "To conduct a more comprehensive evaluation of the model’s performance, we use the following evaluation metrics: Acc, Precision, recall (Rec), and F1-Score",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-Score",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-Score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "5 packets",
+      "evidence": "we propose an efficient traffic feature extraction method that requires only K packets (where K = 5 in this article) from a single flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "5 packets",
+        "gemini38": "5 packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "To evaluate the ETC performance of LWG, we conduct multiclass experiments on three datasets, USTC-TFC, ISCX-VPN and CICIOT2023",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "unclear"
+      }
+    }
+  }
+}

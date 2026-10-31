@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1901",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "To further evaluate the impact of features at the host, service, and client levels, we carry out a series of ablation studies, particularly by designing six contrast experiments on the HTPA dataset",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "Client-fingerprint nodes can be classified into two primary categories: burst characteristics and traffic characteristics.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "host_grouped",
+      "evidence": "To ensure the validity of training and testing, we ensured that the data from any given host did not appear in both the training and testing sets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "host_grouped",
+        "gemini38": "['host_grouped']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We trained and tested our classifiers using the HTPA dataset, focusing on flow-level analysis rather than service-level analysis to ensure comprehensive fairness.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "However, our method does not depend on plaintext from the TLS handshake, so TLS fingerprint obfuscation is not a primary concern.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated; manual",
+      "evidence": "The crawler used Chrome to visit random sites from the Alexa top 10,000.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated; manual",
+        "gemini38": "['generated', 'manual']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "However, our method does not depend on plaintext from the TLS handshake, so TLS fingerprint obfuscation is not a primary concern.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "HTPA (train_and_test); HTPA-RD (train_and_test); HTPA-TS-n (train_and_test); {'name': 'HTPA', 'role': 'train_and_test', 'quote': 'As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT'}; {'name': 'HTPA-RD', 'role': 'train_and_test', 'quote': 'As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT'}; {'name': 'HTPA-TS-n', 'role': 'train_and_test', 'quote': 'As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT'}",
+      "evidence": "As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTTPS traffic.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "HTPA (train_and_test); HTPA-RD (train_and_test); HTPA-TS-n (train_and_test)",
+        "gemini38": "[{'name': 'HTPA', 'role': 'train_and_test', 'quote': 'As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT'}, {'name': 'HTPA-RD', 'role': 'train_and_test', 'quote': 'As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT'}, {'name': 'HTPA-TS-n', 'role': 'train_and_test', 'quote': 'As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "It is particularly effective without relying on packet sequences or payload information",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Heterogeneous graph attention network, CNN-LSTM",
+      "evidence": "HINT is a deep learning framework, which exploits the Heterogeneous Graph Attention Network to identify HTTPSTunnelservices based on a dual-level attention mechanism.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Heterogeneous graph attention network, CNN-LSTM",
+        "gemini38": "Heterogeneous graph attention network, CNN-LSTM"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "To ensure the validity of training and testing, we ensured that the data from any given host did not appear in both the training and testing sets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "The inference time consists of two main parts: the feature extraction time for constructing the knowledge graph and the prediction time for labeling flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "traffic features; statistical metrics; burst features; latency; information entropy",
+      "evidence": "To enrich graph semantics, we add hard-to-disguise characteristics as specialized fingerprint nodes, including traffic features, statistical metrics, burst features, latency, and information entropy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "traffic features; statistical metrics; burst features; latency; information entropy",
+        "gemini38": "['traffic features', 'statistical metrics', 'burst features', 'latency', 'information entropy']"
+      }
+    },
+    "metrics": {
+      "value": "ACC; TPR; FPR; AUC",
+      "evidence": "In this paper, we use four metrics for a comprehensive evaluation of different methods’ performance in detecting HTTPS tunnel traffic: (1) True Positive Rate (TPR), (2) False Positive Rate (FPR), (3) Area Under Curve (AUC), (4) Accuracy (ACC).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ACC; TPR; FPR; AUC",
+        "gemini38": "['ACC', 'TPR', 'FPR', 'AUC']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "It is particularly effective without relying on packet sequences or payload information and maintains high detection capability even with added network noise.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "host_grouped",
+      "evidence": "To ensure the validity of training and testing, we ensured that the data from any given host did not appear in both the training and testing sets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "host_grouped",
+        "gemini38": "host_grouped"
+      }
+    }
+  }
+}

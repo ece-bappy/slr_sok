@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1461",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "We then compare these rough-features with the fine-grained features set META-Features for IAT and PL proposed in Section 3",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "statistical features of the flow, including flow duration, total bytes in the flow, total number of packets in the flow, etc., are used to describe the entire traffic flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrusion detection dataset and the latest CICIOT2023 [42] IoT attack dataset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "The data is then split into a training set and a testing set, with 70% and 30% of the data allocated to each, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "statistical features of the flow, including flow duration, total bytes in the flow, total number of packets in the flow, etc., are used to describe the entire traffic flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "The encryption of packet content precludes the utilization of existing methods for the comprehensive analysis of anomalous traffic, as they are unable to leverage a diverse range of features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "Notethatbothdatasetsareaccompaniedbydownloadablepcapfilesandcomprehensiveattackannotations,enablingthere-extractionoffeaturedataaccordingtotheMETA-Features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "In the context of encrypted traffic scenarios, traditional detection methods that rely on payloads become ineffective due to the obscurity caused by encryption mechanisms.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIC-IDS2017 (train_and_test); CICIoT2023 (train_and_test); {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrus'}; {'name': 'CICIoT2023', 'role': 'train_and_test', 'quote': 'In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrus'}",
+      "evidence": "In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrusion detection dataset and the latest CICIOT2023 [42] IoT attack dataset.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIC-IDS2017 (train_and_test); CICIoT2023 (train_and_test)",
+        "gemini38": "[{'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrus'}, {'name': 'CICIoT2023', 'role': 'train_and_test', 'quote': 'In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrus'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Specifically, an in-depth examination of the internal packet interaction features is undertaken, resulting in a novel feature set, designated as META-Features, encompassing 278 fine grained statistical features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "GNN, Random Forest",
+      "evidence": "Furthermore, a Graph Neural Network (GNN) is employed... Finally, the concatenated representation is input into a random forest model to perform the ultimate attack detection.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "GNN, Random Forest",
+        "gemini38": "GNN, Random Forest"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The data is then split into a training set and a testing set, with 70% and 30% of the data allocated to each, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "As illustrated in Table 3, the performance of the models with different structures is demonstrated, along with the time required to train 1000 rounds and the size of the models.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "IAT; packet lengths; header lengths; payload lengths; directional-sequence features; IP node degree; IP node out-degree; top 10 most active port numbers; flow duration; total bytes; total packets",
+      "evidence": "The final number of features obtained for the description of IAT and PL distributions is 202. When these are combined with the 76 features from the reconstructed CICIDS2017 dataset, a total of 278 statistical features is obtained",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "IAT; packet lengths; header lengths; payload lengths; directional-sequence features; IP node degree; IP node out-degree; top 10 most active port numbers; flow duration; total bytes; total packets",
+        "gemini38": "['IAT', 'packet lengths', 'header lengths', 'payload lengths', 'directional-sequence features', 'IP node degree', 'IP node out-degree', 'top 10 most active port numbers', 'flow duration', 'total bytes', 'total packets']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Recall; Precision; F1-score",
+      "evidence": "The primary metrics employed for the evaluation of the models’ overall performance are Accuracy, Recall, Precision, and F1-score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Recall; Precision; F1-score",
+        "gemini38": "['Accuracy', 'Recall', 'Precision', 'F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "In the absence of plaintext information, current anomaly encrypted traffic detection mainly relies on traffic data analysis to identify and characterize anomalous attack patterns in encrypted traffic, employing machine learning or deep learning models.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "statistical features of the flow, including flow duration, total bytes in the flow, total number of packets in the flow, etc., are used to describe the entire traffic flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The data is then split into a training set and a testing set, with 70% and 30% of the data allocated to each, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

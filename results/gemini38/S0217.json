@@ -1,0 +1,174 @@
+{
+  "paper_id": "S0217",
+  "run": "gemini38",
+  "title": "C2Detector: Interaction-enhanced semantic-aware detection method for C2 channels",
+  "venue": "Computer Networks",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Stratosphere MCFP / CTU-Malware-Capture",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da"
+        },
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da"
+        },
+        {
+          "name": "NDSec-1",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da"
+        },
+        {
+          "name": "DataCon2020 encrypted malicious traffic",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da"
+        },
+        {
+          "name": "VNAT-C2",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da"
+        },
+        {
+          "name": "IEU-C2D",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da"
+        }
+      ],
+      "evidence": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D dataset.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided",
+        "generated"
+      ],
+      "evidence": "We constructed and released IEU-C2D, a new, comprehensive, and diverse C2 traffic dataset.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "C2Detector reconstructs network sessions into protocol-independent interaction-state transition sequences, capturing the fundamental request-response logic of C2 communications.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "Dir",
+        "Size",
+        "DeltaTime",
+        "Flag",
+        "Ratio",
+        "Diff"
+      ],
+      "evidence": "Each block is represented by a triple (Dir, Size, DeltaTime).",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "C2Detector reconstructs network sessions into protocol-independent interaction-state transition sequences.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "For TLS/SSL traffic, packets from the handshake and key negotiation phases are ignored, focusing solely on the payload from the data transmission stage.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "Instead of restoring raw data content, our approach requires only the approximate size and timestamp of each reassembled data block.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "First, protocol evolution, especially the widespread adoption of TLS 1.3 and Encrypted Client Hello (ECH), encrypts most of the handshake (including certificates and Server Name Indication (SNI)), rendering many fingerprinting techniques obsolete.",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "spatio-temporal neural network",
+      "evidence": "A spatio-temporal joint neural network then learns complex behavioral patterns from these sequences.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random",
+        "cross_dataset"
+      ],
+      "evidence": "For each experimental group, the data were divided into training, validation, and test sets with a ratio of 7:1:2.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "For each experimental group, the data were divided into training, validation, and test sets with a ratio of 7:1:2.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "The core of our contribution is demonstrated in a demanding zero-shot generalization test: trained solely on TCP-based C2 traffic, C2Detector successfully identifies unseen C2 channels over DNS and ICMP",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "Furthermore, extensive ablation studies confirm the indispensable role of each component in our architecture",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Precision",
+        "Recall",
+        "F1-score"
+      ],
+      "evidence": "Model performance is assessed using Accuracy (Ac), Precision (Pr), Recall (Re), and F1-score (F1).",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "In this paper, we conduct C2 channel traffic detection at the session level.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "session-level detection effectively captures request-response correlations and periodic behavioral characteristics by focusing on complete bidirectional flow interactions",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/AmyDylen/C2Detector-V2.0', 'https://github.com/AmyDylen/IEU-C2D']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/AmyDylen/C2Detector-V2.0', 'https://github.com/AmyDylen/IEU-C2D']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.412085+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

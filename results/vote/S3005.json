@@ -1,0 +1,195 @@
+{
+  "paper_id": "S3005",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal",
+      "evidence": "Features including Destination IP, Source IP, Destination Ports, Source Ports, as well as timestamps were all removed from the study.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "gemini38": "['identifier_removal']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "Finally, using a DoHMeter developed in Python, they were able to extract the statistical and time-series features that are used to classify and group the dataset for inspection [11].",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "The models were trained using stratified 10-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The resulting data was a collection of packets, flows, and DoH types for each case.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The dataset for our research was gathered from the project CIRA-CIC-DoHBrw-2020 provided by the Canadian Institute for Cybersecurity (CIC) under the Canadian Internet Research Authority [18].",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "The dataset is composed of 34 features and are listed in Table 2.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIRA-CIC-DoHBrw-2020 (train_and_test); {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'The dataset for our research was gathered from the project CIRA-CIC-DoHBrw-2020 provided by the Cana'}",
+      "evidence": "The dataset for our research was gathered from the project CIRA-CIC-DoHBrw-2020 provided by the Canadian Institute for Cybersecurity (CIC) under the Canadian Internet Research Authority [18].",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIRA-CIC-DoHBrw-2020 (train_and_test)",
+        "gemini38": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'The dataset for our research was gathered from the project CIRA-CIC-DoHBrw-2020 provided by the Cana'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Destination IP and Source IP were removed to ensure that the machine learning algorithms did not recognize the IP as malicious or benign instead of evaluating the data for being malicious/benign.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Decision Tree, Random Forest, LightGBM, XGBoost, Linear Discriminant Analysis, K-Nearest Neighbors, Gaussian Naive Bayes, AdaBoost, Gradient Boosting, Extra Trees",
+      "evidence": "Decision Tree (DT), Linear Discriminant Analysis (LDA), K-Nearest Neighbors (KNN), Gaussian Naive Bayes (GNB), Random Forest (RF), AdaBoost Classifier (AB), Gradient Boosting Classifier (GB), XGBoost (XGB), Extra Trees (ET), and LGBM were trained on both layers of data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Decision Tree, Random Forest, LightGBM, XGBoost, Linear Discriminant Analysis, K-Nearest Neighbors, Gaussian Naive Bayes, AdaBoost, Gradient Boosting, Extra Trees",
+        "gemini38": "Decision Tree, Random Forest, LightGBM, XGBoost, Linear Discriminant Analysis, K-Nearest Neighbors, Gaussian Naive Bayes, AdaBoost, Gradient Boosting, Extra Trees"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The models were trained using stratified 10-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "From Fig. 13 and 15, all models had an average precision time in 10-fold cross-validation under one second for both layers of data at the optimal 21 features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "statistical features; time-series features",
+      "evidence": "Finally, using a DoHMeter developed in Python, they were able to extract the statistical and time-series features that are used to classify and group the dataset for inspection [11].",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "statistical features; time-series features",
+        "gemini38": "['statistical features', 'time-series features']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-Score; AUROC; training time; prediction time",
+      "evidence": "Accuracy, Precision, Recall, F1-Score, total training time, and prediction time are collected for each fold.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-Score; AUROC; training time; prediction time",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-Score', 'AUROC', 'training time', 'prediction time']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Finally, using a DoHMeter developed in Python, they were able to extract the statistical and time-series features that are used to classify and group the dataset for inspection [11].",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "The models were trained using stratified 10-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

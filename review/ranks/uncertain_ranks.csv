@@ -1,0 +1,22 @@
+id,year,kind,venue,dblp,official_rank,matched,top_tier
+S1042,2025,journal,Frontiers of Computer Science,journals/fcsc/JiaSYLWKHHZ26,Q1,SJR 2025 best quartile,yes
+S1251,2025,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",conf/trustcom/LiCC25,B,"CORE2023 TrustCom: International Conference on Trust, Security and Privacy in Computing and Communications",no
+S1357,2025,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",conf/trustcom/LaiLZ25,B,"CORE2023 TrustCom: International Conference on Trust, Security and Privacy in Computing and Communications",no
+S1488,2025,conference,IEEE/ACM International Symposium on Quality of Service (IWQoS),conf/iwqos/XiaoZWL25,B,CORE2023 IWQoS: IEEE International Workshop on Quality of Service,no
+S1934,2024,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",conf/trustcom/ZhaoXWLL24,B,"CORE2023 TrustCom: International Conference on Trust, Security and Privacy in Computing and Communications",no
+S1945,2024,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",conf/trustcom/FengWXWZM24,B,"CORE2023 TrustCom: International Conference on Trust, Security and Privacy in Computing and Communications",no
+S2286,2023,conference,Conference on Local Computer Networks,conf/lcn/RaderJR23,B,CORE2023 LCN: IEEE Conference on Local Computer Networks,no
+S2395,2023,journal,Cluster Computing,journals/cluster/KumarKPR23,Q1,SJR 2023 best quartile,yes
+S2712,2022,conference,Conference on Local Computer Networks,conf/lcn/LiGLWL22,B,CORE2023 LCN: IEEE Conference on Local Computer Networks,no
+S3059,2021,journal,Journal of Information Security and Applications,journals/istr/XuHZ21,Q1,SJR 2021 best quartile,yes
+S3184,2020,conference,IEEE International Conference on Data Science and Advanced Analytics (DSAA),conf/dsaa/MeghdouriVZ20,B,CORE2023 DSAA: IEEE International Conference on Data Science and Advanced Analytics,no
+S0090,2026,journal,Scientific Reports,,Q1,SJR 2025 best quartile,yes
+S0397,2026,journal,PLoS ONE,,Q1,SJR 2025 best quartile,yes
+S0664,2026,journal,ICT Express,,Q1,SJR 2025 best quartile,yes
+S0669,2026,journal,IEEE Access,journals/access/KimKY26a,Q1,SJR 2025 best quartile,yes
+S0907,2026,journal,High-Confidence Computing,,Q1,SJR 2025 best quartile,yes
+S1163,2025,journal,IEEE Access,journals/access/DurmusAT25,Q1,SJR 2025 best quartile,yes
+S1254,2025,journal,IEEE Access,journals/access/Alorainy25,Q1,SJR 2025 best quartile,yes
+S2008,2024,journal,Cluster Computing,journals/cluster/JayalaxmiCSKC24,Q1,SJR 2024 best quartile,yes
+S2363,2023,journal,IEEE Access,journals/access/ZhengL23,Q1,SJR 2023 best quartile,yes
+S3326,2020,journal,PLoS ONE,,Q1,SJR 2020 best quartile,yes

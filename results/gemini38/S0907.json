@@ -1,0 +1,150 @@
+{
+  "paper_id": "S0907",
+  "run": "gemini38",
+  "title": "TCBI: A Three-Channel Behavioral Image-Based Method for encrypted malicious traffic detection",
+  "venue": "High-Confidence Computing",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "To comprehensively evaluate the performance of the proposed approach, experiments were conducted on "
+        },
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "To comprehensively evaluate the performance of the proposed approach, experiments were conducted on "
+        }
+      ],
+      "evidence": "To comprehensively evaluate the performance of the proposed approach, experiments were conducted on two representative datasets: USTC-TFC2016 [20] and CIRA-CIC-DoHBrw-2020 (DoHBrw) [27].",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "This dataset provides 10 types of malicious traffic (e.g., Geodo, Neris, Nsis-ay) and 10 types of benign traffic (e.g., Gmail, Outlook, Skype).",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "In this approach, packet length (Len), inter-arrival time (IAT), and protocol header data are mapped to the three channels of an image",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet length",
+        "inter-arrival time",
+        "protocol header data"
+      ],
+      "evidence": "In this approach, packet length (Len), inter-arrival time (IAT), and protocol header data are mapped to the three channels of an image, forming a behavioral representation that captures both the dynamic flow patterns and structural similarities of network behavior.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2",
+        "G3"
+      ],
+      "evidence": "In this approach, packet length (Len), inter-arrival time (IAT), and protocol header data are mapped to the three channels of an image, forming a behavioral representation that captures both the dynamic flow patterns and structural similarities of network behavior.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "For TLS session flows, only the unencrypted handshake records are parsed as a supplement to the protocol header data.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Swin Transformer, Bi-LSTM",
+      "evidence": "We design SwBiNet, a parallel deep learning architecture for high-precision detection. The Swin Transformer branch extracts rich spatial hierarchies from behavioral images through W-MSA and SW-MSA mechanisms, while the parallel Bi-LSTM branch captures temporal dependencies",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random"
+      ],
+      "evidence": "The dataset is divided into training, validation, and test sets using stratified sampling with a ratio of 70%/15%/15%.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "the dataset is divided into training, validation, and test sets using stratified sampling with a ratio of 70%/15%/15%.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "we evaluate the performance of TCBI in detecting encrypted unknown malware traffic by testing on the remaining 10 unseen traffic types.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "Next, by removing one of the remaining channels at a time, we assess the interactions between the Raw channel and the other channels.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1-score"
+      ],
+      "evidence": "several typical metrics are used, including accuracy (ACC), precision (PR), recall (RC), and F1-score",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "First, network traffic is divided into bidirectional flows (sessions) according to the standard five-tuple.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "64 packets",
+      "evidence": "Since both the number of packets and the size of individual packets within a bidirectional flow vary, we select the first Npackets to represent the entire flow, thereby ensuring consistent data representation.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "As shown in Figure 9, the results clearly indicate that as Nincreases to 64, the classification accuracy steadily improves, but further increasing it to 128 yields minimal performance gains while significantly raising computational cost.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.421676+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

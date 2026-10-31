@@ -1,0 +1,160 @@
+{
+  "paper_id": "S3046",
+  "run": "gemini38",
+  "title": "OFDPI: An OpenFlow-Based Deep Packet Inspection Framework",
+  "venue": "IEEE Transactions on Network and Service Management",
+  "year": 2021,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Github Payloads",
+          "role": "train",
+          "quote": "Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o"
+        },
+        {
+          "name": "HTTP CSIC 2010",
+          "role": "test",
+          "quote": "Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o"
+        },
+        {
+          "name": "CTU-BOTNET",
+          "role": "train_and_test",
+          "quote": "Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o"
+        }
+      ],
+      "evidence": "Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and one encrypted dataset.",
+      "evidence_source": "table"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The HTTP CSIC 2010 is a labeled dataset that contains generated web requests with corresponding web attacks, e.g., SQL injection, cross-site scripting, buffer overflow, etc.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "OFDPI extracts some notable features of packets and then trains a binary classifier with a decision tree, instead of decrypting the encrypted traffic to weaken user privacy.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "TTL",
+        "TLS Ciphersuites",
+        "duration",
+        "ports"
+      ],
+      "evidence": "After investigating a real encrypted botnet dataset, some notable features can distinguish between malicious traffic and benign traffic, including TTL, TLS Ciphersuites, duration, ports, and etc.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G3"
+      ],
+      "evidence": "After investigating a real encrypted botnet dataset, some notable features can distinguish between malicious traffic and benign traffic, including TTL, TLS Ciphersuites, duration, ports, and etc.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "OFDPI extracts some notable features of encrypted traffic (e.g., TLS ciphersuites) to train a decision tree classifier in identifying malicious encrypted packets, rather than decrypt the encrypted traffic to weaken user privacy.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "OFDPI extracts some notable features of encrypted traffic (e.g., TLS ciphersuites) to train a decision tree classifier in identifying malicious encrypted packets, rather than decrypt the encrypted traffic to weaken user privacy.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "logistic regression, decision tree",
+      "evidence": "For encrypted packets, OFDPI extracts some notable features of packets and then trains a binary classifier with a decision tree, instead of decrypting the encrypted traffic to weaken user privacy.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random",
+        "cross_dataset"
+      ],
+      "evidence": "logistic regression classifier is trained under 5-fold cross validation. Note that an imbalance of data distribution exists in the dataset (white samples are far more than black samples), this paper implements stratify method in the validation process.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "logistic regression classifier is trained under 5-fold cross validation. Note that an imbalance of data distribution exists in the dataset (white samples are far more than black samples), this paper implements stratify method in the validation process.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "In order to avoid overfitting with a particular dataset, another unencrypted dataset is adopted to evaluate the performance of the binary logistic regression classifier.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "TPR",
+        "Recall",
+        "FPR",
+        "Precision",
+        "F1-score",
+        "AUC"
+      ],
+      "evidence": "Metrics (%) Accuracy Precision Recall F1-score",
+      "evidence_source": "table"
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "Then, OFDPI allows for deep packet inspection at the packet-level granularity",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "sampled packets",
+      "evidence": "In order to reduce the overhead of inspection, we implement an adaptive traffic sampling mechanism in the DPI engine, in which the packet window based on linear prediction performs packet sampling by analyzing the previous consecutive packets.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "This section uses the Cbench (Cbench) tool to test the throughput of the SDN controller with the OFDPI by continuously looping through the new Packet_in messages.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Intel Core i7-6700 processor",
+      "evidence": "This paper implements a prototype of OFDPI by using a Mininet network emulator and an SDN controller running on a virtual machine with Intel Core i7-6700 processor.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:00.029668+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

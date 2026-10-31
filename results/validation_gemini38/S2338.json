@@ -1,0 +1,179 @@
+{
+  "paper_id": "S2338",
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CTU-Malware-Capture",
+          "role": "train_and_test",
+          "quote": "26 malicious traffic types are extracted from the CTU-Malware-Capture dataset and benign traffic is extracted from the other five datasets to balance the dataset and maximize the traffic data variety."
+        },
+        {
+          "name": "Benign-Capture",
+          "role": "train_and_test",
+          "quote": "CTU-Malware-Capture; Benign-Capture and Mixture Capture are three datasets produced from Malware Capture Facility Project published by Stratosphere Lab [19]."
+        },
+        {
+          "name": "Mixture Capture",
+          "role": "train_and_test",
+          "quote": "CTU-Malware-Capture; Benign-Capture and Mixture Capture are three datasets produced from Malware Capture Facility Project published by Stratosphere Lab [19]."
+        },
+        {
+          "name": "CICIDS-2017",
+          "role": "train_and_test",
+          "quote": "CICIDS-2017 [23]; CICIDS-2012 [24]; CIRA-CIC-DoHBRW-2020 [25] are three datasets published by the Canadian Institute for Cybersecurity (CIC)."
+        },
+        {
+          "name": "CICIDS-2012",
+          "role": "train_and_test",
+          "quote": "CICIDS-2017 [23]; CICIDS-2012 [24]; CIRA-CIC-DoHBRW-2020 [25] are three datasets published by the Canadian Institute for Cybersecurity (CIC)."
+        },
+        {
+          "name": "CIRA-CIC-DoHBRW-2020",
+          "role": "train_and_test",
+          "quote": "CICIDS-2017 [23]; CICIDS-2012 [24]; CIRA-CIC-DoHBRW-2020 [25] are three datasets published by the Canadian Institute for Cybersecurity (CIC)."
+        }
+      ],
+      "evidence": "We curated a new dataset consisting of encrypted traffic from 6 different public datasets: CTU-Malware-Capture; Benign-Capture and Mixture Capture are three datasets produced from Malware Capture Facility Project published by Stratosphere Lab [19].",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The label of traffic (legitimate or malicious) is determined by the description of each PCAP file provided by the public dataset provider.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The label of traffic (legitimate or malicious) is determined by the description of each PCAP file provided by the public dataset provider.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "time-related features",
+        "flow duration of forward traffic",
+        "Interval of the arrival time of backward traffic",
+        "payload side-channel features",
+        "Payload ratio",
+        "length of TCP payload",
+        "total payload per session",
+        "enc features",
+        "total time to live of forward encrypted traffic",
+        "total length of encrypted IP packet",
+        "enc ratio features"
+      ],
+      "evidence": "Such features include time-related features (i.e., flow duration of forward traffic and Interval of the arrival time of backward traffic), payload side-channel features (i.e, Payload ratio, length of TCP payload, and total payload per session), our proposed enc features",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "The function can extract both session-based and packet-based traffic features with high efficiency. Such features include time-related features (i.e., flow duration of forward traffic and Interval of the arrival time of backward traffic), payload side-channel features",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "two-layer ensemble (LSTM, ResNet, XGBoost, Random Forest)",
+      "evidence": "The framework is a two-layer detection framework which consists of both deep learning and traditional machine learning algorithms.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "unclear"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "The other feature set is to remove the Enc features and then feed the remaining features into the detection framework. The results of comparative experiments are recorded in Table V.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "F1",
+        "precision",
+        "recall",
+        "AUC-ROC",
+        "FPR",
+        "TPR"
+      ],
+      "evidence": "When evaluating the performance of detection models, accuracy, F1, precision, recall, AUC-ROC, False Positive Rate (FPR), and True Positive Rate (TPR) are selected to provide a more comprehensive analysis of performance results.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "In our dataset, all sessions with more than 15 packets will only keep the first 15 packets.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "15 packets",
+      "evidence": "In our dataset, all sessions with more than 15 packets will only keep the first 15 packets.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "To facilitate the research in this domain, Our dataset [29] is released in Mendeley Data.",
+      "evidence_source": "text"
+    }
+  },
+  "run": "gemini38_validation",
+  "model": "gemini-3.8-flash-high",
+  "validation_warnings": [
+    "split_protocols: value=['unclear'] but evidence is empty"
+  ]
+}

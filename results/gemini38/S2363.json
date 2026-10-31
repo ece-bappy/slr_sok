@@ -1,0 +1,156 @@
+{
+  "paper_id": "S2363",
+  "run": "gemini38",
+  "title": "Identification of Malicious Encrypted Traffic Through Feature Fusion",
+  "venue": "IEEE Access",
+  "year": 2023,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "MET2020",
+          "role": "train_and_test",
+          "quote": "This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset."
+        },
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train_and_test",
+          "quote": "This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset."
+        }
+      ],
+      "evidence": "This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "sandbox",
+        "dataset_provided"
+      ],
+      "evidence": "For the collection of negative samples, first from Stratosphere Lab [52] Select a part of the sample data that uses SSL/TLS encrypted communication in the open source malicious traffic data set, and then run corresponding malware in a relatively safe sandbox environment",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Analyze data in three dimensions including original data flow of SSL/TLS encrypted traffic, TLS plaintext handshake packet and traditional statistical laws, and design corresponding features.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "original data flow of SSL/TLS encrypted traffic",
+        "TLS plaintext handshake packet",
+        "traditional statistical laws"
+      ],
+      "evidence": "analyze data in three dimensions including original data flow of SSL/TLS encrypted traffic, TLS plaintext handshake packet and traditional statistical laws, and design corresponding features.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "evidence": "analyze data in three dimensions including original data flow of SSL/TLS encrypted traffic, TLS plaintext handshake packet and traditional statistical laws, and design corresponding features.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "use tools such as Wireshark to deeply analyze the original data flow of SSL/TLS encrypted traffic, TLS Plaintext handshake packets and statistical laws, and study the corresponding specific features",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "Since encryption protocols such as PPTP, L2TP, and IPSec are not the research focus of this paper, the encrypted traffic in the dataset uses the SSL/TLS protocol",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "multi-branch cascade network (CNN)",
+      "evidence": "The flow map recognition model based on multi-branch cascade network is proposed",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "Finally, different types of samples are randomly divided into training set and test set according to the ratio of 70% and 30%, and they are used as the target data set.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "Finally, different types of samples are randomly divided into training set and test set according to the ratio of 70% and 30%, and they are used as the target data set.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal"
+      ],
+      "evidence": "The same IP address will affect the training and judgment of the model as a fine-grained feature. This is also the main reason for implementing address randomization in data preprocessing.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1 score",
+        "macro-average",
+        "micro-average",
+        "mAP",
+        "Rank-n"
+      ],
+      "evidence": "uses metrics such as accuracy, precision, recall, and F1 score to evaluate the model’s performance. The other is the evaluation method based on object detection tasks, primarily for the convenience of visualizing the results, using metrics such as macro-average, micro-average, mAP value, and Rank-n value",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "Using the ISCXVPN2016 dataset, in order to unify the dataset, this experiment adopts the traffic representation form of Session+ALL",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Using the ISCXVPN2016 dataset, in order to unify the dataset, this experiment adopts the traffic representation form of Session+ALL",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.369395+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

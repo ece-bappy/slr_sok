@@ -1,0 +1,171 @@
+{
+  "paper_id": "S2344",
+  "run": "gemini38",
+  "title": "Flow-MAE: Leveraging Masked AutoEncoder for Accurate, Efficient and Robust Malicious Traffic Classification",
+  "venue": "International Symposium on Research in Attacks, Intrusions and Defenses (RAID)",
+  "year": 2023,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CSE-CIC-IDS2018",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using the following datasets, as summarized in Table 2:"
+        },
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using the following datasets, as summarized in Table 2:"
+        },
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using the following datasets, as summarized in Table 2:"
+        },
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using the following datasets, as summarized in Table 2:"
+        },
+        {
+          "name": "ISCX Tor-nonTor 2016",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using the following datasets, as summarized in Table 2:"
+        },
+        {
+          "name": "Cross-Platform (Android)",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using the following datasets, as summarized in Table 2:"
+        }
+      ],
+      "evidence": "The experiments are conducted using the following datasets, as summarized in Table 2:",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The experiments are conducted using the following datasets, as summarized in Table 2:",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Concretely, we anonymize the burst by removing the MAC address, IP address, and port fields from each packet header.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet header",
+        "packet payload"
+      ],
+      "evidence": "Flow-MAE model utilizes both packet header and payload to generate the bursts as input",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Flow-MAE model utilizes both packet header and payload to generate the bursts as input",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "traditional rule or fingerprint-based approaches",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Masked AutoEncoder (MAE)",
+      "evidence": "Flow-MAE, a pre-training model that employs Masked AutoEncoders (MAE) from the Computer Vision domain to achieve accurate, efficient, and robust malicious network traffic classification.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "Anonymous TCP and UDP sessions from each class are selected to create labeled burst datasets, which are then divided into training and testing sets in an 9:1 ratio.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "Anonymous TCP and UDP sessions from each class are selected to create labeled burst datasets, which are then divided into training and testing sets in an 9:1 ratio.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "Anonymous TCP and UDP sessions from each class are selected to create labeled burst datasets, which are then divided into training and testing sets in an 9:1 ratio.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal",
+        "ablation"
+      ],
+      "evidence": "Concretely, we anonymize the burst by removing the MAC address, IP address, and port fields from each packet header. Anonymity is essential, as bursts from the same flow category may share identical addresses or ports",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Precision",
+        "Recall",
+        "F1-score"
+      ],
+      "evidence": "We evaluate the performance of Flow-MAE using four typical metrics in the literature: Accuracy (AC), Precision (PR), Recall (RC), and F1-score (F1).",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "We select the burst as the fundamental unit for malicious traffic classification",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We select the burst as the fundamental unit for malicious traffic classification and preprocess the traffic in three distinct phases",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Experimental results from six datasets reveal that Flow-MAE achieves new state-of-the-art accuracy (>0.99), efficiency (>900 samples/s)",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "i7-12700K CPU, 64 GB DDR5 DRAM, and two NVIDIA GeForce 3090Ti GPUs",
+      "evidence": "All experiments were conducted on a testbed equipped with an i7-12700K CPU (8 P-cores @4.7GHz and 4 E-cores @3.6GHz), 64 GB DDR5 DRAM (@6000MT/s), and two NVIDIA GeForce 3090Ti GPUs (24 GB of GDDR6X memory each).",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/NLear/Flow-MAE']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/NLear/Flow-MAE']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.366765+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": [
+    "feature_groups: value 'none' not in allowed set"
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "paper_id": "S1461",
+  "run": "gemini38",
+  "title": "META: Multi-classified encrypted traffic anomaly detection with fine-grained flow and interaction analysis",
+  "venue": "Computer Communications",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrus"
+        },
+        {
+          "name": "CICIoT2023",
+          "role": "train_and_test",
+          "quote": "In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrus"
+        }
+      ],
+      "evidence": "In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrusion detection dataset and the latest CICIOT2023 [42] IoT attack dataset.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "Notethatbothdatasetsareaccompaniedbydownloadablepcapfilesandcomprehensiveattackannotations,enablingthere-extractionoffeaturedataaccordingtotheMETA-Features.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Specifically, an in-depth examination of the internal packet interaction features is undertaken, resulting in a novel feature set, designated as META-Features, encompassing 278 fine grained statistical features.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "IAT",
+        "packet lengths",
+        "header lengths",
+        "payload lengths",
+        "directional-sequence features",
+        "IP node degree",
+        "IP node out-degree",
+        "top 10 most active port numbers",
+        "flow duration",
+        "total bytes",
+        "total packets"
+      ],
+      "evidence": "The final number of features obtained for the description of IAT and PL distributions is 202. When these are combined with the 76 features from the reconstructed CICIDS2017 dataset, a total of 278 statistical features is obtained",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "statistical features of the flow, including flow duration, total bytes in the flow, total number of packets in the flow, etc., are used to describe the entire traffic flow.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "In the context of encrypted traffic scenarios, traditional detection methods that rely on payloads become ineffective due to the obscurity caused by encryption mechanisms.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "The encryption of packet content precludes the utilization of existing methods for the comprehensive analysis of anomalous traffic, as they are unable to leverage a diverse range of features.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "In the experiment, two intrusion detection datasets are employed: the classic CICIDS2017 [35] intrusion detection dataset and the latest CICIOT2023 [42] IoT attack dataset.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "In the absence of plaintext information, current anomaly encrypted traffic detection mainly relies on traffic data analysis to identify and characterize anomalous attack patterns in encrypted traffic, employing machine learning or deep learning models.",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "GNN, Random Forest",
+      "evidence": "Furthermore, a Graph Neural Network (GNN) is employed... Finally, the concatenated representation is input into a random forest model to perform the ultimate attack detection.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "The data is then split into a training set and a testing set, with 70% and 30% of the data allocated to each, respectively.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The data is then split into a training set and a testing set, with 70% and 30% of the data allocated to each, respectively.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The data is then split into a training set and a testing set, with 70% and 30% of the data allocated to each, respectively.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "We then compare these rough-features with the fine-grained features set META-Features for IAT and PL proposed in Section 3",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Recall",
+        "Precision",
+        "F1-score"
+      ],
+      "evidence": "The primary metrics employed for the evaluation of the models’ overall performance are Accuracy, Recall, Precision, and F1-score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "statistical features of the flow, including flow duration, total bytes in the flow, total number of packets in the flow, etc., are used to describe the entire traffic flow.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "statistical features of the flow, including flow duration, total bytes in the flow, total number of packets in the flow, etc., are used to describe the entire traffic flow.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "As illustrated in Table 3, the performance of the models with different structures is demonstrated, along with the time required to train 1000 rounds and the size of the models.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.399514+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

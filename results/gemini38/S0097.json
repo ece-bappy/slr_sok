@@ -1,0 +1,162 @@
+{
+  "paper_id": "S0097",
+  "run": "gemini38",
+  "title": "Adaptive encrypted malicious traffic detection with dual-drift awareness in dynamic networks",
+  "venue": "Computer Networks",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "H23Q",
+          "role": "train_and_test",
+          "quote": "comprehensive experiments are conducted using four publicly available encrypted malicious traffic da"
+        },
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "comprehensive experiments are conducted using four publicly available encrypted malicious traffic da"
+        },
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "comprehensive experiments are conducted using four publicly available encrypted malicious traffic da"
+        },
+        {
+          "name": "CIC-DDoS2019",
+          "role": "train_and_test",
+          "quote": "comprehensive experiments are conducted using four publicly available encrypted malicious traffic da"
+        }
+      ],
+      "evidence": "comprehensive experiments are conducted using four publicly available encrypted malicious traffic datasets: H23Q, CIC-IDS2017, USTC-TFC2016, and CIC-DDoS2019.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The dataset provides detailed feature labels and attack type annotations, which is convenient for quantitative analysis of model performance.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Ultimately, standardized and structured traffic feature vectors are output for use by downstream modules.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "temporal features",
+        "statistical features",
+        "content features"
+      ],
+      "evidence": "Subsequently, temporal features, statistical features, and content features are extracted from the traffic.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "Subsequently, temporal features, statistical features, and content features are extracted from the traffic.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Graph Neural Network",
+      "evidence": "The detection module itself employs a Graph Neural Network enhanced with domain adversarial training to learn robust, cross-protocol features and handle class imbalance.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random",
+        "temporal"
+      ],
+      "evidence": "In addition, to verify the performance of the model in handling imbalanced encrypted traffic samples (a common problem in actual network environments), we perform stratified sampling on the above datasets to construct sub-datasets.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "temporal",
+      "evidence": "CIC-DDoS2019 Dataset [19]: Developed by the Canadian Institute for Cybersecurity, this dataset includes real-time network traffic captured over two days: January 12, 2018 (training) and March 11, 2018 (testing).",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The experiments are designed around five research questions: the necessity of active drift detection, performance comparison with existing SOTA methods, detection efficiency, ablation analysis of core modules, and performance stability under imbalanced samples and different drift scenarios.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "Ablation experiments further verify the necessity and synergistic effects of the three core modules: dual drift detection, incremental learning, and small-model replacement.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Precision",
+        "Recall",
+        "F1-Score",
+        "AUC"
+      ],
+      "evidence": "Accuracy measures the overall correctness of the model’s predictions, calculated as follows:",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "It contains more than 1.6 million traffic flow samples captured from both real campus network environments and controlled laboratory attack scenarios",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Deeppacket inspection and flow feature analysis are performed on the original network traffic to remove noise, handle missing values, and address outliers.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Table 5 End-to-end latency budget of the proposed framework.",
+      "evidence_source": "table"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.410736+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

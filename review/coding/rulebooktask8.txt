@@ -1,0 +1,243 @@
+================================================================================
+RULEBOOK & VERIFICATION GUIDE FOR TASK 8: CORE SET VERIFICATION (67 PAPERS)
+================================================================================
+Project: Systematic Review on Malicious TLS Traffic Classification (SoK)
+File to Verify: review/coding/core_67_papers_verification.xlsx (and .csv)
+Applicable Protocol: plan.md §4, coding_rulebook.txt
+Target: CORE A-ranked Security Venue / Q1 Journal
+================================================================================
+
+1. PURPOSE OF TASK 8
+--------------------------------------------------------------------------------
+The Gemini 3.1 Flash Lite extraction pipeline has drafted initial answers for 
+all 67 core-set papers across 21 fields (3 runs each with majority voting, 
+derivation of computed fields, and automated quote verification).
+
+In Task 8, YOU(human) verify every answer against its 
+verbatim evidence quote. The scientific paper reports YOUR verified coding; 
+the LLM serves only as a tireless drafting assistant.
+
+Pre-populated validation papers:
+The 4 papers you blind-coded in Task 6 (S2338, S1938, S1163, S2008) are already 
+pre-populated with your verified values and marked with status "verified". 
+You only need to verify the remaining 63 core papers (1,323 rows).
+
+
+================================================================================
+2. SPREADSHEET STRUCTURE (core_67_papers_verification.xlsx)
+================================================================================
+The verification workbook is formatted for rapid auditing in Excel:
+Columns A-F (Paper Info):
+  - paper_id: Identifier (e.g., S3347)
+  - year: Publication year (2019-2026)
+  - kind: journal or conference
+  - venue: Publication venue
+  - title: Paper title
+  - pdf_path: Relative path to PDF (papers/core/<paper_id>.pdf)
+
+Columns G-N (LLM Draft & Evidence - READ ONLY):
+  - field: Field name (21 fields per paper)
+  - allowed_values: Permitted vocabulary or format
+  - llm_draft_value: Majority voted answer from the 3 LLM runs
+  - llm_evidence_quote: Verbatim text copied character-for-character from PDF
+  - evidence_source: text, table, figure, or none
+  - quote_match: Exact fuzzy alignment score (1.000 = exact character match)
+  - review_flags: Automated quality warnings (see Section 4 below)
+  - votes: Run consistency (e.g., "3/3" unanimous, "2/3" split)
+
+Columns O-T (Your Verification Inputs - EDITABLE, highlighted in light blue/green):
+  - verified_value: The final truth value. Defaults to llm_draft_value.
+  - agree: Write "yes" if you agree with LLM draft; "no" if you corrected it.
+  - user_page: Page in PDF if you changed the answer or want to note it (e.g., p4).
+  - user_quote: Your supporting verbatim quote if correcting or noting.
+  - user_note: Any rationale, nuance, or boundary decision.
+  - verification_status: Change from "ready_for_review" to "verified" when done.
+
+Color Codes in Excel:
+  - Green (E2EFDA): Verified rows (pre-populated Task 6 or finished by you).
+  - Orange (FCE4D6): Rows carrying review_flags (PRIORITY AUDIT).
+  - Yellow (FFF2CC): Ready for review, clean runs without flags.
+  - Light Blue (EBF1F5): The user input columns where you enter data.
+
+
+================================================================================
+3. VERIFICATION WORKFLOW: STEP-BY-STEP
+================================================================================
+For each row in the spreadsheet:
+
+Step 1: Read field, allowed_values, llm_draft_value, and llm_evidence_quote.
+Step 2: Check whether llm_evidence_quote supports llm_draft_value according to the
+        field definitions in Section 5 below.
+Step 3:
+  - IF YOU AGREE:
+    * Leave verified_value as is.
+    * Set agree = "yes"
+    * Set verification_status = "verified"
+  - IF YOU DISAGREE / CORRECTION NEEDED:
+    * Open the paper PDF in papers/core/<paper_id>.pdf.
+    * Find the decisive passage in the paper.
+    * Update verified_value to the true value (using allowed_values syntax).
+    * Set agree = "no"
+    * Put the page number in user_page (e.g. p7).
+    * Copy the verbatim passage (max 40 words) into user_quote.
+    * Note the reason in user_note (e.g., "LLM missed G3 handshake fields in Table 2").
+    * Set verification_status = "verified"
+
+
+================================================================================
+4. PRIORITIZING WITH REVIEW FLAGS
+================================================================================
+Filter or sort by column M (review_flags) to audit high-risk fields first:
+  1. quote_not_verbatim: The LLM's quote had an alignment score < 0.90 against 
+     the PDF text (may indicate minor paraphrasing or OCR ligature issue). Check PDF!
+  2. spliced_quote: The quote contains ellipsis ("..." or "…") violating G3.
+  3. changed_by_check: The second-pass checker corrected the first-pass draft.
+  4. not_unanimous: The 3 runs split (e.g. 2 vs 1 vote). Check alternatives in JSON.
+  5. no_link_found: No software repository link was detected in the text/references.
+
+
+================================================================================
+5. CODING RULES BY FIELD (21 FIELDS)
+================================================================================
+
+--- GENERAL RULES (G1–G6) ---
+G1: Code what the paper states about ITS OWN method and experiments. Ignore related 
+    work and baselines from other papers.
+G2: Code the MAIN method: the one behind headline results (abstract / main tables).
+    Side experiments (sensitivity, ablation) only count for split_protocols, 
+    easy_vs_hard_reported, and shortcut_check.
+G3: Verbatim quotes only: max ~40 words copied character-for-character from PDF.
+G4: Strict Unproven = Not Stated. Do NOT use your own knowledge of a dataset or 
+    tool (e.g. do not write TLS 1.3 just because you know the dataset has it).
+G5: If the paper does not say: use unclear, none, not_applicable, or not_stated.
+G6: Code the published version we cite, not a preprint.
+
+--- GROUP A: DATA AND LABELS ---
+1. datasets_evaluated:
+   - Data sources as named in the paper with role (train, test, train_and_test).
+   - E.g.: "CIC-IDS2017 (train_and_test); CTU-13 (train_and_test)"
+   - Do NOT use internal split names ("Fold1", "SetA").
+
+2. label_source:
+   - Semicolon-separated list of the labelling signals used:
+     * sandbox: every flow in a sandbox execution labelled malicious.
+     * blocklist_cert: certificate blocklist (SSLBL, etc.).
+     * blocklist_ja3: JA3/JA4 hash blocklist.
+     * ids_alerts: Suricata/Snort alerts.
+     * dataset_provided: labels pre-packaged with public benchmark dataset.
+     * manual: human analyst inspection.
+     * generated: traffic generated by authors in lab/simulation, labelled by construction.
+     * other: VirusTotal, AVClass, OSINT (note which in user_note).
+
+3. label_feature_overlap:
+   - yes: classifier input uses the exact same signal as the labels (e.g. classifier 
+     uses certificate fields, and labels were assigned via certificate blocklist).
+   - no: features are independent of labelling signal (e.g. flow stats with sandbox labels).
+   - unclear / not_applicable (if no classifier trained).
+
+--- GROUP B: FEATURES AND TLS VISIBILITY ---
+4. features_used:
+   - Short phrases in the paper's own words describing model inputs.
+   - Fields used only to filter, group, or label traffic do NOT count.
+
+5. feature_groups:
+   - Semicolon-separated list among G1–G5:
+     * G1: Whole-flow statistics (duration, byte/packet counts, mean packet size, inter-arrival times).
+     * G2: Sequences of packet/record sizes, directions, or timing (e.g. first 20 packet lengths).
+     * G3: ClientHello / ServerHello fields (SNI, cipher suites, extensions, ALPN, versions).
+     * G4: X.509 Certificate fields (issuer, validity, SAN, self-signed flag, certificate size).
+     * G5: TLS Fingerprints (JA3, JA3S, JA4, JA4S, JARM, Mercury).
+
+6. cert_fields_read:
+   - yes: reads Certificate message fields in cleartext.
+   - no: certificate information is only INFERRED from encrypted record lengths (or not read).
+   - not_applicable: no certificate information used.
+
+7. fingerprints_used:
+   - Semicolon-separated list: none, JA3, JA3S, JA4, JA4S, or other (e.g. JARM, Mercury).
+   - Only counts fingerprints used as CLASSIFIER INPUTS, not for labelling.
+
+8. tls_versions_stated:
+   - Specific TLS versions explicitly stated in the paper's evaluation data:
+     1.0, 1.1, 1.2, 1.3, or not_stated.
+   - NEVER infer version from dataset name or date (Rule G4).
+
+9. ech_considered:
+   - yes: Encrypted Client Hello (ECH / ESNI) is evaluated, simulated, or explicitly assumed.
+   - no: ECH is only mentioned in passing, related work, or future work.
+
+--- GROUP C: EVALUATION PROTOCOL ---
+10. model_family:
+    - Short descriptive text: e.g. "Random Forest", "CNN-LSTM", "XGBoost", "Transformer".
+    - "none" if no learned ML model (e.g. rule-based fingerprint lookup).
+
+11. split_protocols:
+    - ALL protocols used across all experiments:
+      * random: standard random train/test split or k-fold CV.
+      * stratified_random: random split preserving class proportions.
+      * per_packet: packets of the same flow can appear in both train and test (severe leakage).
+      * host_grouped: train and test split by IP, host, or distinct capture trace.
+      * temporal: test data collected strictly AFTER training data.
+      * cross_dataset: trained on one dataset, tested on a completely different dataset.
+      * not_applicable: no model trained and tested.
+
+12. main_split:
+    - The split protocol behind the headline results in the abstract / main table.
+    - One of the values from split_protocols.
+
+13. easy_vs_hard_reported:
+    - yes: the SAME model is evaluated on both a random split AND a harder split 
+      (host_grouped, temporal, or cross_dataset) and results are compared.
+    - no: only random, or only hard split evaluated.
+    - not_applicable: no model trained.
+
+14. shortcut_check:
+    - Explicit evaluation preventing shortcut learning / testbed artifacts:
+      * identifier_removal: IP addresses, port numbers, or TTL removed from features.
+      * ablation: feature subsets removed to test whether signal persists without shortcuts.
+      * probe: environment / dataset-of-origin classification test.
+      * other: SHAP attribution showing non-spurious reliance (note it).
+      * none: no shortcut checks performed.
+
+15. metrics:
+    - List of metrics reported for the proposed method: accuracy, precision, recall, f1, 
+      fpr, fnr, roc-auc, etc.
+
+--- GROUP D: DEPLOYMENT AND REPRODUCIBILITY ---
+16. granularity:
+    - packet, flow, session, or host.
+    - If 1 ClientHello per connection is classified, note whether coded packet or flow.
+
+17. first_n_packets:
+    - If classification occurs early from the flow prefix: write N + unit 
+      (e.g., "5 packets", "10 records", "first 3 bursts").
+    - If requires the full transmission: "whole flow".
+
+18. cost_reported:
+    - none: no computational runtime, latency, or throughput measured.
+    - inference_only: measures model prediction time/throughput only.
+    - end_to_end: measures feature extraction time + inference time.
+
+19. hardware:
+    - Hardware used specifically to MEASURE timing/runtime (CPU model, GPU model, RAM).
+    - If cost_reported is "none", hardware MUST be coded "none" (even if training hardware 
+      is mentioned elsewhere in the paper).
+
+20. code_released:
+    - yes: paper provides a working URL to the authors' OWN implementation.
+    - no: no link, or link is to third-party tools/libraries (scikit-learn, PyTorch, Joy).
+    - "Will be released" or "available on request" = no.
+
+21. data_released:
+    - yes: authors published new data THEY created (pcaps, labels, or feature csv) with a link/DOI.
+    - no: merely used existing public datasets without releasing a new dataset artifact.
+
+
+===============================================================================
+6. PRESERVATION OF WORK
+===============================================================================
+- Whenever scripts/make_core_verification_sheet.py is re-run, it automatically 
+  reads your existing entries in core_67_papers_verification.csv and preserves 
+  all your edits (verified_value, agree, user_page, user_quote, user_note, status).
+- You can work at your own pace over several sessions.
+===============================================================================

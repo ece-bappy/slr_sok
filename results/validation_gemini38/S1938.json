@@ -1,0 +1,155 @@
+{
+  "paper_id": "S1938",
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Tranco",
+          "role": "train_and_test",
+          "quote": "To initiate our data collection process, we select the “Top 10K domains” from the Tranco list, which is a reliable source of Internet-wide domain information [14]."
+        },
+        {
+          "name": "Feodo Blocklist",
+          "role": "train_and_test",
+          "quote": "In addition to the top 10K domains, we incorporate the Feodo Blocklist into our data collection [9]; a blocklist that contains IP addresses associated from five different botnet families."
+        },
+        {
+          "name": "Blocklists",
+          "role": "train_and_test",
+          "quote": "To expand our dataset, we also include unlabeled blocklists that contain potential malicious IP addresses (i.e., Blocklists.de [13], Ci-Badguys [17], SSLBL [10], and Darklist.de [18]). In the paper, the term Blocklists refers to these 4 unlabeled lists."
+        }
+      ],
+      "evidence": "The process involves two main sources: the “Top 10K domains” from the Tranco list and various “Blocklists” containing potentially malicious IP addresses.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "other"
+      ],
+      "evidence": "In addition to the top 10K domains, we incorporate the Feodo Blocklist into our data collection [9]; a blocklist that contains IP addresses associated from five different botnet families.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "This division is based on the combination of the target (benign or malicious) and the machine’s IP address, ensuring that the testing set contains 20% of the unique machines, avoiding the presence of similar samples between training and hold-out set.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "TLS versions",
+        "cipher suites",
+        "ALPNs",
+        "Elliptic Curves",
+        "certificates (x509)"
+      ],
+      "evidence": "These parameters include TLS versions, cipher suites, ALPNs, Elliptic Curves, certificates (x509) and other relevant information.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G3",
+        "G4"
+      ],
+      "evidence": "These parameters include TLS versions, cipher suites, ALPNs, Elliptic Curves, certificates (x509) and other relevant information.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "yes",
+      "evidence": "These parameters include TLS versions, cipher suites, ALPNs, Elliptic Curves, certificates (x509) and other relevant information.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "XGBoost, Random Forest",
+      "evidence": "Furthermore, we have selected 3 distinct classification models to facilitate a comprehensive comparison of different classification approaches: Gaussian Naive Bayes [61], Random Forest [30], and the state-ofthe-art XGBoost [31].",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "host_grouped",
+        "random",
+        "temporal"
+      ],
+      "evidence": "This division is based on the combination of the target (benign or malicious) and the machine’s IP address, ensuring that the testing set contains 20% of the unique machines, avoiding the presence of similar samples between training and hold-out set.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "host_grouped",
+      "evidence": "This division is based on the combination of the target (benign or malicious) and the machine’s IP address, ensuring that the testing set contains 20% of the unique machines, avoiding the presence of similar samples between training and hold-out set.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "This type of data separation could lead to overly optimistic model performance. To address this issue, we have taken measures to ensure the appropriateness of our data splitting.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "precision",
+        "recall",
+        "F1",
+        "ROC-AUC"
+      ],
+      "evidence": "The chosen configuration achieves an F1 score of 0.931, a ROC-AUC score of 0.971, a recall score of 0.95, and a precision score of 0.911 (§ A.3).",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "host",
+      "evidence": "First, we perform binary classification to specify whether a server is malicious (C&C) or not. Then, we perform multi-class classification, to identify the botnet family of each server.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "This iterative approach continues until the server either refuses to respond or stops acknowledging our queries.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "The resulting TLS parameters are then utilized from the enhanced version of a publicly available semi-automatic machine learning pipeline [20].",
+      "evidence_source": "text"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "The already processed data is available and ready-to-use in [25].",
+      "evidence_source": "text"
+    }
+  },
+  "run": "gemini38_validation",
+  "model": "gemini-3.8-flash-high",
+  "validation_warnings": []
+}

@@ -1,0 +1,153 @@
+{
+  "paper_id": "S2524",
+  "run": "gemini38",
+  "title": "TGPrint: Attack fingerprint classification on encrypted network traffic based graph convolution attention networks",
+  "venue": "Computers & Security",
+  "year": 2023,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the"
+        },
+        {
+          "name": "CSE-CIC-IDS2018",
+          "role": "train_and_test",
+          "quote": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the"
+        },
+        {
+          "name": "HIKARI-2021",
+          "role": "train_and_test",
+          "quote": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the"
+        }
+      ],
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "CICIDS-2017 (C.I. for Cybersecurity, 2017) and CICIDS-2018 (Sharafaldin et al., 2018) datasets were created by the Canadian Institute for Cyber Security",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Finally, we use 86 features shown in section 4.1.2, including statistical, temporal, and aggregate features.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "statistical features",
+        "temporal features",
+        "aggregate features"
+      ],
+      "evidence": "Finally, we use 86 features shown in section 4.1.2, including statistical, temporal, and aggregate features.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "Statistical features are the basic information of the payload and packet during communication; temporal features are informationsuchas transmission time; aggregate features are calculated from statistical and temporal features.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "Because checking the certificate or not is up to the policy of the application server, TLS certificates are not necessary for communication connections established on the TLS protocol. The impact of the certificate also could be ignored.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "Since the TLS version is usually uniform, we do not consider the relationship between the TLS version and attack classification.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Graph Neural Networks (GNN)",
+      "evidence": "Finally, we utilize Graph Neural Networks (GNNs) to mine and grasp the crucial behavior patterns from attack graphs to generate fingerprints and classify attacks",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "temporal"
+      ],
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "temporal",
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal"
+      ],
+      "evidence": "The node vectors of a graph are two hosts’ ports without IP because the IP address is useless for edge attributes in each graph",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "F1-score"
+      ],
+      "evidence": "The conventional performance metrics for multi-class classification, accuracy, precision, and F1-Score are used in this paper to evaluate the performance of models.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "TGPrint clusters the suspicious traffic according to the host’s IP pairs because of the attacker’s persistent behaviors toward the victim host.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "TGPrint divides attack traffic for each IP pair to adapt to the behaviors’ changing over time.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "More practical factors, such as identification efficiency, resource occupancy, and network structure, should be considered in a real network.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.372033+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

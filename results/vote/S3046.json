@@ -1,0 +1,195 @@
+{
+  "paper_id": "S3046",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G3",
+      "evidence": "After investigating a real encrypted botnet dataset, some notable features can distinguish between malicious traffic and benign traffic, including TTL, TLS Ciphersuites, duration, ports, and etc.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G3",
+        "gemini38": "['G1', 'G3']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random; cross_dataset",
+      "evidence": "logistic regression classifier is trained under 5-fold cross validation. Note that an imbalance of data distribution exists in the dataset (white samples are far more than black samples), this paper implements stratify method in the validation process.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random; cross_dataset",
+        "gemini38": "['stratified_random', 'cross_dataset']"
+      }
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "Then, OFDPI allows for deep packet inspection at the packet-level granularity",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet",
+        "gemini38": "packet"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "OFDPI extracts some notable features of encrypted traffic (e.g., TLS ciphersuites) to train a decision tree classifier in identifying malicious encrypted packets, rather than decrypt the encrypted traffic to weaken user privacy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The HTTP CSIC 2010 is a labeled dataset that contains generated web requests with corresponding web attacks, e.g., SQL injection, cross-site scripting, buffer overflow, etc.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "OFDPI extracts some notable features of encrypted traffic (e.g., TLS ciphersuites) to train a decision tree classifier in identifying malicious encrypted packets, rather than decrypt the encrypted traffic to weaken user privacy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Github Payloads (train); HTTP CSIC 2010 (test); CTU-BOTNET (train_and_test); {'name': 'Github Payloads', 'role': 'train', 'quote': 'Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o'}; {'name': 'HTTP CSIC 2010', 'role': 'test', 'quote': 'Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o'}; {'name': 'CTU-BOTNET', 'role': 'train_and_test', 'quote': 'Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o'}",
+      "evidence": "Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and one encrypted dataset.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Github Payloads (train); HTTP CSIC 2010 (test); CTU-BOTNET (train_and_test)",
+        "gemini38": "[{'name': 'Github Payloads', 'role': 'train', 'quote': 'Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o'}, {'name': 'HTTP CSIC 2010', 'role': 'test', 'quote': 'Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o'}, {'name': 'CTU-BOTNET', 'role': 'train_and_test', 'quote': 'Table 3 demonstrates three datasets utilized in this paper, including two unencrypted datasets and o'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "OFDPI extracts some notable features of packets and then trains a binary classifier with a decision tree, instead of decrypting the encrypted traffic to weaken user privacy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "logistic regression, decision tree",
+      "evidence": "For encrypted packets, OFDPI extracts some notable features of packets and then trains a binary classifier with a decision tree, instead of decrypting the encrypted traffic to weaken user privacy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "logistic regression, decision tree",
+        "gemini38": "logistic regression, decision tree"
+      }
+    },
+    "hardware": {
+      "value": "Intel Core i7-6700 processor",
+      "evidence": "This paper implements a prototype of OFDPI by using a Mininet network emulator and an SDN controller running on a virtual machine with Intel Core i7-6700 processor.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Intel Core i7-6700 processor",
+        "gemini38": "Intel Core i7-6700 processor"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "In order to avoid overfitting with a particular dataset, another unencrypted dataset is adopted to evaluate the performance of the binary logistic regression classifier.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "This section uses the Cbench (Cbench) tool to test the throughput of the SDN controller with the OFDPI by continuously looping through the new Packet_in messages.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "TTL; TLS Ciphersuites; duration; ports",
+      "evidence": "After investigating a real encrypted botnet dataset, some notable features can distinguish between malicious traffic and benign traffic, including TTL, TLS Ciphersuites, duration, ports, and etc.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TTL; TLS Ciphersuites; duration; ports",
+        "gemini38": "['TTL', 'TLS Ciphersuites', 'duration', 'ports']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; TPR; Recall; FPR; Precision; F1-score; AUC",
+      "evidence": "Metrics (%) Accuracy Precision Recall F1-score",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; TPR; Recall; FPR; Precision; F1-score; AUC",
+        "gemini38": "['Accuracy', 'TPR', 'Recall', 'FPR', 'Precision', 'F1-score', 'AUC']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "sampled packets",
+      "evidence": "In order to reduce the overhead of inspection, we implement an adaptive traffic sampling mechanism in the DPI engine, in which the packet window based on linear prediction performs packet sampling by analyzing the previous consecutive packets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "sampled packets",
+        "gemini38": "sampled packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "logistic regression classifier is trained under 5-fold cross validation. Note that an imbalance of data distribution exists in the dataset (white samples are far more than black samples), this paper implements stratify method in the validation process.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

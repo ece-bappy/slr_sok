@@ -1,0 +1,341 @@
+{
+  "_note": "Canonical datasets for the review (plan.md §4). aliases are case-insensitive regexes matched against the dataset name as the paper writes it. public: yes = downloadable without request; on_request = form/agreement; no = private. tls: what the dataset contains (from its own documentation, not from papers). Drafted by Claude on 28 Oct 2026 from the datasets' documentation as remembered; status 'verify' entries must be checked by the human before use in the paper.",
+  "datasets": [
+    {
+      "name": "CTU-13",
+      "aliases": [
+        "ctu[- ]?13"
+      ],
+      "public": "yes",
+      "tls": "mixed; mostly non-TLS (2011 botnet captures)",
+      "status": "ok"
+    },
+    {
+      "name": "Stratosphere MCFP / CTU-Malware-Capture",
+      "aliases": [
+        "mcfp",
+        "malware capture facility",
+        "ctu[- ]?malware",
+        "stratosphere"
+      ],
+      "public": "yes",
+      "tls": "mixed; many HTTPS captures",
+      "status": "ok"
+    },
+    {
+      "name": "Malware-Traffic-Analysis.net (MTA)",
+      "aliases": [
+        "malware[- ]?traffic[- ]?analysis",
+        "\\bmta\\b"
+      ],
+      "public": "yes",
+      "tls": "yes (real malware pcaps, 2013-)",
+      "status": "ok"
+    },
+    {
+      "name": "CIRA-CIC-DoHBrw-2020",
+      "aliases": [
+        "doh ?brw",
+        "cira[- ]?cic[- ]?doh",
+        "dohbrw"
+      ],
+      "public": "yes",
+      "tls": "yes (DoH over HTTPS, benign + malicious tunnels)",
+      "status": "ok"
+    },
+    {
+      "name": "HIKARI-2021",
+      "aliases": [
+        "hikari"
+      ],
+      "public": "yes",
+      "tls": "yes (HTTPS attacks; benign header-only)",
+      "status": "ok"
+    },
+    {
+      "name": "CESNET-TLS22",
+      "aliases": [
+        "cesnet[- ]?tls[- ]?22",
+        "cesnet[- ]?tls"
+      ],
+      "public": "yes",
+      "tls": "yes (flow records, benign services)",
+      "status": "ok"
+    },
+    {
+      "name": "CESNET-QUIC22",
+      "aliases": [
+        "cesnet[- ]?quic"
+      ],
+      "public": "yes",
+      "tls": "yes (QUIC, benign services)",
+      "status": "ok"
+    },
+    {
+      "name": "RAID 2024 Metasploit C2 (Barradas et al.)",
+      "aliases": [
+        "metasploit",
+        "\\bms\\b"
+      ],
+      "public": "yes",
+      "tls": "yes (TLS 1.2 and 1.3 C2)",
+      "status": "ok"
+    },
+    {
+      "name": "Tranco browsing captures (Barradas et al.)",
+      "aliases": [
+        "tranco"
+      ],
+      "public": "yes",
+      "tls": "yes (benign, TLS 1.2 and 1.3)",
+      "status": "ok"
+    },
+    {
+      "name": "CIC-IDS2017",
+      "aliases": [
+        "cic[- ]?ids[- ]?2017",
+        "ids[- ]?2017",
+        "cicids[- ]?2017"
+      ],
+      "public": "yes",
+      "tls": "mixed; little TLS attack traffic",
+      "status": "ok"
+    },
+    {
+      "name": "CSE-CIC-IDS2018",
+      "aliases": [
+        "cse[- ]?cic[- ]?ids[- ]?2018",
+        "cic[- ]?ids[- ]?2018",
+        "ids[- ]?2018"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "CIC-DDoS2019",
+      "aliases": [
+        "cic[- ]?ddos[- ]?2019"
+      ],
+      "public": "yes",
+      "tls": "mostly non-TLS",
+      "status": "ok"
+    },
+    {
+      "name": "UNSW-NB15",
+      "aliases": [
+        "unsw[- ]?nb[- ]?15"
+      ],
+      "public": "yes",
+      "tls": "mostly non-TLS",
+      "status": "ok"
+    },
+    {
+      "name": "NSL-KDD",
+      "aliases": [
+        "nsl[- ]?kdd"
+      ],
+      "public": "yes",
+      "tls": "no (feature records)",
+      "status": "ok"
+    },
+    {
+      "name": "KDD Cup 99",
+      "aliases": [
+        "kdd ?(cup)? ?99",
+        "kdd ?1999"
+      ],
+      "public": "yes",
+      "tls": "no (feature records)",
+      "status": "ok"
+    },
+    {
+      "name": "ToN_IoT",
+      "aliases": [
+        "ton[_ -]?iot"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "Bot-IoT",
+      "aliases": [
+        "bot[- ]?iot"
+      ],
+      "public": "yes",
+      "tls": "mostly non-TLS",
+      "status": "ok"
+    },
+    {
+      "name": "IoT-23",
+      "aliases": [
+        "iot[- ]?23"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "CICIoT2023",
+      "aliases": [
+        "cic[- ]?iot[- ]?2023",
+        "ciciot"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "CIC-IoT2022",
+      "aliases": [
+        "cic[- ]?iot[- ]?2022"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "Edge-IIoTset",
+      "aliases": [
+        "edge[- ]?iiot"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "USTC-TFC2016",
+      "aliases": [
+        "ustc[- ]?tfc",
+        "ustc[- ]?malware"
+      ],
+      "public": "yes",
+      "tls": "mixed (malware + benign apps; partly encrypted)",
+      "status": "ok"
+    },
+    {
+      "name": "ISCX VPN-nonVPN 2016",
+      "aliases": [
+        "iscx[- ]?vpn",
+        "vpn[- ]?non[- ]?vpn"
+      ],
+      "public": "yes",
+      "tls": "partly; no malicious class",
+      "status": "ok"
+    },
+    {
+      "name": "ISCX Tor-nonTor 2016",
+      "aliases": [
+        "iscx[- ]?tor",
+        "tor[- ]?non[- ]?tor"
+      ],
+      "public": "yes",
+      "tls": "Tor; no malicious class",
+      "status": "ok"
+    },
+    {
+      "name": "ISCX Botnet 2014",
+      "aliases": [
+        "iscx[- ]?bot",
+        "iscx[- ]?2014"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "CIC-AndMal2017",
+      "aliases": [
+        "cic[- ]?and[- ]?mal",
+        "andmal"
+      ],
+      "public": "yes",
+      "tls": "mixed (Android malware traffic)",
+      "status": "ok"
+    },
+    {
+      "name": "CIC-Darknet2020",
+      "aliases": [
+        "darknet[- ]?2020",
+        "cic[- ]?darknet"
+      ],
+      "public": "yes",
+      "tls": "VPN/Tor; no malicious class",
+      "status": "ok"
+    },
+    {
+      "name": "DataCon2020 encrypted malicious traffic",
+      "aliases": [
+        "datacon"
+      ],
+      "public": "on_request",
+      "tls": "yes (encrypted malicious + benign)",
+      "status": "ok"
+    },
+    {
+      "name": "NetML (NetML Challenge 2020)",
+      "aliases": [
+        "netml"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "Kitsune",
+      "aliases": [
+        "kitsune"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "CSTNET-TLS1.3",
+      "aliases": [
+        "cstnet"
+      ],
+      "public": "yes",
+      "tls": "yes (TLS 1.3, benign services)",
+      "status": "ok"
+    },
+    {
+      "name": "MAWI",
+      "aliases": [
+        "mawi"
+      ],
+      "public": "yes",
+      "tls": "mixed backbone (anonymised, no payload)",
+      "status": "ok"
+    },
+    {
+      "name": "MedBIoT",
+      "aliases": [
+        "medbiot"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "ok"
+    },
+    {
+      "name": "own / private capture",
+      "aliases": [
+        "own",
+        "private",
+        "in-house",
+        "self[- ]?collected",
+        "collected",
+        "real[- ]?world",
+        "commercial sandbox",
+        "research network",
+        "campus",
+        "enterprise",
+        "ucnet"
+      ],
+      "public": "no",
+      "tls": "as described by the paper",
+      "status": "rule"
+    }
+  ]
+}

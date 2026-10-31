@@ -1,0 +1,148 @@
+{
+  "paper_id": "S1042",
+  "run": "gemini38",
+  "title": "Adaptive detection of encrypted malware traffic via fully convolutional masked autoencoders",
+  "venue": "Frontiers of Computer Science",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "malware capture family project",
+          "role": "train_and_test",
+          "quote": "We select the six malware traffic types, i.e., Trickbot, Geodo, Dridex, Emotet, Miuref, and Zeus, fr"
+        },
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "We select the six malware traffic types, i.e., Trickbot, Geodo, Dridex, Emotet, Miuref, and Zeus, fr"
+        }
+      ],
+      "evidence": "We select the six malware traffic types, i.e., Trickbot, Geodo, Dridex, Emotet, Miuref, and Zeus, from the malware capture family project which is widely used in the evaluation of malware traffic detection.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "To protect user privacy, the dataset’s author removes the benign traffic from malware traffic, making the malware dataset contain pure malware traffic.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We design a novel traffic representation method, HPM, from raw traffic data for encrypted malware traffic detection.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "Header-Payload Matrix (HPM) based on packet bytes"
+      ],
+      "evidence": "We propose a novel traffic representation named Header-Payload Matrix (HPM) based on packet bytes to model the raw traffic.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "For the detection of encrypted malware traffic, we assume that we cannot analyze network traffic packet payloads at the application layer.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "fully convolutional masked autoencoders",
+      "evidence": "In this paper, we propose Malcom, an adaptive encrypted malware traffic detection method based on fully convolutional masked autoencoders",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "From the 3,000 samples of the new malware, we randomly select N samples to fine-tune the model, utilizing the remaining samples to evaluate the effectiveness of the few-shot learning scenario.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "From the 3,000 samples of the new malware, we randomly select N samples to fine-tune the model, utilizing the remaining samples to evaluate the effectiveness of the few-shot learning scenario.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal"
+      ],
+      "evidence": "To eliminate the negative influence of distinct MAC addresses, IP addresses, and port number information, we replace the destination MAC address and the source MAC address in the Ethernet layer with random address and number",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "precision",
+        "recall",
+        "F1 score"
+      ],
+      "evidence": "To achieve this goal, we select precision, recall, and F1 score as the performance metrics.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "In this study, we consider a flow as the detection granularity and we apply the following two rules to sample each flow.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "8 packets",
+      "evidence": "Specifically, we set M = 8, which denotes our proposed HPM contains each flow’s first 8 consecutive packets.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.385828+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": [
+    "feature_groups: value 'none' not in allowed set"
+  ]
+}

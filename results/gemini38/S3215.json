@@ -1,0 +1,142 @@
+{
+  "paper_id": "S3215",
+  "run": "gemini38",
+  "title": "DoH Insight: Detecting DNS over HTTPS by Machine Learning",
+  "venue": "ARES 2020: Proceedings of the 15th International Conference on Availability, Reliability and Security",
+  "year": 2020,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Authors own DoH and regular HTTPS dataset (captured from Chrome, Firefox, cloudflared, and campus network)",
+          "role": "train_and_test",
+          "quote": "we created our own and made it publicly available on the Zenodo platform [30]."
+        }
+      ],
+      "evidence": "we created our own and made it publicly available on the Zenodo platform [30].",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated"
+      ],
+      "evidence": "We installed Google Chrome and Mozilla Firefox into separate virtual machines...traffic was labeled by the source VM and application.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Our analysis is based on bidirectional IP Flows extended with per-packet information (PPI). Besides the traditional IP Flow information (such as IP addresses, ports, and the amount of transferred data), we also have lengths of individual packets and their timestamps.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "Bidirectional IP flows with Per-Packet Information (PPI): packet lengths, timestamps, flow duration, transferred bytes, packet size variance, inter-packet arrival time variance"
+      ],
+      "evidence": "Our analysis is based on bidirectional IP Flows extended with per-packet information (PPI). Besides the traditional IP Flow information (such as IP addresses, ports, and the amount of transferred data), we also have lengths of individual packets and their timestamps.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "Our analysis is based on bidirectional IP Flows extended with per-packet information (PPI). Besides the traditional IP Flow information (such as IP addresses, ports, and the amount of transferred data), we also have lengths of individual packets and their timestamps.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Random Forest; Decision Tree (C4.5); AdaBoost; k-NN; Naive Bayes",
+      "evidence": "We evaluated five ML algorithms: K-Nearest Neighbours...C4.5 Decision Tree...Random Forest...Naive Bayes...and Ada-boosted Decision Tree.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "We used 5-Fold cross-validation to evaluate the precision of each algorithm.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We used 5-Fold cross-validation to evaluate the precision of each algorithm.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "f1"
+      ],
+      "evidence": "The experiments show that the accuracy of DoH recognition is over 99.9 %...The trained model achieved an excellent result of 99.6 % accuracy with an F1 score of 0.996.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Our analysis is based on bidirectional IP Flows extended with per-packet information (PPI).",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The most significant difference between DoH and classic HTTPS is the duration of the flow.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "Dmitrii Vekshin, Karel Hynek, and Tomas Cejka. 2020. Dataset used for detecting DNS over HTTPS by Machine Learning. https://doi.org/10.5281/zenodo.3818004",
+      "evidence_source": "text"
+    }
+  },
+  "saved_at": "2026-10-31T05:03:18.734117+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

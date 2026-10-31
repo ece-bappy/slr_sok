@@ -1,0 +1,216 @@
+{
+  "paper_id": "S3347",
+  "n_runs": 3,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal",
+      "evidence": "In this paper, we removed four features, i.e. source/destination IP addresses and source/destination port numbers, to ensure that detection results are not dependent on such biased features.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "sonnet": "['identifier_removal']",
+        "gemini38": "['identifier_removal']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "Four features are extracted using four randomness measure tests of payload from the National Institute of Standards and Technology (NIST) test suite.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "G1",
+        "sonnet": "['G1']",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "sonnet": "['not_stated']",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "In the experiment, we use the 10-fold cross-validation to detect the classification results, which are shown in Table VIII.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "random",
+        "sonnet": "['random']",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Our HST approach maps each packet to different bidirectional flow at first.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "flow",
+        "sonnet": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "['none']",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated; manual",
+      "evidence": "Then we simply used the port numbers to do the labeling work, which is used for supervised learning.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "other",
+        "sonnet": "['generated', 'manual']",
+        "gemini38": "['generated', 'manual']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "At last, C4.5 is used to build a decision tree based on randomness measurements of small payload.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "sonnet": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "own / private capture (train_and_test); {'name': 'Authors own lab traffic (SSL/DNS/HTTP from lab gateway; SSH from public honeypot trace; Freegate/Ultrasurf/Custom Unknown from controlled environment)', 'role': 'train_and_test', 'quote': 'For SSL, DNS, and HTTP, we used real traffic traces collected at our labs gateway...unknown protocols...were collected in a controlled environment'}",
+      "evidence": "For SSL, DNS, and HTTP, we used real traffic traces collected at our lab’s gateway. As for unknown protocols (Freegate, Ultrasurf, and Custom Unknown), they were collected in a controlled environment. We also used a public trace",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "own / private capture (train_and_test); own / private capture (train_and_test); public trace (train_and_test)",
+        "sonnet": "[{'name': 'Authors own lab traffic (SSL/DNS/HTTP from lab gateway; SSH from public honeypot trace; Freegate/Ultrasurf/Custom Unknown from controlled environment)', 'role': 'train_and_test', 'quote': 'For SSL, DNS, and HTTP, we used real traffic traces collected at our labs gateway...unknown protocols...were collected in a controlled environment'}]",
+        "gemini38": "[{'name': 'Authors own lab traffic (SSL/DNS/HTTP from lab gateway; SSH from public honeypot trace; Freegate/Ultrasurf/Custom Unknown from controlled environment)', 'role': 'train_and_test', 'quote': 'For SSL, DNS, and HTTP, we used real traffic traces collected at our labs gateway...unknown protocols...were collected in a controlled environment'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "C4.5 is used to build a decision tree based on randomness measurements of small payload.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Decision Tree (C4.5)",
+      "evidence": "ML-based classifier makes use of C4.5 algorithm to build classification trees",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "C4.5 decision tree",
+        "sonnet": "Decision Tree (C4.5)",
+        "gemini38": "Decision Tree (C4.5)"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "NIST randomness P-values from payload bytes: Monobit test, Frequency Block test, Cumulative sums test, Discrete Fourier transform test (4 features for payload < 128 bytes; 8 features otherwise)",
+      "evidence": "We manually selected four randomness tests to extract small payload features for machine learning to improve real-time performances.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "Monobit test; Frequency (Block) test; Cumulative sums test; Discrete Fourier transform test",
+        "sonnet": "['NIST randomness P-values from payload bytes: Monobit test, Frequency Block test, Cumulative sums test, Discrete Fourier transform test (4 features for payload < 128 bytes; 8 features otherwise)']",
+        "gemini38": "['NIST randomness P-values from payload bytes: Monobit test, Frequency Block test, Cumulative sums test, Discrete Fourier transform test (4 features for payload < 128 bytes; 8 features otherwise)']"
+      }
+    },
+    "metrics": {
+      "value": "precision; recall; f1; fpr; detection_rate",
+      "evidence": "In this paper, we compared those methods using metrics defined as follows. Precision = TP/(TP + FP) Recall = TP/(TP + FN) F1 (F-measure) = 2 × Precision × Recall/(Precision + Recall)",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "Precision; Recall; F1; FPR",
+        "sonnet": "['precision', 'recall', 'f1', 'fpr', 'detection_rate']",
+        "gemini38": "['precision', 'recall', 'f1', 'fpr', 'detection_rate']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "HST first divides the received network traffic into different bitflows based on the source IP, destination IP, source port and destination port and other information.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "sonnet": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "In the experiment, we use the 10-fold cross-validation to detect the classification results, which are shown in Table VIII.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "random",
+        "sonnet": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

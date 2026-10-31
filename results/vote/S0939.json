@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0939",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal; ablation",
+      "evidence": "An endpoint-sanitized visual encoding strategy removes explicit endpoint identifiers while preserving client–server role information.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal; ablation",
+        "gemini38": "['identifier_removal', 'ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "TrafficCross constructs three heterogeneous traffic views from raw traffic flows: visual byte-pattern evidence, statistical behavioral evidence, and temporal packet-dynamic evidence.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random; temporal",
+      "evidence": "All datasets are partitioned at the TCP/UDP flow-instance level using a class-stratified random split with a target ratio of 8:1:1 for the training, validation, and test sets, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random; temporal",
+        "gemini38": "['stratified_random', 'temporal']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The first step is to organize fragmented network packets into bidirectional flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "ISCX-Tor-2016[41] contains Tor and non-Tor traffic labeled by application type and activity, such as chat and file transfer.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "The visual representation is constructed from the IP-layer packet rather than the complete Ethernet frame.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "ISCX VPN-nonVPN 2016 (train_and_test); {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private netw'}",
+      "evidence": "We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private network traffic, DNS-over-HTTPS tunneling, malware communication, and mixed benign/malicioustraffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "DoH-DGA-Malware-Traffic-HKD (train_and_test); DoH-Tunnel-Traffic-HKD (train_and_test); ISCX Tor-nonTor 2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); USTC-TFC2016 (train_and_test)",
+        "gemini38": "[{'name': 'DoH-DGA-Malware-Traffic-HKD', 'role': 'train_and_test', 'quote': 'We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private netw'}, {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'train_and_test', 'quote': 'We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private netw'}, {'name': 'ISCX Tor-nonTor 2016', 'role': 'train_and_test', 'quote': 'We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private netw'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private netw'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private netw'}, {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'We evaluate TrafficCross on six public encrypted traffic datasets covering Tor, virtual private netw'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The original IP addresses and transport-layer ports are removed from the model input, preventing their direct use as endpoint-specific identifiers for classification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "CNN, BiGRU, MLP, Attention",
+      "evidence": "Visual Evidence Encoding using attention-augmented convolutional layers; Statistical Evidence Calibration using gated MLPs for feature-aware gated modulation; and Temporal Evidence Modeling using BiGRU-Attention for packet-level contextual reasoning.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "CNN, BiGRU, MLP, Attention",
+        "gemini38": "CNN, BiGRU, MLP, Attention"
+      }
+    },
+    "hardware": {
+      "value": "12th Gen Intel(R) Core(TM) i7-12800HX CPU and NVIDIA GeForce RTX 3080 Ti Laptop GPU",
+      "evidence": "The runtime benchmark is conducted on a laptop workstation equipped with a 12th Gen Intel(R) Core(TM) i7-12800HX CPU at 2.00GHz and an NVIDIA GeForce RTX 3080 Ti Laptop GPU",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "12th Gen Intel(R) Core(TM) i7-12800HX CPU and NVIDIA GeForce RTX 3080 Ti Laptop GPU",
+        "gemini38": "12th Gen Intel(R) Core(TM) i7-12800HX CPU and NVIDIA GeForce RTX 3080 Ti Laptop GPU"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "DoH-Tunnel-Traffic-HKD provides an explicit temporal acquisition structure, with traffic collected over 48 hourly acquisition blocks. This organization enables an additional evaluation in which the data partitions are separated by acquisition time.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Table 13 reports the runtime measurement of TrafficCross under both CPU and GPU execution settings, using 1000 samples from the USTC-TFC2016 test split.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "visual byte-pattern evidence; statistical behavioral evidence; temporal packet-dynamic evidence",
+      "evidence": "TrafficCross constructs three heterogeneous traffic views from raw traffic flows: visual byte-pattern evidence, statistical behavioral evidence, and temporal packet-dynamic evidence.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "visual byte-pattern evidence; statistical behavioral evidence; temporal packet-dynamic evidence",
+        "gemini38": "['visual byte-pattern evidence', 'statistical behavioral evidence', 'temporal packet-dynamic evidence']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Weighted Precision; Weighted Recall; Weighted F1-score",
+      "evidence": "AC: Accuracy, PR: Weighted Precision, RC: Weighted Recall, F1: Weighted F1-score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Weighted Precision; Weighted Recall; Weighted F1-score",
+        "gemini38": "['Accuracy', 'Weighted Precision', 'Weighted Recall', 'Weighted F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "TrafficCross constructs three heterogeneous traffic views from raw traffic flows: visual byte-pattern evidence, statistical behavioral evidence, and temporal packet-dynamic evidence.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "All datasets are partitioned at the TCP/UDP flow-instance level using a class-stratified random split with a target ratio of 8:1:1 for the training, validation, and test sets, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

@@ -1,8 +1,9 @@
 """Extract paper text from a PDF and drop sections that add noise for review coding.
 
-Dropped: related work, conclusion, acknowledgments, ethics, references (and anything after
-the references except appendices). A dropped section runs until the next heading with the
-same or larger font style, so its subsections go with it.
+Dropped: related work, conclusion, acknowledgments, references (and anything after the
+references except appendices and data/code availability or artifact statements). Ethics
+sections are kept: they often state what data is released. A dropped section runs until the
+next heading with the same or larger font style, so its subsections go with it.
 
 Usage: python scripts/pdf_sections.py PAPER.pdf   (prints a report of kept/dropped sections)
 """
@@ -16,11 +17,12 @@ DROP = re.compile(
     r"^(\d+(\.\d+)*\.?|[IVX]+\.?)?\s*("
     r"related\s+works?|background\s+and\s+related\s+work|prior\s+work|literature\s+review|"
     r"conclusions?(\s+and\s+future\s+work)?|concluding\s+remarks|summary\s+and\s+conclusions?|"
-    r"acknowledge?ments?|ethic(s|al)(\s+considerations)?|"
+    r"acknowledge?ments?|"
     r"references|bibliography)\s*$",
     re.I,
 )
-KEEP_AFTER_REFS = re.compile(r"^([A-Z](\.\d+)*\.?)?\s*(appendix|appendices)\b", re.I)
+KEEP_AFTER_REFS = re.compile(r"^([A-Z](\.\d+)*\.?)?\s*(appendix|appendices|data\s+availability|code\s+availability|"
+                             r"availability|artifacts?|artefacts?|open\s+science|ethic)", re.I)
 
 
 def _lines(doc: fitz.Document) -> list[dict]:

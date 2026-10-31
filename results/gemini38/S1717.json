@@ -1,0 +1,147 @@
+{
+  "paper_id": "S1717",
+  "run": "gemini38",
+  "title": "WEDoHTool: Word embedding based early identification of DoH tunnel tool traffic in dynamic network environments",
+  "venue": "Computers & Security",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datase"
+        },
+        {
+          "name": "DoH-Tunnel-Traffic-HKD",
+          "role": "train_and_test",
+          "quote": "To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datase"
+        }
+      ],
+      "evidence": "To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datasets, CIRA-CIC-DoHBrw-2020 (MontazeriShatoori et al., 2020) and DoH-Tunnel-Traffic-HKD (Mitsuhashi et al., 2023).",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The dataset includes implementing the DoH protocol in applications using five different browsers and tools and four servers to capture benign DoH, malicious DoH, and non-DoH traffic.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "WEDoHTool extracts the length sequence of initial TLS records with application data from several initial packets of each unidirectional flow for early identification.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "length sequence of TLS records with application data"
+      ],
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "TextCNN, Transformer",
+      "evidence": "Specifically, WEDoHTool filters out DoH traffic from heavy background traffic with a lightweight TextCNN and then identifies the specific DoH tools based on a Transformer encoder with the self-attention mechanism.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "We randomly pick 80% of the samples as the training set and the remaining 20% as the testingset in each run.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We randomly pick 80% of the samples as the training set and the remaining 20% as the testingset in each run.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "We also conduct experiments to evaluate the impact of word embeddings on the performance of our WEDoHTool.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Recall",
+        "Precision",
+        "F1-score"
+      ],
+      "evidence": "We evaluate all the methods from the following aspects: Accuracy, Recall, Precision, F1-score",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The flow mentioned in this paper refers to a unidirectional flow",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "15 TLS records",
+      "evidence": "Note that n, the number of initial TLS record lengths, is set to 15 in our experiment.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "The testing time of our WEDoHTool consists of TLS record length sequence extraction, embedding representation learning, and classifier testing.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090",
+      "evidence": "The experimental environment is an Ubuntu 22.04 server equipped with an Intel(R) Core(TM) i9-14900K CPU, Python language version 3.9, PyTorch-GPU 2.1.0, NVIDIA GeForce RTX 4090, and 128 GB of memory.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.406548+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

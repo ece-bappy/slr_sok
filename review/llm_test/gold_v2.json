@@ -1,0 +1,546 @@
+{
+  "_note": "Reference answers for the revised form (plan.md Â§4), development papers only. Values for fields that existed before are carried over unchanged from gold.json / gold_sets.json (still pending the user's 4 corrections in todo_for_me.md). Fields new in v2 are DRAFTS by Claude (28 Oct 2026) marked 'pending' and are NOT scored until the user confirms them. Rule types: set = required <= answer <= required+optional (P if overlap); scalar = answer in accepted; contains = free text containing any keyword; pending = shown, not scored.",
+  "P01_raid2024_barradas": {
+    "datasets_canonical": {
+      "type": "set",
+      "exact": true,
+      "required": [
+        "Malware-Traffic-Analysis.net (MTA)",
+        "Tranco browsing captures (Barradas et al.)",
+        "RAID 2024 Metasploit C2 (Barradas et al.)",
+        "CIRA-CIC-DoHBrw-2020",
+        "own / private capture"
+      ],
+      "optional": []
+    },
+    "label_source": {
+      "type": "set",
+      "required": [
+        "blocklist_cert",
+        "generated"
+      ],
+      "optional": [
+        "manual",
+        "dataset_provided"
+      ]
+    },
+    "label_feature_overlap": {
+      "type": "scalar",
+      "accepted": [
+        "yes"
+      ]
+    },
+    "features_used": {
+      "type": "contains",
+      "any": [
+        "record",
+        "size",
+        "direction",
+        "type",
+        "certificate"
+      ]
+    },
+    "feature_groups": {
+      "type": "set",
+      "required": [
+        "G2",
+        "G4"
+      ],
+      "optional": []
+    },
+    "cert_fields_read": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    },
+    "fingerprints_used": {
+      "type": "set",
+      "required": [],
+      "optional": [
+        "none"
+      ],
+      "nonempty": true
+    },
+    "tls_versions_stated": {
+      "type": "set",
+      "required": [
+        "1.2",
+        "1.3"
+      ],
+      "optional": []
+    },
+    "ech_considered": {
+      "type": "scalar",
+      "accepted": [
+        "yes"
+      ]
+    },
+    "model_family": {
+      "type": "contains",
+      "any": [
+        "tree",
+        "forest",
+        "dtc",
+        "rf"
+      ]
+    },
+    "split_protocols": {
+      "type": "set",
+      "required": [
+        "host_grouped",
+        "cross_dataset"
+      ],
+      "optional": [
+        "random",
+        "stratified_random"
+      ],
+      "forbidden": [
+        "temporal"
+      ]
+    },
+    "main_split": {
+      "type": "scalar",
+      "accepted": [
+        "cross_dataset",
+        "host_grouped"
+      ]
+    },
+    "easy_vs_hard_reported": {
+      "type": "scalar",
+      "accepted": [
+        "no",
+        "yes"
+      ]
+    },
+    "shortcut_check": {
+      "type": "set",
+      "required": [],
+      "optional": [
+        "other",
+        "ablation",
+        "identifier_removal",
+        "none"
+      ],
+      "nonempty": true
+    },
+    "metrics": {
+      "type": "set",
+      "required": [
+        "tpr",
+        "tnr"
+      ],
+      "optional": [
+        "f1",
+        "average error"
+      ]
+    },
+    "granularity": {
+      "type": "scalar",
+      "accepted": [
+        "flow"
+      ]
+    },
+    "first_n_packets": {
+      "type": "contains",
+      "any": [
+        "20"
+      ]
+    },
+    "cost_reported": {
+      "type": "scalar",
+      "accepted": [
+        "none"
+      ]
+    },
+    "hardware": {
+      "type": "contains",
+      "any": [
+        "none"
+      ]
+    },
+    "visibility_tier": {
+      "type": "scalar",
+      "accepted": [
+        "tls13_ech"
+      ]
+    },
+    "code_released": {
+      "type": "scalar",
+      "accepted": [
+        "yes"
+      ]
+    },
+    "data_released": {
+      "type": "scalar",
+      "accepted": [
+        "yes"
+      ]
+    }
+  },
+  "P02_jip2025_kanda": {
+    "datasets_canonical": {
+      "type": "set",
+      "exact": true,
+      "required": [
+        "Malware-Traffic-Analysis.net (MTA)"
+      ],
+      "optional": []
+    },
+    "label_source": {
+      "type": "set",
+      "required": [
+        "dataset_provided"
+      ],
+      "optional": [
+        "sandbox",
+        "manual"
+      ],
+      "nonempty": true
+    },
+    "label_feature_overlap": {
+      "type": "scalar",
+      "accepted": [
+        "not_applicable",
+        "no",
+        "unclear"
+      ]
+    },
+    "features_used": {
+      "type": "contains",
+      "any": [
+        "parameter",
+        "clienthello",
+        "ja4",
+        "mercury",
+        "npf"
+      ]
+    },
+    "feature_groups": {
+      "type": "set",
+      "required": [
+        "G3",
+        "G5"
+      ],
+      "optional": []
+    },
+    "cert_fields_read": {
+      "type": "scalar",
+      "accepted": [
+        "not_applicable",
+        "no"
+      ]
+    },
+    "fingerprints_used": {
+      "type": "set",
+      "required": [
+        "ja4"
+      ],
+      "optional": [
+        "ja3",
+        "other",
+        "npf"
+      ]
+    },
+    "tls_versions_stated": {
+      "type": "set",
+      "required": [
+        "1.2",
+        "1.3"
+      ],
+      "optional": [
+        "1.0",
+        "1.1"
+      ]
+    },
+    "ech_considered": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    },
+    "model_family": {
+      "type": "contains",
+      "any": [
+        "fingerprint",
+        "edit distance",
+        "cluster",
+        "none"
+      ]
+    },
+    "split_protocols": {
+      "type": "set",
+      "required": [],
+      "optional": [
+        "not_applicable",
+        "unclear"
+      ],
+      "nonempty": true
+    },
+    "main_split": {
+      "type": "scalar",
+      "accepted": [
+        "not_applicable",
+        "unclear"
+      ]
+    },
+    "easy_vs_hard_reported": {
+      "type": "scalar",
+      "accepted": [
+        "not_applicable"
+      ]
+    },
+    "shortcut_check": {
+      "type": "set",
+      "required": [],
+      "optional": [
+        "none",
+        "ablation"
+      ],
+      "nonempty": true
+    },
+    "metrics": {
+      "type": "set",
+      "required": [
+        "precision"
+      ],
+      "optional": [
+        "average occurrence-based precision",
+        "occurrence-based precision"
+      ]
+    },
+    "granularity": {
+      "type": "scalar",
+      "accepted": [
+        "packet",
+        "flow",
+        "session"
+      ]
+    },
+    "first_n_packets": {
+      "type": "contains",
+      "any": [
+        "whole",
+        "none",
+        "1"
+      ]
+    },
+    "cost_reported": {
+      "type": "scalar",
+      "accepted": [
+        "none"
+      ]
+    },
+    "hardware": {
+      "type": "contains",
+      "any": [
+        "none"
+      ]
+    },
+    "visibility_tier": {
+      "type": "scalar",
+      "accepted": [
+        "tls13",
+        "tls13_ech"
+      ]
+    },
+    "code_released": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    },
+    "data_released": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    }
+  },
+  "P03_arxiv2109.03878": {
+    "datasets_canonical": {
+      "type": "set",
+      "exact": true,
+      "required": [
+        "own / private capture"
+      ],
+      "optional": []
+    },
+    "label_source": {
+      "type": "set",
+      "required": [
+        "sandbox"
+      ],
+      "optional": [
+        "manual",
+        "other"
+      ]
+    },
+    "label_feature_overlap": {
+      "type": "scalar",
+      "accepted": [
+        "no",
+        "unclear"
+      ]
+    },
+    "features_used": {
+      "type": "contains",
+      "any": [
+        "client",
+        "server",
+        "certificate",
+        "encrypted",
+        "sequence",
+        "payload",
+        "rrp"
+      ]
+    },
+    "feature_groups": {
+      "type": "set",
+      "required": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "optional": [
+        "G4"
+      ]
+    },
+    "cert_fields_read": {
+      "type": "scalar",
+      "accepted": [
+        "no",
+        "yes",
+        "not_applicable"
+      ]
+    },
+    "fingerprints_used": {
+      "type": "set",
+      "required": [],
+      "optional": [
+        "none",
+        "other"
+      ],
+      "nonempty": true
+    },
+    "tls_versions_stated": {
+      "type": "set",
+      "required": [
+        "1.0",
+        "1.2",
+        "1.3"
+      ],
+      "optional": [
+        "1.1"
+      ]
+    },
+    "ech_considered": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    },
+    "model_family": {
+      "type": "contains",
+      "any": [
+        "hdbscan",
+        "cluster",
+        "neighbor",
+        "neighbour"
+      ]
+    },
+    "split_protocols": {
+      "type": "set",
+      "required": [
+        "random"
+      ],
+      "optional": [
+        "cross_dataset",
+        "temporal"
+      ]
+    },
+    "main_split": {
+      "type": "scalar",
+      "accepted": [
+        "random",
+        "cross_dataset"
+      ]
+    },
+    "easy_vs_hard_reported": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    },
+    "shortcut_check": {
+      "type": "set",
+      "required": [
+        "ablation"
+      ],
+      "optional": [
+        "other"
+      ]
+    },
+    "metrics": {
+      "type": "set",
+      "required": [
+        "f1",
+        "precision",
+        "recall"
+      ],
+      "optional": [
+        "fdr"
+      ]
+    },
+    "granularity": {
+      "type": "scalar",
+      "accepted": [
+        "flow"
+      ]
+    },
+    "first_n_packets": {
+      "type": "contains",
+      "any": [
+        "whole",
+        "none",
+        "3",
+        "6",
+        "rrp",
+        "sequence"
+      ]
+    },
+    "cost_reported": {
+      "type": "scalar",
+      "accepted": [
+        "none",
+        "unclear"
+      ]
+    },
+    "hardware": {
+      "type": "contains",
+      "any": [
+        "none",
+        "unclear"
+      ]
+    },
+    "visibility_tier": {
+      "type": "scalar",
+      "accepted": [
+        "tls12",
+        "tls13"
+      ]
+    },
+    "code_released": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    },
+    "data_released": {
+      "type": "scalar",
+      "accepted": [
+        "no"
+      ]
+    }
+  }
+}

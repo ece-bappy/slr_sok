@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1337",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "The FlowMiner model was ablated for Byte Features (BF), Cross Features (CF), and Integrated Decision Pooling module (IDP) in separate experiments.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "The primary node features of each node can be specifically categorized into four types: temporal features, packet length features, traffic content features, and our proposed byte distribution features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "1.3",
+      "evidence": "Utilizing the CSTNET dataset [3], we aim to classify 120 applications sourced from Alexa’s Top-5000 using the TLS 1.3 protocol.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1.3",
+        "gemini38": "['1.3']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/MrRobotsAA/FlowMiner']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "All datasets are divided according to training, testing, and validation sets with a ratio of 8:1:1. Due to the data imbalance problem in some datasets, we adopt stratified sampling.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "unclear",
+      "evidence": "Distinguishing itself from prior work that constructs traffic graphs at the level of single flows or packet, FlowMiner’s essential contribution lies in achieving traffic classification at the level of inter-flow interaction graphs",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "unclear"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "The content information used in this paper is extracted from the NFStream library, which includes client fingerprint, TLS Server Name Indication, Host Name in the HTTP protocol, Query Name information in the DNS protocol, application types, etc.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided; sandbox; ids_alerts",
+      "evidence": "We first manually downloaded malicious traffic by searching for APT keywords in ANY.RUN sandbox and selected actual malicious sample traffic from the malware-traffic-net website from 2013 to 2023. These were used as malicious traffic, with background traffic filtered out using the ET Ruleset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided; sandbox; ids_alerts",
+        "gemini38": "['dataset_provided', 'sandbox', 'ids_alerts']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "none",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "own / private capture (train_and_test); {'name': 'own / private capture', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}",
+      "evidence": "Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multiple state-of-the-art methods. Additionally, results from two real-world evaluation scenarios show that FlowMiner achieves over 95% precision",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "CSTNET-TLS1.3 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); ISCX nonVPN dataset (train_and_test); ISCX Tor-nonTor 2016 (train_and_test); ISCX nonTor dataset (train_and_test); LFETT2021-Vmess (train_and_test); LFETT2021-SSR (train_and_test); USTC-TFC2016 (train_and_test); own / private capture (train_and_test); own / private capture (train_and_test)",
+        "gemini38": "[{'name': 'CSTNET-TLS1.3', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'ISCX nonVPN dataset', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'ISCX Tor-nonTor 2016', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'ISCX nonTor dataset', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'LFETT2021-Vmess', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'LFETT2021-SSR', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'own / private capture', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}, {'name': 'own / private capture', 'role': 'train_and_test', 'quote': 'Extensive experimental results on eight datasets show that FlowMiner significantly outperforms multi'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The primary node features of each node can be specifically categorized into four types: temporal features, packet length features, traffic content features, and our proposed byte distribution features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "GNN",
+      "evidence": "FlowMiner utilizes Graph Neural Networks to extract association features between different flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "GNN",
+        "gemini38": "GNN"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "To evaluate the complexity of FlowMiner, we calculate the floating-point operations (FLOPs) and model size of all deep learning models.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "temporal features; packet length features; traffic content features; byte distribution features; nonlinear cross-features",
+      "evidence": "The primary node features of each node can be specifically categorized into four types: temporal features, packet length features, traffic content features, and our proposed byte distribution features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "temporal features; packet length features; traffic content features; byte distribution features; nonlinear cross-features",
+        "gemini38": "['temporal features', 'packet length features', 'traffic content features', 'byte distribution features', 'nonlinear cross-features']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Recall; Precision; F1 Score",
+      "evidence": "We adopt four metrics for evaluation: Accuracy (AC), Recall (RE), Precision (PR), and F1 Score (F1), utilizing the macro-average method for the latter three.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Recall; Precision; F1 Score",
+        "gemini38": "['Accuracy', 'Recall', 'Precision', 'F1 Score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "For a raw traffic file, we first extract it into a list of flows with various flow features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/MrRobotsAA/FlowMiner']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "All datasets are divided according to training, testing, and validation sets with a ratio of 8:1:1. Due to the data imbalance problem in some datasets, we adopt stratified sampling.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

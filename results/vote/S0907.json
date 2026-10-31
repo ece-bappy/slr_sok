@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0907",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "Next, by removing one of the remaining channels at a time, we assess the interactions between the Raw channel and the other channels.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2; G3",
+      "evidence": "In this approach, packet length (Len), inter-arrival time (IAT), and protocol header data are mapped to the three channels of an image, forming a behavioral representation that captures both the dynamic flow patterns and structural similarities of network behavior.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2; G3",
+        "gemini38": "['G2', 'G3']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "The dataset is divided into training, validation, and test sets using stratified sampling with a ratio of 70%/15%/15%.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "First, network traffic is divided into bidirectional flows (sessions) according to the standard five-tuple.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "session",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "This dataset provides 10 types of malicious traffic (e.g., Geodo, Neris, Nsis-ay) and 10 types of benign traffic (e.g., Gmail, Outlook, Skype).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "For TLS session flows, only the unencrypted handshake records are parsed as a supplement to the protocol header data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "USTC-TFC2016 (train_and_test); CIRA-CIC-DoHBrw-2020 (train_and_test); {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'To comprehensively evaluate the performance of the proposed approach, experiments were conducted on '}; {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'To comprehensively evaluate the performance of the proposed approach, experiments were conducted on '}",
+      "evidence": "To comprehensively evaluate the performance of the proposed approach, experiments were conducted on two representative datasets: USTC-TFC2016 [20] and CIRA-CIC-DoHBrw-2020 (DoHBrw) [27].",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "USTC-TFC2016 (train_and_test); CIRA-CIC-DoHBrw-2020 (train_and_test)",
+        "gemini38": "[{'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'To comprehensively evaluate the performance of the proposed approach, experiments were conducted on '}, {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'To comprehensively evaluate the performance of the proposed approach, experiments were conducted on '}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "In this approach, packet length (Len), inter-arrival time (IAT), and protocol header data are mapped to the three channels of an image",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Swin Transformer, Bi-LSTM",
+      "evidence": "We design SwBiNet, a parallel deep learning architecture for high-precision detection. The Swin Transformer branch extracts rich spatial hierarchies from behavioral images through W-MSA and SW-MSA mechanisms, while the parallel Bi-LSTM branch captures temporal dependencies",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Swin Transformer, Bi-LSTM",
+        "gemini38": "Swin Transformer, Bi-LSTM"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "we evaluate the performance of TCBI in detecting encrypted unknown malware traffic by testing on the remaining 10 unseen traffic types.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "As shown in Figure 9, the results clearly indicate that as Nincreases to 64, the classification accuracy steadily improves, but further increasing it to 128 yields minimal performance gains while significantly raising computational cost.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "packet length; inter-arrival time; protocol header data",
+      "evidence": "In this approach, packet length (Len), inter-arrival time (IAT), and protocol header data are mapped to the three channels of an image, forming a behavioral representation that captures both the dynamic flow patterns and structural similarities of network behavior.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet length; inter-arrival time; protocol header data",
+        "gemini38": "['packet length', 'inter-arrival time', 'protocol header data']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; f1-score",
+      "evidence": "several typical metrics are used, including accuracy (ACC), precision (PR), recall (RC), and F1-score",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; f1-score",
+        "gemini38": "['accuracy', 'precision', 'recall', 'f1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "64 packets",
+      "evidence": "Since both the number of packets and the size of individual packets within a bidirectional flow vary, we select the first Npackets to represent the entire flow, thereby ensuring consistent data representation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "64 packets",
+        "gemini38": "64 packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "the dataset is divided into training, validation, and test sets using stratified sampling with a ratio of 70%/15%/15%.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

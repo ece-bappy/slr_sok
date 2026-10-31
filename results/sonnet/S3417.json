@@ -1,0 +1,152 @@
+{
+  "paper_id": "S3417",
+  "run": "sonnet",
+  "title": "Feature Analysis of Encrypted Malicious Traffic",
+  "venue": "arXiv preprint (arXiv:2312.04596)",
+  "year": 2023,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CTU-13",
+          "role": "train_and_test",
+          "quote": "The CTU-13 dataset was captured as part of research project at the Czech Technical University. This dataset includes 13 malware traffic captures, consisting of both benign and malware traffic."
+        },
+        {
+          "name": "Malware Capture Facility Project",
+          "role": "train_and_test",
+          "quote": "The Malware Capture Facility Project dataset is from another research project carried out by the Czech Technical University ATG Group to capture, analyze, and publish real malware network traffic"
+        }
+      ],
+      "evidence": "In this research, we have used the following two previously published network capture dataset, each of which contains both malicious and benign traffic.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The datasets from (Garcia et al., 2014) and (Erquiaga & Garcia, 2013) contains IP addresses of infected and benign hosts. We use these IP addresses to label our dataset.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The datasets from (Garcia et al., 2014) and (Erquiaga & Garcia, 2013) contains IP addresses of infected and benign hosts. We use these IP addresses to label our dataset.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "flow statistics: number of flows, duration mean/std, byte sizes, packet counts, periodicity (from conn.log)",
+        "SSL/TLS session fields: ssl ratio, average key length, TLS version ratio, SNI ratio, self-signed ratio, subject/issuer ratios (from ssl.log)",
+        "X.509 certificate fields: average certificate length, std certificate length, is_valid_certificate, number of certificates, number of domains, certificate path, SAN DNS, common name checks (from x509.log)"
+      ],
+      "evidence": "We extract several features from Bro logs...conn.log...ssl.log...x509.log files...Table 3 lists the specific features we extract",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G3",
+        "G4"
+      ],
+      "evidence": "features related to a single connection are generally spread over different log files...connection features...stored in conn.log...SSL-specific features (e.g., cipher used, server name) are stored in ssl.log...certificate features (e.g., key lengths, common names) are stored in x509.log",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "yes",
+      "evidence": "certificate features (e.g., key lengths, common names) are stored in the certificate log (x509.log)...avg of certificate len...is valid certificate...no of domains in cert...no of cert path",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "SVM; Random Forest; XGBoost",
+      "evidence": "We experiment with three machine learning algorithms. Specifically, we consider experiments involving support vector machines (SVM), random forests (RF), and extreme gradient boosting (XGBoost).",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "Cross validation consists of partitioning the available data into n equal sized subsets...In this paper, we use 10-fold cross validation for all experiments.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "we use 10-fold cross validation for all experiments",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "f1",
+        "roc-auc",
+        "precision",
+        "recall"
+      ],
+      "evidence": "We use accuracy as an evaluation metric...we have computed the area under the ROC curve (AUC)...Figure 18: Comparison based on various measures of success (F1 score, AUC, Precision, Recall)",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We use Bro to generate network traffic logs that include network flow information and other metadata. This information is then used to extract various features related to traffic flows.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "features related to a single connection are generally spread over different log files...aggregated based on a specific 4-tuple",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T04:45:18.755530+00:00",
+  "model": "claude-sonnet-4.6",
+  "validation_warnings": []
+}

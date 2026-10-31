@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0095",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "The experiments are designed from five key perspectives: comparison with baseline methods, generalization capability evaluation, parameter sensitivity analysis, ablation study, and inference time and memory consumption analysis.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "Specifically, within the TLS protocol, our method uses the record-length sequence of application data as the traffic representation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random; cross_dataset",
+      "evidence": "For each experiment, the training and testing datasets are split using three different random seeds. The experiments are divided into two major categories: Recognition performance on the CIRA-CIC-DoHBrw-2020 dataset, covering the four foreign DoH resolvers",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random; cross_dataset",
+        "gemini38": "['random', 'cross_dataset']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "For each retained flow, we parse TLS records and keep only TLS application data records.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated; dataset_provided",
+      "evidence": "For malicious DoH tunneling traffic collection, we establish an experimental environment using two hosts. Host A deploys the server-side component of a DoH tunneling tool and acts as a disguised authoritative DNS server.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated; dataset_provided",
+        "gemini38": "['generated', 'dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (test); {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtraf'}; {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'test', 'quote': 'Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtraf'}",
+      "evidence": "Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtrafficgeneratedusingfourforeignpublicDoHrecursiveresolvers,namelyAdGuard,Cloudflare,GoogleDNS,andQuad9.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (test)",
+        "gemini38": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtraf'}, {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'test', 'quote': 'Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtraf'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "AdaDoHTool uses a word embedding matrix generated from unidirectional TLS application data record length sequences as input",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "TextCNN and KNN",
+      "evidence": "AdaDoHTool uses a word embedding matrix generated from unidirectional TLS application data record length sequences as input, applies a TextCNN model to extract deep feature representations, and incorporates a feature–label memory bank with an online update mechanism. Combined with a KNN classifier",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TextCNN and KNN",
+        "gemini38": "TextCNN and KNN"
+      }
+    },
+    "hardware": {
+      "value": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090",
+      "evidence": "The experimental environment is an Ubuntu 22.04 server equipped with an Intel(R) Core(TM) i9-14900K CPU, Python language version 3.9, PyTorch-GPU 2.1.0, NVIDIA GeForce RTX 4090, and 32GB of memory.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090",
+        "gemini38": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Notably, despite utilizing a dynamically updated memory bank and a KNN-based classifier, AdaDoHTool’s average inference time is approximately one-third of that of T3A, the most efficient baseline method in terms of inference speed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "TLS application data record length sequences",
+      "evidence": "Specifically, within the TLS protocol, our method uses the record-length sequence of application data as the traffic representation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TLS application data record length sequences",
+        "gemini38": "['TLS application data record length sequences']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Recall; Macro-F1; FUR",
+      "evidence": "We comprehensively assess AdaDoHTool based on the following metrics: Accuracy = TP+ TN TP+ TN+ FP+ FN. Recall = TP TP+ FN. FUR = Nknown→unknown Nknown. Macro-F1 = 1 || ∑ c∈ F1c.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Recall; Macro-F1; FUR",
+        "gemini38": "['Accuracy', 'Recall', 'Macro-F1', 'FUR']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "15 records",
+      "evidence": "Following our previous work, we use the first 15 TLS application data record lengths of each unidirectional flow as the input sequence, and pad shorter sequences with zeros.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "15 records",
+        "gemini38": "15 records"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "cross_dataset",
+      "evidence": "The experiments are divided into two major categories: Recognition performance on the CIRA-CIC-DoHBrw-2020 dataset, covering the four foreign DoH resolvers (Experiments 1 − 4); Cross-region transfer performance from foreign resolvers to the domestic resolver",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "cross_dataset",
+        "gemini38": "cross_dataset"
+      }
+    }
+  }
+}

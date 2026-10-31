@@ -1,0 +1,170 @@
+{
+  "paper_id": "S1940",
+  "run": "gemini38",
+  "title": "Flow Interaction Graph Analysis: Unknown Encrypted Malicious Traffic Detection",
+  "venue": "IEEE/ACM Transactions on Networking",
+  "year": 2024,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "own / private capture",
+          "role": "test",
+          "quote": "To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll"
+        },
+        {
+          "name": "Kitsune",
+          "role": "test",
+          "quote": "To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll"
+        },
+        {
+          "name": "CIC-DDoS2019",
+          "role": "test",
+          "quote": "To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll"
+        },
+        {
+          "name": "CIC-IDS2017",
+          "role": "test",
+          "quote": "To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll"
+        },
+        {
+          "name": "MAWI",
+          "role": "test",
+          "quote": "To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll"
+        }
+      ],
+      "evidence": "To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets collected in our virtual private cloud (VPC) with more than 1,500 instances.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated",
+        "dataset_provided"
+      ],
+      "evidence": "We generate the malicious traffic by constructing real attacks or replaying the existing traces in our testbed.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Meanwhile, by learning the graph structural features, it realizes unsupervised detection, which does not require model training with labeled datasets.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "per-packet features (protocols, lengths, and arrival intervals)",
+        "flow-level statistics",
+        "graph structural features"
+      ],
+      "evidence": "We poll the per-packet information from a data-plane high-speed packet parsing engine and obtain their source and destination addresses, port numbers, and per-packet features, including protocols, lengths, and arrival intervals.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "We extract five features to profile the components, including: (i) the number of long flows; (ii) the number of short flows; (iii) the number of edges denoting short flows; (iv) the number of bytes in long flows; and (v) the number of bytes in short flows.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Different from existing methods, we do not analyze protocol specific features (e.g., fields in TLS headers) to achieve generic detection for various protocols.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "unsupervised graph learning",
+      "evidence": "We develop an unsupervised graph learning method to detect abnormal interaction patterns by analyzing the graph features",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "We conduct four-fold cross validation to avoid overfitting and hyper-parameter bias. Specifically, the datasets are equally partitioned into four subsets.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We conduct four-fold cross validation to avoid overfitting and hyper-parameter bias.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "Moreover, our ablation study shows that the different threshold settings incur at most 5.2% accuracy loss.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "AUC",
+        "F1 score",
+        "F2",
+        "accuracy",
+        "precision",
+        "recall",
+        "EER",
+        "FPR"
+      ],
+      "evidence": "We mainly use AUC (i.e., the area under a receiver operating characteristic curve) and F1 score because they are most widely used in the literature",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "In particular, it can detect encrypted malicious flows with unknown patterns by identifying abnormal flow interactions, i.e., the interaction patterns that are distinct from benign ones.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Specifically, it aggregates the short flows based on the similarity of massive short flows on the Internet, which reduces the density of the graph, and extracts distribution based features for long flows, which can effectively preserve flow interaction information.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Moreover, HyperVision achieves 15.82 Mpps detection throughput with the average detection latency of 0.29s.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "DELL servers (PowerEdge R410, produced in 2012) with two Intel Xeon E5645 CPUs (2 × 12 cores), Ubuntu 20.04.2 (Linux 5.11.0), Docker 20.10.7, 24GB memory, one Intel 82599ES 10 Gb/s NIC",
+      "evidence": "We deploy HyperVision on a testbed built upon DELL servers (PowerEdge R410, produced in 2012) with two Intel Xeon E5645 CPUs (2 × 12 cores), Ubuntu 20.04.2 (Linux 5.11.0), Docker 20.10.7, 24GB memory, one Intel 82599ES 10 Gb/s NIC",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.381739+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

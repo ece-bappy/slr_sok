@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1717",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "We also conduct experiments to evaluate the impact of word embeddings on the performance of our WEDoHTool.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "We randomly pick 80% of the samples as the training set and the remaining 20% as the testingset in each run.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The flow mentioned in this paper refers to a unidirectional flow",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The dataset includes implementing the DoH protocol in applications using five different browsers and tools and four servers to capture benign DoH, malicious DoH, and non-DoH traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (train_and_test); {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datase'}; {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'train_and_test', 'quote': 'To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datase'}",
+      "evidence": "To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datasets, CIRA-CIC-DoHBrw-2020 (MontazeriShatoori et al., 2020) and DoH-Tunnel-Traffic-HKD (Mitsuhashi et al., 2023).",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (train_and_test)",
+        "gemini38": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datase'}, {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'train_and_test', 'quote': 'To perform and evaluate our proposed method, we conduct experiments on two modern DoH traffic datase'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "WEDoHTool extracts the length sequence of initial TLS records with application data from several initial packets of each unidirectional flow for early identification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "TextCNN, Transformer",
+      "evidence": "Specifically, WEDoHTool filters out DoH traffic from heavy background traffic with a lightweight TextCNN and then identifies the specific DoH tools based on a Transformer encoder with the self-attention mechanism.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TextCNN, Transformer",
+        "gemini38": "TextCNN, Transformer"
+      }
+    },
+    "hardware": {
+      "value": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090",
+      "evidence": "The experimental environment is an Ubuntu 22.04 server equipped with an Intel(R) Core(TM) i9-14900K CPU, Python language version 3.9, PyTorch-GPU 2.1.0, NVIDIA GeForce RTX 4090, and 128 GB of memory.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090",
+        "gemini38": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "The testing time of our WEDoHTool consists of TLS record length sequence extraction, embedding representation learning, and classifier testing.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "length sequence of TLS records with application data",
+      "evidence": "WEDoHTool first extracts a length sequence of TLS records with application data from several initial packets for each unidirectional network flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "length sequence of TLS records with application data",
+        "gemini38": "['length sequence of TLS records with application data']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Recall; Precision; F1-score",
+      "evidence": "We evaluate all the methods from the following aspects: Accuracy, Recall, Precision, F1-score",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Recall; Precision; F1-score",
+        "gemini38": "['Accuracy', 'Recall', 'Precision', 'F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "15 TLS records",
+      "evidence": "Note that n, the number of initial TLS record lengths, is set to 15 in our experiment.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "15 TLS records",
+        "gemini38": "15 TLS records"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We randomly pick 80% of the samples as the training set and the remaining 20% as the testingset in each run.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0696",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "To evaluate the influence of each key component on MTDecipher, we conducted a series of ablation experiments, with results presented in Table 6",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "Unlike existing works that directly use binary network traffic as edge features, we extract the packet length sequence of each flow to generate sequential features. We then combine these sequential features with network flow meta-features",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "We partition all edges E into a training set Etrain , a validation set Eval , and a test set Etest . Uniform sampling is performed exclusively on the training set to ensure that the sampling process does not cause data leakage.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "we define source and destination IP addresses in the traffic as nodes, and model the corresponding network flows as edges connecting these nodes, thereby constructing the inter-flow interaction graph.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "Both datasets capture real-world network traffic and offer labeled pcap files that include comprehensive IP address metadata.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "We extract the packet length sequence of each flow to generate sequential features. We then combine these sequential features with network flow meta-features [Proto,Ext_Proto,Sport,Dport] (treated as non-sequential features) to form node and edge features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "USTC-TFC2016 (train_and_test); Stratosphere MCFP / CTU-Malware-Capture (train_and_test); {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'To mitigate these issues, we selected the USTC-TFC and MCFP datasets.'}; {'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train_and_test', 'quote': 'To mitigate these issues, we selected the USTC-TFC and MCFP datasets.'}",
+      "evidence": "To mitigate these issues, we selected the USTC-TFC and MCFP datasets.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "USTC-TFC2016 (train_and_test); Stratosphere MCFP / CTU-Malware-Capture (train_and_test)",
+        "gemini38": "[{'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'To mitigate these issues, we selected the USTC-TFC and MCFP datasets.'}, {'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train_and_test', 'quote': 'To mitigate these issues, we selected the USTC-TFC and MCFP datasets.'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Unlike existing works that directly use binary network traffic as edge features, we extract the packet length sequence of each flow to generate sequential features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Multi-task Graph Neural Network (GNN)",
+      "evidence": "This paper proposes MTDecipher, a robust method for detecting encrypted malicious traffic based on multi-task Graph Neural Network (GNN).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Multi-task Graph Neural Network (GNN)",
+        "gemini38": "Multi-task Graph Neural Network (GNN)"
+      }
+    },
+    "hardware": {
+      "value": "RTX 4070 GPU, and an Intel i5-12600 CPU",
+      "evidence": "All experiments were conducted on a commercial machine equipped with an RTX 4070 GPU, and an Intel i5-12600 CPU operating at a frequency of 4.80 GHz.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "RTX 4070 GPU, and an Intel i5-12600 CPU",
+        "gemini38": "RTX 4070 GPU, and an Intel i5-12600 CPU"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "The number of edges processed by the model per second was defined as the Frames Per Second (FPS) for inference.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "packet length sequence; Proto; Ext_Proto; Sport; Dport",
+      "evidence": "We then combine these sequential features with network flow meta-features [Proto,Ext_Proto,Sport,Dport] (treated as non-sequential features) to form node and edge features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet length sequence; Proto; Ext_Proto; Sport; Dport",
+        "gemini38": "['packet length sequence', 'Proto', 'Ext_Proto', 'Sport', 'Dport']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-Score; False Positive Rate (FPR); False Negative Rate (FNR)",
+      "evidence": "We evaluate MTDecipher against the control group using a comprehensive set of classification metrics: Accuracy, Precision, Recall, F1-Score, False Positive Rate (FPR), and False Negative Rate (FNR).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-Score; False Positive Rate (FPR); False Negative Rate (FNR)",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-Score', 'False Positive Rate (FPR)', 'False Negative Rate (FNR)']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "200 packets",
+      "evidence": "We set the maximum sequence length |L| = 200, applying zero-padding to sequences shorter than L and truncating those that exceed this length.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "200 packets",
+        "gemini38": "200 packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We partition all edges E into a training set Etrain , a validation set Eval , and a test set Etest . Uniform sampling is performed exclusively on the training set to ensure that the sampling process does not cause data leakage.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

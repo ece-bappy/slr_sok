@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2800",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal",
+      "evidence": "Third, extracted bi-flow sessions are anonymized by removing the IP and port address values to protect the user’s privacy. This step also ensures that the proposed system does not overfit",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "gemini38": "['identifier_removal']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2; G3",
+      "evidence": "We first leverage network domain knowledge by carefully parsing IP, HTTP, DNS, and unencrypted TLS record headers as sequences of bytes for input without interfering with IP addresses, port numbers and the payload.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2; G3",
+        "gemini38": "['G2', 'G3']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "1.2; 1.3",
+      "evidence": "Therefore, the effectiveness of a malware traffic classification system trained with traffic on TLS 1.2 on detecting the unseen encrypted malware traffic using TLS 1.3 is yet to be explored.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1.2; 1.3",
+        "gemini38": "['1.2', '1.3']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random; cross_dataset",
+      "evidence": "We train the proposed model with the 90% of the data and obtain results using the remaining 10% utilizing 10-fold cross validation and provide the averaged results.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random; cross_dataset",
+        "gemini38": "['random', 'cross_dataset']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Third, extracted bi-flow sessions are anonymized by removing the IP and port address values to protect the user’s privacy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "In CICIDS2017, raw capture data contains the whole trace record throughout the day. However, during the data collection process, malware attacks are performed only in a specific time slot of the day.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "In this case, we take advantage of all the data available in the TLS record since it is not the encrypted data but the initiation of an encrypted connection.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "NetML (NetML Challenge 2020) (train_and_test); CIC-IDS2017 (train_and_test); CIC-DDoS2019 (test); {'name': 'NetML (NetML Challenge 2020)', 'role': 'train_and_test', 'quote': 'We compare the accuracy and the inference speed of the proposed model to prior works employing flow '}; {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'We compare the accuracy and the inference speed of the proposed model to prior works employing flow '}; {'name': 'CIC-DDoS2019', 'role': 'test', 'quote': 'We compare the accuracy and the inference speed of the proposed model to prior works employing flow '}",
+      "evidence": "We compare the accuracy and the inference speed of the proposed model to prior works employing flow features or raw bytes as input utilizing NetML [7] and CICIDS2017 datasets [8] and outperform the state-of-the-art.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "NetML (NetML Challenge 2020) (train_and_test); CIC-IDS2017 (train_and_test); CIC-DDoS2019 (test)",
+        "gemini38": "[{'name': 'NetML (NetML Challenge 2020)', 'role': 'train_and_test', 'quote': 'We compare the accuracy and the inference speed of the proposed model to prior works employing flow '}, {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'We compare the accuracy and the inference speed of the proposed model to prior works employing flow '}, {'name': 'CIC-DDoS2019', 'role': 'test', 'quote': 'We compare the accuracy and the inference speed of the proposed model to prior works employing flow '}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "we utilize IP and TCP/UDP header data without IP and port addresses for anonymization and generalization.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Residual 1-D Image Transformer (R1DIT)",
+      "evidence": "We implement a novel Residual 1-D Image Transformer (R1DIT) model with 2-D positional encoding and multi-head self-attention mechanisms to classify malware traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Residual 1-D Image Transformer (R1DIT)",
+        "gemini38": "Residual 1-D Image Transformer (R1DIT)"
+      }
+    },
+    "hardware": {
+      "value": "GPU and CPU",
+      "evidence": "The models are trained on GPU and their performance is measured on both GPU and CPU for the inference phase.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "GPU and CPU",
+        "gemini38": "GPU and CPU"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "We also evaluate its performance on a recently released unseen DDoS malware traffic encrypted with TLS 1.3 and show that the model can expand its ability to detect the new type of traffic",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Table VIII also provides the end-to-end inference speed both for CPU and GPU as deep learning models perform different on different architectures due to the number of arithmetic logic units and the clock speed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "IP and TCP/UDP header data",
+      "evidence": "We utilize IP and TCP/UDP header data without IP and port addresses for anonymization and generalization. We also utilize the domain knowledge parsing TLS, DNS and HTTP traffic and take the advantage of unencrypted header information without any payload data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "IP and TCP/UDP header data; unencrypted TLS, DNS, and HTTP header information",
+        "gemini38": "['IP and TCP/UDP header data', 'unencrypted TLS, DNS, and HTTP header information']"
+      }
+    },
+    "metrics": {
+      "value": "macro average F1 score; detection rate (TPR); False Alarm Rate (FAR); inference speed",
+      "evidence": "To compute the performance of the proposed malware traffic classification system, macro average F1 score, detection rate, also known as True Positive Rate (TPR) or sensitivity and False Alarm Rate (FAR)",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "macro average F1 score; detection rate (TPR); False Alarm Rate (FAR); inference speed",
+        "gemini38": "['macro average F1 score', 'detection rate (TPR)', 'False Alarm Rate (FAR)', 'inference speed']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "We also evaluate its performance on a recently released unseen DDoS malware traffic encrypted with TLS 1.3 and show that the model can expand its ability to detect the new type of traffic with only a few samples per new class",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "2 packets",
+      "evidence": "Hence, we denote that using first two packets with 50 bytes in our framework is the most suitable configuration for a fast and effective detection system.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "2 packets",
+        "gemini38": "2 packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We train the proposed model with the 90% of the data and obtain results using the remaining 10% utilizing 10-fold cross validation and provide the averaged results.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

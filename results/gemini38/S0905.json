@@ -1,0 +1,162 @@
+{
+  "paper_id": "S0905",
+  "run": "gemini38",
+  "title": "TARL: Multi-task adaptive representation learning for secure encrypted traffic analysis",
+  "venue": "Computer Networks",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using three public datasets and one proprietary dataset."
+        },
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using three public datasets and one proprietary dataset."
+        },
+        {
+          "name": "MAWI",
+          "role": "train",
+          "quote": "The experiments are conducted using three public datasets and one proprietary dataset."
+        },
+        {
+          "name": "JDWP",
+          "role": "train_and_test",
+          "quote": "The experiments are conducted using three public datasets and one proprietary dataset."
+        }
+      ],
+      "evidence": "The experiments are conducted using three public datasets and one proprietary dataset.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided",
+        "other"
+      ],
+      "evidence": "The experiments are conducted using three public datasets and one proprietary dataset.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The original featureset comprises 76 flow-level statistics derived from the CICIDS2017 dataset using CICFlowMeter.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet length",
+        "inter-arrival time (IAT) features",
+        "76 flow-level statistics"
+      ],
+      "evidence": "Firstly in 1 , encrypted network traffic is processed to extract packet length and inter-arrival time (IAT) features.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "The original feature set comprises 76 flow-level statistics derived from the CICIDS2017 dataset using CICFlowMeter.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "TARL operates on PCA-selected statistical flow features and introduces a Service Type Prediction (STP) objective that captures inter-flow service-pair semantics",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "Incorporating side-channel features such as TLS fingerprinting or session timing may improve this further.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "1.3"
+      ],
+      "evidence": "The JDWP dataset comprises encrypted flows collected from 50 distinct pages across three separate sessions in 2023, captured under TLS 1.3.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "TARL operates on PCA-selected statistical flow features and introduces a Service Type Prediction (STP) objective that captures inter-flow service-pair semantics",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "Multi-task Transformer",
+      "evidence": "In this paper, we propose TARL, a novel Task-Adaptive Representation Learning framework for secure encrypted traffic analysis.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "All datasets splits are performed at the flow level. Each flow, identified by its 5-tuple (source IP, destination IP, source port, destination port, protocol), is assigned exclusively to either the training (70%), validation (15%), or test (15%) partition.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "All datasets splits are performed at the flow level. Each flow, identified by its 5-tuple (source IP, destination IP, source port, destination port, protocol), is assigned exclusively to either the training (70%), validation (15%), or test (15%) partition.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "All datasets splits are performed at the flow level. Each flow, identified by its 5-tuple (source IP, destination IP, source port, destination port, protocol), is assigned exclusively to either the training (70%), validation (15%), or test (15%) partition.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Precision",
+        "Recall",
+        "F1-score",
+        "AUC"
+      ],
+      "evidence": "We adopt several standard metrics widely used in security and machine learning research. Accuracy (Acc.), Precision (P.), Recall (R.), F1-score (F1). And Area under the ROC curve (AUC).",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "All datasets splits are performed at the flow level.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The original features set comprises 76 flow-level statistics derived from the CICIDS2017 dataset using CICFlowMeter.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Table 5. Computational efficiency comparison. Params: number of trainable parameters (M); Latency: average per-sample inference time on one NVIDIA A100 GPU (ms); GPU Mem.: peak GPU memory (GB).",
+      "evidence_source": "table"
+    },
+    "hardware": {
+      "value": "NVIDIA A100 80GB GPU",
+      "evidence": "on a single NVIDIA A100 80GB GPU.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.420113+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

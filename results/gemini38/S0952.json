@@ -1,0 +1,156 @@
+{
+  "paper_id": "S0952",
+  "run": "gemini38",
+  "title": "Two Heads Are Better Than One: Models-to-Model Learning for Encrypted Traffic Analysis",
+  "venue": "IEEE Transactions on Information Forensics and Security",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "We select three publicly available encrypted traffic datasets that cover a range of typical scenario"
+        },
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train_and_test",
+          "quote": "We select three publicly available encrypted traffic datasets that cover a range of typical scenario"
+        },
+        {
+          "name": "CIC IoT",
+          "role": "train_and_test",
+          "quote": "We select three publicly available encrypted traffic datasets that cover a range of typical scenario"
+        }
+      ],
+      "evidence": "We select three publicly available encrypted traffic datasets that cover a range of typical scenarios, including commonly used encrypted communication protocols (e.g., HTTPS, TLS), virtual private network (VPN) tunneling, and IoT environments.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "other"
+      ],
+      "evidence": "The student model aims to learn, without any manually labeled data, the collective knowledge from multiple heterogeneous teacher models.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "yes",
+      "evidence": "The i-th teacher model contains its own feature extractor gi(·), which derives a set of native traffic features xi... and each teacher model then produces a predictive distribution pi(y | xi), representing the class probabilities.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet length",
+        "inter-arrival time",
+        "transmission direction",
+        "flow duration"
+      ],
+      "evidence": "From these flows, statistical or sequential features x (such as packet length, inter-arrival time, transmission direction, and flow duration) are extracted to characterize encrypted behaviors [44] without relying on payload content.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "From these flows, statistical or sequential features x (such as packet length, inter-arrival time, transmission direction, and flow duration) are extracted to characterize encrypted behaviors [44] without relying on payload content.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "From these flows, statistical or sequential features x (such as packet length, inter-arrival time, transmission direction, and flow duration) are extracted to characterize encrypted behaviors [44] without relying on payload content.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "The M2ML framework ... Teacher Models {M1, ..., Mi, ..., Mn}: A set of pre-trained, task-specific models covering diverse ETA objectives such as application classification, protocol identification, and anomaly detection.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "The USTC-TFC dataset focuses on encrypted malware traffic classification... The ISCX-VPN dataset is used for encrypted application classification... The CIC IoT dataset focuses on IoT attack detection",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Large Language Model (LLM)",
+      "evidence": "We develop an M2ML framework built upon a large language model (LLM)",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random"
+      ],
+      "evidence": "The cleaned dataset D is then divided into training, validation, and test subsets with a stratified ratio of 8:1:1, thereby ensuring traffic class balance and consistency across all splits.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "The cleaned dataset D is then divided into training, validation, and test subsets with a stratified ratio of 8:1:1",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "To quantitatively assess the contribution of each core mechanism, we conduct a comprehensive ablation study focusing on two critical components of the M2ML framework: (1) FNEI and (2) CCWA.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "F1",
+        "Precision",
+        "Recall"
+      ],
+      "evidence": "To evaluate the overall traffic classification performance, we adopt standard metrics including Accuracy (AC) and F1.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "A network flow lφ is then defined as the collection of all packets sharing the same five-tuple: lφ = { pi ∈P | Ψ(pi) = φ }.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "5 packets",
+      "evidence": "each flow lφ is truncated into a fixed-length packet sequence: sφ = (p1, p2, . . . , pL), L = 5.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "In addition to AC and F1, we report the number of trainable parameters, GPU memory consumption, and inference time.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "NVIDIA A100 GPU",
+      "evidence": "All experiments are conducted on a single NVIDIA A100 GPU and implemented using the PyTorch 2.3 framework.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.429775+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

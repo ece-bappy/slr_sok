@@ -1,0 +1,150 @@
+{
+  "paper_id": "S1163",
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "SD5GJA4",
+          "role": "train_and_test",
+          "quote": "The model was trained and tested using the SD5GJA4 dataset, created from real 5G SDN traffic samples collected by the researchers."
+        }
+      ],
+      "evidence": "The model was trained and tested using the SD5GJA4 dataset, created from real 5G SDN traffic samples collected by the researchers.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated"
+      ],
+      "evidence": "The attack scenarios were created using the hping3 tool.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The attack scenarios were created using the hping3 tool.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "timestamp",
+        "source and destination IP addresses",
+        "protocol information",
+        "packet length",
+        "JA4-based TLS fingerprint attributes",
+        "Frame Length",
+        "IP TTL",
+        "TCP Flags",
+        "Payload",
+        "Time Delta",
+        "TCP Seq"
+      ],
+      "evidence": "In addition to basic network attributes such as timestamp, source and destination IP addresses, protocol information, and packet length, the dataset also includes JA4-based TLS fingerprint attributes [55].",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G5"
+      ],
+      "evidence": "Extracting JA4-based features makes it possible to detect anomalous behavior effectively even within encrypted Transport Layer Security (TLS) traffic.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "JA4",
+        "JA4S"
+      ],
+      "evidence": "JA4 fingerprint extraction was used as input data for DL models, and high-accuracy attack detection was performed.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "CNN-LSTM",
+      "evidence": "The proposed method is predicated on a DL-based architecture called CNN-LSTM, and the classification performance of this architecture has been evaluated by comparing it with seven different traditional ML algorithms.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random",
+        "stratified_random"
+      ],
+      "evidence": "Regarding data splitting, the dataset was randomly divided into 70% for training and 30% for testing.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "Regarding data splitting, the dataset was randomly divided into 70% for training and 30% for testing.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "This split was performed once, saved, and consistently used across all experiments to ensure comparability of results.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "F1-score"
+      ],
+      "evidence": "The performance of the classification methods utilized in this study was evaluated using four fundamental performance metrics: accuracy, precision, recall, and F1-score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "CNNs have been shown to achieve high accuracy rates, particularly in the classification of packet-level data or feature vectors.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "CNNs have been shown to achieve high accuracy rates, particularly in the classification of packet-level data or feature vectors.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "As illustrated in Table 7, the evaluation time of each model during the testing phase was measured in seconds, while maintaining a constant number of features (n = 39).",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Intel Core i7-13700HX processor and an NVIDIA GeForce RTX 4070 Laptop GPU",
+      "evidence": "The training and testing processes were executed on a high-performance portable workstation that is equipped with a 13th-generation Intel Core i7-13700HX processor and an NVIDIA GeForce RTX 4070 Laptop GPU.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    }
+  },
+  "run": "gemini38_validation",
+  "model": "gemini-3.8-flash-high",
+  "validation_warnings": []
+}

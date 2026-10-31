@@ -1,0 +1,174 @@
+{
+  "paper_id": "S0639",
+  "run": "gemini38",
+  "title": "LotBoNC: Novel Botnet Traffic Classification under Long-tailed Distributions",
+  "venue": "ACM Asia Conference on Computer and Communications Security (ASIA CCS)",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Stratosphere MCFP / CTU-Malware-Capture",
+          "role": "train",
+          "quote": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation"
+        },
+        {
+          "name": "VNAT",
+          "role": "train",
+          "quote": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation"
+        },
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train",
+          "quote": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation"
+        },
+        {
+          "name": "ToN_IoT",
+          "role": "train",
+          "quote": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation"
+        },
+        {
+          "name": "IoT-23",
+          "role": "train_and_test",
+          "quote": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation"
+        },
+        {
+          "name": "ISCX Botnet 2014",
+          "role": "train_and_test",
+          "quote": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation"
+        },
+        {
+          "name": "CTU-13",
+          "role": "train_and_test",
+          "quote": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation"
+        }
+      ],
+      "evidence": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation",
+      "evidence_source": "table"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "In training and evaluation stages, we chose three public datasets for reliable assessment of long-tailed recognition that combine realism, diversity, and public ground truth.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "To prepare raw encrypted traffic for representation learning, we adopt a burst-level tokenization strategy, following the design principles established in [12, 37, 74].",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "fixed-size 2-byte bigrams"
+      ],
+      "evidence": "This stream is then tokenized into a sequence of fixed-size 2-byte bigrams.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "none"
+      ],
+      "evidence": "This stream is then tokenized into a sequence of fixed-size 2-byte bigrams.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Within each burst, we remove low-level protocol headers and concatenate the remaining payloads to form a clean byte stream.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "LotBoNC first performs self-supervised pre-training to learn transferable representations from raw traffic sequences.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "Dataset details are given in Section 5.1 and Table 1.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "LotBoNC first performs self-supervised pre-training to learn transferable representations from raw traffic sequences.",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "Transformer-based framework",
+      "evidence": "We propose LotBoNC, a unified framework for encrypted traffic classification under long-tailed open-world conditions. LotBoNC first performs self-supervised pre-training to learn transferable representations, then applies entropy-regularized optimal transport to assign pseudo-labels aligned with estimated class priors.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random"
+      ],
+      "evidence": "The labelled split consists only of known families and is class balanced by stratified sampling so that each labelled class contributes the same number of flows.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "The labelled split consists only of known families and is class balanced by stratified sampling so that each labelled class contributes the same number of flows.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "We create two disjoint splits per dataset. The labelled split consists only of known families and is class balanced by stratified sampling so that each labelled class contributes the same number of flows.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal"
+      ],
+      "evidence": "each packet is limited to 64 bytes of data following the Ethernet layer to focus on meaningful payload information, excluding Ethernet addresses and encrypted payload content as they are irrelevant for classification tasks.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Overall accuracy",
+        "Labelled accuracy",
+        "Unlabelled-Aware accuracy",
+        "Unlabelled-Agnostic accuracy"
+      ],
+      "evidence": "We follow the evaluation protocol of [5, 54] and compute four complementary metrics that together measure both recognition of known classes and discovery of novel ones.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "For each dataset, we reconstruct bidirectional flows, discard non-IP control traffic, and retain only TCP/UDP records with at least five packets.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "For each dataset, we reconstruct bidirectional flows, discard non-IP control traffic, and retain only TCP/UDP records with at least five packets.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/watsonhuhpi/LotBoNC']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/watsonhuhpi/LotBoNC']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.414766+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": [
+    "feature_groups: value 'none' not in allowed set"
+  ]
+}

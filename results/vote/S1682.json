@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1682",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal",
+      "evidence": "To prevent information leakage, we remove five features: Source IP, Destination IP, Source Port, Destination Port, and Timestamp.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "gemini38": "['identifier_removal']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "First, the entire dataset is divided into training and testing sets using an 80:20 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Current methodologies for detecting DoH tunnels predominantly utilize ML models in conjunction with feature extraction techniques, treating flow-level features as the primary detection criterion.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided; other",
+      "evidence": "Using a publicly curated list of mainstream DoH server IP addresses, the captured traffic is subsequently labeled as benign DoH or non-DoH HTTPS.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided; other",
+        "gemini38": "['dataset_provided', 'other']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (train_and_test); large-scale benign DoH data (train_and_test); own / private capture (train_and_test); {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}; {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}; {'name': 'large-scale benign DoH data', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}; {'name': 'own / private capture', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}",
+      "evidence": "We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial attacks targeting the DoH tunnel intrusion scenario, utilizing a comprehensive dataset comprising CIRA-CIC-DoHBrw-2020, DoH-Tunnel-Traffic-HKD, and large-scale benign DoH data.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (train_and_test); large-scale benign DoH data (train_and_test); own / private capture (train_and_test)",
+        "gemini38": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}, {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}, {'name': 'large-scale benign DoH data', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}, {'name': 'own / private capture', 'role': 'train_and_test', 'quote': 'We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "To prevent information leakage, we remove five features: Source IP, Destination IP, Source Port, Destination Port, and Timestamp.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "KNN, SVM, RF, DT, LightGBM, CatBoost, XGBoost, MLP",
+      "evidence": "we employ 7 classic and widely-used machine learning algorithms, including KNN, SVM, RF, DT, LightGBM, CatBoost, and XGBoost.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "KNN, SVM, RF, DT, LightGBM, CatBoost, XGBoost, MLP",
+        "gemini38": "KNN, SVM, RF, DT, LightGBM, CatBoost, XGBoost, MLP"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "Rate-based features; Length-based features; Packet time-based features; Request/response time-based features",
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Rate-based features; Length-based features; Packet time-based features; Request/response time-based features",
+        "gemini38": "['Rate-based features', 'Length-based features', 'Packet time-based features', 'Request/response time-based features']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-Score; Authenticity Pass Rate (APR); Evasion Rate (ER); Attack Success Rate (ASR)",
+      "evidence": "We evaluate the performance of the ML-based NIDSs using standard evaluation metrics: Accuracy, Precision, Recall, and F1-Score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-Score; Authenticity Pass Rate (APR); Evasion Rate (ER); Attack Success Rate (ASR)",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-Score', 'Authenticity Pass Rate (APR)', 'Evasion Rate (ER)', 'Attack Success Rate (ASR)']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We use the DoHlyzer tool to extract the flow-level features described in Section 3.2.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "First, the entire dataset is divided into training and testing sets using an 80:20 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

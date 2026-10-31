@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0097",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "Ablation experiments further verify the necessity and synergistic effects of the three core modules: dual drift detection, incremental learning, and small-model replacement.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "Subsequently, temporal features, statistical features, and content features are extracted from the traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random; temporal",
+      "evidence": "In addition, to verify the performance of the model in handling imbalanced encrypted traffic samples (a common problem in actual network environments), we perform stratified sampling on the above datasets to construct sub-datasets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random; temporal",
+        "gemini38": "['stratified_random', 'temporal']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "It contains more than 1.6 million traffic flow samples captured from both real campus network environments and controlled laboratory attack scenarios",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The dataset provides detailed feature labels and attack type annotations, which is convenient for quantitative analysis of model performance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "H23Q (train_and_test); CIC-IDS2017 (train_and_test); USTC-TFC2016 (train_and_test); CIC-DDoS2019 (train_and_test); {'name': 'H23Q', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}; {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}; {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}; {'name': 'CIC-DDoS2019', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}",
+      "evidence": "comprehensive experiments are conducted using four publicly available encrypted malicious traffic datasets: H23Q, CIC-IDS2017, USTC-TFC2016, and CIC-DDoS2019.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "H23Q (train_and_test); CIC-IDS2017 (train_and_test); USTC-TFC2016 (train_and_test); CIC-DDoS2019 (train_and_test)",
+        "gemini38": "[{'name': 'H23Q', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}, {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}, {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}, {'name': 'CIC-DDoS2019', 'role': 'train_and_test', 'quote': 'comprehensive experiments are conducted using four publicly available encrypted malicious traffic da'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Ultimately, standardized and structured traffic feature vectors are output for use by downstream modules.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Graph Neural Network",
+      "evidence": "The detection module itself employs a Graph Neural Network enhanced with domain adversarial training to learn robust, cross-protocol features and handle class imbalance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Graph Neural Network",
+        "gemini38": "Graph Neural Network"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The experiments are designed around five research questions: the necessity of active drift detection, performance comparison with existing SOTA methods, detection efficiency, ablation analysis of core modules, and performance stability under imbalanced samples and different drift scenarios.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Table 5 End-to-end latency budget of the proposed framework.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "temporal features; statistical features; content features",
+      "evidence": "Subsequently, temporal features, statistical features, and content features are extracted from the traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "temporal features; statistical features; content features",
+        "gemini38": "['temporal features', 'statistical features', 'content features']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-Score; AUC",
+      "evidence": "Accuracy measures the overall correctness of the model’s predictions, calculated as follows:",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-Score; AUC",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-Score', 'AUC']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Deeppacket inspection and flow feature analysis are performed on the original network traffic to remove noise, handle missing values, and address outliers.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "temporal",
+      "evidence": "CIC-DDoS2019 Dataset [19]: Developed by the Canadian Institute for Cybersecurity, this dataset includes real-time network traffic captured over two days: January 12, 2018 (training) and March 11, 2018 (testing).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "temporal",
+        "gemini38": "temporal"
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2363",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal",
+      "evidence": "The same IP address will affect the training and judgment of the model as a fine-grained feature. This is also the main reason for implementing address randomization in data preprocessing.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "gemini38": "['identifier_removal']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2; G3",
+      "evidence": "analyze data in three dimensions including original data flow of SSL/TLS encrypted traffic, TLS plaintext handshake packet and traditional statistical laws, and design corresponding features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2; G3",
+        "gemini38": "['G1', 'G2', 'G3']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "Since encryption protocols such as PPTP, L2TP, and IPSec are not the research focus of this paper, the encrypted traffic in the dataset uses the SSL/TLS protocol",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "Finally, different types of samples are randomly divided into training set and test set according to the ratio of 70% and 30%, and they are used as the target data set.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "Using the ISCXVPN2016 dataset, in order to unify the dataset, this experiment adopts the traffic representation form of Session+ALL",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "session",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "sandbox; dataset_provided",
+      "evidence": "For the collection of negative samples, first from Stratosphere Lab [52] Select a part of the sample data that uses SSL/TLS encrypted communication in the open source malicious traffic data set, and then run corresponding malware in a relatively safe sandbox environment",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "sandbox; dataset_provided",
+        "gemini38": "['sandbox', 'dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "use tools such as Wireshark to deeply analyze the original data flow of SSL/TLS encrypted traffic, TLS Plaintext handshake packets and statistical laws, and study the corresponding specific features",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "MET2020 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); {'name': 'MET2020', 'role': 'train_and_test', 'quote': 'This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset.'}; {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset.'}",
+      "evidence": "This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "MET2020 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test)",
+        "gemini38": "[{'name': 'MET2020', 'role': 'train_and_test', 'quote': 'This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset.'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'This research created and open sourced the MET2020 (Malicious Encrypted Traffic 2020) dataset.'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Analyze data in three dimensions including original data flow of SSL/TLS encrypted traffic, TLS plaintext handshake packet and traditional statistical laws, and design corresponding features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "multi-branch cascade network (CNN)",
+      "evidence": "The flow map recognition model based on multi-branch cascade network is proposed",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "multi-branch cascade network (CNN)",
+        "gemini38": "multi-branch cascade network (CNN)"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "original data flow of SSL/TLS encrypted traffic; TLS plaintext handshake packet; traditional statistical laws",
+      "evidence": "analyze data in three dimensions including original data flow of SSL/TLS encrypted traffic, TLS plaintext handshake packet and traditional statistical laws, and design corresponding features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "original data flow of SSL/TLS encrypted traffic; TLS plaintext handshake packet; traditional statistical laws",
+        "gemini38": "['original data flow of SSL/TLS encrypted traffic', 'TLS plaintext handshake packet', 'traditional statistical laws']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; f1 score; macro-average; micro-average; mAP; Rank-n",
+      "evidence": "uses metrics such as accuracy, precision, recall, and F1 score to evaluate the model’s performance. The other is the evaluation method based on object detection tasks, primarily for the convenience of visualizing the results, using metrics such as macro-average, micro-average, mAP value, and Rank-n value",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; f1 score; macro-average; micro-average; mAP; Rank-n",
+        "gemini38": "['accuracy', 'precision', 'recall', 'f1 score', 'macro-average', 'micro-average', 'mAP', 'Rank-n']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Using the ISCXVPN2016 dataset, in order to unify the dataset, this experiment adopts the traffic representation form of Session+ALL",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "Finally, different types of samples are randomly divided into training set and test set according to the ratio of 70% and 30%, and they are used as the target data set.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

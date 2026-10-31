@@ -1,0 +1,195 @@
+{
+  "paper_id": "S3214",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal; none",
+      "evidence": "It is worth mentioning that features from 1 to 4, which include information about IPs and ports, are not used for training the model.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "Our conversation processor implementation maintains the initial features extracted from the packets, but also add numerous time-related statistics: (1) Uplink and Downlink IP,1 (2) Uplink and Downlink Port,1 (3) Duration in microseconds",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "For this purpose, a 10-fold validation was performed using the 25% of randomly chosen test data, respecting a balance between normal and anomalous communications.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The detection of these kind of DoS-based attacks includes the analysis of conversations between a web server and its clients.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated",
+      "evidence": "In order to gather genuine real-time data, we have implemented a traffic generator leveraging JMeter for normal HTTPs traffic and slow-http-test to launch the different SlowDoS attacks.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated",
+        "gemini38": "['generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "To cope with this problem, our feature-extraction approach does not examine application level and leverages on lower layers, including the aforementioned features to incorporate encrypted statistics.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "generated SlowDoS datasets (train_and_test); {'name': 'Generated SlowDoS datasets (High-connections, Medium-connections, Low-connections)', 'role': 'train_and_test', 'quote': 'Three datasets have been generated using a different amount of clients and concurrent connections: High-connections, Medium-connections, Low-connections.'}",
+      "evidence": "Three datasets have been generated using a different amount of clients and concurrent connections: High-connections, Medium-connections, Low-connections.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "generated SlowDoS datasets (train_and_test)",
+        "gemini38": "[{'name': 'Generated SlowDoS datasets (High-connections, Medium-connections, Low-connections)', 'role': 'train_and_test', 'quote': 'Three datasets have been generated using a different amount of clients and concurrent connections: High-connections, Medium-connections, Low-connections.'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "the features include statistical time-related information of the stream of packets set up between a client and a web server",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Gaussian Mixture Model (GMM) and Auto-Encoder (Deep Learning)",
+      "evidence": "The distributed AI model running in Apache Spark-streaming, combines clustering analysis for anomaly detection, along with deep learning techniques to increase detection accuracy in those cases where clustering obtains ambiguous probabilities.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Gaussian Mixture Model (GMM) and Auto-Encoder (Deep Learning)",
+        "gemini38": "Gaussian Mixture Models (GMM); Autoencoder (Deep Learning); sGMM"
+      }
+    },
+    "hardware": {
+      "value": "3 machines (8GB/8core), 1 machine (8GB/16core), 1 machine (16GB/16core), 2 machines (8GB/16core), 2.1 GHz CPUs",
+      "evidence": "1. Clients: 3 machines. 8 GB memory and 8 cores. 2. Apache Kafka: 1 machine. 8 GB memory and 16 cores. 3. Webserver and Network Monitoring: 1 machine. 16 GB memory and 16 cores.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "3 machines (8GB/8core), 1 machine (8GB/16core), 1 machine (16GB/16core), 2 machines (8GB/16core), 2.1 GHz CPUs",
+        "gemini38": "VM CPUs at 2.1 GHz, 8 GB to 16 GB RAM, 8 to 16 cores"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "For this purpose, a 10-fold validation was performed using the 25% of randomly chosen test data, respecting a balance between normal and anomalous communications.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "This time includes every stage of our application: network monitoring, conversation processing and machine learning classification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "Maximal",
+      "evidence": "Duration in microseconds, (4) Number of packets sent in 1 s in uplink and downlink, (5) Number of bytes sent in 1 s in uplink and downlink, (6) Maximal, minimal and average packet size in uplink and downlink",
+      "vote_agreement": "3/2",
+      "runs": {
+        "gemini_lite": "Duration in microseconds; Number of packets sent in 1 s; Number of bytes sent in 1 s; Maximal, minimal and average packet size; Maximal, minimal and average size of TCP window; Maximal, Minimal and average time-to-live; Percentage of packets with different TCP flags; Percentage of packets with different properties; Number of new connections to the same destination host; Percentage of new connections from the current host; Total number of active connections to the same destination host; Percentage of active connections from the current host",
+        "gemini38": "['Duration in microseconds; Number of packets sent in 1 s in uplink and downlink; Number of bytes sent in 1 s in uplink and downlink; Maximal, minimal and average packet size in uplink and downlink; Maximal, minimal and average size of TCP window in uplink and downlink; Maximal, Minimal and average time-to-live in uplink and downlink; Percentage of packets with different TCP flags in uplink and downlink; Percentage of packets with different properties in uplink and downlink; Number of new connections to the same destination host; Percentage of new connections from the current host; Total number of active connections to the same destination host; Percentage of active connections from the current host']"
+      }
+    },
+    "metrics": {
+      "value": "ROC; AUC; Accuracy; Precision; Recall; F1-score; Specificity; roc-auc; tpr; fpr",
+      "evidence": "In addition, the quantities collected in confusion matrices can be used to calculate the Accuracy, Precision, Recall, F1-score and Specificity metrics, which provide information beyond the success rate",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "ROC; AUC; Accuracy; Precision; Recall; F1-score; Specificity",
+        "gemini38": "['roc-auc', 'tpr', 'fpr']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "If a conversation ends successfully (TCP Connection Termination), it is closed, sent immediately and removed from the Conversation Processor. Otherwise, if a conversation remains open, it is continuously sent at a specific time interval",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "For this purpose, a 10-fold validation was performed using the 25% of randomly chosen test data, respecting a balance between normal and anomalous communications.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

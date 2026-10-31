@@ -1,0 +1,162 @@
+{
+  "paper_id": "S0066",
+  "run": "gemini38",
+  "title": "A Multi-Modal AI Framework for Intrusion Detection in Healthcare IoT",
+  "venue": "International Journal of Basic and Applied Sciences",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "ToN_IoT",
+          "role": "train_and_test",
+          "quote": "An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT"
+        },
+        {
+          "name": "IoT-23",
+          "role": "train_and_test",
+          "quote": "An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT"
+        },
+        {
+          "name": "MedBIoT",
+          "role": "train_and_test",
+          "quote": "An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT"
+        }
+      ],
+      "evidence": "An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT, IoT-23, and MedBIoT, under realistic conditions of class imbalance.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "Experiments are conducted using publicly available IoT and IIoT datasets that provide either direct or emulated access to the two data modalities assumed by the system model",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Each observation consists of two heterogeneous feature components: Xi = [xi(n) || xi(d)], Where xi(n) represents network-level traffic features and xi(d) represents device telemetry features.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet rates",
+        "session durations",
+        "protocol usage",
+        "flow directionality",
+        "communication frequency",
+        "communication regularity",
+        "transmission periodicity",
+        "connection stability",
+        "deviations from established operational profiles"
+      ],
+      "evidence": "This unit collects and processes flow-level network metadata observed at the gateway, including packet rates, session durations, protocol usage, flow directionality, and communication frequency. This unit analyzes device-level behavioral indicators derived from communication regularity, transmission periodicity, connection stability, and deviations from established operational profiles.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "This unit collects and processes flow-level network metadata observed at the gateway, including packet rates, session durations, protocol usage, flow directionality, and communication frequency. This unit analyzes device-level behavioral indicators derived from communication regularity, transmission periodicity, connection stability, and deviations from established operational profiles.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "The intrusion detection module operates without payload inspection and does not require access to sensitive patient data, ensuring compliance with healthcare privacy, confidentiality, and regulatory requirements.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Ensemble meta-learning with multi-layer perceptron",
+      "evidence": "The framework proposes a lightweight multimodal intrusion detection framework for HIoT networks that jointly analyzes network flow metadata and device telemetry using structured feature fusion and ensemble meta-learning.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random"
+      ],
+      "evidence": "Datasets are partitioned into training, validation, and test sets using stratified sampling to preserve class imbalance.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "Datasets are partitioned into training, validation, and test sets using stratified sampling to preserve class imbalance.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "Ablation studies confirm that device telemetry improves recall for stealthy threats, while ensemble meta-learning stabilizes predictions and suppresses false alarms.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Precision",
+        "Recall",
+        "F1-score",
+        "False Positive Rate",
+        "ROC–AUC"
+      ],
+      "evidence": "Evaluation metrics include Accuracy, Precision, Recall, F1-score, False Positive Rate (FPR), and ROC–AUC.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Network Feature Extraction Unit: This unit collects and processes flow-level network metadata observed at the gateway, including packet rates, session durations, flow directionality, and communication frequency.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Network flow records are extracted to emulate gateway-observable metadata",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Figures 12 and 13 report detection latency and scalability behavior, respectively, as the number of connected devices and traffic volume increase.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.407844+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

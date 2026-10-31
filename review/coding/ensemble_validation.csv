@@ -1,0 +1,85 @@
+﻿paper_id,field,kind,outcome,flash_lite,gemini38,human,flash_flags
+S2338,datasets_evaluated,scored,disputed (human reviews),"[{""name"": ""CTU-Malware-Capture"", ""role"": ""train_and_test"", ""quote"": ""26 malicious traffic types are extracted from the CTU-Malware-Capture dataset and benign traffic is extracted from the other five datasets to balance the dataset and maximize the traffic data variety."", ""canonical"": ""Stratosphere M","[{""name"": ""CTU-Malware-Capture"", ""role"": ""train_and_test"", ""quote"": ""26 malicious traffic types are extracted from the CTU-Malware-Capture dataset and benign traffic is extracted from the other five datasets to balance the dataset and maximize the traffic data variety.""}, {""name"": ""Benign-Capture"", ",CTU-Malware-Capture (train_and_test); Benign-Capture (train_and_test); Mixture Capture (train_and_test); CICIDS-2017 (train_and_test); CICIDS-2012 (train_and_test); CIRA-CIC-DoHBRW-2020 (train_and_test),changed_by_check;not_unanimous
+S2338,label_source,scored,agreed_correct,"[""dataset_provided""]","[""dataset_provided""]",dataset_provided,
+S2338,label_feature_overlap,scored,agreed_correct,"""no""","""no""",no,not_unanimous
+S2338,features_used,free_text,grade by hand,"[""time-related traffic features"", ""payload-based side-channel features"", ""ratio between traditional protocol-agnostic numerical features and enc traffic features""]","[""time-related features"", ""flow duration of forward traffic"", ""Interval of the arrival time of backward traffic"", ""payload side-channel features"", ""Payload ratio"", ""length of TCP payload"", ""total payload per session"", ""enc features"", ""total time to live of forward encrypted traffic"", ""total length o","time-related features (flow duration, inter arrival times); payload side-channel features (payload ratio, TCP payload length, total payload); enc features (total TTL, total encrypted IP length); enc ratio features",quote_not_verbatim;not_unanimous
+S2338,feature_groups,scored,agreed_correct,"[""G1"", ""G2""]","[""G1"", ""G2""]",G1; G2,quote_not_verbatim;spliced_quote;not_unanimous
+S2338,cert_fields_read,scored,disputed (human reviews),"""no""","""not_applicable""",not_applicable,
+S2338,fingerprints_used,scored,agreed_correct,"[""none""]","[""none""]",none,
+S2338,tls_versions_stated,scored,agreed_correct,"[""not_stated""]","[""not_stated""]",not_stated,
+S2338,ech_considered,scored,agreed_correct,"""no""","""no""",no,
+S2338,model_family,free_text,grade by hand,"""RNN (LSTM, GRU), CNN (ResNet), Random Forest, XGBoost""","""two-layer ensemble (LSTM, ResNet, XGBoost, Random Forest)""","two-layer ensemble (LSTM, ResNet, XGBoost, Random Forest)",quote_not_verbatim;changed_by_check;not_unanimous
+S2338,split_protocols,scored,disputed (human reviews),"[""random""]","[""unclear""]",not_stated,changed_by_check;not_unanimous
+S2338,main_split,scored,agreed_correct,"""unclear""","""unclear""",not_stated,not_unanimous
+S2338,easy_vs_hard_reported,scored,agreed_correct,"""no""","""no""",no,
+S2338,shortcut_check,scored,disputed (human reviews),"[""none""]","[""ablation""]",ablation,changed_by_check;not_unanimous
+S2338,metrics,free_text,grade by hand,"[""Accuracy"", ""F1"", ""Precision"", ""Recall"", ""AUC-ROC"", ""FPR"", ""TPR""]","[""accuracy"", ""F1"", ""precision"", ""recall"", ""AUC-ROC"", ""FPR"", ""TPR""]","accuracy, f1, precision, recall, roc-auc, fpr, tpr",not_unanimous
+S2338,granularity,scored,disputed (human reviews),"""flow""","""session""",session,not_unanimous
+S2338,first_n_packets,free_text,grade by hand,"""15 packets""","""15 packets""",15 packets,
+S2338,cost_reported,scored,agreed_correct,"""none""","""none""",none,
+S2338,hardware,free_text,grade by hand,"""none""","""none""",none,
+S2338,code_released,scored,agreed_correct,"""no""","""no""",no,
+S2338,data_released,scored,disputed (human reviews),"""no""","""yes""",yes,
+S1938,datasets_evaluated,scored,disputed (human reviews),"[{""name"": ""Top 10K domains"", ""role"": ""train_and_test"", ""quote"": ""To initiate our data collection process, we select the “Top 10K domains” from the Tranco list, which is a reliable source of Internet-wide domain information [14]."", ""canonical"": ""Top 10K domains""}, {""name"": ""Feodo Blocklist"", ""role"": ","[{""name"": ""Tranco"", ""role"": ""train_and_test"", ""quote"": ""To initiate our data collection process, we select the “Top 10K domains” from the Tranco list, which is a reliable source of Internet-wide domain information [14].""}, {""name"": ""Feodo Blocklist"", ""role"": ""train_and_test"", ""quote"": ""In addition t","Tranco top 10K domains (train_and_test); Blocklists: Blocklist.de, Ci-Badguys, SSLBL, Darklist.de (train_and_test); Feodo Blocklist (train_and_test)",not_unanimous
+S1938,label_source,scored,disputed (human reviews),"[""dataset_provided""]","[""other""]","other (IP blocklists: Feodo Tracker, Blocklists.de, SSLBL, Ci-Badguys, Darklist.de), dataset_provided",not_unanimous
+S1938,label_feature_overlap,scored,agreed_correct,"""no""","""no""",no,
+S1938,features_used,free_text,grade by hand,"[""TLS versions"", ""cipher suites"", ""ALPNs"", ""Elliptic Curves"", ""certificates (x509)""]","[""TLS versions"", ""cipher suites"", ""ALPNs"", ""Elliptic Curves"", ""certificates (x509)""]","Server Hello parameters (cipher suites, extensions, versions, lengths, X.509 certificate fields) across 10 probed handshakes; 84 ML-selected features via Lasso regression",not_unanimous
+S1938,feature_groups,scored,disputed (human reviews),"[""G2"", ""G3"", ""G4""]","[""G3"", ""G4""]",G2; G3; G4; G5,not_unanimous
+S1938,cert_fields_read,scored,agreed_correct,"""yes""","""yes""",yes,
+S1938,fingerprints_used,scored,disputed (human reviews),"[""other""]","[""none""]","other (JARM extension, SHA-256 fingerprints)",not_unanimous
+S1938,tls_versions_stated,scored,agreed_correct,"[""not_stated""]","[""not_stated""]",not_stated,
+S1938,ech_considered,scored,agreed_correct,"""no""","""no""",no,
+S1938,model_family,free_text,grade by hand,"""Gaussian Naive Bayes, Random Forest, XGBoost""","""XGBoost, Random Forest""","XGBoost, Random Forest",quote_not_verbatim
+S1938,split_protocols,scored,disputed (human reviews),"[""host_grouped"", ""temporal""]","[""host_grouped"", ""random"", ""temporal""]",host_grouped; temporal; stratified_random,
+S1938,main_split,scored,agreed_correct,"""host_grouped""","""host_grouped""",host_grouped,
+S1938,easy_vs_hard_reported,scored,agreed_correct,"""no""","""no""",no,
+S1938,shortcut_check,scored,disputed (human reviews),"[""ablation""]","[""none""]",ablation; identifier_removal; other (SHAP feature attribution),
+S1938,metrics,free_text,grade by hand,"[""precision"", ""recall"", ""f1"", ""roc-auc""]","[""precision"", ""recall"", ""F1"", ""ROC-AUC""]","f1, precision, recall, roc-auc, fpr",not_unanimous
+S1938,granularity,scored,agreed_correct,"""host""","""host""",host,
+S1938,first_n_packets,free_text,grade by hand,"""whole flow""","""whole flow""",10 handshakes,
+S1938,cost_reported,scored,agreed_correct,"""none""","""none""",none,
+S1938,hardware,free_text,grade by hand,"""none""","""none""",none,
+S1938,code_released,scored,disputed (human reviews),"""no""","""yes""",yes,
+S1938,data_released,scored,disputed (human reviews),"""no""","""yes""",yes,
+S1163,datasets_evaluated,scored,agreed_WRONG,"[{""name"": ""SD5GJA4"", ""role"": ""train_and_test"", ""quote"": ""The final dataset obtained as a result of these processes was organized to have a balanced distribution of attack and normal traffic samples and was made suitable for use in the training and testing stages of ML-based intrusion detection model","[{""name"": ""SD5GJA4"", ""role"": ""train_and_test"", ""quote"": ""The model was trained and tested using the SD5GJA4 dataset, created from real 5G SDN traffic samples collected by the researchers.""}]",Mininet-WiFi-based SDN topology / SD5GJA4 dataset (train_and_test),not_unanimous
+S1163,label_source,scored,agreed_correct,"[""generated""]","[""generated""]",generated,
+S1163,label_feature_overlap,scored,agreed_correct,"""no""","""no""",no,
+S1163,features_used,free_text,grade by hand,"[""timestamp"", ""source IP address"", ""destination IP address"", ""protocol"", ""packet length"", ""JA4"", ""JA4H"", ""JA4S"", ""JA4T"", ""JA4X"", ""Frame Length"", ""IP TTL"", ""TCP Flags"", ""Payload"", ""Handshake Extensions Length"", ""Time Delta"", ""TCP Seq"", ""FTP Response Code""]","[""timestamp"", ""source and destination IP addresses"", ""protocol information"", ""packet length"", ""JA4-based TLS fingerprint attributes"", ""Frame Length"", ""IP TTL"", ""TCP Flags"", ""Payload"", ""Time Delta"", ""TCP Seq""]","JA4 fingerprints (JA4, JA4H, JA4S, JA4T, JA4X); frame length, IP TTL, TCP flags, payload, handshake extensions length, time delta, TCP seq, FTP response code (39 features selected via mutual information)",not_unanimous
+S1163,feature_groups,scored,disputed (human reviews),"[""G2"", ""G5""]","[""G5""]",G1; G3; G5,changed_by_check;not_unanimous
+S1163,cert_fields_read,scored,disputed (human reviews),"""no""","""not_applicable""",no,not_unanimous
+S1163,fingerprints_used,scored,disputed (human reviews),"[""JA4"", ""JA4S"", ""other""]","[""JA4"", ""JA4S""]","JA4; JA4S; other (JA4H, JA4T, JA4X)",not_unanimous
+S1163,tls_versions_stated,scored,agreed_correct,"[""not_stated""]","[""not_stated""]",not_stated,
+S1163,ech_considered,scored,agreed_correct,"""no""","""no""",no,
+S1163,model_family,free_text,grade by hand,"""CNN-LSTM""","""CNN-LSTM""",CNN-LSTM,not_unanimous
+S1163,split_protocols,scored,agreed_correct,"[""random"", ""stratified_random""]","[""random"", ""stratified_random""]",random; stratified_random,
+S1163,main_split,scored,agreed_correct,"""random""","""random""",random,
+S1163,easy_vs_hard_reported,scored,agreed_correct,"""no""","""no""",no,
+S1163,shortcut_check,scored,agreed_correct,"[""none""]","[""none""]",none,
+S1163,metrics,free_text,grade by hand,"[""accuracy"", ""precision"", ""recall"", ""f1-score""]","[""accuracy"", ""precision"", ""recall"", ""F1-score""]","accuracy, precision, recall, f1",
+S1163,granularity,scored,agreed_correct,"""packet""","""packet""",packet,
+S1163,first_n_packets,free_text,grade by hand,"""unclear""","""whole flow""",whole flow,not_unanimous
+S1163,cost_reported,scored,agreed_correct,"""inference_only""","""inference_only""",inference_only,
+S1163,hardware,free_text,grade by hand,"""13th-generation Intel Core i7-13700HX processor and an NVIDIA GeForce RTX 4070 Laptop GPU""","""Intel Core i7-13700HX processor and an NVIDIA GeForce RTX 4070 Laptop GPU""","Intel Core i7-13700HX, NVIDIA GeForce RTX 4070 Laptop GPU",
+S1163,code_released,scored,agreed_correct,"""no""","""no""",no,
+S1163,data_released,scored,agreed_correct,"""no""","""no""",no,
+S2008,datasets_evaluated,scored,disputed (human reviews),"[{""name"": ""UNSW-NB15"", ""role"": ""train_and_test"", ""quote"": ""Our assessment, conducted on diverse encrypted datasets including UNSW-NB15, IoT23, and XIIoTID, highlights the remarkable efficacy of MADESANT."", ""canonical"": ""UNSW-NB15""}, {""name"": ""IoT23"", ""role"": ""train_and_test"", ""quote"": ""Our assessmen","[{""name"": ""Aposemat IoT-23 dataset"", ""role"": ""train_and_test"", ""quote"": ""CFBPNN is implemented for the IoT23 and UNSW-NB15 datasets, training the model to classify and detect multi-class attacks and testing for both normal and abnormal classes.""}, {""name"": ""UNSW-NB15 dataset"", ""role"": ""train_and_tes",Aposemat IoT-23 (train_and_test); UNSW-NB15 (train_and_test); X-IIoTID (train_and_test),
+S2008,label_source,scored,agreed_correct,"[""dataset_provided""]","[""dataset_provided""]",dataset_provided,
+S2008,label_feature_overlap,scored,agreed_correct,"""no""","""no""",no,quote_not_verbatim;not_unanimous
+S2008,features_used,free_text,grade by hand,"[""25 input features"", ""45 labeled features"", ""six input features (service, spkts, sbytes, dbytes, ct-srv-src, ct-src-ltm)""]","[""sbytes"", ""service"", ""sttl"", ""ct-st-ltm"", ""ct-srv-src"", ""dbytes"", ""ct-src-ltm"", ""spkts""]","Autoencoder-compressed flow features (25 features for IoT-23, 44 features for UNSW-NB15); risk factor subset (sbytes, sttl, smean, ct_srv_src, dbytes, ct_dst_src_ltm, dmean, sloss)",not_unanimous
+S2008,feature_groups,scored,agreed_correct,"[""G1""]","[""G1""]",G1,
+S2008,cert_fields_read,scored,disputed (human reviews),"""no""","""not_applicable""",not_applicable,not_unanimous
+S2008,fingerprints_used,scored,agreed_correct,"[""none""]","[""none""]",none,
+S2008,tls_versions_stated,scored,agreed_correct,"[""not_stated""]","[""not_stated""]",not_stated,
+S2008,ech_considered,scored,agreed_correct,"""no""","""no""",no,
+S2008,model_family,free_text,grade by hand,"""CFBPNN, Auto Encoder, J48""","""CFBPNN, J48""",Autoencoder + CFBPNN (Cascading Forward Back Propagation Neural Network) + J48 decision tree,quote_not_verbatim;spliced_quote;not_unanimous
+S2008,split_protocols,scored,agreed_correct,"[""random""]","[""random""]",random,
+S2008,main_split,scored,agreed_correct,"""random""","""random""",random,
+S2008,easy_vs_hard_reported,scored,agreed_correct,"""no""","""no""",no,
+S2008,shortcut_check,scored,disputed (human reviews),"[""ablation""]","[""none""]",ablation,
+S2008,metrics,free_text,grade by hand,"[""accuracy"", ""MSE"", ""logarithmic loss"", ""FNR"", ""FPR"", ""precision"", ""recall"", ""F-score""]","[""accuracy"", ""MSE"", ""logarithmic loss"", ""false positive rate"", ""false negative rate"", ""precision"", ""recall"", ""F1 score""]","accuracy, precision, recall, f1, specificity, fpr, fnr, mse, roc",not_unanimous
+S2008,granularity,scored,agreed_WRONG,"""packet""","""packet""",flow,
+S2008,first_n_packets,free_text,grade by hand,"""whole flow""","""whole flow""",whole flow,not_unanimous
+S2008,cost_reported,scored,agreed_correct,"""none""","""none""",none,
+S2008,hardware,free_text,grade by hand,"""none""","""none""",none,
+S2008,code_released,scored,agreed_correct,"""no""","""no""",no,no_link_found
+S2008,data_released,scored,agreed_correct,"""no""","""no""",no,

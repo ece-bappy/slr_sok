@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0664",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "The model employs a convolutional neural network to extract spatial features, capturing abstract high-level characteristics while reducing model parameters. Temporal features are subsequently extracted using BiLSTM, enhancing the model’s ability to analyze sequential patterns over time.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "Stratified Sampling: During train-test splitting (9:1 ratio), we ensure that each class is proportionally represented in both sets, preserving the original distribution while preventing complete omission of rare classes from the training phase.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "A 'flow' specifically denotes a series of packets transmitted from a source IP address and port to a destination IP address and port over a defined time period.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The CICIDS2017 dataset is a feature dataset that contains 15 category feature labels (1 normal label+14 attack labels).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "USTC-TFC2016 (train_and_test); CIC-IDS2017 (train_and_test); {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our mode'}; {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our mode'}",
+      "evidence": "Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our model achieves high accuracy",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "USTC-TFC2016 (train_and_test); CIC-IDS2017 (train_and_test)",
+        "gemini38": "[{'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our mode'}, {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our mode'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The modelemploys a convolutional neural network to extract spatial features, capturing abstract high-level characteristics while reducing model parameters.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "1D-CNN + BiLSTM + Attention",
+      "evidence": "We propose an interpretable and efficient encrypted traffic identification framework that integrates 1D-CNN with BiLSTM and a lightweight self-attention mechanism",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1D-CNN + BiLSTM + Attention",
+        "gemini38": "1D-CNN + BiLSTM + Attention"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "Thesestandardizedandnormalizeddatawerethendividedintoatrainingsetandatestsetina1:9 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our model achieves high accuracy with 0.82 ms inference time per flow",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "packet sequences of bytes",
+      "evidence": "Each flow comprises multiple packets, each containing several bytes. Thus, each flow was represented as x ∈ Rwh, where w represents the number of packets included in a flow, and h denotes the length of each individual packet.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet sequences of bytes",
+        "gemini38": "['packet sequences of bytes']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1 score",
+      "evidence": "This paper utilizes standard evaluation metrics in abnormal flow detection, specifically Accuracy, Precision, Recall, and F1 score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1 score",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1 score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "15 packets",
+      "evidence": "Given that the probability mass function (PMF) indicated a significant decline in variance beyond the fifteenth packet, flows were capped at a maximum of 15 packets per stream.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "15 packets",
+        "gemini38": "15 packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "Stratified Sampling: During train-test splitting (9:1 ratio), we ensure that each class is proportionally represented in both sets, preserving the original distribution while preventing complete omission of rare classes from the training phase.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

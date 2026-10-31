@@ -1,0 +1,79 @@
+id,year,kind,venue,core,sjr_best,sjr_cs,source,top10_cited,rule_A,rule_A_strict
+S0095,2026,journal,Computer Networks,,Q1,Q1,SJR 2025,,yes,yes
+S0097,2026,journal,Computer Networks,,Q1,Q1,SJR 2025,,yes,yes
+S0217,2026,journal,Computer Networks,,Q1,Q1,SJR 2025,,yes,yes
+S0905,2026,journal,Computer Networks,,Q1,Q1,SJR 2025,,yes,yes
+S1228,2025,journal,IEEE Transactions on Information Forensics and Security,,Q1,Q1,SJR 2025,yes,yes,yes
+S1449,2025,journal,Knowledge-Based Systems,,Q1,Q1,SJR 2025,,yes,yes
+S1460,2025,journal,Expert Systems with Applications,,Q1,Q1,SJR 2025,,yes,yes
+S1528,2025,journal,Computer Networks,,Q1,Q1,SJR 2025,,yes,yes
+S1682,2025,journal,Computer Networks,,Q1,Q1,SJR 2025,,yes,yes
+S1717,2025,journal,Computers & Security,,Q1,Q1,SJR 2025,,yes,yes
+S1854,2024,conference,IEEE/IFIP Network Operations and Management Symposium (NOMS),B,,,CORE2023 NOMS,yes,yes,yes
+S1901,2024,journal,Computer Networks,,Q1,Q1,SJR 2024,yes,yes,yes
+S2138,2024,journal,Computer Networks,,Q1,Q1,SJR 2024,,yes,yes
+S2360,2023,journal,IEEE Transactions on Dependable and Secure Computing,,Q1,Q1,SJR 2023,yes,yes,yes
+S2626,2022,journal,IEEE Transactions on Network Science and Engineering,,Q1,Q1,SJR 2023,,yes,yes
+S2672,2022,journal,Computer Networks,,Q1,Q1,SJR 2023,yes,yes,yes
+S3208,2020,conference,"IEEE Intl Conf on Dependable, Autonomic and Secure Computing, Intl Conf on Pervasive Intelligence and Computing, Intl Conf on Cloud and Big Data Computing, Intl Conf on Cyber Science and Technology Congress (DASC/PiCom/CBDCom/CyberSciTech)",C,,,CORE2023 DASC,yes,yes,yes
+S3215,2020,conference,"International Conference on Availability, Reliability and Security (ARES)",not ranked,,,CORE2023,yes,yes,yes
+S3347,2019,journal,IEEE Transactions on Vehicular Technology,,Q1,Q1,SJR 2020,,yes,yes
+S0348,2026,journal,IEEE Internet of Things Journal,,Q1,Q1,SJR 2025,yes,yes,yes
+S0971,2026,journal,arXiv (Cornell University),,not in Scimago,,,yes,yes,yes
+S1155,2025,journal,Computer Networks,,Q1,Q1,SJR 2025,,yes,yes
+S1461,2025,journal,Computer Communications,,Q1,Q1,SJR 2025,,yes,yes
+S1500,2025,journal,EURASIP Journal on Information Security,,Q2,Q2,SJR 2025,yes,yes,yes
+S1502,2025,journal,Journal of Network and Computer Applications,,Q1,Q1,SJR 2025,yes,yes,yes
+S1783,2024,journal,IEEE Open Journal of the Computer Society,,Q1,Q1,SJR 2024,,yes,yes
+S1886,2024,journal,IEEE Transactions on Network and Service Management,,Q1,Q1,SJR 2024,,yes,yes
+S1926,2024,conference,International Symposium on Recent Advances in Intrusion Detection,A,,,CORE2023 RAID,yes,yes,yes
+S1938,2024,conference,International World Wide Web Conference (WWW),A*,,,CORE2023 WWW,,yes,yes
+S2344,2023,conference,"International Symposium on Research in Attacks, Intrusions and Defenses (RAID)",A,,,CORE2023 RAID,yes,yes,yes
+S2611,2022,journal,IEEE Transactions on Information Forensics and Security,,Q1,Q1,SJR 2023,yes,yes,yes
+S2760,2022,journal,IEEE Transactions on Network and Service Management,,Q1,Q1,SJR 2023,yes,yes,yes
+S2958,2021,journal,IEEE Access,,Q1,Q1,SJR 2021,yes,yes,yes
+S3005,2021,journal,IEEE Access,,Q1,Q1,SJR 2021,yes,yes,yes
+S0926,2026,journal,IEEE Transactions on Services Computing,,Q1,Q1,SJR 2025,,yes,yes
+S0932,2026,journal,IEEE Transactions on Networking,,Q1,Q1,SJR 2025,,yes,yes
+S0939,2026,journal,Information Fusion,,Q1,Q1,SJR 2025,,yes,yes
+S0952,2026,journal,IEEE Transactions on Information Forensics and Security,,Q1,Q1,SJR 2025,,yes,yes
+S0995,2025,journal,IEEE Internet of Things Journal,,Q1,Q1,SJR 2025,yes,yes,yes
+S1243,2025,journal,IEEE Internet of Things Journal,,Q1,Q1,SJR 2025,,yes,yes
+S1337,2025,conference,IEEE Conference on Computer Communications,A*,,,CORE2023 INFOCOM,,yes,yes
+S1342,2025,journal,IEEE Transactions on Industrial Informatics,,Q1,Q1,SJR 2025,,yes,yes
+S1940,2024,journal,IEEE/ACM Transactions on Networking,,Q1,Q1,SJR 2024,yes,yes,yes
+S2326,2023,journal,IEEE Transactions on Dependable and Secure Computing,,Q1,Q1,SJR 2023,yes,yes,yes
+S2524,2023,journal,Computers & Security,,Q1,Q1,SJR 2023,,yes,yes
+S2576,2022,journal,Information Sciences,,Q1,Q1,SJR 2023,,yes,yes
+S2800,2022,journal,IEEE Transactions on Network and Service Management,,Q1,Q1,SJR 2023,yes,yes,yes
+S0066,2026,journal,International Journal of Basic and Applied Sciences,,not in Scimago,,,yes,yes,yes
+S0639,2026,conference,ACM Asia Conference on Computer and Communications Security (ASIA CCS),A,,,CORE2023 AsiaCCS,yes,yes,yes
+S0696,2026,journal,Cybersecurity,,Q1,Q1,SJR 2025,yes,yes,yes
+S0928,2026,journal,Future Internet,,Q1,Q1,SJR 2025,yes,yes,yes
+S1132,2025,journal,IEEE Open Journal of the Communications Society,,Q1,Q1,SJR 2025,,yes,yes
+S2338,2023,journal,Computers & Security,,Q1,Q1,SJR 2023,yes,yes,yes
+S2982,2021,journal,IEEE Access,,Q1,Q1,SJR 2021,yes,yes,yes
+S3046,2021,journal,Journal of Network and Computer Applications,,Q1,Q1,SJR 2021,yes,yes,yes
+S3214,2020,journal,Journal of Network and Computer Applications,,Q1,Q1,SJR 2020,,yes,yes
+S3417,2019,journal,Expert Systems with Applications,,Q1,Q1,SJR 2020,yes,yes,yes
+S1042,2025,journal,Frontiers of Computer Science,,Q1,Q1,SJR 2025,,yes,yes
+S1251,2025,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",B,,,CORE2023 TrustCom,,,
+S1357,2025,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",B,,,CORE2023 TrustCom,,,
+S1488,2025,conference,IEEE/ACM International Symposium on Quality of Service (IWQoS),B,,,CORE2023 IWQoS,,,
+S1934,2024,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",B,,,CORE2023 TrustCom,,,
+S1945,2024,conference,"IEEE International Conference on Trust, Security and Privacy in Computing and Communications (TrustCom)",B,,,CORE2023 TrustCom,,,
+S2286,2023,conference,Conference on Local Computer Networks,B,,,CORE2023 LCN,,,
+S2395,2023,journal,Cluster Computing,,Q1,Q1,SJR 2023,,yes,yes
+S2712,2022,conference,Conference on Local Computer Networks,B,,,CORE2023 LCN,,,
+S3059,2021,journal,Journal of Information Security and Applications,,Q1,Q1,SJR 2021,,yes,yes
+S3184,2020,conference,IEEE International Conference on Data Science and Advanced Analytics (DSAA),B,,,CORE2023 DSAA,,,
+S0090,2026,journal,Scientific Reports,,Q1,,SJR 2025,,yes,
+S0397,2026,journal,PLoS ONE,,Q1,,SJR 2025,,yes,
+S0664,2026,journal,ICT Express,,Q1,Q1,SJR 2025,,yes,yes
+S0669,2026,journal,IEEE Access,,Q1,Q1,SJR 2025,,yes,yes
+S0907,2026,journal,High-Confidence Computing,,Q1,Q1,SJR 2025,,yes,yes
+S1163,2025,journal,IEEE Access,,Q1,Q1,SJR 2025,,yes,yes
+S1254,2025,journal,IEEE Access,,Q1,Q1,SJR 2025,,yes,yes
+S2008,2024,journal,Cluster Computing,,Q1,Q1,SJR 2024,,yes,yes
+S2363,2023,journal,IEEE Access,,Q1,Q1,SJR 2023,,yes,yes
+S3326,2020,journal,PLoS ONE,,Q1,,SJR 2020,,yes,

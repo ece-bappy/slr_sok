@@ -1,0 +1,162 @@
+{
+  "paper_id": "S2982",
+  "run": "gemini38",
+  "title": "TGAN-IDS: An Anomaly Detection Framework Using GAN for Encrypted Traffic",
+  "venue": "Computers & Security",
+  "year": 2021,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "Experiments on a mixed dataset which is constructed by CICIDS2017 and other ransomware datasets show"
+        },
+        {
+          "name": "KDD Cup 99",
+          "role": "train_and_test",
+          "quote": "Experiments on a mixed dataset which is constructed by CICIDS2017 and other ransomware datasets show"
+        },
+        {
+          "name": "SWaT",
+          "role": "train_and_test",
+          "quote": "Experiments on a mixed dataset which is constructed by CICIDS2017 and other ransomware datasets show"
+        },
+        {
+          "name": "WADI",
+          "role": "train_and_test",
+          "quote": "Experiments on a mixed dataset which is constructed by CICIDS2017 and other ransomware datasets show"
+        }
+      ],
+      "evidence": "Experiments on a mixed dataset which is constructed by CICIDS2017 and other ransomware datasets show comparing with other deep learning network, such as AlexNet, ResNet and DenseNet etc.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided",
+        "generated"
+      ],
+      "evidence": "Ransomware traffic is collected from the following three websites: Malware-Traffic-Analysis.net [26], PacketTotal [27] and Interactive Online Malware Analysis Sandbox [28].",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Deep learning classifier usually uses two-dimensional image as input, and automatically extracts the non-linear feature to achieve end-to-end classification.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "sequence of byte",
+        "two-dimensional image"
+      ],
+      "evidence": "Network traffic is essentially a sequence of byte. One byte is a two-digit hexadecimal number and the range of corresponding decimal value is 0-255, which is exactly the interval of pixel gray value.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "By arranging from top to bottom, left to right, a session can be converted from a sequence to a two-dimensional image.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "In order to avoid excessive impact coming from IP address, port information and SNI (Server Name Indication) when training the classification model (since the detection model may rely too much on these information), the above information in a session is further filtered.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "1.0",
+        "1.2"
+      ],
+      "evidence": "There are seven classes of ransomware encrypted by TLSv1.0 or TLSv1.2: cerber, cryptowall, gandcrab, locky, shade, teslacrypt, and wannacry.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "DCGAN, CNN, TGAN",
+      "evidence": "In this framework, DCGAN (Deep Convolutional Generative Adversarial Network) is adopted to train a generator which has good performance to generate adversarial sample, and is transferred to the generator of TGAN.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "These data subsets are divided into three parts according to 6:2:2, and mixed to form training set, validation set, and testing set, which are named Dtrain, Dval and Dtest respectively.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "These data subsets are divided into three parts according to 6:2:2, and mixed to form training set, validation set, and testing set, which are named Dtrain, Dval and Dtest respectively.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "These data subsets are divided into three parts according to 6:2:2, and mixed to form training set, validation set, and testing set, which are named Dtrain, Dval and Dtest respectively.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal"
+      ],
+      "evidence": "in order to avoid excessive impact coming from IP address, port information and SNI (Server Name Indication) when training the classification model",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "recall",
+        "precision",
+        "F1-score",
+        "false alarm rate",
+        "AUC"
+      ],
+      "evidence": "TGAN-IDS performs well in the indicators of detection accuracy, recall or F1-score etc.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "In this paper, session is adopted as the meta-data.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "In this paper, session is adopted as the meta-data. A session is constructed based on the five-tuple information [source IP, source port, destination IP, and destination port and transport layer protocol].",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Also, as can be seen from Figure 16, the detection speed of D is faster, only slightly slower than LeNet.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Ubuntu 18.04 64, CPU Core i7-8750H, 8.00GB RAM, GPU NVIDIA GeForce GTX 1060",
+      "evidence": "The operating system is Ubuntu 18.04 64, the CPU is Core i7-8750H, the memory is 8.00GB, the GPU is NVIDIA GeForce GTX 1060, and the development environment is Python 2.7.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:00.027280+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

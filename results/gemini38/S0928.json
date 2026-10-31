@@ -1,0 +1,164 @@
+{
+  "paper_id": "S0928",
+  "run": "gemini38",
+  "title": "TLS-Aware Anomaly Detection for Encrypted IoT Traffic Using a β-Variational Autoencoder with ANOVA–Mutual Information Feature Selection",
+  "venue": "Future Internet",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Bot-IoT",
+          "role": "train_and_test",
+          "quote": "The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s"
+        },
+        {
+          "name": "IoT-23",
+          "role": "test",
+          "quote": "The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s"
+        },
+        {
+          "name": "ToN_IoT",
+          "role": "test",
+          "quote": "The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s"
+        }
+      ],
+      "evidence": "The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset scenarios.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "Three publicly available IoT intrusion datasets are used: the BoT-IoT, IoT-23, and ToN-IoT.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The framework models benign encrypted IoT traffic using probabilistic latent representations and identifies anomalies through reconstruction-error-based scoring.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "TLS versions",
+        "cypher suites",
+        "JA3",
+        "JA3S",
+        "packet-length distributions",
+        "inter-arrival timing patterns",
+        "flow-level statistics",
+        "extensions",
+        "SNI"
+      ],
+      "evidence": "In TLS-aware IoT anomaly detection, this is especially valuable because the model must infer normal and abnormal behaviour from observable metadata such as TLS versions, cypher suites, JA3/JA3S fingerprints, packet-length distributions, and inter-arrival timing patterns, rather than from decrypted packet payloads.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G3",
+        "G5"
+      ],
+      "evidence": "Zeek and CICFlowMeter to construct a unified metadata feature space incorporating flow statistics and TLS attributes such as JA3 and JA3S fingerprints.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "As payload inspection becomes impractical in encrypted environments, anomaly detection must instead rely on flow-level statistics and TLS metadata.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "JA3",
+        "JA3S"
+      ],
+      "evidence": "Zeek (Version 6.0; The Zeek Project, https://zeek.org) [24] is used to extract connection-level logs and TLS metadata, including protocol versions, cypher suites, extensions, server name indication (SNI), and cryptographic fingerprints such as JA3 and JA3S [12].",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "β-Variational Autoencoder (β-VAE)",
+      "evidence": "We introduce a TLS-aware anomaly detection framework that combines a β-Variational Autoencoder (β-VAE) with a hybrid ANOVA–Mutual Information (ANOVA–MI) feature-selection pipeline.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "cross_dataset",
+        "unclear"
+      ],
+      "evidence": "The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset scenarios.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "cross_dataset",
+      "evidence": "The proposed approach is evaluated under both in-dataset and strict cross-dataset conditions using three heterogeneous benchmark datasets (BoT-IoT, IoT-23, and ToN-IoT).",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "The model achieves strong in-dataset performance on BoT-IoT (ROC-AUC ≈0.9996; F1 ≈0.9922) and retains robust anomaly-ranking and threshold-based detection capability under cross-dataset domain shift",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "Relative to the no-selection configuration, all three feature-selection variants substantially improve F1-score across BoT-IoT, IoT-23, and ToN-IoT while reducing the input dimensionality from 30 to 20 features.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "ROC-AUC",
+        "F1-score",
+        "False Positive Rate",
+        "Recall"
+      ],
+      "evidence": "The model achieves strong in-dataset performance on BoT-IoT (ROC-AUC ≈0.9996; F1 ≈0.9922) and retains robust anomaly-ranking and threshold-based detection capability under cross-dataset domain shift",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The per-flow detection model classifies each network flow independently.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Raw PCAP traffic is processed using Zeek and CICFlowMeter to construct a unified metadata feature space incorporating flow statistics and TLS attributes such as JA3 and JA3S fingerprints.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "The latency distribution (Figure 18) shows that the mean per-flow inference time is approximately 161 μs, with a 95th-percentile latency of 236 μs.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "standard CPU (Intel Core i7)",
+      "evidence": "Training time (BoT-IoT) ≈33 s on a standard CPU (Intel Core i7, no GPU required)",
+      "evidence_source": "table"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.424484+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

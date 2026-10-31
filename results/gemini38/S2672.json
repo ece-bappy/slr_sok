@@ -1,0 +1,146 @@
+{
+  "paper_id": "S2672",
+  "run": "gemini38",
+  "title": "Detecting DNS over HTTPS based data exfiltration",
+  "venue": "Computer Networks",
+  "year": 2022,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "lab-generated DoH traffic",
+          "role": "train_and_test",
+          "quote": "We set up three virtual machines running Ubuntu 20.04 as the operating system. Two virtual machines "
+        }
+      ],
+      "evidence": "We set up three virtual machines running Ubuntu 20.04 as the operating system. Two virtual machines are located in Seattle and the other in Singapore. All virtual machines are configured with public IP addresses",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated"
+      ],
+      "evidence": "To configure the DoH tunneling, we register a domain with Godaddy, use the virtual machine in Seattle as the Name Server (NS) for that domain, and run the server-side program of DNSExfiltrator [32] on this virtual machine",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We analyze the features of DoH tunneling, extract flow-based features from encrypted traffic that contain DNS queries/responses, and build classifiers to detect DoH tunneling.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "TLS fingerprints",
+        "TLS record length of queries",
+        "TLS record length of responses",
+        "time intervals"
+      ],
+      "evidence": "TLS fingerprints of DoH clients are first used for providing the preliminary warning, and then flow-based features of the DoH flow are extracted and used by classifiers to accurately detect DoH tunneling.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "We reassemble the DoH traffic trace to flows and extract flow-level statistical features based on the packet size, timestamp, and direction in each flow.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "Therefore, we only focus on unencrypted features from the DoH traffic to perform data exfiltration detection in this work.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "other"
+      ],
+      "evidence": "We perform extensive TLS fingerprinting measurement on clients that currently supports DoH to fill this gap.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Boosted Decision Tree, Random Forest, Logistic Regression",
+      "evidence": "We select three interpretable supervised models: Boosted Decision Tree (DT), Random Forest (RF), and Logistic Regression (LR).",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random",
+        "cross_dataset"
+      ],
+      "evidence": "For the evaluation of flow-based detection, we divide the dataset into a training set and a test set on a 4-to -1 basis.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "For the evaluation of flow-based detection, we divide the dataset into a training set and a test set on a 4-to -1 basis.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "In addition to directly testing the performance of the classifier on the idealized dataset, we also simulate scenarios that are conducive to the attacker to evade detection in experiments",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "In this experiment, we evaluate the performance of classifiers based only on time-related features.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "F1-score"
+      ],
+      "evidence": "The metrics used for testing include accuracy, precision, recall, and F1-score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We reassemble the DoH traffic trace to flows and extract flow-level statistical features based on the packet size, timestamp, and direction in each flow.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We reassemble the DoH traffic trace to flows and extract flow-level statistical features based on the packet size, timestamp, and direction in each flow.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.361174+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

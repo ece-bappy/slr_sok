@@ -1,0 +1,168 @@
+{
+  "paper_id": "S1926",
+  "run": "gemini38",
+  "title": "Extending C2 Traffic Detection Methodologies: From TLS 1.2 to TLS 1.3-enabled Malware",
+  "venue": "International Symposium on Recent Advances in Intrusion Detection",
+  "year": 2024,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Malware-Traffic-Analysis.net (MTA)",
+          "role": "train_and_test",
+          "quote": "The MTA and Tranco datasets were used for classifiers’ training and validation: These datasets are s"
+        },
+        {
+          "name": "Tranco browsing captures (Barradas et al.)",
+          "role": "train_and_test",
+          "quote": "The MTA and Tranco datasets were used for classifiers’ training and validation: These datasets are s"
+        },
+        {
+          "name": "RAID 2024 Metasploit C2 (Barradas et al.)",
+          "role": "train_and_test",
+          "quote": "The MTA and Tranco datasets were used for classifiers’ training and validation: These datasets are s"
+        },
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "test",
+          "quote": "The MTA and Tranco datasets were used for classifiers’ training and validation: These datasets are s"
+        },
+        {
+          "name": "own / private capture",
+          "role": "test",
+          "quote": "The MTA and Tranco datasets were used for classifiers’ training and validation: These datasets are s"
+        }
+      ],
+      "evidence": "The MTA and Tranco datasets were used for classifiers’ training and validation: These datasets are split into training/validation and test sets using stratified group k-fold",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "blocklist_cert",
+        "manual",
+        "generated",
+        "dataset_provided"
+      ],
+      "evidence": "To match with C2 server certificates, we used the SSL Blacklist project’s (SSLBL) [1] list of certificates that are known to be employed by botnet C2 servers. We have also identified additional C2 server certificates manually",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "yes",
+      "evidence": "Considering this key feature, we introduce the classifier C-Cert. This classification works by extracting the certificate chain size in bytes from each TLS session, and using this size as the single feature",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "sequences of TLS records sizes, directions and types",
+        "certificate chain size",
+        "application behavior"
+      ],
+      "evidence": "We present two novel, complementary techniques for inferring information from TLS 1.3 flows, and two classifiers based on said information: certificate size, and patterns in application behavior.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2",
+        "G4"
+      ],
+      "evidence": "For the first experiment, we train classifiers on sequences of TLS records sizes, directions and types.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "In TLS 1.3, an observer can only infer certificate sizes from the size and nature of the TLS records observed.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "1.2",
+        "1.3"
+      ],
+      "evidence": "is it possible to adapt TLS 1.2 detection methodologies for C2 traffic to work with TLS 1.3 flows?",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "yes",
+      "evidence": "We will assume its usage, which further hides information from traffic classification services, to consider stronger adversaries and ECH’s expected standardization and widespread adoption.",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "Decision Tree, Random Forest",
+      "evidence": "For classifiers, we use single decision tree classifiers (DTCs) [13] and Random Forests (RFs) [12].",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random",
+        "host_grouped"
+      ],
+      "evidence": "These datasets are split into training/validation and test sets using stratified group k-fold [55] (SGKF) – maintaining the percentage of samples for each class (C2 vs. non-C2) while making sure that the same group (file from which the flow was obtained) does not appear in both sets.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "These datasets are split into training/validation and test sets using stratified group k-fold [55] (SGKF)",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The datasets are split into training/validation and test sets using stratified group k-fold [55] (SGKF) – maintaining the percentage of samples for each class (C2 vs. non-C2)",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "TNR",
+        "TPR"
+      ],
+      "evidence": "we assess the quality of a classifier by measuring the TNR on benign traffic – to check the rate of false classifications – and the true positive rate on malicious traffic",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We use these flows as our classification object.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "20 records",
+      "evidence": "We extract the size, direction and type of each flow’s first 20 TLS records, accounting for a total of 60 features per flow",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/CarlosANovo/extending12to13']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/CarlosANovo/extending12to13']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.379164+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

@@ -1,0 +1,156 @@
+{
+  "paper_id": "S0971",
+  "run": "gemini38",
+  "title": "When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints",
+  "venue": "arXiv (Cornell University)",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "JA4DB",
+          "role": "train_and_test",
+          "quote": "The dataset used in this study, JA4DB [15], is a community-maintained repository of JA4 fingerprints"
+        }
+      ],
+      "evidence": "The dataset used in this study, JA4DB [15], is a community-maintained repository of JA4 fingerprints collected through two primary strategies",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "controlled captures supply the ground-truth labels required for later real traffic monitoring and collection.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "yes",
+      "evidence": "For the rest of the traffic, entries were marked as “bad bots” if the application field included the term “bot”; otherwise, they were categorized as benign.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "protocol",
+        "TLS version",
+        "SNI presence",
+        "cipher count",
+        "extension count",
+        "ALPN code",
+        "JA4_B",
+        "JA4_C",
+        "application",
+        "OS",
+        "device",
+        "verified flag",
+        "observation count"
+      ],
+      "evidence": "These key features include protocol, TLS version, SNI presence, cipher count, extension count, ALPN code, JA4_B (cipher suite hash), JA4_C (extension/signature hash), as well as meta features from the dataset, such as application, OS, device, verified flag, and observation count.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G3",
+        "G5"
+      ],
+      "evidence": "These key features include protocol, TLS version, SNI presence, cipher count, extension count, ALPN code, JA4_B (cipher suite hash), JA4_C (extension/signature hash), as well as meta features from the dataset, such as application, OS, device, verified flag, and observation count.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "common identifiers such as IP addresses, domains, or certificates easily change or are spoofed; instead of depending on those shifting values, fingerprinting turns the stable, repeatable handshake choices into short signatures",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "JA4"
+      ],
+      "evidence": "This work explores a less intrusive, protocol-level method: using TLS fingerprinting with the JA4 technique to tell apart bots from real users.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "XGBoost, CatBoost",
+      "evidence": "Two gradient-boosted machine learning classifiers (XGBoost and CatBoost) were trained and evaluated on a dataset of real TLS fingerprints (JA4DB)",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "The data was then divided into training and test sets in an 80/20 ratio, utilizing a fixed random seed to ensure consistency",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The data was then divided into training and test sets in an 80/20 ratio, utilizing a fixed random seed to ensure consistency",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "F1 score",
+        "confusion matrices"
+      ],
+      "evidence": "Both models were evaluated on test data using accuracy, precision, recall, F1 score and confusion matrices.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "TLS fingerprinting is a passive network analysis technique used to identify or classify client and server software based on observable characteristics of their TLS handshakes.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "TLS handshake",
+      "evidence": "the method turns visible parts of unencrypted handshake metadata, primarily the Client Hello messages, such as cipher lists, extension sets, and their order, ALPN, and version preferences, into compact signatures like JA3 or JA4",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.431779+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

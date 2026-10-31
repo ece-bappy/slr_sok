@@ -1,0 +1,158 @@
+{
+  "paper_id": "S1886",
+  "run": "gemini38",
+  "title": "EFACTLS: Effective Active TLS Fingerprinting for Large-Scale Server Deployment Characterization",
+  "venue": "IEEE Transactions on Network and Service Management",
+  "year": 2024,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Tranco browsing captures (Barradas et al.)",
+          "role": "train_and_test",
+          "quote": "We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], "
+        },
+        {
+          "name": "SSLBL",
+          "role": "train_and_test",
+          "quote": "We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], "
+        },
+        {
+          "name": "Feodo Tracker",
+          "role": "train_and_test",
+          "quote": "We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], "
+        }
+      ],
+      "evidence": "We used the Tranco [11] top 1M list as the top list. The last 30 days were used for the SSLBL [42], while the current list was utilized for the Feodo Tracker [43].",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "blocklist_cert",
+        "dataset_provided"
+      ],
+      "evidence": "A server was labeled a “C2 server” if its IP address was on the Feodo Tracker or the certificate was on the SSLBL.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We excluded information depending on the current TLS session, a specific server instance, or the TLS certificate.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "TLS version",
+        "selected cipher suite",
+        "received alerts",
+        "TLS extension data",
+        "order of extensions"
+      ],
+      "evidence": "Features are the selected version, cipher suite, received alerts and extension data.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G3"
+      ],
+      "evidence": "For each CH, we collect the TLS version, cipher, and TLS extension data from different types of TLS messages to construct the fingerprint.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "We excluded information depending on the current TLS session, a specific server instance, or the TLS certificate.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "other"
+      ],
+      "evidence": "In this work, we propose a methodology based on active measurements to acquire Transport Layer Security (TLS) metadata from servers and leverage it for fingerprinting.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "evidence": "We only initiate handshakes with TLS versions 1.0 to 1.3 but construct a fingerprint from any version the server sends as a response.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "threshold-based classifier",
+      "evidence": "This work uses a threshold-based classifier to implement different active TLS fingerprinting use cases.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "temporal"
+      ],
+      "evidence": "It was trained with the data from weeks [1..n] and evaluated using the data from week n + 1.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "temporal",
+      "evidence": "It was trained with the data from weeks [1..n] and evaluated using the data from week n + 1.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "The Status Request extension was nondeterministic in our measurements (Section V-B); therefore, we removed the extension from the fingerprints, trading the information about the OCSP stapling support of a server for consistency.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "precision",
+        "recall"
+      ],
+      "evidence": "Well-known classification metrics allow the evaluation of this classifier, particularly precision and recall.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "host",
+      "evidence": "In this work, we propose a methodology based on active measurements to acquire Transport Layer Security (TLS) metadata from servers and leverage it for fingerprinting.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "10 Client Hellos",
+      "evidence": "We generated 10 general-purpose Client Hellos. They served as scanning probes to create an extensive database of TLS configurations to classify servers.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://tumi8.github.io/active-tls-fingerprinting/TABLE', 'https://tumi8.github.io/active-tls-fingerprinting/', 'https://github.com/tumi8/goscanner']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://tumi8.github.io/active-tls-fingerprinting/TABLE', 'https://tumi8.github.io/active-tls-fingerprinting/', 'https://github.com/tumi8/goscanner']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.376294+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

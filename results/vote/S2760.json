@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2760",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "We extract traffic features from captured HTTPS traffic, such as packet number, packet length, packet direction (e.g., end client to DoH server and vice versa), interval time between packets, etc.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/doh-trafficdataset/DoH-Tunnel-Traffic-HKD']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "To evaluate the classification results, we used stratified 10-fold cross-validation, splitting the training and test data into a 9:1 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "TABLE III LABELS AND TRAFFIC FLOWS FROM CIRA-CIC-DOHBRW-2020 DATASET.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided; generated",
+      "evidence": "The traffic flows of emerging malicious DNS tunnel tools in Table IV, detailed in Section III-C, were captured by running each tunnel tool for 48 hours and then augmented",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided; generated",
+        "gemini38": "['dataset_provided', 'generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "However, the packet payload is excluded because it is encrypted.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (train_and_test); {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'We used two evaluation datasets: the CIRA-CIC-DoHBrw-2020 [27] and the DoH-Tunnel-Traffic-HKD [40].'}; {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'train_and_test', 'quote': 'We used two evaluation datasets: the CIRA-CIC-DoHBrw-2020 [27] and the DoH-Tunnel-Traffic-HKD [40].'}",
+      "evidence": "We used two evaluation datasets: the CIRA-CIC-DoHBrw-2020 [27] and the DoH-Tunnel-Traffic-HKD [40].",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIRA-CIC-DoHBrw-2020 (train_and_test); DoH-Tunnel-Traffic-HKD (train_and_test)",
+        "gemini38": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'We used two evaluation datasets: the CIRA-CIC-DoHBrw-2020 [27] and the DoH-Tunnel-Traffic-HKD [40].'}, {'name': 'DoH-Tunnel-Traffic-HKD', 'role': 'train_and_test', 'quote': 'We used two evaluation datasets: the CIRA-CIC-DoHBrw-2020 [27] and the DoH-Tunnel-Traffic-HKD [40].'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We extract traffic features from captured HTTPS traffic, such as packet number, packet length, packet direction (e.g., end client to DoH server and vice versa), interval time between packets, etc.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Gradient boosting decision tree",
+      "evidence": "The proposed system uses the XGBoost, LightGBM, and CatBoost libraries that include the gradient boosting decision tree (GBDT) algorithm.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Gradient boosting decision tree",
+        "gemini38": "Gradient boosting decision tree"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "statistical traffic features",
+      "evidence": "It extracts 34 traffic features from HTTPS traffic, as shown in Table I, and we selected 28 statistical features for evaluation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "statistical traffic features",
+        "gemini38": "['statistical traffic features']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; recall; precision; F-score",
+      "evidence": "We also used accuracy, recall, precision, and F-score metrics to measure classification accuracy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; recall; precision; F-score",
+        "gemini38": "['accuracy', 'recall', 'precision', 'F-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "It extracts 34 traffic features from HTTPS traffic, as shown in Table I, and we selected 28 statistical features for evaluation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "['https://github.com/doh-trafficdataset/DoH-Tunnel-Traffic-HKD']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "To evaluate the classification results, we used stratified 10-fold cross-validation, splitting the training and test data into a 9:1 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

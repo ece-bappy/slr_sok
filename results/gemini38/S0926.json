@@ -1,0 +1,167 @@
+{
+  "paper_id": "S0926",
+  "run": "gemini38",
+  "title": "Time Will Tell: Criss-Cross Transformer for Encrypted Traffic Analysis",
+  "venue": "IEEE Transactions on Services Computing",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train_and_test",
+          "quote": "We evaluate CTT’s performance using 5 real-world datasets: 3 for fingerprinting attacks and 2 for ma"
+        },
+        {
+          "name": "ISCX Tor-nonTor 2016",
+          "role": "train_and_test",
+          "quote": "We evaluate CTT’s performance using 5 real-world datasets: 3 for fingerprinting attacks and 2 for ma"
+        },
+        {
+          "name": "CSTNET-TLS1.3",
+          "role": "train_and_test",
+          "quote": "We evaluate CTT’s performance using 5 real-world datasets: 3 for fingerprinting attacks and 2 for ma"
+        },
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "We evaluate CTT’s performance using 5 real-world datasets: 3 for fingerprinting attacks and 2 for ma"
+        },
+        {
+          "name": "CIC-IoT2022",
+          "role": "train_and_test",
+          "quote": "We evaluate CTT’s performance using 5 real-world datasets: 3 for fingerprinting attacks and 2 for ma"
+        }
+      ],
+      "evidence": "We evaluate CTT’s performance using 5 real-world datasets: 3 for fingerprinting attacks and 2 for malware detection.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "We evaluate CTT’s performance using 5 real-world datasets: 3 for fingerprinting attacks and 2 for malware detection.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We construct multivariate feature series with Tranalyzer2 [37], including session and flow identifiers",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "minPktSz",
+        "maxPktSz",
+        "minIAT",
+        "numPktRevd"
+      ],
+      "evidence": "We characterize real-world encrypted traffic in dataset ISCX-VPN2016 [41] by extracting features from its flows (minPktSz, maxPktSz, minIAT, numPktRevd), and generate a multivariate feature series.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "We characterize real-world encrypted traffic in dataset ISCX-VPN2016 [41] by extracting features from its flows (minPktSz, maxPktSz, minIAT, numPktRevd), and generate a multivariate feature series.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "Due to the encryption, observable features of encrypted packets are restricted. Common features include the source/destination IP, source/destination port, packet size, packet payload size, etc.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "1.3"
+      ],
+      "evidence": "CSTNETTLS1.3 [15] is designed for website fingerprinting attacks over the TLS 1.3 protocol.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Transformer",
+      "evidence": "CTT is a specialized time series Transformer [17], [18] tailored to efficiently capture both short-term and long-term temporal correlations within encrypted traffic.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random",
+        "host_grouped"
+      ],
+      "evidence": "mitigating class imbalance through stratified downsampling based on session or flow IDs; and (3) train-test-validation set split with a 70:20:10 ratio, ensuring that each session appears exclusively in one subset to prevent information leakage.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "host_grouped",
+      "evidence": "ensuring that each session appears exclusively in one subset to prevent information leakage.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "we follow a unified pipeline consisting of 3 main steps: (1) constructing multivariate feature series with Tranalyzer2 [37], including session and flow identifiers; (2) mitigating class imbalance through stratified downsampling; and (3) train-test-validation set split with a 70:20:10 ratio.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "To elucidate the methodological source of CTT’s robustness, we conducted a feature study on the ISCX-Tor2016 dataset for the p2f level classification task. We systematically excluded key packet-level features",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "recall",
+        "precision",
+        "F1-score"
+      ],
+      "evidence": "Four widely recognized evaluation metrics, accuracy (ACC), recall (REC), precision (PRE), and F1-score (F1), are employed to assess the classification and forecasting performance.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "CTT is designed to deliver a unified framework that accommodates various analytical levels for encrypted traffic analysis, including packet-level, flow-level, and packet-to-flow (p2f) level",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The forecasting task also operates on a finite flow-level or packet-level feature series→x = {x1, . . . , xL}, serving as input.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/Amanda-HuaDing/Criss-cross_Traffic_Transformer']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/Amanda-HuaDing/Criss-cross_Traffic_Transformer']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.423005+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

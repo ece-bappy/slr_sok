@@ -1,0 +1,164 @@
+{
+  "paper_id": "S1682",
+  "run": "gemini38",
+  "title": "Towards effective black-box attacks on DoH tunnel detection systems",
+  "venue": "Computer Networks",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at"
+        },
+        {
+          "name": "DoH-Tunnel-Traffic-HKD",
+          "role": "train_and_test",
+          "quote": "We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at"
+        },
+        {
+          "name": "large-scale benign DoH data",
+          "role": "train_and_test",
+          "quote": "We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at"
+        },
+        {
+          "name": "own / private capture",
+          "role": "train_and_test",
+          "quote": "We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial at"
+        }
+      ],
+      "evidence": "We evaluate the efficacy of the proposed black-box attack framework in the context of adversarial attacks targeting the DoH tunnel intrusion scenario, utilizing a comprehensive dataset comprising CIRA-CIC-DoHBrw-2020, DoH-Tunnel-Traffic-HKD, and large-scale benign DoH data.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided",
+        "other"
+      ],
+      "evidence": "Using a publicly curated list of mainstream DoH server IP addresses, the captured traffic is subsequently labeled as benign DoH or non-DoH HTTPS.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "To prevent information leakage, we remove five features: Source IP, Destination IP, Source Port, Destination Port, and Timestamp.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "Rate-based features",
+        "Length-based features",
+        "Packet time-based features",
+        "Request/response time-based features"
+      ],
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "evidence_source": "table"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "evidence_source": "table"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "evidence_source": "table"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "Table 1 Statistical features extracted from DoH traffic.",
+      "evidence_source": "table"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "KNN, SVM, RF, DT, LightGBM, CatBoost, XGBoost, MLP",
+      "evidence": "we employ 7 classic and widely-used machine learning algorithms, including KNN, SVM, RF, DT, LightGBM, CatBoost, and XGBoost.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "First, the entire dataset is divided into training and testing sets using an 80:20 ratio.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "First, the entire dataset is divided into training and testing sets using an 80:20 ratio.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal"
+      ],
+      "evidence": "To prevent information leakage, we remove five features: Source IP, Destination IP, Source Port, Destination Port, and Timestamp.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Precision",
+        "Recall",
+        "F1-Score",
+        "Authenticity Pass Rate (APR)",
+        "Evasion Rate (ER)",
+        "Attack Success Rate (ASR)"
+      ],
+      "evidence": "We evaluate the performance of the ML-based NIDSs using standard evaluation metrics: Accuracy, Precision, Recall, and F1-Score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Current methodologies for detecting DoH tunnels predominantly utilize ML models in conjunction with feature extraction techniques, treating flow-level features as the primary detection criterion.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We use the DoHlyzer tool to extract the flow-level features described in Section 3.2.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.405266+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

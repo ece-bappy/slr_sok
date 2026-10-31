@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2344",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal; ablation",
+      "evidence": "Concretely, we anonymize the burst by removing the MAC address, IP address, and port fields from each packet header. Anonymity is essential, as bursts from the same flow category may share identical addresses or ports",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal; ablation",
+        "gemini38": "['identifier_removal', 'ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "nan",
+        "gemini38": "['none']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/NLear/Flow-MAE']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "Anonymous TCP and UDP sessions from each class are selected to create labeled burst datasets, which are then divided into training and testing sets in an 9:1 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "We select the burst as the fundamental unit for malicious traffic classification",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet",
+        "gemini38": "packet"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "traditional rule or fingerprint-based approaches",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The experiments are conducted using the following datasets, as summarized in Table 2:",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Flow-MAE model utilizes both packet header and payload to generate the bursts as input",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "ISCX VPN-nonVPN 2016 (train_and_test); {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'The experiments are conducted using the following datasets, as summarized in Table 2:'}",
+      "evidence": "The experiments are conducted using the following datasets, as summarized in Table 2:",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "CSE-CIC-IDS2018 (train_and_test); USTC-TFC2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); ISCX Tor-nonTor 2016 (train_and_test); Cross-Platform (Android) (train_and_test)",
+        "gemini38": "[{'name': 'CSE-CIC-IDS2018', 'role': 'train_and_test', 'quote': 'The experiments are conducted using the following datasets, as summarized in Table 2:'}, {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'The experiments are conducted using the following datasets, as summarized in Table 2:'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'The experiments are conducted using the following datasets, as summarized in Table 2:'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'The experiments are conducted using the following datasets, as summarized in Table 2:'}, {'name': 'ISCX Tor-nonTor 2016', 'role': 'train_and_test', 'quote': 'The experiments are conducted using the following datasets, as summarized in Table 2:'}, {'name': 'Cross-Platform (Android)', 'role': 'train_and_test', 'quote': 'The experiments are conducted using the following datasets, as summarized in Table 2:'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Concretely, we anonymize the burst by removing the MAC address, IP address, and port fields from each packet header.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Masked AutoEncoder (MAE)",
+      "evidence": "Flow-MAE, a pre-training model that employs Masked AutoEncoders (MAE) from the Computer Vision domain to achieve accurate, efficient, and robust malicious network traffic classification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Masked AutoEncoder (MAE)",
+        "gemini38": "Masked AutoEncoder (MAE)"
+      }
+    },
+    "hardware": {
+      "value": "i7-12700K CPU, 64 GB DDR5 DRAM, and two NVIDIA GeForce 3090Ti GPUs",
+      "evidence": "All experiments were conducted on a testbed equipped with an i7-12700K CPU (8 P-cores @4.7GHz and 4 E-cores @3.6GHz), 64 GB DDR5 DRAM (@6000MT/s), and two NVIDIA GeForce 3090Ti GPUs (24 GB of GDDR6X memory each).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "i7-12700K CPU, 64 GB DDR5 DRAM, and two NVIDIA GeForce 3090Ti GPUs",
+        "gemini38": "i7-12700K CPU, 64 GB DDR5 DRAM, and two NVIDIA GeForce 3090Ti GPUs"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "Anonymous TCP and UDP sessions from each class are selected to create labeled burst datasets, which are then divided into training and testing sets in an 9:1 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Experimental results from six datasets reveal that Flow-MAE achieves new state-of-the-art accuracy (>0.99), efficiency (>900 samples/s)",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "packet header; packet payload",
+      "evidence": "Flow-MAE model utilizes both packet header and payload to generate the bursts as input",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet header; packet payload",
+        "gemini38": "['packet header', 'packet payload']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-score",
+      "evidence": "We evaluate the performance of Flow-MAE using four typical metrics in the literature: Accuracy (AC), Precision (PR), Recall (RC), and F1-score (F1).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-score",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We select the burst as the fundamental unit for malicious traffic classification and preprocess the traffic in three distinct phases",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/NLear/Flow-MAE']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "Anonymous TCP and UDP sessions from each class are selected to create labeled burst datasets, which are then divided into training and testing sets in an 9:1 ratio.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

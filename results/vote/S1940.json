@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1940",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "Moreover, our ablation study shows that the different threshold settings incur at most 5.2% accuracy loss.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "We extract five features to profile the components, including: (i) the number of long flows; (ii) the number of short flows; (iii) the number of edges denoting short flows; (iv) the number of bytes in long flows; and (v) the number of bytes in short flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "We conduct four-fold cross validation to avoid overfitting and hyper-parameter bias. Specifically, the datasets are equally partitioned into four subsets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "In particular, it can detect encrypted malicious flows with unknown patterns by identifying abnormal flow interactions, i.e., the interaction patterns that are distinct from benign ones.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated; dataset_provided",
+      "evidence": "We generate the malicious traffic by constructing real attacks or replaying the existing traces in our testbed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated; dataset_provided",
+        "gemini38": "['generated', 'dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Different from existing methods, we do not analyze protocol specific features (e.g., fields in TLS headers) to achieve generic detection for various protocols.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "own / private capture (test); Kitsune (test); CIC-DDoS2019 (test); CIC-IDS2017 (test); MAWI (test); {'name': 'own / private capture', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}; {'name': 'Kitsune', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}; {'name': 'CIC-DDoS2019', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}; {'name': 'CIC-IDS2017', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}; {'name': 'MAWI', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}",
+      "evidence": "To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets collected in our virtual private cloud (VPC) with more than 1,500 instances.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "own / private capture (test); Kitsune (test); CIC-DDoS2019 (test); CIC-IDS2017 (test); MAWI (test)",
+        "gemini38": "[{'name': 'own / private capture', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}, {'name': 'Kitsune', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}, {'name': 'CIC-DDoS2019', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}, {'name': 'CIC-IDS2017', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}, {'name': 'MAWI', 'role': 'test', 'quote': 'To extensively evaluate the prototype, we replayed 92 attack datasets including 80 new datasets coll'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Meanwhile, by learning the graph structural features, it realizes unsupervised detection, which does not require model training with labeled datasets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "unsupervised graph learning",
+      "evidence": "We develop an unsupervised graph learning method to detect abnormal interaction patterns by analyzing the graph features",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unsupervised graph learning",
+        "gemini38": "unsupervised graph learning"
+      }
+    },
+    "hardware": {
+      "value": "DELL servers (PowerEdge R410, produced in 2012) with two Intel Xeon E5645 CPUs (2 × 12 cores), Ubuntu 20.04.2 (Linux 5.11.0), Docker 20.10.7, 24GB memory, one Intel 82599ES 10 Gb/s NIC",
+      "evidence": "We deploy HyperVision on a testbed built upon DELL servers (PowerEdge R410, produced in 2012) with two Intel Xeon E5645 CPUs (2 × 12 cores), Ubuntu 20.04.2 (Linux 5.11.0), Docker 20.10.7, 24GB memory, one Intel 82599ES 10 Gb/s NIC",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "DELL servers (PowerEdge R410, produced in 2012) with two Intel Xeon E5645 CPUs (2 × 12 cores), Ubuntu 20.04.2 (Linux 5.11.0), Docker 20.10.7, 24GB memory, one Intel 82599ES 10 Gb/s NIC",
+        "gemini38": "DELL servers (PowerEdge R410, produced in 2012) with two Intel Xeon E5645 CPUs (2 × 12 cores), Ubuntu 20.04.2 (Linux 5.11.0), Docker 20.10.7, 24GB memory, one Intel 82599ES 10 Gb/s NIC"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Moreover, HyperVision achieves 15.82 Mpps detection throughput with the average detection latency of 0.29s.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "flow-level statistics; graph structural features",
+      "evidence": "We poll the per-packet information from a data-plane high-speed packet parsing engine and obtain their source and destination addresses, port numbers, and per-packet features, including protocols, lengths, and arrival intervals.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "per-packet features (protocols, lengths, and arrival intervals); flow-level statistics; graph structural features",
+        "gemini38": "['per-packet features (protocols, lengths, and arrival intervals)', 'flow-level statistics', 'graph structural features']"
+      }
+    },
+    "metrics": {
+      "value": "AUC; F1 score; F2; accuracy; precision; recall; EER; FPR",
+      "evidence": "We mainly use AUC (i.e., the area under a receiver operating characteristic curve) and F1 score because they are most widely used in the literature",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "AUC; F1 score; F2; accuracy; precision; recall; EER; FPR",
+        "gemini38": "['AUC', 'F1 score', 'F2', 'accuracy', 'precision', 'recall', 'EER', 'FPR']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Specifically, it aggregates the short flows based on the similarity of massive short flows on the Internet, which reduces the density of the graph, and extracts distribution based features for long flows, which can effectively preserve flow interaction information.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We conduct four-fold cross validation to avoid overfitting and hyper-parameter bias.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

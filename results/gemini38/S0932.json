@@ -1,0 +1,156 @@
+{
+  "paper_id": "S0932",
+  "run": "gemini38",
+  "title": "Toward Robust Detection of Malicious Encrypted Traffic Using Only Low-Quality Training Data",
+  "venue": "IEEE Transactions on Networking",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "We evaluate our system on two public datasets and one combined dataset."
+        },
+        {
+          "name": "CSE-CIC-IDS2018",
+          "role": "train_and_test",
+          "quote": "We evaluate our system on two public datasets and one combined dataset."
+        },
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "We evaluate our system on two public datasets and one combined dataset."
+        },
+        {
+          "name": "own / private capture",
+          "role": "train_and_test",
+          "quote": "We evaluate our system on two public datasets and one combined dataset."
+        }
+      ],
+      "evidence": "We evaluate our system on two public datasets and one combined dataset.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The inputs of a detection system are a low-quality training set eDtrain = {(xi, eyi)}Ni=1 where N ≪|Dtest| and eyi is a noisy label that may be inconsistent with yi.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The feature extraction module utilizes a Transformer model to convert encrypted traffic into feature vectors that capture the comprehensive behavior of the traffic",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "sequence of packet lengths"
+      ],
+      "evidence": "We first divide raw encrypted traffic into network flows based on the five-tuple information and use the sequence of packet lengths of each flow as the input data for feature extraction",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "We first divide raw encrypted traffic into network flows based on the five-tuple information and use the sequence of packet lengths of each flow as the input data for feature extraction",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Transformer, GAN, MLP",
+      "evidence": "Finally, our system utilizes a DL-based detector built upon Co-teaching [32] and a Multilayer Perceptron (MLP) that is trained on the synthesized and the label-corrected original training data.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "Each size represents the number of malicious and normal training samples randomly selected from T1 in each experiment.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "Each size represents the number of malicious and normal training samples randomly selected from T1 in each experiment.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "precision",
+        "recall",
+        "F1 score"
+      ],
+      "evidence": "We utilize three common metrics to evaluate the performance of our detection system, including precision, recall, and F1 score, which is consistent with the prior work.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We first divide raw encrypted traffic into network flows based on the five-tuple information and use the sequence of packet lengths of each flow as the input data for feature extraction",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We use l = [l1, l2, . . . , ln] to denote the packet length sequence of n packets in a flow, where li is the length of the i-th packet.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "After training, our system supports low-latency and high-throughput inference, with a latency of 2ms and a throughput of over 42, 000 network flows per second, making it suitable for real-time deployment.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Linux server (6.5.0-41-generic) with Intel(R) Xeon(R) Gold 6258R CPU and NVIDIA GeForce RTX 4090 GPU",
+      "evidence": "We run these models on a Linux server (6.5.0-41-generic) with Intel(R) Xeon(R) Gold 6258R CPU and NVIDIA GeForce RTX 4090 GPU.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.425855+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

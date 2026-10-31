@@ -1,0 +1,149 @@
+{
+  "paper_id": "S2611",
+  "run": "gemini38",
+  "title": "An Explainable AI-Based Intrusion Detection System for DNS Over HTTPS (DoH) Attacks",
+  "venue": "IEEE Transactions on Information Forensics and Security",
+  "year": 2022,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "We have used the publicly available CIRA-CIC-DoHBrw-2020 dataset for developing an accurate solution"
+        }
+      ],
+      "evidence": "We have used the publicly available CIRA-CIC-DoHBrw-2020 dataset for developing an accurate solution to detect and classify the DNS over HTTPS attacks.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "For experimenting, we have used the publicly available CIRA-CIC-DoHBrw-2020 dataset[8] from the Canadian Institute for Cybersecurity (CIC).",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The features of this dataset can be divided into multiple broad categories. Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "duration of the flow",
+        "number of packets",
+        "total bytes sent and received",
+        "packet length mean",
+        "packet length variance",
+        "packet time",
+        "inter-packet delay"
+      ],
+      "evidence": "Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed. Therefore, we have used the statistical features of the packets to analyze the traffic in detail.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed.",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "Balanced Stacked Random Forest",
+      "evidence": "We have proposed a Balanced Stacked Random forest classifier for this task.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "The dataset has been split into training and testing sets of 90%, and 10% respectively.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The dataset has been split into training and testing sets of 90%, and 10% respectively.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1-score",
+        "auc"
+      ],
+      "evidence": "For that, we have reported the scores such as accuracy, precision, recall, Area Under the ROC Curve (AUC), and F1-scores since these are directly comparable with other studies.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The duration of a network flow is a feature clearly distinguishing malicious DoH from non-DoH, with DoH flows having comparatively longer duration.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/TZebin/DoH-Attack-explainer']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/TZebin/DoH-Attack-explainer']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.358441+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

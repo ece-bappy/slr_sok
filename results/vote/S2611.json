@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2611",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/TZebin/DoH-Attack-explainer']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "The dataset has been split into training and testing sets of 90%, and 10% respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed. Therefore, we have used the statistical features of the packets to analyze the traffic in detail.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "For experimenting, we have used the publicly available CIRA-CIC-DoHBrw-2020 dataset[8] from the Canadian Institute for Cybersecurity (CIC).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIRA-CIC-DoHBrw-2020 (train_and_test); {'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'We have used the publicly available CIRA-CIC-DoHBrw-2020 dataset for developing an accurate solution'}",
+      "evidence": "We have used the publicly available CIRA-CIC-DoHBrw-2020 dataset for developing an accurate solution to detect and classify the DNS over HTTPS attacks.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIRA-CIC-DoHBrw-2020 (train_and_test)",
+        "gemini38": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'We have used the publicly available CIRA-CIC-DoHBrw-2020 dataset for developing an accurate solution'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The features of this dataset can be divided into multiple broad categories. Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Balanced Stacked Random Forest",
+      "evidence": "We have proposed a Balanced Stacked Random forest classifier for this task.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Balanced Stacked Random Forest",
+        "gemini38": "Balanced Stacked Random Forest"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "duration of the flow; number of packets; total bytes sent and received; packet length mean; packet length variance; packet time; inter-packet delay",
+      "evidence": "Flow Statistics is one of the categories containing features such as the duration of the flow and the number of packets sent or received in that flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "duration of the flow; number of packets; total bytes sent and received; packet length mean; packet length variance; packet time; inter-packet delay",
+        "gemini38": "['duration of the flow', 'number of packets', 'total bytes sent and received', 'packet length mean', 'packet length variance', 'packet time', 'inter-packet delay']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; f1-score; auc",
+      "evidence": "For that, we have reported the scores such as accuracy, precision, recall, Area Under the ROC Curve (AUC), and F1-scores since these are directly comparable with other studies.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; f1-score; auc",
+        "gemini38": "['accuracy', 'precision', 'recall', 'f1-score', 'auc']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "The payload of DoH traffic is encrypted; thus, its content cannot be accessed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The duration of a network flow is a feature clearly distinguishing malicious DoH from non-DoH, with DoH flows having comparatively longer duration.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/TZebin/DoH-Attack-explainer']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The dataset has been split into training and testing sets of 90%, and 10% respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

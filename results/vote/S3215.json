@@ -1,0 +1,195 @@
+{
+  "paper_id": "S3215",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "Our analysis is based on bidirectional IP Flows extended with per-packet information (PPI). Besides the traditional IP Flow information (such as IP addresses, ports, and the amount of transferred data), we also have lengths of individual packets and their timestamps.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://doi.org/10.5281/zenodo']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "We used 5-Fold cross-validation to evaluate the precision of each algorithm.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Our analysis is based on bidirectional IP Flows extended with per-packet information (PPI).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated",
+      "evidence": "The DoH labels were reliably completed according to our knowledge of proxy setup and, for manually generated traffic, according to known IP addresses of the DoH services and target HTTPS servers.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated",
+        "gemini38": "['generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Our analysis is based on bidirectional IP Flows extended with per-packet information (PPI).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Mozilla Firefox 73.01 Lin. (train_and_test); Google Chrome 81.0.4044.129 Win. (train_and_test); Cloudfared 2020.2.0 Lin. (train_and_test); {'name': 'Authors own DoH and regular HTTPS dataset (captured from Chrome, Firefox, cloudflared, and campus network)', 'role': 'train_and_test', 'quote': 'we created our own and made it publicly available on the Zenodo platform [30].'}",
+      "evidence": "For our evaluation, we used the dataset described in Sec. 4, and standard ML tools/libraries implemented in Python",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Mozilla Firefox 73.01 Lin. (train_and_test); Google Chrome 81.0.4044.129 Win. (train_and_test); Cloudfared 2020.2.0 Lin. (train_and_test)",
+        "gemini38": "[{'name': 'Authors own DoH and regular HTTPS dataset (captured from Chrome, Firefox, cloudflared, and campus network)', 'role': 'train_and_test', 'quote': 'we created our own and made it publicly available on the Zenodo platform [30].'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "In total, we have identified and tested 19 traffic features. After calculating the feature importance with the Gini index, we reduced the feature list to the final 18 features for DoH recognition, and 9 features for DoH client classification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "K-Nearest Neighbours, C4.5 Decision Tree, Random Forest, Naive Bayes, Ada-boosted Decision Tree",
+      "evidence": "We evaluated five popular ML methods to find the best DoH classifiers: K-Nearest Neighbours [29] (We use 5-NN in our study), C4.5 Decision Tree [27], Random Forest [17], Naive Bayes [8], and Ada-boosted Decision Tree [14].",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "K-Nearest Neighbours, C4.5 Decision Tree, Random Forest, Naive Bayes, Ada-boosted Decision Tree",
+        "gemini38": "Random Forest; Decision Tree (C4.5); AdaBoost; k-NN; Naive Bayes"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "duration; minIntrPckDelay; maxIntrPckDelay; avgIntrPckDelay; varPktSizeIn; varPktSizeOut; bytesInoutRatio; pktsInoutRatio; avgPktSizeIn; avgPktSizeOut; medianPktSizeIn; medianPktSizeOut; burstPausesRatio; pktInBursts; pktInPauses; autocorrelation; symmetry-1thrd; symmetry-2thrd; symmetry-3thrd; Bidirectional IP flows with Per-Packet Information (PPI): packet lengths, timestamps, flow duration, transferred bytes, packet size variance, inter-packet arrival time variance",
+      "evidence": "Table 2: Importance of the evaluated features. The features with importance typed in bold font were included in a feature vector of the corresponding usage.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "duration; minIntrPckDelay; maxIntrPckDelay; avgIntrPckDelay; varPktSizeIn; varPktSizeOut; bytesInoutRatio; pktsInoutRatio; avgPktSizeIn; avgPktSizeOut; medianPktSizeIn; medianPktSizeOut; burstPausesRatio; pktInBursts; pktInPauses; autocorrelation; symmetry-1thrd; symmetry-2thrd; symmetry-3thrd",
+        "gemini38": "['Bidirectional IP flows with Per-Packet Information (PPI): packet lengths, timestamps, flow duration, transferred bytes, packet size variance, inter-packet arrival time variance']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision",
+      "evidence": "The trained model achieved an excellent result of 99.6 % accuracy with an F1 score of 0.996.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; F1 score",
+        "gemini38": "['accuracy', 'precision', 'f1']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The most significant difference between DoH and classic HTTPS is the duration of the flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "['https://doi.org/10.5281/zenodo']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We used 5-Fold cross-validation to evaluate the precision of each algorithm.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

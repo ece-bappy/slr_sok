@@ -1,0 +1,147 @@
+{
+  "paper_id": "S2958",
+  "run": "gemini38",
+  "title": "Malicious SSL Traffic Detection Method Based on LSTM Autoencoder and Convolutional Neural Network",
+  "venue": "IEEE Access",
+  "year": 2021,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "MTAN",
+          "role": "train_and_test",
+          "quote": "To estimate the effectiveness of the proposed detection method, we obtained two separate datasets in"
+        },
+        {
+          "name": "CTU",
+          "role": "train_and_test",
+          "quote": "To estimate the effectiveness of the proposed detection method, we obtained two separate datasets in"
+        }
+      ],
+      "evidence": "To estimate the effectiveness of the proposed detection method, we obtained two separate datasets introduced in Table 1.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "manual",
+        "dataset_provided"
+      ],
+      "evidence": "It provides Indicators of Compromise associated with post-infection traffic caused by either a malicious binary or a legitimate server; so, we labeled each domain name and traffic flow according to their antivirus scan result reported by Virustotal",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "In this paper, we propose a novel malicious SSL traffic detection method, which reassembles SSL records from captured IP packets and inspects the characteristics of SSL records using a deep learning method.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "unencrypted contents of the reassembled record",
+        "sequence of unencrypted data from successive SSL records"
+      ],
+      "evidence": "After an SSL record is reassembled from a single or multiple IP packets, the proposed method extracts unencrypted contents of the reassembled record and generates a sequence of unencrypted data from successive SSL records for deep learning-based classification.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "In this paper, we propose a novel malicious SSL traffic detection method, which reassembles SSL records from captured IP packets and inspects the characteristics of SSL records using a deep learning method.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "The record header is always transparent, whereas the record payload following the header might be an encrypted region uninformative for the traffic classification task.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "LSTM autoencoder and CNN",
+      "evidence": "we choose the combination of a long short-term memory (LSTM) autoencoder and a CNN classifier for malicious traffic detection.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "For the training of the classifier, we shuffled the whole dataset randomly and conducted 10-fold cross-validation.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "For the training of the classifier, we shuffled the whole dataset randomly and conducted 10-fold cross-validation.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "For the training of the classifier, we shuffled the whole dataset randomly and conducted 10-fold cross-validation.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "detection rate",
+        "false positive rate"
+      ],
+      "evidence": "We chose two metrics for evaluation, detection rate (DR) and false positive rate (FPR) because our main task was a binary classification on samples tagged with '1' (malicious) or '0' (benign).",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We define an SSL flow by a series of SSL records instead of a set of packets with the same source/destination addresses and port numbers.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "32 records",
+      "evidence": "In the case of n (Figure 9a), we achieved the most outstanding DR (0.994) and FPR (0.002) when n = 32 and the other values are fixed",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:00.026078+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

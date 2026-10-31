@@ -1,0 +1,149 @@
+{
+  "paper_id": "S0095",
+  "run": "gemini38",
+  "title": "AdaDoHTool: A test-time adaptive framework for identifying DoH tunneling tools with unknown resolvers",
+  "venue": "Computer Networks",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtraf"
+        },
+        {
+          "name": "DoH-Tunnel-Traffic-HKD",
+          "role": "test",
+          "quote": "Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtraf"
+        }
+      ],
+      "evidence": "Toenrichtheexperimentaldata,weextendtheCIRA-CIC-DoHBrw-2020dataset.TheoriginaldatasetcontainsDoHtrafficgeneratedusingfourforeignpublicDoHrecursiveresolvers,namelyAdGuard,Cloudflare,GoogleDNS,andQuad9.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated",
+        "dataset_provided"
+      ],
+      "evidence": "For malicious DoH tunneling traffic collection, we establish an experimental environment using two hosts. Host A deploys the server-side component of a DoH tunneling tool and acts as a disguised authoritative DNS server.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "AdaDoHTool uses a word embedding matrix generated from unidirectional TLS application data record length sequences as input",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "TLS application data record length sequences"
+      ],
+      "evidence": "Specifically, within the TLS protocol, our method uses the record-length sequence of application data as the traffic representation.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "Specifically, within the TLS protocol, our method uses the record-length sequence of application data as the traffic representation.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "TextCNN and KNN",
+      "evidence": "AdaDoHTool uses a word embedding matrix generated from unidirectional TLS application data record length sequences as input, applies a TextCNN model to extract deep feature representations, and incorporates a feature–label memory bank with an online update mechanism. Combined with a KNN classifier",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random",
+        "cross_dataset"
+      ],
+      "evidence": "For each experiment, the training and testing datasets are split using three different random seeds. The experiments are divided into two major categories: Recognition performance on the CIRA-CIC-DoHBrw-2020 dataset, covering the four foreign DoH resolvers",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "cross_dataset",
+      "evidence": "The experiments are divided into two major categories: Recognition performance on the CIRA-CIC-DoHBrw-2020 dataset, covering the four foreign DoH resolvers (Experiments 1 − 4); Cross-region transfer performance from foreign resolvers to the domestic resolver",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "The experiments are designed from five key perspectives: comparison with baseline methods, generalization capability evaluation, parameter sensitivity analysis, ablation study, and inference time and memory consumption analysis.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Recall",
+        "Macro-F1",
+        "FUR"
+      ],
+      "evidence": "We comprehensively assess AdaDoHTool based on the following metrics: Accuracy = TP+ TN TP+ TN+ FP+ FN. Recall = TP TP+ FN. FUR = Nknown→unknown Nknown. Macro-F1 = 1 || ∑ c∈ F1c.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "For each retained flow, we parse TLS records and keep only TLS application data records.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "15 records",
+      "evidence": "Following our previous work, we use the first 15 TLS application data record lengths of each unidirectional flow as the input sequence, and pad shorter sequences with zeros.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Notably, despite utilizing a dynamically updated memory bank and a KNN-based classifier, AdaDoHTool’s average inference time is approximately one-third of that of T3A, the most efficient baseline method in terms of inference speed.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Intel(R) Core(TM) i9-14900K CPU, NVIDIA GeForce RTX 4090",
+      "evidence": "The experimental environment is an Ubuntu 22.04 server equipped with an Intel(R) Core(TM) i9-14900K CPU, Python language version 3.9, PyTorch-GPU 2.1.0, NVIDIA GeForce RTX 4090, and 32GB of memory.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.409170+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

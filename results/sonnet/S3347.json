@@ -1,0 +1,144 @@
+{
+  "paper_id": "S3347",
+  "run": "sonnet",
+  "title": "A Heuristic Statistical Testing Based Approach for Encrypted Network Traffic Identification",
+  "venue": "IEEE Transactions on Vehicular Technology",
+  "year": 2019,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Authors own lab traffic (SSL/DNS/HTTP from lab gateway; SSH from public honeypot trace; Freegate/Ultrasurf/Custom Unknown from controlled environment)",
+          "role": "train_and_test",
+          "quote": "For SSL, DNS, and HTTP, we used real traffic traces collected at our labs gateway...unknown protocols...were collected in a controlled environment"
+        }
+      ],
+      "evidence": "For SSL, DNS, and HTTP, we used real traffic traces collected at our labs gateway. As for unknown protocols (Freegate, Ultrasurf, and Custom Unknown), they were collected in a controlled environment",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated",
+        "manual"
+      ],
+      "evidence": "we simply used the port numbers to do the labeling work, which is used for supervised learning",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "we removed four features, i.e. source/destination IP addresses and source/destination port numbers, to ensure that detection results are not dependent on such biased features",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "NIST randomness P-values from payload bytes: Monobit test, Frequency Block test, Cumulative sums test, Discrete Fourier transform test (4 features for payload < 128 bytes; 8 features otherwise)"
+      ],
+      "evidence": "We list four tests that are employed to extract features of encrypted bitflow...Monobit test, Frequency (Block) test, Cumulative sums test, Discrete Fourier transform test",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "N bytes of payload from each pcap file are extracted using our handshake skipping method to pass to the modified NIST test suite",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Decision Tree (C4.5)",
+      "evidence": "ML-based classifier makes use of C4.5 algorithm to build classification trees",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "CLASSIFICATION RESULT OF HST-R USING 10-FOLD CROSS-VALIDATION, C4.5",
+      "evidence_source": "table"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "CLASSIFICATION RESULT OF HST-R USING 10-FOLD CROSS-VALIDATION, C4.5",
+      "evidence_source": "table"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal"
+      ],
+      "evidence": "we removed four features, i.e. source/destination IP addresses and source/destination port numbers, to ensure that detection results are not dependent on such biased features",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "precision",
+        "recall",
+        "f1",
+        "fpr",
+        "detection_rate"
+      ],
+      "evidence": "Precision = TP/(TP + FP) Recall = TP/(TP + FN) F1 (F-measure) = 2 x Precision x Recall...False Positive Rate (FPR)",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "each packet to different bidirectional flow...each pcap file only contains one biflow",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "starting with the last packet, checking if its length is greater than the threshold until a packet larger than the threshold is found",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T04:44:32.961125+00:00",
+  "model": "claude-sonnet-4.6",
+  "validation_warnings": []
+}

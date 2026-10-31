@@ -1,0 +1,158 @@
+{
+  "paper_id": "S1901",
+  "run": "gemini38",
+  "title": "Enhanced detection of obfuscated HTTPS tunnel traffic using heterogeneous information network",
+  "venue": "Computer Networks",
+  "year": 2024,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "HTPA",
+          "role": "train_and_test",
+          "quote": "As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT"
+        },
+        {
+          "name": "HTPA-RD",
+          "role": "train_and_test",
+          "quote": "As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT"
+        },
+        {
+          "name": "HTPA-TS-n",
+          "role": "train_and_test",
+          "quote": "As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTT"
+        }
+      ],
+      "evidence": "As shown in Table 4, HTPA dataset includes two types of traffic: HTTPS tunnel traffic and normal HTTPS traffic.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated",
+        "manual"
+      ],
+      "evidence": "The crawler used Chrome to visit random sites from the Alexa top 10,000.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "It is particularly effective without relying on packet sequences or payload information",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "traffic features",
+        "statistical metrics",
+        "burst features",
+        "latency",
+        "information entropy"
+      ],
+      "evidence": "To enrich graph semantics, we add hard-to-disguise characteristics as specialized fingerprint nodes, including traffic features, statistical metrics, burst features, latency, and information entropy.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "Client-fingerprint nodes can be classified into two primary categories: burst characteristics and traffic characteristics.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "However, our method does not depend on plaintext from the TLS handshake, so TLS fingerprint obfuscation is not a primary concern.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "However, our method does not depend on plaintext from the TLS handshake, so TLS fingerprint obfuscation is not a primary concern.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Heterogeneous graph attention network, CNN-LSTM",
+      "evidence": "HINT is a deep learning framework, which exploits the Heterogeneous Graph Attention Network to identify HTTPSTunnelservices based on a dual-level attention mechanism.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "host_grouped"
+      ],
+      "evidence": "To ensure the validity of training and testing, we ensured that the data from any given host did not appear in both the training and testing sets.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "host_grouped",
+      "evidence": "To ensure the validity of training and testing, we ensured that the data from any given host did not appear in both the training and testing sets.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "To ensure the validity of training and testing, we ensured that the data from any given host did not appear in both the training and testing sets.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "To further evaluate the impact of features at the host, service, and client levels, we carry out a series of ablation studies, particularly by designing six contrast experiments on the HTPA dataset",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "ACC",
+        "TPR",
+        "FPR",
+        "AUC"
+      ],
+      "evidence": "In this paper, we use four metrics for a comprehensive evaluation of different methods’ performance in detecting HTTPS tunnel traffic: (1) True Positive Rate (TPR), (2) False Positive Rate (FPR), (3) Area Under Curve (AUC), (4) Accuracy (ACC).",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We trained and tested our classifiers using the HTPA dataset, focusing on flow-level analysis rather than service-level analysis to ensure comprehensive fairness.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "It is particularly effective without relying on packet sequences or payload information and maintains high detection capability even with added network noise.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "The inference time consists of two main parts: the feature extraction time for constructing the knowledge graph and the prediction time for labeling flows.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.377669+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

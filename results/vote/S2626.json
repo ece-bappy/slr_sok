@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2626",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "Our approach, instead, aims to characterize the behavior of malware activity on a per-flow basis, and diagnoses a fraction of network flows, only those suspicious TCP/UDP flows pertinent to a DGA-related DNS query.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "Our attributes of a malware flow are as follow. flow volume in bytes (in/out). flow duration, i.e., the gap between the arrival time of the first packet and the last packet (in/out).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random; cross_dataset",
+      "evidence": "We split the malicious data of each protocol-specific model into 60% (for training and validation) and 40% (for testing only).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random; cross_dataset",
+        "gemini38": "['random', 'cross_dataset']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Our approach, instead, aims to characterize the behavior of malware activity on a per-flow basis, and diagnoses a fraction of network flows, only those suspicious TCP/UDP flows pertinent to a DGA-related DNS query.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "we choose to extract statistical attributes of flows (encrypted and unencrypted) to train our models, without the need for inspecting payloads like HTTP content type or TLS handshake cipher keys",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "We identify malware traffic attributes and train three specialized one-class classifier models using behavioral attributes of malware HTTP, HTTPS and UDP flows obtained from a public dataset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "we choose to extract statistical attributes of flows (encrypted and unencrypted) to train our models, without the need for inspecting payloads like HTTP content type or TLS handshake cipher keys",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CTU-13 (train_and_test); own / private capture (test); {'name': 'CTU-13', 'role': 'train_and_test', 'quote': 'We will use this dataset in section IV to train our classifier models, validate, and test their perf'}; {'name': 'own / private capture', 'role': 'test', 'quote': 'We will use this dataset in section IV to train our classifier models, validate, and test their perf'}",
+      "evidence": "We will use this dataset in section IV to train our classifier models, validate, and test their performance in distinguishing malicious flows from benign ones. We evaluate the efficacy of our proposed method and system during a 50-day trial.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CTU-13 (train_and_test); own / private capture (test)",
+        "gemini38": "[{'name': 'CTU-13', 'role': 'train_and_test', 'quote': 'We will use this dataset in section IV to train our classifier models, validate, and test their perf'}, {'name': 'own / private capture', 'role': 'test', 'quote': 'We will use this dataset in section IV to train our classifier models, validate, and test their perf'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "we choose to extract statistical attributes of flows (encrypted and unencrypted) to train our models, without the need for inspecting payloads like HTTP content type or TLS handshake cipher keys",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "one-class classifiers (iForest, EiF, K-means, OC-SVM)",
+      "evidence": "Our prediction models are one-class classifiers trained by four popular algorithms, namely Isolation Forest (iForest) [70], Extended iForest (EiF) [71], K-means [72], and one-class support vector machines (OC-SVM) [73]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "one-class classifiers (iForest, EiF, K-means, OC-SVM)",
+        "gemini38": "one-class classifiers (iForest, EiF, K-means, OC-SVM)"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "We observe that EiF consistently gives the best accuracy for both malicious and benign testing flows, across the three models – true negatives of more than 97% and true positives of at least 93%.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "flow volume in bytes; flow duration; number of packets; average packet size",
+      "evidence": "flow volume in bytes (in/out). flow duration, i.e., the gap between the arrival time of the first packet and the last packet (in/out). number of packets (in/out). average packet size (in/out).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow volume in bytes; flow duration; number of packets; average packet size",
+        "gemini38": "['flow volume in bytes', 'flow duration', 'number of packets', 'average packet size']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; true positive rate; true negative rate",
+      "evidence": "EiF consistently gives the best accuracy for both malicious and benign testing flows, across the three models – true negatives of more than 97% and true positives of at least 93%.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; true positive rate; true negative rate",
+        "gemini38": "['accuracy', 'true positive rate', 'true negative rate']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We identify eight attributes on a per-flow basis for malware traffic – 4 per each direction (in/out). Our attributes of a malware flow are as follow. flow volume in bytes (in/out).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "cross_dataset",
+      "evidence": "We have implemented a fully functional system (shown in Fig. 11), and operated it during a 50-day trial (3-Dec-2019 to 21-Jan-2020) under full campus network traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "cross_dataset",
+        "gemini38": "cross_dataset"
+      }
+    }
+  }
+}

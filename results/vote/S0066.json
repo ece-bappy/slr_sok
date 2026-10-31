@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0066",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "Ablation studies confirm that device telemetry improves recall for stealthy threats, while ensemble meta-learning stabilizes predictions and suppresses false alarms.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "This unit collects and processes flow-level network metadata observed at the gateway, including packet rates, session durations, protocol usage, flow directionality, and communication frequency. This unit analyzes device-level behavioral indicators derived from communication regularity, transmission periodicity, connection stability, and deviations from established operational profiles.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "Datasets are partitioned into training, validation, and test sets using stratified sampling to preserve class imbalance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Network Feature Extraction Unit: This unit collects and processes flow-level network metadata observed at the gateway, including packet rates, session durations, flow directionality, and communication frequency.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "Experiments are conducted using publicly available IoT and IIoT datasets that provide either direct or emulated access to the two data modalities assumed by the system model",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "The intrusion detection module operates without payload inspection and does not require access to sensitive patient data, ensuring compliance with healthcare privacy, confidentiality, and regulatory requirements.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "ToN_IoT (train_and_test); IoT-23 (train_and_test); MedBIoT (train_and_test); {'name': 'ToN_IoT', 'role': 'train_and_test', 'quote': 'An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT'}; {'name': 'IoT-23', 'role': 'train_and_test', 'quote': 'An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT'}; {'name': 'MedBIoT', 'role': 'train_and_test', 'quote': 'An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT'}",
+      "evidence": "An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT, IoT-23, and MedBIoT, under realistic conditions of class imbalance.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "ToN_IoT (train_and_test); IoT-23 (train_and_test); MedBIoT (train_and_test)",
+        "gemini38": "[{'name': 'ToN_IoT', 'role': 'train_and_test', 'quote': 'An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT'}, {'name': 'IoT-23', 'role': 'train_and_test', 'quote': 'An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT'}, {'name': 'MedBIoT', 'role': 'train_and_test', 'quote': 'An extensive evaluation was conducted using heterogeneous IoT and botnet datasets, including TON_IoT'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Each observation consists of two heterogeneous feature components: Xi = [xi(n) || xi(d)], Where xi(n) represents network-level traffic features and xi(d) represents device telemetry features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Ensemble meta-learning with multi-layer perceptron",
+      "evidence": "The framework proposes a lightweight multimodal intrusion detection framework for HIoT networks that jointly analyzes network flow metadata and device telemetry using structured feature fusion and ensemble meta-learning.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Ensemble meta-learning with multi-layer perceptron",
+        "gemini38": "Ensemble meta-learning with multi-layer perceptron"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Figures 12 and 13 report detection latency and scalability behavior, respectively, as the number of connected devices and traffic volume increase.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "packet rates; session durations; protocol usage; flow directionality; communication frequency; communication regularity; transmission periodicity; connection stability; deviations from established operational profiles",
+      "evidence": "This unit collects and processes flow-level network metadata observed at the gateway, including packet rates, session durations, protocol usage, flow directionality, and communication frequency. This unit analyzes device-level behavioral indicators derived from communication regularity, transmission periodicity, connection stability, and deviations from established operational profiles.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet rates; session durations; protocol usage; flow directionality; communication frequency; communication regularity; transmission periodicity; connection stability; deviations from established operational profiles",
+        "gemini38": "['packet rates', 'session durations', 'protocol usage', 'flow directionality', 'communication frequency', 'communication regularity', 'transmission periodicity', 'connection stability', 'deviations from established operational profiles']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-score; False Positive Rate; ROC–AUC",
+      "evidence": "Evaluation metrics include Accuracy, Precision, Recall, F1-score, False Positive Rate (FPR), and ROC–AUC.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-score; False Positive Rate; ROC–AUC",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-score', 'False Positive Rate', 'ROC–AUC']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Network flow records are extracted to emulate gateway-observable metadata",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "Datasets are partitioned into training, validation, and test sets using stratified sampling to preserve class imbalance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

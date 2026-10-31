@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0639",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal",
+      "evidence": "each packet is limited to 64 bytes of data following the Ethernet layer to focus on meaningful payload information, excluding Ethernet addresses and encrypted payload content as they are irrelevant for classification tasks.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "gemini38": "['identifier_removal']"
+      }
+    },
+    "feature_groups": {
+      "value": "none",
+      "evidence": "This stream is then tokenized into a sequence of fixed-size 2-byte bigrams.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "nan",
+        "gemini38": "['none']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "Dataset details are given in Section 5.1 and Table 1.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/watsonhuhpi/LotBoNC']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "The labelled split consists only of known families and is class balanced by stratified sampling so that each labelled class contributes the same number of flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "For each dataset, we reconstruct bidirectional flows, discard non-IP control traffic, and retain only TCP/UDP records with at least five packets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "LotBoNC first performs self-supervised pre-training to learn transferable representations from raw traffic sequences.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "In training and evaluation stages, we chose three public datasets for reliable assessment of long-tailed recognition that combine realism, diversity, and public ground truth.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Within each burst, we remove low-level protocol headers and concatenate the remaining payloads to form a clean byte stream.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Stratosphere MCFP / CTU-Malware-Capture (train); VNAT (train); ISCX VPN-nonVPN 2016 (train); ToN_IoT (train); IoT-23 (train_and_test); ISCX Botnet 2014 (train_and_test); CTU-13 (train_and_test); {'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}; {'name': 'VNAT', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}; {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}; {'name': 'ToN_IoT', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}; {'name': 'IoT-23', 'role': 'train_and_test', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}; {'name': 'ISCX Botnet 2014', 'role': 'train_and_test', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}; {'name': 'CTU-13', 'role': 'train_and_test', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}",
+      "evidence": "Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Stratosphere MCFP / CTU-Malware-Capture (train); VNAT (train); ISCX VPN-nonVPN 2016 (train); ToN_IoT (train); IoT-23 (train_and_test); ISCX Botnet 2014 (train_and_test); CTU-13 (train_and_test)",
+        "gemini38": "[{'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}, {'name': 'VNAT', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}, {'name': 'ToN_IoT', 'role': 'train', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}, {'name': 'IoT-23', 'role': 'train_and_test', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}, {'name': 'ISCX Botnet 2014', 'role': 'train_and_test', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}, {'name': 'CTU-13', 'role': 'train_and_test', 'quote': 'Table 1: Summary of Datasets Used in Experiments for Pretraining and Evaluation'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "To prepare raw encrypted traffic for representation learning, we adopt a burst-level tokenization strategy, following the design principles established in [12, 37, 74].",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Transformer-based framework",
+      "evidence": "We propose LotBoNC, a unified framework for encrypted traffic classification under long-tailed open-world conditions. LotBoNC first performs self-supervised pre-training to learn transferable representations, then applies entropy-regularized optimal transport to assign pseudo-labels aligned with estimated class priors.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Transformer-based framework",
+        "gemini38": "Transformer-based framework"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "We create two disjoint splits per dataset. The labelled split consists only of known families and is class balanced by stratified sampling so that each labelled class contributes the same number of flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "fixed-size 2-byte bigrams",
+      "evidence": "This stream is then tokenized into a sequence of fixed-size 2-byte bigrams.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "fixed-size 2-byte bigrams",
+        "gemini38": "['fixed-size 2-byte bigrams']"
+      }
+    },
+    "metrics": {
+      "value": "Overall accuracy; Labelled accuracy; Unlabelled-Aware accuracy; Unlabelled-Agnostic accuracy",
+      "evidence": "We follow the evaluation protocol of [5, 54] and compute four complementary metrics that together measure both recognition of known classes and discovery of novel ones.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Overall accuracy; Labelled accuracy; Unlabelled-Aware accuracy; Unlabelled-Agnostic accuracy",
+        "gemini38": "['Overall accuracy', 'Labelled accuracy', 'Unlabelled-Aware accuracy', 'Unlabelled-Agnostic accuracy']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "LotBoNC first performs self-supervised pre-training to learn transferable representations from raw traffic sequences.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "For each dataset, we reconstruct bidirectional flows, discard non-IP control traffic, and retain only TCP/UDP records with at least five packets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/watsonhuhpi/LotBoNC']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "The labelled split consists only of known families and is class balanced by stratified sampling so that each labelled class contributes the same number of flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

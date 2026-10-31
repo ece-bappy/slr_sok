@@ -1,0 +1,159 @@
+{
+  "paper_id": "S2008",
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Aposemat IoT-23 dataset",
+          "role": "train_and_test",
+          "quote": "CFBPNN is implemented for the IoT23 and UNSW-NB15 datasets, training the model to classify and detect multi-class attacks and testing for both normal and abnormal classes."
+        },
+        {
+          "name": "UNSW-NB15 dataset",
+          "role": "train_and_test",
+          "quote": "For this experiment, we focus on a partition of the dataset, comprising 175,341 training samples and 82,332 testing samples, featuring multi-class attack variants."
+        },
+        {
+          "name": "X-IIoTID dataset",
+          "role": "train_and_test",
+          "quote": "After processing the data with autoencoders and employing the CFBPNN model for multi-class attack classification, the outcomes illustrated in Fig. 8 for the latest industrial intrusion dataset."
+        }
+      ],
+      "evidence": "Our assessment, conducted on diverse encrypted datasets including UNSW-NB15, IoT23, and XIIoTID, highlights the remarkable efficacy of MADESANT.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "It encompasses nine types of cyber-attacks, each represented by 45 labeled features, with a total of 2,540,044 records stored in four CSV files.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "six input features (service, spkts, sbytes, dbytes, ct-srv-src, ct-src-ltm) and one target variable (attack-cat) representing multi-class attacks with nine types.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "sbytes",
+        "service",
+        "sttl",
+        "ct-st-ltm",
+        "ct-srv-src",
+        "dbytes",
+        "ct-src-ltm",
+        "spkts"
+      ],
+      "evidence": "Eight variables, including sbytes, service, sttl, ct-st-ltm, ct-srv-src, dbytes, ct-src-ltm, spkts, along with 17 distinguishing values, are identified as responsible for exploit attacks.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "Eight variables, including sbytes, service, sttl, ct-st-ltm, ct-srv-src, dbytes, ct-src-ltm, spkts, along with 17 distinguishing values, are identified as responsible for exploit attacks.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "CFBPNN, J48",
+      "evidence": "Notably, MADESANT introduces a cascading model integrating a Cascading Forward Back Propagation Neural Network (CFBPNN) with the J48 tree to systematically assess risk factors in network traffic.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "Data division method: Random (dividerand),",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "Data division method: Random (dividerand),",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "Data division method: Random (dividerand),",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "MSE",
+        "logarithmic loss",
+        "false positive rate",
+        "false negative rate",
+        "precision",
+        "recall",
+        "F1 score"
+      ],
+      "evidence": "MADESANT’s performance is assessed using confusion matrices, accuracy, MSE, logarithmic loss, and the ratio of true positive to true negative.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "MADESANT classifies each incoming packet based on its risk factor using a supervised machine learning algorithm, Decision Tree (DT).",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Each model correctly recognized typical traffic flow with an average accuracy of 99.75%, while the cascade model achieved 99.99% accuracy in categorizing instances.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    }
+  },
+  "run": "gemini38_validation",
+  "model": "gemini-3.8-flash-high",
+  "validation_warnings": []
+}

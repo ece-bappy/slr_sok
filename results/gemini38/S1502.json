@@ -1,0 +1,149 @@
+{
+  "paper_id": "S1502",
+  "run": "gemini38",
+  "title": "Next-generation AI for advanced threat detection and security enhancement in DNS over HTTPS",
+  "venue": "Journal of Network and Computer Applications",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "doh_real_world_2022",
+          "role": "train_and_test",
+          "quote": "Empirical evaluation on the doh_real_world_2022 dataset demonstrates 99.1% detection accuracy with C"
+        }
+      ],
+      "evidence": "Empirical evaluation on the doh_real_world_2022 dataset demonstrates 99.1% detection accuracy with CapsNets, 98.8% with GraphTransformers, and an 80% improvement in adversarial resilience.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated"
+      ],
+      "evidence": "DoH traffic was collected from actual sources and subsequently enriched with synthetically generated attack patterns in order to increase diversity and enrich the dataset.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The model received regular injections of adverse samples during training which forced it to establish critical differences between normal and abnormal queries to achieve improved defense against sophisticated evasion methods.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "DNS Query Patterns",
+        "TLS listening metadata",
+        "DoH-Specific HTTP Header Analysis",
+        "Temporal Traffic Pattern"
+      ],
+      "evidence": "DNS Query Patterns—Characterizing query entropy, frequency, and domain length distributions. TLS listening metadata—Monitoring ciphersuite usage, session resumption behavior, and certificates. DoH-Specific HTTP Header Analysis—Identification of content type mismatch anomalies, HTTP request patterns, and response latencies anomalies.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2",
+        "G3",
+        "G4"
+      ],
+      "evidence": "DNS Query Patterns—Characterizing query entropy, frequency, and domain length distributions. TLS listening metadata—Monitoring ciphersuite usage, session resumption behavior, and certificates. Temporal Traffic Pattern—Application of time-series analysis for the identification of query timing and inter-arrival times anomalies.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "yes",
+      "evidence": "TLS listening metadata—Monitoring ciphersuite usage, session resumption behavior, and certificates.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "Existing prior works have either focused on statistical anomaly detection or basic supervised learning models with light features.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "1.3"
+      ],
+      "evidence": "DoH TLS 1.3 (HTTPS, Port 443)",
+      "evidence_source": "table"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Capsule Networks (CapsNets), Graph Transformers",
+      "evidence": "Specifically, Capsule Networks (CapsNets) are used to learn hierarchical traffic flow patterns, Graph Transformers to uncover temporal anomalies",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "unclear"
+      ],
+      "evidence": "We applied the same dataset splits, the identical hyperparameter configuration (e.g., learning rate, optimizer, batch size), and the identical hardware resources for training and inference.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "We applied the same dataset splits, the identical hyperparameter configuration (e.g., learning rate, optimizer, batch size), and the identical hardware resources for training and inference.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "In order to achieve methodological equivalence in the evaluation, we standardized the experimental setup for all the models being compared.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "To validate the architectural sensitivity of our Capsule Network module, we conducted a controlled ablation study in which we varied capsule sizes, routing iterations, and hierarchical depths.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "F1-score",
+        "detection latency"
+      ],
+      "evidence": "Theperformanceassessmentincludedprecision,recall,F1-scoreanddetectionlatencymetricsandservedtodemonstratethattheultimateimplementationsurpassedcurrentbenchmarksintermsofaccuracy,securityaswellasperformancespeed.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Capsule Networks (CapsNets) are used to learn hierarchical traffic flow patterns",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Capsule Networks (CapsNets) are used to learn hierarchical traffic flow patterns",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "This setup provides greater than 65,000 events/s throughput with sub-50ms end-to-end inference delay",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "64-core distributed cluster with 256 GB RAM and RTX A6000",
+      "evidence": "Tests conducted on a 64-core distributed cluster with 256 GB RAM and RTX A6000 acceleration.",
+      "evidence_source": "table"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.402200+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2524",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "identifier_removal",
+      "evidence": "The node vectors of a graph are two hosts’ ports without IP because the IP address is useless for edge attributes in each graph",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "identifier_removal",
+        "gemini38": "['identifier_removal']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "Statistical features are the basic information of the payload and packet during communication; temporal features are informationsuchas transmission time; aggregate features are calculated from statistical and temporal features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "Since the TLS version is usually uniform, we do not consider the relationship between the TLS version and attack classification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "temporal",
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "temporal",
+        "gemini38": "['temporal']"
+      }
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "TGPrint clusters the suspicious traffic according to the host’s IP pairs because of the attacker’s persistent behaviors toward the victim host.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "session",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "CICIDS-2017 (C.I. for Cybersecurity, 2017) and CICIDS-2018 (Sharafaldin et al., 2018) datasets were created by the Canadian Institute for Cyber Security",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "Because checking the certificate or not is up to the policy of the application server, TLS certificates are not necessary for communication connections established on the TLS protocol. The impact of the certificate also could be ignored.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIC-IDS2017 (train_and_test); CSE-CIC-IDS2018 (train_and_test); HIKARI-2021 (train_and_test); {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'All datasets are sorted in chronological order. We select 80% from each dataset for training and the'}; {'name': 'CSE-CIC-IDS2018', 'role': 'train_and_test', 'quote': 'All datasets are sorted in chronological order. We select 80% from each dataset for training and the'}; {'name': 'HIKARI-2021', 'role': 'train_and_test', 'quote': 'All datasets are sorted in chronological order. We select 80% from each dataset for training and the'}",
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIC-IDS2017 (train_and_test); CSE-CIC-IDS2018 (train_and_test); HIKARI-2021 (train_and_test)",
+        "gemini38": "[{'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'All datasets are sorted in chronological order. We select 80% from each dataset for training and the'}, {'name': 'CSE-CIC-IDS2018', 'role': 'train_and_test', 'quote': 'All datasets are sorted in chronological order. We select 80% from each dataset for training and the'}, {'name': 'HIKARI-2021', 'role': 'train_and_test', 'quote': 'All datasets are sorted in chronological order. We select 80% from each dataset for training and the'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Finally, we use 86 features shown in section 4.1.2, including statistical, temporal, and aggregate features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Graph Neural Networks (GNN)",
+      "evidence": "Finally, we utilize Graph Neural Networks (GNNs) to mine and grasp the crucial behavior patterns from attack graphs to generate fingerprints and classify attacks",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Graph Neural Networks (GNN)",
+        "gemini38": "Graph Neural Networks (GNN)"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "More practical factors, such as identification efficiency, resource occupancy, and network structure, should be considered in a real network.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "statistical features; temporal features; aggregate features",
+      "evidence": "Finally, we use 86 features shown in section 4.1.2, including statistical, temporal, and aggregate features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "statistical features; temporal features; aggregate features",
+        "gemini38": "['statistical features', 'temporal features', 'aggregate features']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; F1-score",
+      "evidence": "The conventional performance metrics for multi-class classification, accuracy, precision, and F1-Score are used in this paper to evaluate the performance of models.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; F1-score",
+        "gemini38": "['accuracy', 'precision', 'F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "TGPrint divides attack traffic for each IP pair to adapt to the behaviors’ changing over time.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "temporal",
+      "evidence": "All datasets are sorted in chronological order. We select 80% from each dataset for training and the rest 20% for testing.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "temporal",
+        "gemini38": "temporal"
+      }
+    }
+  }
+}

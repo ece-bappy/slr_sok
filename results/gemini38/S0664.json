@@ -1,0 +1,147 @@
+{
+  "paper_id": "S0664",
+  "run": "gemini38",
+  "title": "Malicious encrypted traffic identification model based on flow space-time features",
+  "venue": "ICT Express",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our mode"
+        },
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our mode"
+        }
+      ],
+      "evidence": "Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our model achieves high accuracy",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The CICIDS2017 dataset is a feature dataset that contains 15 category feature labels (1 normal label+14 attack labels).",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The modelemploys a convolutional neural network to extract spatial features, capturing abstract high-level characteristics while reducing model parameters.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet sequences of bytes"
+      ],
+      "evidence": "Each flow comprises multiple packets, each containing several bytes. Thus, each flow was represented as x ∈ Rwh, where w represents the number of packets included in a flow, and h denotes the length of each individual packet.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "The model employs a convolutional neural network to extract spatial features, capturing abstract high-level characteristics while reducing model parameters. Temporal features are subsequently extracted using BiLSTM, enhancing the model’s ability to analyze sequential patterns over time.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "1D-CNN + BiLSTM + Attention",
+      "evidence": "We propose an interpretable and efficient encrypted traffic identification framework that integrates 1D-CNN with BiLSTM and a lightweight self-attention mechanism",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random"
+      ],
+      "evidence": "Stratified Sampling: During train-test splitting (9:1 ratio), we ensure that each class is proportionally represented in both sets, preserving the original distribution while preventing complete omission of rare classes from the training phase.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "Stratified Sampling: During train-test splitting (9:1 ratio), we ensure that each class is proportionally represented in both sets, preserving the original distribution while preventing complete omission of rare classes from the training phase.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "Thesestandardizedandnormalizeddatawerethendividedintoatrainingsetandatestsetina1:9 ratio.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "Accuracy",
+        "Precision",
+        "Recall",
+        "F1 score"
+      ],
+      "evidence": "This paper utilizes standard evaluation metrics in abnormal flow detection, specifically Accuracy, Precision, Recall, and F1 score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "A 'flow' specifically denotes a series of packets transmitted from a source IP address and port to a destination IP address and port over a defined time period.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "15 packets",
+      "evidence": "Given that the probability mass function (PMF) indicated a significant decline in variance beyond the fifteenth packet, flows were capped at a maximum of 15 packets per stream.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Extensive experiments on benchmark datasets (USTC-TFC2016 and CICIDS-2017) demonstrate that our model achieves high accuracy with 0.82 ms inference time per flow",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.416277+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

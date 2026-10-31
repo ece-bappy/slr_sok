@@ -1,0 +1,216 @@
+{
+  "paper_id": "S3208",
+  "n_runs": 3,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "['none']",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "The prominent categories of features used for feature extraction as evident from review papers are timeseries, statistical and payload inspection. We present a brief overview of these features here and provide the list of features used for this paper.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "sonnet": "['G1', 'G2']",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "sonnet": "['not_stated']",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/ahlashkari/DOHlyzer/tree/master/DoHMeter', 'https://github.com/ahlashkari/DOHlyzer', 'https://www.unb.ca/cic/datasets/dohbrw-2020.html']",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "yes",
+        "sonnet": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "The resulting dataset was divided to the training set (80% of the flows) and test set (the remaining 20%), to be used with all the classifiers discussed in this paper.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "random",
+        "sonnet": "['random']",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "the data pre-processing module identifies every flow captured from the encrypted network traffic by using tuple containing <source IP, destination IP, source port, destination port and protocol>",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "flow",
+        "sonnet": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "Although this fingerprinting method can be used to classify flows by clients yet it is not robust for detecting malicious tunneling traffic because it is limited to known client fingerprints only.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "['none']",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated",
+      "evidence": "To label the training dataset, these simulations were done separately in an isolated network so that any traffic captured can be associated with the correct label.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "generated",
+        "sonnet": "['generated']",
+        "gemini38": "['generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Since the traffic used in this work is encrypted by TLS protocol, the payloads on the packets would not leak any useful information about the nature of underlying traffic.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "sonnet": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'Our generated dataset, named CIRA-CIC-DoHBrw-2020, is publicly available at [27]. It consists of HTTPS traffic flows with two levels of distinct labels.'}",
+      "evidence": "The resulting dataset was divided to the training set (80% of the flows) and test set (the remaining 20%), to be used with all the classifiers discussed in this paper.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "CIRA-CIC-DoHBrw-2020 (train_and_test)",
+        "sonnet": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'Our generated dataset, named CIRA-CIC-DoHBrw-2020, is publicly available at [27]. It consists of HTTPS traffic flows with two levels of distinct labels.'}]",
+        "gemini38": "[{'name': 'CIRA-CIC-DoHBrw-2020', 'role': 'train_and_test', 'quote': 'Our generated dataset, named CIRA-CIC-DoHBrw-2020, is publicly available at [27]. It consists of HTTPS traffic flows with two levels of distinct labels.'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Dataset is labeled based on the destination IP address of flows because the protocol (TCP) and the destination port (443) remain the same for all the flows.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "LSTM; Random Forest; Decision Tree (C4.5); SVM; Naive Bayes; DNN; CNN",
+      "evidence": "We used a deep neural network with 4 hidden layers (including an LSTM layer at the second hidden layer)...We used Random Forest (RF), Decision Tree (C4.5), Support Vector Machines (SVM), and Naive Bayes (NB) machine learning algorithms and deep neural network (DNN) and convolutional neural network (CNN)",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "Random Forest, Decision Tree, SVM, Naive Bayes, DNN, 2D CNN, LSTM",
+        "sonnet": "LSTM; Random Forest; Decision Tree (C4.5); SVM; Naive Bayes; DNN; CNN",
+        "gemini38": "LSTM; Random Forest; Decision Tree (C4.5); SVM; Naive Bayes; DNN; CNN"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The resulting dataset was divided to the training set (80% of the flows) and test set (the remaining 20%), to be used with all the classifiers discussed in this paper.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "28 statistical features: flow bytes sent/received (count and rate), packet length statistics (mean, median, mode, variance, std, CV, skewness), packet time statistics, request/response time difference statistics; time-series packet clumps: sequences of clumps each described by (size, pktCount, direction, duration, interarrival)",
+      "evidence": "The prominent categories of features used for feature extraction as evident from review papers are timeseries, statistical and payload inspection. We present a brief overview of these features here and provide the list of features used for this paper.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "packet clumps; 28 statistical features",
+        "sonnet": "['28 statistical features: flow bytes sent/received (count and rate), packet length statistics (mean, median, mode, variance, std, CV, skewness), packet time statistics, request/response time difference statistics', 'time-series packet clumps: sequences of clumps each described by (size, pktCount, direction, duration, interarrival)']",
+        "gemini38": "['28 statistical features: flow bytes sent/received (count and rate), packet length statistics (mean, median, mode, variance, std, CV, skewness), packet time statistics, request/response time difference statistics', 'time-series packet clumps: sequences of clumps each described by (size, pktCount, direction, duration, interarrival)']"
+      }
+    },
+    "metrics": {
+      "value": "precision; recall; f1",
+      "evidence": "The results of classification of HTTPS traffic at layer 1 (DoH/non-DoH classes) using statistical features are presented in Table III.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "Precision; Recall; F-score",
+        "sonnet": "['precision', 'recall', 'f1']",
+        "gemini38": "['precision', 'recall', 'f1']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "6 clumps",
+      "evidence": "after six clumps in layer 1 and three clumps at layer 2, the precision hikes beyond 0.99...a DoH connection can be detected roughly under 0.8 seconds",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "variable number of clumps",
+        "sonnet": "6 clumps",
+        "gemini38": "6 clumps"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/ahlashkari/DOHlyzer/tree/master/DoHMeter', 'https://github.com/ahlashkari/DOHlyzer', 'https://www.unb.ca/cic/datasets/dohbrw-2020.html']",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "yes",
+        "sonnet": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The resulting dataset was divided to the training set (80% of the flows) and test set (the remaining 20%), to be used with all the classifiers discussed in this paper.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "random",
+        "sonnet": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

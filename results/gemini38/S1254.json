@@ -1,0 +1,164 @@
+{
+  "paper_id": "S1254",
+  "run": "gemini38",
+  "title": "Echoes From the Void: Detecting DNS Tunneling With Blackhole Features in Encrypted Scenarios With High Accuracy",
+  "venue": "IEEE Access",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "GraphTunnel",
+          "role": "train_and_test",
+          "quote": "Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-E"
+        },
+        {
+          "name": "CIC-Bell-DNS-EXF-2021",
+          "role": "train_and_test",
+          "quote": "Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-E"
+        }
+      ],
+      "evidence": "Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-EXF-2021 (1,019,318 records).",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The formatted dataset comprises 1,019,318 samples based on the raw DNS traffic of 270.8 MB and is classified as: • Heavy Attack Samples: 323,698 samples of highbandwidth aggressive DNS tunneling",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The extracted features were placed in an ordered dataframe and labeled as either benign or tunnel.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet_interarrival",
+        "retry_count",
+        "avg_retry_time",
+        "var_retry_time",
+        "query_entropy",
+        "ttl_variance",
+        "avg_response_size",
+        "query_response_ratio",
+        "domain_switching",
+        "query_type_changes",
+        "query_count",
+        "query_to_blackhole_ratio",
+        "inter_blackhole_interval",
+        "blackhole_duration",
+        "blackhole_onset_variability",
+        "response_consistency",
+        "blackhole_response_entropy"
+      ],
+      "evidence": "We engineered a set of seventeen features, comprising eleven traditional DNS traffic metrics and six novel blackhole-based features.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "We engineered a set of seventeen features, comprising eleven traditional DNS traffic metrics and six novel blackhole-based features.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "The system does not inspect the payload, so it works with a lightweight mechanism even under encrypted DNS traffic",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "random forest, XGBoost, CNN, LSTM, SVM, voting ensemble",
+      "evidence": "The chosen classifiers are: Random forest, XGBoost, Convolutional neural network (CNN), Long short-term memory (LSTM), Support vector machine (SVM), Voting ensemble (combining RF, XGBoost, and CNN).",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "stratified_random"
+      ],
+      "evidence": "We randomly divided the data into training and testing sets using an 80/20 stratified split to preserve class balance.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "We randomly divided the data into training and testing sets using an 80/20 stratified split to preserve class balance.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "All measures were computed on each experiment’s heldout test set using stratified 80/20 splits.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "To analyze the contribution of each feature, we conducted an ablation study by iteratively eliminating one feature at a time from the complete combined set",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1-score"
+      ],
+      "evidence": "Classification accuracy was examined using accuracy, precision, recall, and F1-score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "A single feature vector exists per PCAP file that enables scalable analysis for several DNS sessions.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "each packet is broken down to extract both classic and novel behavioral features, aggregating at the PCAP session level.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "our random forest model has less computation complexity (0.8 seconds of prediction)",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Intel i7-10700 CPU",
+      "evidence": "Although our approach has low computational costs with an average prediction time of 0.5 seconds per packet capture (PCAP) file on baseline hardware (e.g., Intel i7-10700 CPU), its implementation within heterogeneous enterprise setups introduces additional practical concerns.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "['https://github.com/ggyggy666/DNS-Tunnel-Datasets']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/ggyggy666/DNS-Tunnel-Datasets']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.392566+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

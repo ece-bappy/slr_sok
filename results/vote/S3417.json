@@ -1,0 +1,216 @@
+{
+  "paper_id": "S3417",
+  "n_runs": 3,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "Next, we consider recursive feature elimination (RFE). In RFE, we iteratively eliminate the lowest ranking feature, then train a new model on the reduced feature set.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "ablation",
+        "sonnet": "['none']",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G3; G4",
+      "evidence": "Table 3 lists the specific features we extract from the conn.log, the ssl.log, and x509.log files.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "G1; G3; G4",
+        "sonnet": "['G1', 'G3', 'G4']",
+        "gemini38": "['G1', 'G3', 'G4']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "sonnet": "['not_stated']",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "In this paper, we use 10-fold cross validation for all experiments.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "random",
+        "sonnet": "['random']",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We use these 4-tuples as keys to group network features by connection.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "flow",
+        "sonnet": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "Table 3 lists the specific features we extract from the conn.log, the ssl.log, and x509.log files.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "['none']",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The datasets from (Garc ́ıa et al., 2014) and (Erquiaga & Garcia, 2013) contains IP addresses of infected and benign hosts. We use these IP addresses to label our dataset.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "sonnet": "['dataset_provided']",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "yes",
+      "evidence": "x509.log — As the name suggests, this log file contains relevant information about X.509 certificates.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "yes",
+        "sonnet": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "{'name': 'CTU-13', 'role': 'train_and_test', 'quote': 'The CTU-13 dataset was captured as part of research project at the Czech Technical University. This dataset includes 13 malware traffic captures, consisting of both benign and malware traffic.'}; {'name': 'Malware Capture Facility Project', 'role': 'train_and_test', 'quote': 'The Malware Capture Facility Project dataset is from another research project carried out by the Czech Technical University ATG Group to capture, analyze, and publish real malware network traffic'}",
+      "evidence": "In this research, we have used the following two previously published network capture dataset, each of which contains both malicious and benign traffic.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "CTU-13 (train_and_test); Stratosphere MCFP / CTU-Malware-Capture (train_and_test)",
+        "sonnet": "[{'name': 'CTU-13', 'role': 'train_and_test', 'quote': 'The CTU-13 dataset was captured as part of research project at the Czech Technical University. This dataset includes 13 malware traffic captures, consisting of both benign and malware traffic.'}, {'name': 'Malware Capture Facility Project', 'role': 'train_and_test', 'quote': 'The Malware Capture Facility Project dataset is from another research project carried out by the Czech Technical University ATG Group to capture, analyze, and publish real malware network traffic'}]",
+        "gemini38": "[{'name': 'CTU-13', 'role': 'train_and_test', 'quote': 'The CTU-13 dataset was captured as part of research project at the Czech Technical University. This dataset includes 13 malware traffic captures, consisting of both benign and malware traffic.'}, {'name': 'Malware Capture Facility Project', 'role': 'train_and_test', 'quote': 'The Malware Capture Facility Project dataset is from another research project carried out by the Czech Technical University ATG Group to capture, analyze, and publish real malware network traffic'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We use Bro to generate network traffic logs that include network flow information and other metadata.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "SVM; Random Forest; XGBoost",
+      "evidence": "We experiment with three machine learning algorithms. Specifically, we consider experiments involving support vector machines (SVM), random forests (RF), and extreme gradient boosting (XGBoost).",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "SVM, random forest, XGBoost",
+        "sonnet": "SVM; Random Forest; XGBoost",
+        "gemini38": "SVM; Random Forest; XGBoost"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "In this paper, we use 10-fold cross validation for all experiments.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "none",
+        "sonnet": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "flow statistics: number of flows, duration mean/std, byte sizes, packet counts, periodicity (from conn.log); SSL/TLS session fields: ssl ratio, average key length, TLS version ratio, SNI ratio, self-signed ratio, subject/issuer ratios (from ssl.log); X.509 certificate fields: average certificate length, std certificate length, is_valid_certificate, number of certificates, number of domains, certificate path, SAN DNS, common name checks (from x509.log)",
+      "evidence": "Table 3 lists the specific features we extract from the conn.log, the ssl.log, and x509.log files.",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "no of flows; avg of duration; standard deviation duration; percent sd of duration; size of orig flows; size of resp flows; ratio of sizes; percent of established states; inbound pckts; outbound pckts; periodicity average; periodicity standard deviation; ssl ratio; avg key len; tls version ratio; avg of certificate len; standart deviation cert len; is valid certificate; amount diff certificates; no of domains in cert; no of cert path; x509 ssl ratio; SNI ssl ratio; self signed ratio; is SNIs in SAN dns; is CNs in SAN dns; differ SNI in ssl log; differ subject in ssl log; differ issuer in ssl log; differ subject in cert; differ issuer in cert; differ sandns in cert; ratio of same subjects; ratio of same issuer; is same CN and SNI; average certificate expo; is SNI top level domain; ratio certificate path error",
+        "sonnet": "['flow statistics: number of flows, duration mean/std, byte sizes, packet counts, periodicity (from conn.log)', 'SSL/TLS session fields: ssl ratio, average key length, TLS version ratio, SNI ratio, self-signed ratio, subject/issuer ratios (from ssl.log)', 'X.509 certificate fields: average certificate length, std certificate length, is_valid_certificate, number of certificates, number of domains, certificate path, SAN DNS, common name checks (from x509.log)']",
+        "gemini38": "['flow statistics: number of flows, duration mean/std, byte sizes, packet counts, periodicity (from conn.log)', 'SSL/TLS session fields: ssl ratio, average key length, TLS version ratio, SNI ratio, self-signed ratio, subject/issuer ratios (from ssl.log)', 'X.509 certificate fields: average certificate length, std certificate length, is_valid_certificate, number of certificates, number of domains, certificate path, SAN DNS, common name checks (from x509.log)']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; f1; roc-auc",
+      "evidence": "Figure 18: Comparison based on various measures of success",
+      "vote_agreement": "2/3",
+      "runs": {
+        "gemini_lite": "accuracy; AUC; F1 score; precision; recall",
+        "sonnet": "['accuracy', 'f1', 'roc-auc', 'precision', 'recall']",
+        "gemini38": "['accuracy', 'f1', 'roc-auc', 'precision', 'recall']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "All features are determined over a single connection, and aggregated based on a specific 4-tuple, as discussed above.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "sonnet": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "no",
+        "sonnet": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "In this paper, we use 10-fold cross validation for all experiments.",
+      "vote_agreement": "3/3",
+      "runs": {
+        "gemini_lite": "random",
+        "sonnet": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0217",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "Furthermore, extensive ablation studies confirm the indispensable role of each component in our architecture",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "C2Detector reconstructs network sessions into protocol-independent interaction-state transition sequences.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/AmyDylen/C2Detector-V2.0', 'https://github.com/AmyDylen/IEU-C2D']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "random; cross_dataset",
+      "evidence": "For each experimental group, the data were divided into training, validation, and test sets with a ratio of 7:1:2.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random; cross_dataset",
+        "gemini38": "['random', 'cross_dataset']"
+      }
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "In this paper, we conduct C2 channel traffic detection at the session level.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "session",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "Instead of restoring raw data content, our approach requires only the approximate size and timestamp of each reassembled data block.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided; generated",
+      "evidence": "We constructed and released IEU-C2D, a new, comprehensive, and diverse C2 traffic dataset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided; generated",
+        "gemini38": "['dataset_provided', 'generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "For TLS/SSL traffic, packets from the handshake and key negotiation phases are ignored, focusing solely on the payload from the data transmission stage.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Stratosphere MCFP / CTU-Malware-Capture (train_and_test); CIC-IDS2017 (train_and_test); NDSec-1 (train_and_test); DataCon2020 encrypted malicious traffic (train_and_test); VNAT-C2 (train_and_test); IEU-C2D (train_and_test); {'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}; {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}; {'name': 'NDSec-1', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}; {'name': 'DataCon2020 encrypted malicious traffic', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}; {'name': 'VNAT-C2', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}; {'name': 'IEU-C2D', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}",
+      "evidence": "Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D dataset.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Stratosphere MCFP / CTU-Malware-Capture (train_and_test); CIC-IDS2017 (train_and_test); NDSec-1 (train_and_test); DataCon2020 encrypted malicious traffic (train_and_test); VNAT-C2 (train_and_test); IEU-C2D (train_and_test)",
+        "gemini38": "[{'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}, {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}, {'name': 'NDSec-1', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}, {'name': 'DataCon2020 encrypted malicious traffic', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}, {'name': 'VNAT-C2', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}, {'name': 'IEU-C2D', 'role': 'train_and_test', 'quote': 'Comprehensive experiments were conducted on five public datasets and our self-constructed IEU-C2D da'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "C2Detector reconstructs network sessions into protocol-independent interaction-state transition sequences, capturing the fundamental request-response logic of C2 communications.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "spatio-temporal neural network",
+      "evidence": "A spatio-temporal joint neural network then learns complex behavioral patterns from these sequences.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "spatio-temporal neural network",
+        "gemini38": "spatio-temporal neural network"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "The core of our contribution is demonstrated in a demanding zero-shot generalization test: trained solely on TCP-based C2 traffic, C2Detector successfully identifies unseen C2 channels over DNS and ICMP",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "Dir; Size; DeltaTime; Flag; Ratio; Diff",
+      "evidence": "Each block is represented by a triple (Dir, Size, DeltaTime).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Dir; Size; DeltaTime; Flag; Ratio; Diff",
+        "gemini38": "['Dir', 'Size', 'DeltaTime', 'Flag', 'Ratio', 'Diff']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-score",
+      "evidence": "Model performance is assessed using Accuracy (Ac), Precision (Pr), Recall (Re), and F1-score (F1).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-score",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "First, protocol evolution, especially the widespread adoption of TLS 1.3 and Encrypted Client Hello (ECH), encrypts most of the handshake (including certificates and Server Name Indication (SNI)), rendering many fingerprinting techniques obsolete.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "session-level detection effectively captures request-response correlations and periodic behavioral characteristics by focusing on complete bidirectional flow interactions",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/AmyDylen/C2Detector-V2.0', 'https://github.com/AmyDylen/IEU-C2D']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "For each experimental group, the data were divided into training, validation, and test sets with a ratio of 7:1:2.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

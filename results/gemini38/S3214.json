@@ -1,0 +1,141 @@
+{
+  "paper_id": "S3214",
+  "run": "gemini38",
+  "title": "Distributed real-time SlowDoS attacks detection over encrypted traffic using Artificial Intelligence",
+  "venue": "Journal of Network and Computer Applications",
+  "year": 2021,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "Generated SlowDoS datasets (High-connections, Medium-connections, Low-connections)",
+          "role": "train_and_test",
+          "quote": "Three datasets have been generated using a different amount of clients and concurrent connections: High-connections, Medium-connections, Low-connections."
+        }
+      ],
+      "evidence": "Three datasets have been generated using a different amount of clients and concurrent connections: High-connections, Medium-connections, Low-connections.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated"
+      ],
+      "evidence": "In order to gather genuine real-time data, we have implemented a traffic generator leveraging JMeter for normal HTTPs traffic and slow-http-test to launch the different SlowDoS attacks.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "the features include statistical time-related information of the stream of packets set up between a client and a web server",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "Duration in microseconds; Number of packets sent in 1 s in uplink and downlink; Number of bytes sent in 1 s in uplink and downlink; Maximal, minimal and average packet size in uplink and downlink; Maximal, minimal and average size of TCP window in uplink and downlink; Maximal, Minimal and average time-to-live in uplink and downlink; Percentage of packets with different TCP flags in uplink and downlink; Percentage of packets with different properties in uplink and downlink; Number of new connections to the same destination host; Percentage of new connections from the current host; Total number of active connections to the same destination host; Percentage of active connections from the current host"
+      ],
+      "evidence": "Duration in microseconds, (4) Number of packets sent in 1 s in uplink and downlink, (5) Number of bytes sent in 1 s in uplink and downlink, (6) Maximal, minimal and average packet size in uplink and downlink",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "the features include statistical time-related information of the stream of packets set up between a client and a web server",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Gaussian Mixture Models (GMM); Autoencoder (Deep Learning); sGMM",
+      "evidence": "our AI model called sGMM, that combines GMM and DL, is compared with the state of the art...our AI-based attack detector uses an Auto-Encoder (AE), which is a neural network",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "For this purpose, a 10-fold validation was performed using the 25% of randomly chosen test data, respecting a balance between normal and anomalous communications.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "a 10-fold validation was performed using the 25% of randomly chosen test data",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "roc-auc",
+        "tpr",
+        "fpr"
+      ],
+      "evidence": "The metrics used to evaluate the quality of the attack detection models were both, Receiver Operating Characteristics (ROC) curve and Area Under the Curve (AUC).",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "network packets are processed into conversation and sent to the ML layer",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "the average time required for detecting is 9.8 s with a deviation of +-2.4 s in some tests. This time includes every stage of our application: network monitoring, conversation processing and machine learning classification.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "the average time required for detecting is 9.8 s with a deviation of +-2.4 s in some tests. This time includes every stage of our application: network monitoring, conversation processing and machine learning classification.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "VM CPUs at 2.1 GHz, 8 GB to 16 GB RAM, 8 to 16 cores",
+      "evidence": "Streaming Processor: 2 machines. 8 GB memory and 16 cores each. It includes layer (2) and (3). Every virtual machine CPU is running at 2.1 GHz and have a network bandwidth of 16 Gbps.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:02:40.363213+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

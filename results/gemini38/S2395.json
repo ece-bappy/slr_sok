@@ -1,0 +1,158 @@
+{
+  "paper_id": "S2395",
+  "run": "gemini38",
+  "title": "Machine learning models for phishing detection from TLS traffic",
+  "venue": "Cluster Computing",
+  "year": 2023,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "inhouse dataset",
+          "role": "train_and_test",
+          "quote": "Therefore we have prepared our dataset for the classification of URLs. For generating TLS 1.2 and TL"
+        }
+      ],
+      "evidence": "Therefore we have prepared our dataset for the classification of URLs. For generating TLS 1.2 and TLS 1.3 traffic files for legitimate and phishing sites Python programs have been implemented.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The legitimate URLs are collected from the Alexa database (https://www.alexa.com/topsites) where the page ranks range from top 10,000 to 400,000, and valid phishing sites are collected from the Phishtank (https://www.phishtank.com/developer).",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The features are extracted from TLS 1.2 and TLS 1.3 traffic, and phishing detection is performed using ML algorithms based on the extracted features.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "Count of digits in the Hostname",
+        "Average word length in the Hostname",
+        "Word with the longest length in the Hostname",
+        "Length of the Hostname",
+        "Count of dots in Hostname",
+        "Count of hyphens in Hostname",
+        "NoS",
+        "ipV4 count",
+        "ipV6 count",
+        "TTL",
+        "OCS",
+        "SCS"
+      ],
+      "evidence": "The proposed model has used 12 features for ML models, including existing features such as HF2, HF3, HF4, HF5, HF10, and HF11, and new proposed features such as NF1, NF2, NF3, NF4, NF5, and NF6.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G3"
+      ],
+      "evidence": "The message contains information about the client’s supported TLS protocol versions, CipherSuites, and extensions.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "1.2",
+        "1.3"
+      ],
+      "evidence": "A novel machine learning (ML) based phishing detection technique from transport layer security (TLS) 1.2 and TLS 1.3 encrypted traffic without decryption is proposed in this paper.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "logistic regression, support vector machine, random forest, extreme gradient boosting, light gradient boosting machine",
+      "evidence": "We have used five ML algorithms: logistic regression (LR), support vector machine (SVM), RF, XGB, and LGBM, to classify the URLs as legitimate or phishing.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "The 80–20 rule is adopted for training, and testing splits for all the experiments.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The 80–20 rule is adopted for training, and testing splits for all the experiments.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The 80–20 rule is adopted for training, and testing splits for all the experiments.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "In this experiment, we evaluated existing features (hostname features) such as HF2, HF3, HF4, HF5, HF10, and HF11 while excluding new proposed features with different ML classifiers.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "True Positive Rate",
+        "True Negative Rate",
+        "False Positive Rate",
+        "False Negative Rate",
+        "Accuracy",
+        "Precision",
+        "F-Measure",
+        "AUC score"
+      ],
+      "evidence": "True Positive Rate (TPR), True Negative Rate (TNR), False Positive Rate (FPR), False Negative Rate (FNR), Accuracy (Acc), Precision (Pre), and F-Measure (F-mea) are used to evaluate the proposed model performance.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The features are extracted from TLS 1.2 and TLS 1.3 traffic, and phishing detection is performed using ML algorithms based on the extracted features.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The Python program captures the network traffic of the input URL and saves it to a PCAP file.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Table 11 shows the training and testing timing for different ML classifiers on our data set.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "core i7 processor with a clock speed of 2.30 GHz, 64 GB RAM, and an 8 GB graphics card",
+      "evidence": "Experiments have been performed on a core i7 processor with a clock speed of 2.30 GHz, 64 GB RAM, and an 8 GB graphics card.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "['https://github.com/Munish999/Dataset-URL-Phishing-detection-TLS-1.2-and-TLS-1.3']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/Munish999/Dataset-URL-Phishing-detection-TLS-1.2-and-TLS-1.3']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.370696+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

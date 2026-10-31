@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0928",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "Relative to the no-selection configuration, all three feature-selection variants substantially improve F1-score across BoT-IoT, IoT-23, and ToN-IoT while reducing the input dimensionality from 30 to 20 features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G3; G5",
+      "evidence": "Zeek and CICFlowMeter to construct a unified metadata feature space incorporating flow statistics and TLS attributes such as JA3 and JA3S fingerprints.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G3; G5",
+        "gemini38": "['G1', 'G3', 'G5']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "cross_dataset; unclear",
+      "evidence": "The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset scenarios.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "cross_dataset; unclear",
+        "gemini38": "['cross_dataset', 'unclear']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The per-flow detection model classifies each network flow independently.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "JA3; JA3S",
+      "evidence": "Zeek (Version 6.0; The Zeek Project, https://zeek.org) [24] is used to extract connection-level logs and TLS metadata, including protocol versions, cypher suites, extensions, server name indication (SNI), and cryptographic fingerprints such as JA3 and JA3S [12].",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "JA3; JA3S",
+        "gemini38": "['JA3', 'JA3S']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "Three publicly available IoT intrusion datasets are used: the BoT-IoT, IoT-23, and ToN-IoT.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "As payload inspection becomes impractical in encrypted environments, anomaly detection must instead rely on flow-level statistics and TLS metadata.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Bot-IoT (train_and_test); IoT-23 (test); ToN_IoT (test); {'name': 'Bot-IoT', 'role': 'train_and_test', 'quote': 'The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s'}; {'name': 'IoT-23', 'role': 'test', 'quote': 'The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s'}; {'name': 'ToN_IoT', 'role': 'test', 'quote': 'The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s'}",
+      "evidence": "The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset scenarios.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Bot-IoT (train_and_test); IoT-23 (test); ToN_IoT (test)",
+        "gemini38": "[{'name': 'Bot-IoT', 'role': 'train_and_test', 'quote': 'The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s'}, {'name': 'IoT-23', 'role': 'test', 'quote': 'The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s'}, {'name': 'ToN_IoT', 'role': 'test', 'quote': 'The model was trained on benign BoT-IoT traffic and evaluated in both in-dataset and cross-dataset s'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The framework models benign encrypted IoT traffic using probabilistic latent representations and identifies anomalies through reconstruction-error-based scoring.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "β-Variational Autoencoder (β-VAE)",
+      "evidence": "We introduce a TLS-aware anomaly detection framework that combines a β-Variational Autoencoder (β-VAE) with a hybrid ANOVA–Mutual Information (ANOVA–MI) feature-selection pipeline.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "β-Variational Autoencoder (β-VAE)",
+        "gemini38": "β-Variational Autoencoder (β-VAE)"
+      }
+    },
+    "hardware": {
+      "value": "standard CPU (Intel Core i7)",
+      "evidence": "Training time (BoT-IoT) ≈33 s on a standard CPU (Intel Core i7, no GPU required)",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "standard CPU (Intel Core i7)",
+        "gemini38": "standard CPU (Intel Core i7)"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "The model achieves strong in-dataset performance on BoT-IoT (ROC-AUC ≈0.9996; F1 ≈0.9922) and retains robust anomaly-ranking and threshold-based detection capability under cross-dataset domain shift",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "The latency distribution (Figure 18) shows that the mean per-flow inference time is approximately 161 μs, with a 95th-percentile latency of 236 μs.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "TLS versions; cypher suites; JA3; JA3S; packet-length distributions; inter-arrival timing patterns; flow-level statistics; extensions; SNI",
+      "evidence": "In TLS-aware IoT anomaly detection, this is especially valuable because the model must infer normal and abnormal behaviour from observable metadata such as TLS versions, cypher suites, JA3/JA3S fingerprints, packet-length distributions, and inter-arrival timing patterns, rather than from decrypted packet payloads.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TLS versions; cypher suites; JA3; JA3S; packet-length distributions; inter-arrival timing patterns; flow-level statistics; extensions; SNI",
+        "gemini38": "['TLS versions', 'cypher suites', 'JA3', 'JA3S', 'packet-length distributions', 'inter-arrival timing patterns', 'flow-level statistics', 'extensions', 'SNI']"
+      }
+    },
+    "metrics": {
+      "value": "ROC-AUC; F1-score; False Positive Rate; Recall",
+      "evidence": "The model achieves strong in-dataset performance on BoT-IoT (ROC-AUC ≈0.9996; F1 ≈0.9922) and retains robust anomaly-ranking and threshold-based detection capability under cross-dataset domain shift",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ROC-AUC; F1-score; False Positive Rate; Recall",
+        "gemini38": "['ROC-AUC', 'F1-score', 'False Positive Rate', 'Recall']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Raw PCAP traffic is processed using Zeek and CICFlowMeter to construct a unified metadata feature space incorporating flow statistics and TLS attributes such as JA3 and JA3S fingerprints.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "cross_dataset",
+      "evidence": "The proposed approach is evaluated under both in-dataset and strict cross-dataset conditions using three heterogeneous benchmark datasets (BoT-IoT, IoT-23, and ToN-IoT).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "cross_dataset",
+        "gemini38": "cross_dataset"
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1449",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "In this paper, since we propose multiple modules, we set up a set of ablation experiments to judge the contribution of each module.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "We use the traffic feature quintet and the traffic packet-level data as input to the extraction model for behavioral and temporal features, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "We conduct experiments using real network traffic datasets to validate our proposed method.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "The dataset is split into a training set and a test set in an 8:2 ratio and undergoes ten-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The original PCAP files are split into individual traffic data using the SplitCap tool, and packet-level data with the same traffic feature quintuples are merged into a single traffic data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "We use the traffic feature quintet and the traffic packet-level data as input to the extraction model for behavioral and temporal features, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The annotated flow records encompass essential details such as timestamps, source and destination IP addresses, ports, protocols, and indications of malicious activity.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "ISCX VPN-nonVPN 2016 (train_and_test); CIC-IDS2017 (train_and_test); Malware-Traffic-Analysis.net (MTA) (train_and_test); Stratosphere MCFP / CTU-Malware-Capture (train_and_test); USTC-TFC2016 (train_and_test); {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}; {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}; {'name': 'Malware-Traffic-Analysis.net (MTA)', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}; {'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}; {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}",
+      "evidence": "In the experiment focused on comparative analysis of malicious encrypted traffic detection, we employ CICIDS2017, MalwareTraffic-Analysis.net, StratosphereIPS, and USTC-TFC2016—for both model training and validation purposes.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "ISCX VPN-nonVPN 2016 (train_and_test); CIC-IDS2017 (train_and_test); Malware-Traffic-Analysis.net (MTA) (train_and_test); Stratosphere MCFP / CTU-Malware-Capture (train_and_test); USTC-TFC2016 (train_and_test)",
+        "gemini38": "[{'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}, {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}, {'name': 'Malware-Traffic-Analysis.net (MTA)', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}, {'name': 'Stratosphere MCFP / CTU-Malware-Capture', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}, {'name': 'USTC-TFC2016', 'role': 'train_and_test', 'quote': 'In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "this approach leverages both traffic-level and packet-level data of encrypted traffic to automate feature extraction and comprehensively learn the behavioral and temporal characteristics of traffic data",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Bi-LSTM, BERT",
+      "evidence": "Secondly, a dual layer bidirectional long short-term memory (Bi-LSTM) network which is supervised is employed to model packet-level data in encrypted traffic, capturing local semantic features (temporal features) of each packet-level data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Bi-LSTM, BERT",
+        "gemini38": "Bi-LSTM, BERT"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "first 8 packets of each stream",
+      "evidence": "We use the traffic feature quintet and the traffic packet-level data as input to the extraction model for behavioral and temporal features, respectively.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "traffic feature quintuple (sourceIP, destinationIP, source port, destination port, protocol); first 8 packets of each stream",
+        "gemini38": "['traffic feature quintuple (sourceIP, destinationIP, source port, destination port, protocol)', 'first 8 packets of each stream']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; F1-score",
+      "evidence": "we evaluate its performance using four metrics: accuracy, precision, recall, and F1-score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; F1-score",
+        "gemini38": "['accuracy', 'precision', 'recall', 'F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "The encryption of traffic, while safeguarding data confidentiality, also provides convenience for attackers to conceal malicious activities.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "8 packets",
+      "evidence": "Since the first 8 data packets of the traffic typically contain complete handshake information [46], N is set to 8 in this paper.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "8 packets",
+        "gemini38": "8 packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The dataset is split into a training set and a test set in an 8:2 ratio and undergoes ten-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1854",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "a real-time detection system is proposed for DoH flooding attacks at the network level using ML models based on a comprehensive set of network flow statistics used as input features for the models.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/UPM-RSTI/STGUTG']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "not_applicable",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "['not_applicable']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The dataset will be processed using the Tstat tool to extract statistics from aggregated network flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "unclear",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "['unclear']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "The dataset will be processed using the Tstat tool to extract statistics from aggregated network flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "{'name': 'nan', 'role': 'train_and_test', 'quote': 'Currently, we are awaiting the dataset generated in the NDT needed for training and validation of th'}",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "nan",
+        "gemini38": "[{'name': 'nan', 'role': 'train_and_test', 'quote': 'Currently, we are awaiting the dataset generated in the NDT needed for training and validation of th'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "not_applicable",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "model_family": {
+      "value": "Decision trees, neural networks",
+      "evidence": "Various algorithms such as decision trees, and neural networks will be evaluated to determine the most suitable model for accurately detecting DoH flooding attacks.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Decision trees, neural networks",
+        "gemini38": "Decision trees, neural networks"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "not_applicable",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "network flow statistics",
+      "evidence": "a real-time detection system is proposed for DoH flooding attacks at the network level using ML models based on a comprehensive set of network flow statistics used as input features for the models.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "network flow statistics",
+        "gemini38": "['network flow statistics']"
+      }
+    },
+    "metrics": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "['not_applicable']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The dataset will be processed using the Tstat tool to extract statistics from aggregated network flows.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/UPM-RSTI/STGUTG']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "not_applicable",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    }
+  }
+}

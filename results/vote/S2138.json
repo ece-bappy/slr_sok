@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2138",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "We view the TLS session as a state machine involving the TLS state and packet features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "1.2",
+      "evidence": "TLS 1.2 [14] network sessions, which are our primary focus in this work, can reveal many valuable messages in packet headers",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1.2",
+        "gemini38": "['1.2']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/wesly2000/TLSFingerprint']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "10-Fold Cross-Validation is used to make the best of our data and obtain the most accurate estimation of our model performance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "The smallest object we will use is a session between the client and the server.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "session",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "In this paper, we propose a novel TLS fingerprinting approach to capture the characteristics of encrypted network traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided; generated",
+      "evidence": "The SQL Injection traffic was collected using sqlmap [43] on our self-built websites. ... The dataset consists of various kinds of traffic, each of which is labeled by its generator application.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided; generated",
+        "gemini38": "['dataset_provided', 'generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "Although each packet contains much information in layers from Ethernet to SSL/TLS, in this work, we want to investigate the capability of leveraging only TLS messages to classify encrypted networks.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Ren et al. [40] traffic (train_and_test); Digital forensic analyzing websites traffic (train_and_test); Self-built websites traffic (train_and_test); {'name': 'Ren et al. [40] traffic', 'role': 'train_and_test', 'quote': 'For normal applications, Ren et al. [40] collected many apps’ network traffic... For malicious traff'}; {'name': 'Digital forensic analyzing websites traffic', 'role': 'train_and_test', 'quote': 'For normal applications, Ren et al. [40] collected many apps’ network traffic... For malicious traff'}; {'name': 'Self-built websites traffic', 'role': 'train_and_test', 'quote': 'For normal applications, Ren et al. [40] collected many apps’ network traffic... For malicious traff'}",
+      "evidence": "For normal applications, Ren et al. [40] collected many apps’ network traffic... For malicious traffic... we manually collected traffic data for each malware separately the digital forensic analyzing websites [42]. Moreover, we generated some data for some network attack using our self-built websites.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Ren et al. [40] traffic (train_and_test); Digital forensic analyzing websites traffic (train_and_test); Self-built websites traffic (train_and_test)",
+        "gemini38": "[{'name': 'Ren et al. [40] traffic', 'role': 'train_and_test', 'quote': 'For normal applications, Ren et al. [40] collected many apps’ network traffic... For malicious traff'}, {'name': 'Digital forensic analyzing websites traffic', 'role': 'train_and_test', 'quote': 'For normal applications, Ren et al. [40] collected many apps’ network traffic... For malicious traff'}, {'name': 'Self-built websites traffic', 'role': 'train_and_test', 'quote': 'For normal applications, Ren et al. [40] collected many apps’ network traffic... For malicious traff'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "For our model, the second-order state transition diagram is depicted in Fig. 12. ... the vertex attributes for packets we use in this work are the first packet length, average packet length, max packet length, min packet length of the same packet type.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Kernel-based SVM",
+      "evidence": "Applying this technique, we are capable of training an SVM model that takes as input the TLS fingerprints for network classification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Kernel-based SVM",
+        "gemini38": "Kernel-based SVM"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "10-Fold Cross-Validation is used to make the best of our data and obtain the most accurate estimation of our model performance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "We further demonstrate that our LSH strategy will not affect the performance substantially while reducing a large amount of computing cost.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "TLS packet types; first packet length; average packet length; max packet length; min packet length",
+      "evidence": "The vertex attributes for packets we use in this work are the first packet length, average packet length, max packet length, min packet length of the same packet type.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TLS packet types; first packet length; average packet length; max packet length; min packet length",
+        "gemini38": "['TLS packet types', 'first packet length', 'average packet length', 'max packet length', 'min packet length']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Recall; Precision; F1 Score; Fbeta Score",
+      "evidence": "10-Fold cross-validation will be used for testing model performance, and the criteria we use are Accuracy, Recall, Precision and F1 Score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Recall; Precision; F1 Score; Fbeta Score",
+        "gemini38": "['Accuracy', 'Recall', 'Precision', 'F1 Score', 'Fbeta Score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "In our perspective, the extensions of TLS just introduce new states to the SM alphabet Σ, and the framework does not change much. Therefore, in this work, we only discuss the performance of this framework on (vanilla)TLS 1.2.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Instead of packet-level sampling, we adopt session-level sampling, i.e., we track each TLS session using TLS stream number and extract them separately.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/wesly2000/TLSFingerprint']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "10-Fold Cross-Validation is used to make the best of our data and obtain the most accurate estimation of our model performance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

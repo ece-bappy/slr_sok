@@ -1,0 +1,150 @@
+{
+  "paper_id": "S2626",
+  "run": "gemini38",
+  "title": "Automatic Detection of DGA-Enabled Malware Using SDN and Traffic Behavioral Modeling",
+  "venue": "IEEE Transactions on Network Science and Engineering",
+  "year": 2022,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CTU-13",
+          "role": "train_and_test",
+          "quote": "We will use this dataset in section IV to train our classifier models, validate, and test their perf"
+        },
+        {
+          "name": "own / private capture",
+          "role": "test",
+          "quote": "We will use this dataset in section IV to train our classifier models, validate, and test their perf"
+        }
+      ],
+      "evidence": "We will use this dataset in section IV to train our classifier models, validate, and test their performance in distinguishing malicious flows from benign ones. We evaluate the efficacy of our proposed method and system during a 50-day trial.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "We identify malware traffic attributes and train three specialized one-class classifier models using behavioral attributes of malware HTTP, HTTPS and UDP flows obtained from a public dataset.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "we choose to extract statistical attributes of flows (encrypted and unencrypted) to train our models, without the need for inspecting payloads like HTTP content type or TLS handshake cipher keys",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "flow volume in bytes",
+        "flow duration",
+        "number of packets",
+        "average packet size"
+      ],
+      "evidence": "flow volume in bytes (in/out). flow duration, i.e., the gap between the arrival time of the first packet and the last packet (in/out). number of packets (in/out). average packet size (in/out).",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "Our attributes of a malware flow are as follow. flow volume in bytes (in/out). flow duration, i.e., the gap between the arrival time of the first packet and the last packet (in/out).",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "we choose to extract statistical attributes of flows (encrypted and unencrypted) to train our models, without the need for inspecting payloads like HTTP content type or TLS handshake cipher keys",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "we choose to extract statistical attributes of flows (encrypted and unencrypted) to train our models, without the need for inspecting payloads like HTTP content type or TLS handshake cipher keys",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "one-class classifiers (iForest, EiF, K-means, OC-SVM)",
+      "evidence": "Our prediction models are one-class classifiers trained by four popular algorithms, namely Isolation Forest (iForest) [70], Extended iForest (EiF) [71], K-means [72], and one-class support vector machines (OC-SVM) [73]",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random",
+        "cross_dataset"
+      ],
+      "evidence": "We split the malicious data of each protocol-specific model into 60% (for training and validation) and 40% (for testing only).",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "cross_dataset",
+      "evidence": "We have implemented a fully functional system (shown in Fig. 11), and operated it during a 50-day trial (3-Dec-2019 to 21-Jan-2020) under full campus network traffic.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "We observe that EiF consistently gives the best accuracy for both malicious and benign testing flows, across the three models – true negatives of more than 97% and true positives of at least 93%.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "Our approach, instead, aims to characterize the behavior of malware activity on a per-flow basis, and diagnoses a fraction of network flows, only those suspicious TCP/UDP flows pertinent to a DGA-related DNS query.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "true positive rate",
+        "true negative rate"
+      ],
+      "evidence": "EiF consistently gives the best accuracy for both malicious and benign testing flows, across the three models – true negatives of more than 97% and true positives of at least 93%.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Our approach, instead, aims to characterize the behavior of malware activity on a per-flow basis, and diagnoses a fraction of network flows, only those suspicious TCP/UDP flows pertinent to a DGA-related DNS query.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We identify eight attributes on a per-flow basis for malware traffic – 4 per each direction (in/out). Our attributes of a malware flow are as follow. flow volume in bytes (in/out).",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.359853+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

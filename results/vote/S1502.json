@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1502",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "To validate the architectural sensitivity of our Capsule Network module, we conducted a controlled ablation study in which we varied capsule sizes, routing iterations, and hierarchical depths.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2; G3; G4",
+      "evidence": "DNS Query Patterns—Characterizing query entropy, frequency, and domain length distributions. TLS listening metadata—Monitoring ciphersuite usage, session resumption behavior, and certificates. Temporal Traffic Pattern—Application of time-series analysis for the identification of query timing and inter-arrival times anomalies.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2; G3; G4",
+        "gemini38": "['G1', 'G2', 'G3', 'G4']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "1.3",
+      "evidence": "DoH TLS 1.3 (HTTPS, Port 443)",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1.3",
+        "gemini38": "['1.3']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "unclear",
+      "evidence": "We applied the same dataset splits, the identical hyperparameter configuration (e.g., learning rate, optimizer, batch size), and the identical hardware resources for training and inference.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "['unclear']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Capsule Networks (CapsNets) are used to learn hierarchical traffic flow patterns",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "Existing prior works have either focused on statistical anomaly detection or basic supervised learning models with light features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated",
+      "evidence": "DoH traffic was collected from actual sources and subsequently enriched with synthetically generated attack patterns in order to increase diversity and enrich the dataset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated",
+        "gemini38": "['generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "yes",
+      "evidence": "TLS listening metadata—Monitoring ciphersuite usage, session resumption behavior, and certificates.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "doh_real_world_2022 (train_and_test); {'name': 'doh_real_world_2022', 'role': 'train_and_test', 'quote': 'Empirical evaluation on the doh_real_world_2022 dataset demonstrates 99.1% detection accuracy with C'}",
+      "evidence": "Empirical evaluation on the doh_real_world_2022 dataset demonstrates 99.1% detection accuracy with CapsNets, 98.8% with GraphTransformers, and an 80% improvement in adversarial resilience.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "doh_real_world_2022 (train_and_test)",
+        "gemini38": "[{'name': 'doh_real_world_2022', 'role': 'train_and_test', 'quote': 'Empirical evaluation on the doh_real_world_2022 dataset demonstrates 99.1% detection accuracy with C'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The model received regular injections of adverse samples during training which forced it to establish critical differences between normal and abnormal queries to achieve improved defense against sophisticated evasion methods.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Capsule Networks (CapsNets), Graph Transformers",
+      "evidence": "Specifically, Capsule Networks (CapsNets) are used to learn hierarchical traffic flow patterns, Graph Transformers to uncover temporal anomalies",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Capsule Networks (CapsNets), Graph Transformers",
+        "gemini38": "Capsule Networks (CapsNets), Graph Transformers"
+      }
+    },
+    "hardware": {
+      "value": "64-core distributed cluster with 256 GB RAM and RTX A6000",
+      "evidence": "Tests conducted on a 64-core distributed cluster with 256 GB RAM and RTX A6000 acceleration.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "64-core distributed cluster with 256 GB RAM and RTX A6000",
+        "gemini38": "64-core distributed cluster with 256 GB RAM and RTX A6000"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "In order to achieve methodological equivalence in the evaluation, we standardized the experimental setup for all the models being compared.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "This setup provides greater than 65,000 events/s throughput with sub-50ms end-to-end inference delay",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "DNS Query Patterns; TLS listening metadata; DoH-Specific HTTP Header Analysis; Temporal Traffic Pattern",
+      "evidence": "DNS Query Patterns—Characterizing query entropy, frequency, and domain length distributions. TLS listening metadata—Monitoring ciphersuite usage, session resumption behavior, and certificates. DoH-Specific HTTP Header Analysis—Identification of content type mismatch anomalies, HTTP request patterns, and response latencies anomalies.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "DNS Query Patterns; TLS listening metadata; DoH-Specific HTTP Header Analysis; Temporal Traffic Pattern",
+        "gemini38": "['DNS Query Patterns', 'TLS listening metadata', 'DoH-Specific HTTP Header Analysis', 'Temporal Traffic Pattern']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; F1-score; detection latency",
+      "evidence": "Theperformanceassessmentincludedprecision,recall,F1-scoreanddetectionlatencymetricsandservedtodemonstratethattheultimateimplementationsurpassedcurrentbenchmarksintermsofaccuracy,securityaswellasperformancespeed.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; F1-score; detection latency",
+        "gemini38": "['accuracy', 'precision', 'recall', 'F1-score', 'detection latency']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "Capsule Networks (CapsNets) are used to learn hierarchical traffic flow patterns",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "We applied the same dataset splits, the identical hyperparameter configuration (e.g., learning rate, optimizer, batch size), and the identical hardware resources for training and inference.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "unclear"
+      }
+    }
+  }
+}

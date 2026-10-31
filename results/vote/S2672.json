@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2672",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "In this experiment, we evaluate the performance of classifiers based only on time-related features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1",
+      "evidence": "We reassemble the DoH traffic trace to flows and extract flow-level statistical features based on the packet size, timestamp, and direction in each flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1",
+        "gemini38": "['G1']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random; cross_dataset",
+      "evidence": "For the evaluation of flow-based detection, we divide the dataset into a training set and a test set on a 4-to -1 basis.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random; cross_dataset",
+        "gemini38": "['random', 'cross_dataset']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "We reassemble the DoH traffic trace to flows and extract flow-level statistical features based on the packet size, timestamp, and direction in each flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "other",
+      "evidence": "We perform extensive TLS fingerprinting measurement on clients that currently supports DoH to fill this gap.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "other",
+        "gemini38": "['other']"
+      }
+    },
+    "label_source": {
+      "value": "generated",
+      "evidence": "To configure the DoH tunneling, we register a domain with Godaddy, use the virtual machine in Seattle as the Name Server (NS) for that domain, and run the server-side program of DNSExfiltrator [32] on this virtual machine",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated",
+        "gemini38": "['generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "Therefore, we only focus on unencrypted features from the DoH traffic to perform data exfiltration detection in this work.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "lab-generated DoH traffic (train_and_test); {'name': 'lab-generated DoH traffic', 'role': 'train_and_test', 'quote': 'We set up three virtual machines running Ubuntu 20.04 as the operating system. Two virtual machines '}",
+      "evidence": "We set up three virtual machines running Ubuntu 20.04 as the operating system. Two virtual machines are located in Seattle and the other in Singapore. All virtual machines are configured with public IP addresses",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "lab-generated DoH traffic (train_and_test)",
+        "gemini38": "[{'name': 'lab-generated DoH traffic', 'role': 'train_and_test', 'quote': 'We set up three virtual machines running Ubuntu 20.04 as the operating system. Two virtual machines '}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We analyze the features of DoH tunneling, extract flow-based features from encrypted traffic that contain DNS queries/responses, and build classifiers to detect DoH tunneling.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Boosted Decision Tree, Random Forest, Logistic Regression",
+      "evidence": "We select three interpretable supervised models: Boosted Decision Tree (DT), Random Forest (RF), and Logistic Regression (LR).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Boosted Decision Tree, Random Forest, Logistic Regression",
+        "gemini38": "Boosted Decision Tree, Random Forest, Logistic Regression"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "In addition to directly testing the performance of the classifier on the idealized dataset, we also simulate scenarios that are conducive to the attacker to evade detection in experiments",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "TLS fingerprints; TLS record length of queries; TLS record length of responses; time intervals",
+      "evidence": "TLS fingerprints of DoH clients are first used for providing the preliminary warning, and then flow-based features of the DoH flow are extracted and used by classifiers to accurately detect DoH tunneling.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TLS fingerprints; TLS record length of queries; TLS record length of responses; time intervals",
+        "gemini38": "['TLS fingerprints', 'TLS record length of queries', 'TLS record length of responses', 'time intervals']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; F1-score",
+      "evidence": "The metrics used for testing include accuracy, precision, recall, and F1-score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; F1-score",
+        "gemini38": "['accuracy', 'precision', 'recall', 'F1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "We reassemble the DoH traffic trace to flows and extract flow-level statistical features based on the packet size, timestamp, and direction in each flow.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "For the evaluation of flow-based detection, we divide the dataset into a training set and a test set on a 4-to -1 basis.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

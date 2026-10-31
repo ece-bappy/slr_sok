@@ -1,0 +1,195 @@
+{
+  "paper_id": "S0971",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G3; G5",
+      "evidence": "These key features include protocol, TLS version, SNI presence, cipher count, extension count, ALPN code, JA4_B (cipher suite hash), JA4_C (extension/signature hash), as well as meta features from the dataset, such as application, OS, device, verified flag, and observation count.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G3; G5",
+        "gemini38": "['G3', 'G5']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "The data was then divided into training and test sets in an 80/20 ratio, utilizing a fixed random seed to ensure consistency",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "TLS fingerprinting is a passive network analysis technique used to identify or classify client and server software based on observable characteristics of their TLS handshakes.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "JA4",
+      "evidence": "This work explores a less intrusive, protocol-level method: using TLS fingerprinting with the JA4 technique to tell apart bots from real users.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "JA4",
+        "gemini38": "['JA4']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "controlled captures supply the ground-truth labels required for later real traffic monitoring and collection.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "common identifiers such as IP addresses, domains, or certificates easily change or are spoofed; instead of depending on those shifting values, fingerprinting turns the stable, repeatable handshake choices into short signatures",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "JA4DB (train_and_test); {'name': 'JA4DB', 'role': 'train_and_test', 'quote': 'The dataset used in this study, JA4DB [15], is a community-maintained repository of JA4 fingerprints'}",
+      "evidence": "The dataset used in this study, JA4DB [15], is a community-maintained repository of JA4 fingerprints collected through two primary strategies",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "JA4DB (train_and_test)",
+        "gemini38": "[{'name': 'JA4DB', 'role': 'train_and_test', 'quote': 'The dataset used in this study, JA4DB [15], is a community-maintained repository of JA4 fingerprints'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "yes",
+      "evidence": "For the rest of the traffic, entries were marked as “bad bots” if the application field included the term “bot”; otherwise, they were categorized as benign.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "model_family": {
+      "value": "XGBoost, CatBoost",
+      "evidence": "Two gradient-boosted machine learning classifiers (XGBoost and CatBoost) were trained and evaluated on a dataset of real TLS fingerprints (JA4DB)",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "XGBoost, CatBoost",
+        "gemini38": "XGBoost, CatBoost"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "protocol; TLS version; SNI presence; cipher count; extension count; ALPN code; JA4_B; JA4_C; application; OS; device; verified flag; observation count",
+      "evidence": "These key features include protocol, TLS version, SNI presence, cipher count, extension count, ALPN code, JA4_B (cipher suite hash), JA4_C (extension/signature hash), as well as meta features from the dataset, such as application, OS, device, verified flag, and observation count.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "protocol; TLS version; SNI presence; cipher count; extension count; ALPN code; JA4_B; JA4_C; application; OS; device; verified flag; observation count",
+        "gemini38": "['protocol', 'TLS version', 'SNI presence', 'cipher count', 'extension count', 'ALPN code', 'JA4_B', 'JA4_C', 'application', 'OS', 'device', 'verified flag', 'observation count']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; F1 score; confusion matrices",
+      "evidence": "Both models were evaluated on test data using accuracy, precision, recall, F1 score and confusion matrices.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; F1 score; confusion matrices",
+        "gemini38": "['accuracy', 'precision', 'recall', 'F1 score', 'confusion matrices']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "TLS handshake",
+      "evidence": "the method turns visible parts of unencrypted handshake metadata, primarily the Client Hello messages, such as cipher lists, extension sets, and their order, ALPN, and version preferences, into compact signatures like JA3 or JA4",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "TLS handshake",
+        "gemini38": "TLS handshake"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The data was then divided into training and test sets in an 80/20 ratio, utilizing a fixed random seed to ensure consistency",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

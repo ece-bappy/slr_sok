@@ -1,0 +1,16 @@
+id,decision,criterion,reason,judge
+S0967,exclude,secondary,"This is a dataset release, not a primary research study proposing a method for malicious traffic detection.",gemini/gemini-3.1-flash-lite
+S0054,include,,Targeted study on detecting malicious DoH tunneling in encrypted traffic using hybrid neural networks with quantitative evaluation.,gemini/gemini-3.1-flash-lite
+S2290,exclude,non_tls,Paper focuses on DDoS detection in general traffic without specific focus on encrypted or TLS-based traffic analysis.,gemini/gemini-3.1-flash-lite
+S3214,include,,Study proposes an AI-based system for detecting SlowDoS attacks specifically in encrypted application-level traffic with quantitative validation.,gemini/gemini-3.1-flash-lite
+S0158,exclude,off_topic,"Focus is on URL and web page content features for phishing detection, not analysis of encrypted network traffic.",gemini/gemini-3.1-flash-lite
+S0746,exclude,non_tls,The study uses generic security datasets and does not focus on or isolate encrypted/TLS traffic analysis.,gemini/gemini-3.1-flash-lite
+S1100,include,,The title indicates the study specifically focuses on anomaly-based DDoS detection in encrypted network traffic.,gemini/gemini-3.1-flash-lite
+S0083,exclude,non_tls,The study focuses on DoS/intrusion detection in IoT using generic datasets without mention of encrypted or TLS traffic focus.,gemini/gemini-3.1-flash-lite
+S0244,exclude,not_main_focus,"The work focuses on a compression-based framework for analytical diagnostics, with intrusion detection used only as a secondary application.",gemini/gemini-3.1-flash-lite
+S2986,exclude,benign_only,"The study addresses website fingerprinting to infer user behavior, which classifies benign traffic rather than detecting malicious traffic.",gemini/gemini-3.1-flash-lite
+S0720,include,,"Study performs a quantitative measurement of IDS performance against malicious PQC-TLS traffic, constituting a valid primary measurement study.",gemini/gemini-3.1-flash-lite
+S3044,exclude,non_tls,Study focuses on IoT malware traffic using binary visualization without reference to encrypted or TLS traffic.,gemini/gemini-3.1-flash-lite
+S1627,exclude,non_tls,The study utilizes generic IDS datasets without specifying isolation of encrypted traffic or focusing on TLS/HTTPS analysis.,gemini/gemini-3.1-flash-lite
+S1103,include,,Study proposes a graph-based method for detecting malicious traffic specifically within TLS/SSL encrypted environments.,gemini/gemini-3.1-flash-lite
+S0568,include,,Study explicitly categorizes and isolates encrypted traffic from generic datasets for metadata-based attack detection performance analysis.,gemini/gemini-3.1-flash-lite

@@ -1,0 +1,150 @@
+{
+  "paper_id": "S1228",
+  "run": "gemini38",
+  "title": "Detection of Unknown Attacks Through Encrypted Traffic: A Gaussian Prototype-Aided Variational Autoencoder Framework",
+  "venue": "IEEE Transactions on Information Forensics and Security",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "In our experiments, we utilize two public datasets: USTC-TFC2016 and Malicious TLS."
+        },
+        {
+          "name": "Malicious TLS",
+          "role": "train_and_test",
+          "quote": "In our experiments, we utilize two public datasets: USTC-TFC2016 and Malicious TLS."
+        }
+      ],
+      "evidence": "In our experiments, we utilize two public datasets: USTC-TFC2016 and Malicious TLS.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "In our experiments, we utilize two public datasets: USTC-TFC2016 and Malicious TLS.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "In Open-Detect, network flows are transformed into grayscale images, and each known traffic class is mapped to a unique Gaussian prototype in the latent space.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "first k1 bytes from the packet’s IP header and the first k2 bytes from the payload"
+      ],
+      "evidence": "we take the first k1 bytes from the packet’s IP header and the first k2 bytes from the payload.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G3"
+      ],
+      "evidence": "Notably, payload data is not always encrypted; for instance, Client Hello and Server Hello packets contain key plaintext information from the TLS handshake.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "The feature extraction module processes network flow data by converting the raw bytes of the flow into a grayscale image representation.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Variational Autoencoder (VAE) with Gaussian prototypes",
+      "evidence": "Open-Detect leverages variational autoencoders (VAEs) and Gaussian prototypes to achieve fine-grained classification of known traffic categories and effective detection of unknown malicious traffic",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random",
+        "cross_dataset"
+      ],
+      "evidence": "We divided the dataset into training, validation, and testing in the ratio of 8:1:1.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We divided the dataset into training, validation, and testing in the ratio of 8:1:1.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "In Scenario C-1 and Scenario C-2, one dataset was used for training, while all classes from the other dataset were designated as unknown classes.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "identifier_removal",
+        "ablation"
+      ],
+      "evidence": "To further validate the design of Open-Detect, we conducted an ablation study to evaluate the contribution of each component in Open-Detect.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "f1-score",
+        "auroc",
+        "fpr",
+        "tpr"
+      ],
+      "evidence": "Open-Detect achieved detection accuracies of 90.20%, 90.34%, and 85.94% in Scenarios B-1, B-2, and B-3, respectively, along with f1 scores of 90.71%, 89.62%, and 85.97%.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "In Open-Detect, network flows are transformed into grayscale images",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "8 packets",
+      "evidence": "The parameters k, k1, and k2 are hyperparameters, and we set their values to 8, 80, and 48, respectively.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "Table VIII presents the feature extraction time and the average detection time per network flow for different methods.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Ubuntu 20.04 system, Intel Xeon Gold 5218R CPU@2.10GHz, 80GB RAM, Tesla V100 32GB GPU",
+      "evidence": "All experiments are performed on an Ubuntu 20.04 system equipped with an Intel Xeon Gold 5218R CPU@2.10GHz 80GB RAM and a Tesla V100 32GB GPU.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/niebikong/Open-Detect', 'https://github.com/gcx-Yuan/Malicious']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/niebikong/Open-Detect', 'https://github.com/gcx-Yuan/Malicious']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.389953+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

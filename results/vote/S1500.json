@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1500",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "The method relies on a neuromorphic model employing Dynamic Spiking Graph Attention (DSGAT) and Spike-Timing-Dependent Plasticity (STDP) to encode encrypted traffic as dynamic spike trains",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "unclear",
+      "evidence": "Experimental research began with the goal of having a realistic and stable testbed that would allow us to conduct rigorous testing of our model’s performance in various attack scenarios and network settings.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "['unclear']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The method relies on a neuromorphic model employing Dynamic Spiking Graph Attention (DSGAT) and Spike-Timing-Dependent Plasticity (STDP) to encode encrypted traffic as dynamic spike trains",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated",
+      "evidence": "Synthetic DoH traffic was utilized to simulate a broad variety of actual attack scenarios in order to test the DoH anomaly detection system.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated",
+        "gemini38": "['generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "We employ cryptographic primitives such as zk-SNARKs or zk-STARKs that enable the model to verify anomalies without decrypting the traffic.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "Synthetic DoH traffic (train_and_test); {'name': 'Synthetic DoH traffic', 'role': 'train_and_test', 'quote': 'Synthetic DoH traffic was utilized to simulate a broad variety of actual attack scenarios in order t'}",
+      "evidence": "Synthetic DoH traffic was utilized to simulate a broad variety of actual attack scenarios in order to test the DoH anomaly detection system.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "Synthetic DoH traffic (train_and_test)",
+        "gemini38": "[{'name': 'Synthetic DoH traffic', 'role': 'train_and_test', 'quote': 'Synthetic DoH traffic was utilized to simulate a broad variety of actual attack scenarios in order t'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Synthetic DoH traffic was utilized to simulate a broad variety of actual attack scenarios in order to test the DoH anomaly detection system.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Neuromorphic Spiking Neural Network (SNN)",
+      "evidence": "The method relies on a neuromorphic model employing Dynamic Spiking Graph Attention (DSGAT) and Spike-Timing-Dependent Plasticity (STDP) to encode encrypted traffic as dynamic spike trains",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Neuromorphic Spiking Neural Network (SNN)",
+        "gemini38": "Neuromorphic Spiking Neural Network (SNN)"
+      }
+    },
+    "hardware": {
+      "value": "Intel Loihi 2 and BrainChip Akida",
+      "evidence": "Experiments were carried out on neuromorphic hardware platforms such as Intel Loihi 2 and BrainChip Akida that provide sub-millisecond latency with low-power event-driven processing characteristics.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Intel Loihi 2 and BrainChip Akida",
+        "gemini38": "Intel Loihi 2 and BrainChip Akida"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "The experimental workflow was segmented into a sequence of well-ordered steps, in which testing of the system response to different types of attacks was performed",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Empirical studies confirm that NQAL achieves 99.18% accuracy, ¡1ms latency, and 10x less energy consumption than GPU-based models",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "dynamic spike trains",
+      "evidence": "The method relies on a neuromorphic model employing Dynamic Spiking Graph Attention (DSGAT) and Spike-Timing-Dependent Plasticity (STDP) to encode encrypted traffic as dynamic spike trains",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dynamic spike trains",
+        "gemini38": "['dynamic spike trains']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; latency; energy consumption; false positive rate; precision; robustness",
+      "evidence": "Empirical studies confirm that NQAL achieves 99.18% accuracy, ¡1ms latency, and 10x less energy consumption than GPU-based models, while also being robust to both classical and quantum adversarial attacks.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; latency; energy consumption; false positive rate; precision; robustness",
+        "gemini38": "['accuracy', 'latency', 'energy consumption', 'false positive rate', 'precision', 'robustness']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "unclear",
+      "evidence": "Traditional AI models employ fixed window analysis, which inherently limits them from detecting subtle temporal patterns",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "unclear"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "Experimental research began with the goal of having a realistic and stable testbed that would allow us to conduct rigorous testing of our model’s performance in various attack scenarios and network settings.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "unclear"
+      }
+    }
+  }
+}

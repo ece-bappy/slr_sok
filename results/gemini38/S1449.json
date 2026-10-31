@@ -1,0 +1,164 @@
+{
+  "paper_id": "S1449",
+  "run": "gemini38",
+  "title": "Malicious encrypted traffic detection method based on multi-granularity representation under data imbalance conditions",
+  "venue": "Knowledge-Based Systems",
+  "year": 2025,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "ISCX VPN-nonVPN 2016",
+          "role": "train_and_test",
+          "quote": "In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo"
+        },
+        {
+          "name": "CIC-IDS2017",
+          "role": "train_and_test",
+          "quote": "In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo"
+        },
+        {
+          "name": "Malware-Traffic-Analysis.net (MTA)",
+          "role": "train_and_test",
+          "quote": "In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo"
+        },
+        {
+          "name": "Stratosphere MCFP / CTU-Malware-Capture",
+          "role": "train_and_test",
+          "quote": "In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo"
+        },
+        {
+          "name": "USTC-TFC2016",
+          "role": "train_and_test",
+          "quote": "In the experiment focused on comparative analysis of malicious encrypted traffic detection, we emplo"
+        }
+      ],
+      "evidence": "In the experiment focused on comparative analysis of malicious encrypted traffic detection, we employ CICIDS2017, MalwareTraffic-Analysis.net, StratosphereIPS, and USTC-TFC2016—for both model training and validation purposes.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "The annotated flow records encompass essential details such as timestamps, source and destination IP addresses, ports, protocols, and indications of malicious activity.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "this approach leverages both traffic-level and packet-level data of encrypted traffic to automate feature extraction and comprehensively learn the behavioral and temporal characteristics of traffic data",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "traffic feature quintuple (sourceIP, destinationIP, source port, destination port, protocol)",
+        "first 8 packets of each stream"
+      ],
+      "evidence": "We use the traffic feature quintet and the traffic packet-level data as input to the extraction model for behavioral and temporal features, respectively.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "We use the traffic feature quintet and the traffic packet-level data as input to the extraction model for behavioral and temporal features, respectively.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "We use the traffic feature quintet and the traffic packet-level data as input to the extraction model for behavioral and temporal features, respectively.",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "We conduct experiments using real network traffic datasets to validate our proposed method.",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "The encryption of traffic, while safeguarding data confidentiality, also provides convenience for attackers to conceal malicious activities.",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "Bi-LSTM, BERT",
+      "evidence": "Secondly, a dual layer bidirectional long short-term memory (Bi-LSTM) network which is supervised is employed to model packet-level data in encrypted traffic, capturing local semantic features (temporal features) of each packet-level data.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "The dataset is split into a training set and a test set in an 8:2 ratio and undergoes ten-fold cross-validation.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The dataset is split into a training set and a test set in an 8:2 ratio and undergoes ten-fold cross-validation.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "ablation"
+      ],
+      "evidence": "In this paper, since we propose multiple modules, we set up a set of ablation experiments to judge the contribution of each module.",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "accuracy",
+        "precision",
+        "recall",
+        "F1-score"
+      ],
+      "evidence": "we evaluate its performance using four metrics: accuracy, precision, recall, and F1-score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The original PCAP files are split into individual traffic data using the SplitCap tool, and packet-level data with the same traffic feature quintuples are merged into a single traffic data.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "8 packets",
+      "evidence": "Since the first 8 data packets of the traffic typically contain complete handshake information [46], N is set to 8 in this paper.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.396580+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

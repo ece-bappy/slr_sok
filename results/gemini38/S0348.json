@@ -1,0 +1,148 @@
+{
+  "paper_id": "S0348",
+  "run": "gemini38",
+  "title": "Distributed Denial-of-Service Attack Vector Identification in IoT Networks Using Wavelet Transform and Hybrid Deep Learning",
+  "venue": "IEEE Internet of Things Journal",
+  "year": 2026,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "IEEE P2668-MLIDD",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments are conducted on the IEEE P2668-MLIDD and Bot-IoT datasets, augmented by i"
+        },
+        {
+          "name": "Bot-IoT",
+          "role": "train_and_test",
+          "quote": "Comprehensive experiments are conducted on the IEEE P2668-MLIDD and Bot-IoT datasets, augmented by i"
+        }
+      ],
+      "evidence": "Comprehensive experiments are conducted on the IEEE P2668-MLIDD and Bot-IoT datasets, augmented by incorporating cryptographic processing overhead to imitate encrypted network conditions.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "dataset_provided"
+      ],
+      "evidence": "In this dataset, the DDoS attack subset exhibits class imbalance across attack vectors, which requires class-wise undersampling before it can be used to form balanced training and testing partitions",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The proposed framework utilizes packet interarrival times (PIATs) as its sole observable, enabling not only the detection of attack traffic but also the identification of attack vectors",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "packet interarrival times (PIATs)"
+      ],
+      "evidence": "The proposed framework utilizes packet interarrival times (PIATs) as its sole observable",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G2"
+      ],
+      "evidence": "Discrete wavelet transforms (DWTs) are applied to PIAT sequences to capture both transient and persistent timing patterns across multiple scales.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "Our proposed method is designed to operate independently of packet-level or flow-level features that may be obscured",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "using an approach that is agnostic to payload content and packet-level signatures",
+      "evidence_source": "text"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "The impact of cryptographic processing overhead on packet timing attributes (i.e., PIATs) is statistically modeled using Monte Carlo-based simulations",
+      "evidence_source": "text"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "The proposed framework utilizes packet interarrival times (PIATs) as its sole observable",
+      "evidence_source": "text"
+    },
+    "model_family": {
+      "value": "CNN-BiLSTM-ATT",
+      "evidence": "a spatio–temporal hybrid DL model integrating convolutional neural networks (CNN) and attention-enhanced bidirectional long short-term memory (BiLSTM-ATT).",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random",
+        "cross_dataset"
+      ],
+      "evidence": "The dataset is prepartitioned into training and testing subsets. For independent cross-dataset validation, we further utilize the widely recognized Bot-IoT dataset",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The dataset is prepartitioned into training and testing subsets.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "In contrast, under cross-dataset validation, where the model is trained exclusively on IEEE P2668-MLIDD and evaluated on Bot-IoT, the accuracy drops substantially to near-chance levels.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "This method is meticulously crafted to facilitate robust time–frequency feature extraction and to mitigate extended periods of nonresponsiveness (deadlocks) during the traffic capturing phase",
+      "evidence_source": "text"
+    },
+    "metrics": {
+      "value": [
+        "overall accuracy",
+        "macro-averaged precision",
+        "macro-averaged recall",
+        "macro-averaged F1-score"
+      ],
+      "evidence": "To assess the classification performance across the aforementioned test subsets, we employ four standard evaluation metrics: overall accuracy, macro-averaged precision, macro-averaged recall, and macro-averaged F1-score.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "host",
+      "evidence": "The AVI system captures and monitors network traffic from multiple IP addresses, extracting relevant features to enable the identification and quantification of DDoS attack vectors.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "1 second window",
+      "evidence": "Based on this tradeoffanalysis, Wj = 1 and Ts = 0.2 are selected as the optimal parameter values within the explored range.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "The application of statistical feature transformation yields only a marginal decrease in classification accuracy while... accelerating average inference by approximately a factor of ∼6.8.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Intel Core i7-1185G7",
+      "evidence": "all experiments here are performed on a CPU-only setup (Intel Core i7-1185G7), with GPU acceleration deliberately excluded to reflect constrained deployment scenarios.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.413468+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": []
+}

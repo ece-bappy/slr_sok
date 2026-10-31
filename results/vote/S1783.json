@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1783",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "nan",
+        "gemini38": "['none']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "unclear",
+      "evidence": "The dataset is split for training and validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "['unclear']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "This paper presents the results of analysis of the metadata associated with the use of an EKM platform, and demonstrates that this can provide useful information to determine whether activity is normal or abnormal.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "generated",
+      "evidence": "We generated the Client to Server KMIP requests, including: Get-key, Create-key, Activate-key, Add-attribute, Modify-attribute, Revoke-key, and Destroy-key, for both normal and adversarial activities.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "generated",
+        "gemini38": "['generated']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "own / private capture (train_and_test); {'name': 'own / private capture', 'role': 'train_and_test', 'quote': 'In this research, we simulated various enterprise contexts and operations involving the use of an EK'}",
+      "evidence": "In this research, we simulated various enterprise contexts and operations involving the use of an EKM system, and captured the associated KMIP metadata.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "own / private capture (train_and_test)",
+        "gemini38": "[{'name': 'own / private capture', 'role': 'train_and_test', 'quote': 'In this research, we simulated various enterprise contexts and operations involving the use of an EK'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We generated the Client to Server KMIP requests, including: Get-key, Create-key, Activate-key, Add-attribute, Modify-attribute, Revoke-key, and Destroy-key, for both normal and adversarial activities.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "LSTM auto-encoder",
+      "evidence": "For automated labeling and detection, a deep learning-based model is applied to thegenerated datasets: Long Short-Term Memory (LSTM) auto-encoder neural networks with specific parameters.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "LSTM auto-encoder",
+        "gemini38": "LSTM auto-encoder"
+      }
+    },
+    "hardware": {
+      "value": "Intel Core Desktop Machine",
+      "evidence": "The VMWare Workstation runs on a Windows 10 operating system, hosted by an Intel Core Desktop Machine.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Intel Core Desktop Machine",
+        "gemini38": "Intel Core Desktop Machine"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Also, the saved model could perform detection in a dataset of 2424 samples in ≈100 milliseconds.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "operation time; requested operation; message structure; operation success status; request frequency",
+      "evidence": "These metadata must satisfactory answer three important questions: when (operation time), what (the requested operation), and how (message structure and operation success status).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "operation time; requested operation; message structure; operation success status; request frequency",
+        "gemini38": "['operation time', 'requested operation', 'message structure', 'operation success status', 'request frequency']"
+      }
+    },
+    "metrics": {
+      "value": "precision; recall; f1; accuracy",
+      "evidence": "This section defines the metrics used in our evaluation. These are precision, recall, F1, and accuracy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "precision; recall; f1; accuracy",
+        "gemini38": "['precision', 'recall', 'f1', 'accuracy']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "In the encoding stage, the model builds a fixed-length vector that contains all of the information and time-wise relationships of the input sequence.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "['https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "The dataset is split for training and validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "unclear",
+        "gemini38": "unclear"
+      }
+    }
+  }
+}

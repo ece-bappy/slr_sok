@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1460",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "To validate the contribution of each component of MET-LLM, we conducted an ablation study on the CSTNET2023 dataset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2; G3",
+      "evidence": "These extractors identify salient traffic attributes, such as flow-level statistics, protocol-specific fields, and temporal patterns, relevant to downstream security tasks.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2; G3",
+        "gemini38": "['G1', 'G2', 'G3']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "1.3",
+      "evidence": "This dataset contains 168,450 flow samples from 53 contemporary applications utilizing modern encryption protocols (TLS 1.3, QUIC, and various proprietary protocols)",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "1.3",
+        "gemini38": "['1.3']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/Superagentsys/MET-LLM']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "Each dataset is divided into training (70 %), validation (15 %), and testing (15 %) sets using stratified sampling to maintain a consistent distribution.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "Flows are defined by 5-tuple, i.e., source IP, destination IP, source port, destination port, and protocol. For each flow, statistical features are extracted, including temporal patterns, packet size distributions, and protocol-specific attributes.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "flow",
+        "gemini38": "flow"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "To assess MET-LLM’s effectiveness across diverse encrypted traffic scenarios, we conducted extensive experiments on four benchmark datasets",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "ISCX Tor-nonTor 2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); APP-53 2023 (train_and_test); CSTNET-TLS1.3 (train_and_test); {'name': 'ISCX Tor-nonTor 2016', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}; {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}; {'name': 'APP-53 2023', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}; {'name': 'CSTNET-TLS1.3', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}",
+      "evidence": "Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, and CSTNET 2023",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "ISCX Tor-nonTor 2016 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); APP-53 2023 (train_and_test); CSTNET-TLS1.3 (train_and_test)",
+        "gemini38": "[{'name': 'ISCX Tor-nonTor 2016', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}, {'name': 'APP-53 2023', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}, {'name': 'CSTNET-TLS1.3', 'role': 'train_and_test', 'quote': 'Extensive evaluations on benchmark datasets, including ISCX Tor 2016, ISCX VPN 2016, APP-53 2023, an'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Each dataset is divided into training (70 %), validation (15 %), and testing (15 %) sets using stratified sampling to maintain a consistent distribution.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Transformer-based LLM",
+      "evidence": "MET-LLM integrates domain-specific tokenization, a pretrained large language model, and a dynamic adaptive tuning adaptor.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Transformer-based LLM",
+        "gemini38": "Transformer-based LLM"
+      }
+    },
+    "hardware": {
+      "value": "NVIDIA A100 GPU",
+      "evidence": "Training is conducted on a server equipped with four NVIDIA A100 GPUs using mixed-precision (FP16) optimization.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "NVIDIA A100 GPU",
+        "gemini38": "NVIDIA A100 GPU"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "We analyze and optimize the end-to-end per-batch time complexity. Single-GPU throughput is about 2500 flows per second, which may fall short of strict line-rate detection on very high-speed links.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "header segment; payload segment; flow-level statistics; protocol-specific fields; temporal patterns",
+      "evidence": "These extractors identify salient traffic attributes, such as flow-level statistics, protocol-specific fields, and temporal patterns, relevant to downstream security tasks.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "header segment; payload segment; flow-level statistics; protocol-specific fields; temporal patterns",
+        "gemini38": "['header segment', 'payload segment', 'flow-level statistics', 'protocol-specific fields', 'temporal patterns']"
+      }
+    },
+    "metrics": {
+      "value": "Precision; Recall; F1 score",
+      "evidence": "Our proposed method is evaluated using three standard metrics.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Precision; Recall; F1 score",
+        "gemini38": "['Precision', 'Recall', 'F1 score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "For each flow, statistical features are extracted, including temporal patterns, packet size distributions, and protocol-specific attributes.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/Superagentsys/MET-LLM']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "Each dataset is divided into training (70 %), validation (15 %), and testing (15 %) sets using stratified sampling to maintain a consistent distribution.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1528",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "We designed ablation experiments to verify the impact of the Protocol Confuser module on our method.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2; G3; G4",
+      "evidence": "Table 1 Feature classification based on categories.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2; G3; G4",
+        "gemini38": "['G1', 'G2', 'G3', 'G4']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/TerryYao19/PSFAN']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random; cross_dataset",
+      "evidence": "The proportions of HTTP/3 training data (5%, 10%, 20%, 30%) were selected to simulate scenarios with varying levels of labeled HTTP/3 traffic, reflecting real-world challenges in collecting sufficient training data for new protocols.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random; cross_dataset",
+        "gemini38": "['random', 'cross_dataset']"
+      }
+    },
+    "granularity": {
+      "value": "packet",
+      "evidence": "This paper presents a novel approach at the packet level, combining Domain Adversarial Neural Networks and Graph Neural Network to train an effective model for detecting DDoS attack traffic in scenarios involving the HTTP/3 protocol",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet",
+        "gemini38": "packet"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "we performed packet level processing on the data extracted from the H23Q and CIC-DDoS2019 datasets, and labeled the corresponding encrypted packets according to the labels in the pcap files of the dataset",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "no",
+      "evidence": "Anomalies in 'tls_handshake_certificates_length' and 'tls_handshake_session_length' may indicate attackers forging or tampering with certificates to bypass security mechanisms.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "H23Q (train_and_test); CIC-DDoS2019 (train_and_test); {'name': 'H23Q', 'role': 'train_and_test', 'quote': 'In this study, we extracted encrypted traffic samples from two public DDoS traffic datasets, H23Q an'}; {'name': 'CIC-DDoS2019', 'role': 'train_and_test', 'quote': 'In this study, we extracted encrypted traffic samples from two public DDoS traffic datasets, H23Q an'}",
+      "evidence": "In this study, we extracted encrypted traffic samples from two public DDoS traffic datasets, H23Q and CIC-DDoS2019, and used them to evaluate the various performances of the proposed method.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "H23Q (train_and_test); CIC-DDoS2019 (train_and_test)",
+        "gemini38": "[{'name': 'H23Q', 'role': 'train_and_test', 'quote': 'In this study, we extracted encrypted traffic samples from two public DDoS traffic datasets, H23Q an'}, {'name': 'CIC-DDoS2019', 'role': 'train_and_test', 'quote': 'In this study, we extracted encrypted traffic samples from two public DDoS traffic datasets, H23Q an'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "we performed packet level processing on the data extracted from the H23Q and CIC-DDoS2019 datasets, and labeled the corresponding encrypted packets according to the labels in the pcap files of the dataset to obtain explicit labels for the encrypted data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Graph Neural Network, Domain Adversarial Network",
+      "evidence": "The model comprises three main components: a protocol confuser, a shared feature extractor, and a graph neural network classifier.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Graph Neural Network, Domain Adversarial Network",
+        "gemini38": "Graph Neural Network, Domain Adversarial Network"
+      }
+    },
+    "hardware": {
+      "value": "one GTX 4090 GPU",
+      "evidence": "We conduct this efficiency comparison experiment on one GTX 4090 GPU with a one batch size and all methods use the best-performed hyper-parameters.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "one GTX 4090 GPU",
+        "gemini38": "one GTX 4090 GPU"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "yes",
+      "evidence": "Table4 aims to reveal the performance boundaries of existing methods during cross-protocol migration... In contrast, Table5 demonstrates that traditional methods can achieve 95.00% F1 when provided with sufficient HTTP/3 training data.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "cost_reported": {
+      "value": "end_to_end",
+      "evidence": "it still achieves acceptable testing latency in extraction and total latency while maintaining high classification accuracy.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "end_to_end",
+        "gemini38": "end_to_end"
+      }
+    },
+    "features_used": {
+      "value": "frame_length; ip_packet_length; tls_record_length; tls_handshake_certificates_length; quic_connection_id; quic_spin_bit",
+      "evidence": "we extracted 80 unencrypted traffic features from the raw pcap files in the H23Q dataset.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "frame_length; ip_packet_length; tls_record_length; tls_handshake_certificates_length; quic_connection_id; quic_spin_bit",
+        "gemini38": "['frame_length', 'ip_packet_length', 'tls_record_length', 'tls_handshake_certificates_length', 'quic_connection_id', 'quic_spin_bit']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; f1-score; auc",
+      "evidence": "In the experiments, several performance metrics were employed to comprehensively evaluate the efficacy of the model. Accuracy measures the overall correctness of the model’s predictions, calculated as follows:",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; f1-score; auc",
+        "gemini38": "['accuracy', 'precision', 'recall', 'f1-score', 'auc']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The Temporal Traffic Graph Construction Module constructs a Temporal Correlation Graph based on the temporal intervals and sequential relationships between traffic packets",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/TerryYao19/PSFAN']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "main_split": {
+      "value": "cross_dataset",
+      "evidence": "The proportions of HTTP/3 training data (5%, 10%, 20%, 30%) were selected to simulate scenarios with varying levels of labeled HTTP/3 traffic, reflecting real-world challenges in collecting sufficient training data for new protocols.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "cross_dataset",
+        "gemini38": "cross_dataset"
+      }
+    }
+  }
+}

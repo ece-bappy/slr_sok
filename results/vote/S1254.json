@@ -1,0 +1,195 @@
+{
+  "paper_id": "S1254",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "ablation",
+      "evidence": "To analyze the contribution of each feature, we conducted an ablation study by iteratively eliminating one feature at a time from the complete combined set",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "ablation",
+        "gemini38": "['ablation']"
+      }
+    },
+    "feature_groups": {
+      "value": "G1; G2",
+      "evidence": "We engineered a set of seventeen features, comprising eleven traditional DNS traffic metrics and six novel blackhole-based features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G1; G2",
+        "gemini38": "['G1', 'G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/ggyggy666/DNS-Tunnel-Datasets']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "yes",
+        "gemini38": "yes"
+      }
+    },
+    "split_protocols": {
+      "value": "stratified_random",
+      "evidence": "We randomly divided the data into training and testing sets using an 80/20 stratified split to preserve class balance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "['stratified_random']"
+      }
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "A single feature vector exists per PCAP file that enables scalable analysis for several DNS sessions.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "session",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The formatted dataset comprises 1,019,318 samples based on the raw DNS traffic of 270.8 MB and is classified as: • Heavy Attack Samples: 323,698 samples of highbandwidth aggressive DNS tunneling",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "The system does not inspect the payload, so it works with a lightweight mechanism even under encrypted DNS traffic",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "GraphTunnel (train_and_test); CIC-Bell-DNS-EXF-2021 (train_and_test); {'name': 'GraphTunnel', 'role': 'train_and_test', 'quote': 'Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-E'}; {'name': 'CIC-Bell-DNS-EXF-2021', 'role': 'train_and_test', 'quote': 'Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-E'}",
+      "evidence": "Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-EXF-2021 (1,019,318 records).",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "GraphTunnel (train_and_test); CIC-Bell-DNS-EXF-2021 (train_and_test)",
+        "gemini38": "[{'name': 'GraphTunnel', 'role': 'train_and_test', 'quote': 'Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-E'}, {'name': 'CIC-Bell-DNS-EXF-2021', 'role': 'train_and_test', 'quote': 'Experiments were conducted using the GraphTunnel data set (2,975,353 records) and the CIC-Bell-DNS-E'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The extracted features were placed in an ordered dataframe and labeled as either benign or tunnel.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "random forest, XGBoost, CNN, LSTM, SVM, voting ensemble",
+      "evidence": "The chosen classifiers are: Random forest, XGBoost, Convolutional neural network (CNN), Long short-term memory (LSTM), Support vector machine (SVM), Voting ensemble (combining RF, XGBoost, and CNN).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random forest, XGBoost, CNN, LSTM, SVM, voting ensemble",
+        "gemini38": "random forest, XGBoost, CNN, LSTM, SVM, voting ensemble"
+      }
+    },
+    "hardware": {
+      "value": "Intel i7-10700 CPU",
+      "evidence": "Although our approach has low computational costs with an average prediction time of 0.5 seconds per packet capture (PCAP) file on baseline hardware (e.g., Intel i7-10700 CPU), its implementation within heterogeneous enterprise setups introduces additional practical concerns.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Intel i7-10700 CPU",
+        "gemini38": "Intel i7-10700 CPU"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "All measures were computed on each experiment’s heldout test set using stratified 80/20 splits.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "our random forest model has less computation complexity (0.8 seconds of prediction)",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "inference_only",
+        "gemini38": "inference_only"
+      }
+    },
+    "features_used": {
+      "value": "packet_interarrival; retry_count; avg_retry_time; var_retry_time; query_entropy; ttl_variance; avg_response_size; query_response_ratio; domain_switching; query_type_changes; query_count; query_to_blackhole_ratio; inter_blackhole_interval; blackhole_duration; blackhole_onset_variability; response_consistency; blackhole_response_entropy",
+      "evidence": "We engineered a set of seventeen features, comprising eleven traditional DNS traffic metrics and six novel blackhole-based features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet_interarrival; retry_count; avg_retry_time; var_retry_time; query_entropy; ttl_variance; avg_response_size; query_response_ratio; domain_switching; query_type_changes; query_count; query_to_blackhole_ratio; inter_blackhole_interval; blackhole_duration; blackhole_onset_variability; response_consistency; blackhole_response_entropy",
+        "gemini38": "['packet_interarrival', 'retry_count', 'avg_retry_time', 'var_retry_time', 'query_entropy', 'ttl_variance', 'avg_response_size', 'query_response_ratio', 'domain_switching', 'query_type_changes', 'query_count', 'query_to_blackhole_ratio', 'inter_blackhole_interval', 'blackhole_duration', 'blackhole_onset_variability', 'response_consistency', 'blackhole_response_entropy']"
+      }
+    },
+    "metrics": {
+      "value": "accuracy; precision; recall; f1-score",
+      "evidence": "Classification accuracy was examined using accuracy, precision, recall, and F1-score.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "accuracy; precision; recall; f1-score",
+        "gemini38": "['accuracy', 'precision', 'recall', 'f1-score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "each packet is broken down to extract both classic and novel behavioral features, aggregating at the PCAP session level.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "whole flow",
+        "gemini38": "whole flow"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "['https://github.com/ggyggy666/DNS-Tunnel-Datasets']",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "stratified_random",
+      "evidence": "We randomly divided the data into training and testing sets using an 80/20 stratified split to preserve class balance.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "stratified_random",
+        "gemini38": "stratified_random"
+      }
+    }
+  }
+}

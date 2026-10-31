@@ -1,0 +1,141 @@
+{
+  "paper_id": "S1854",
+  "run": "gemini38",
+  "title": "Design of an AI-driven Network Digital Twin for advanced 5G-6G network management",
+  "venue": "IEEE/IFIP Network Operations and Management Symposium (NOMS)",
+  "year": 2024,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "nan",
+          "role": "train_and_test",
+          "quote": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of th"
+        }
+      ],
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "unclear"
+      ],
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "not_applicable",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "network flow statistics"
+      ],
+      "evidence": "a real-time detection system is proposed for DoH flooding attacks at the network level using ML models based on a comprehensive set of network flow statistics used as input features for the models.",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1"
+      ],
+      "evidence": "a real-time detection system is proposed for DoH flooding attacks at the network level using ML models based on a comprehensive set of network flow statistics used as input features for the models.",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "The dataset will be processed using the Tstat tool to extract statistics from aggregated network flows.",
+      "evidence_source": "text"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "Decision trees, neural networks",
+      "evidence": "Various algorithms such as decision trees, and neural networks will be evaluated to determine the most suitable model for accurately detecting DoH flooding attacks.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "not_applicable"
+      ],
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "not_applicable",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "not_applicable",
+      "evidence": "Currently, we are awaiting the dataset generated in the NDT needed for training and validation of the model, which will be initiated once the data collection phase of the use case deployed in the NDT is completed.",
+      "evidence_source": "text"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "not_applicable"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "The dataset will be processed using the Tstat tool to extract statistics from aggregated network flows.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "The dataset will be processed using the Tstat tool to extract statistics from aggregated network flows.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "['https://github.com/UPM-RSTI/STGUTG']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "['https://github.com/UPM-RSTI/STGUTG']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.374925+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": [
+    "metrics: value=['not_applicable'] but evidence is empty"
+  ]
+}

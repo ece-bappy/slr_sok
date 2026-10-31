@@ -1,0 +1,195 @@
+{
+  "paper_id": "S2360",
+  "n_runs": 2,
+  "fields": {
+    "shortcut_check": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "feature_groups": {
+      "value": "G2",
+      "evidence": "The feature tensors are extracted from the first T packets in each session and are composed of the packet feature vectors.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "G2",
+        "gemini38": "['G2']"
+      }
+    },
+    "tls_versions_stated": {
+      "value": "not_stated",
+      "evidence": "The applications are encrypted with various security protocols, including HTTPS, SSH, and proprietary protocols.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_stated",
+        "gemini38": "['not_stated']"
+      }
+    },
+    "data_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "split_protocols": {
+      "value": "random",
+      "evidence": "We evaluate I2RNN and baseline classification methods with the 5-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "['random']"
+      }
+    },
+    "granularity": {
+      "value": "session",
+      "evidence": "Each session is a sample and is composed of bi-directional packets with the same IP, port, and transport layer protocol.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "session",
+        "gemini38": "session"
+      }
+    },
+    "fingerprints_used": {
+      "value": "none",
+      "evidence": "The I2RNN leverages fingerprint learning from the raw session sequences rather than manually designed features.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "['none']"
+      }
+    },
+    "label_source": {
+      "value": "dataset_provided",
+      "evidence": "The first dataset contains the hybrid of encrypted and unencrypted network traffic across five days, which can be divided into 8 classes",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "dataset_provided",
+        "gemini38": "['dataset_provided']"
+      }
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "not_applicable",
+        "gemini38": "not_applicable"
+      }
+    },
+    "datasets_evaluated": {
+      "value": "CIC-IDS2017 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test); {'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'We evaluate the proposed I2RNN on two public datasets CIC-IDS2017 dataset [48] and ISCXVPN2016 traff'}; {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'We evaluate the proposed I2RNN on two public datasets CIC-IDS2017 dataset [48] and ISCXVPN2016 traff'}",
+      "evidence": "We evaluate the proposed I2RNN on two public datasets CIC-IDS2017 dataset [48] and ISCXVPN2016 traffic dataset [49], respectively.",
+      "vote_agreement": "1/2",
+      "runs": {
+        "gemini_lite": "CIC-IDS2017 (train_and_test); ISCX VPN-nonVPN 2016 (train_and_test)",
+        "gemini38": "[{'name': 'CIC-IDS2017', 'role': 'train_and_test', 'quote': 'We evaluate the proposed I2RNN on two public datasets CIC-IDS2017 dataset [48] and ISCXVPN2016 traff'}, {'name': 'ISCX VPN-nonVPN 2016', 'role': 'train_and_test', 'quote': 'We evaluate the proposed I2RNN on two public datasets CIC-IDS2017 dataset [48] and ISCXVPN2016 traff'}]"
+      }
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "The traffic classification in this paper refers to classifying the encrypted traffic of sessions into specific traffic types with raw features of packets.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "model_family": {
+      "value": "Recurrent Neural Network",
+      "evidence": "In this paper, we propose I2RNN, an Incremental and Interpretable Recurrent Neural Network for encrypted traffic classification.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Recurrent Neural Network",
+        "gemini38": "Recurrent Neural Network"
+      }
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "We evaluate I2RNN and baseline classification methods with the 5-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "none",
+        "gemini38": "none"
+      }
+    },
+    "features_used": {
+      "value": "packet length; direction; interval of arrival time; TTL; TCP flags; TCP window size",
+      "evidence": "Each packet feature vector consists of packet length, direction, the interval of arrival time, and values of fields in the packet header, e.g., TTL (Time To Live), TCP flags, and TCP window size.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "packet length; direction; interval of arrival time; TTL; TCP flags; TCP window size",
+        "gemini38": "['packet length', 'direction', 'interval of arrival time', 'TTL', 'TCP flags', 'TCP window size']"
+      }
+    },
+    "metrics": {
+      "value": "Accuracy; Precision; Recall; F1-Score",
+      "evidence": "We evaluate the classification performance of I2RNN with other baselines in terms of Accuracy (AC), Precision (PR), Recall (RC), and F1-Score (F1).",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "Accuracy; Precision; Recall; F1-Score",
+        "gemini38": "['Accuracy', 'Precision', 'Recall', 'F1-Score']"
+      }
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "first_n_packets": {
+      "value": "32 packets",
+      "evidence": "The time sequence length of each LSTM unit is set as 32.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "32 packets",
+        "gemini38": "32 packets"
+      }
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "[]",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "no",
+        "gemini38": "no"
+      }
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "We evaluate I2RNN and baseline classification methods with the 5-fold cross-validation.",
+      "vote_agreement": "2/2",
+      "runs": {
+        "gemini_lite": "random",
+        "gemini38": "random"
+      }
+    }
+  }
+}

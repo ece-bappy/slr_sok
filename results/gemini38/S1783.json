@@ -1,0 +1,148 @@
+{
+  "paper_id": "S1783",
+  "run": "gemini38",
+  "title": "Anomaly Detection in the Key-Management Interoperability Protocol Using Metadata",
+  "venue": "IEEE Open Journal of the Computer Society",
+  "year": 2024,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "own / private capture",
+          "role": "train_and_test",
+          "quote": "In this research, we simulated various enterprise contexts and operations involving the use of an EK"
+        }
+      ],
+      "evidence": "In this research, we simulated various enterprise contexts and operations involving the use of an EKM system, and captured the associated KMIP metadata.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated"
+      ],
+      "evidence": "We generated the Client to Server KMIP requests, including: Get-key, Create-key, Activate-key, Add-attribute, Modify-attribute, Revoke-key, and Destroy-key, for both normal and adversarial activities.",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "We generated the Client to Server KMIP requests, including: Get-key, Create-key, Activate-key, Add-attribute, Modify-attribute, Revoke-key, and Destroy-key, for both normal and adversarial activities.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "operation time",
+        "requested operation",
+        "message structure",
+        "operation success status",
+        "request frequency"
+      ],
+      "evidence": "These metadata must satisfactory answer three important questions: when (operation time), what (the requested operation), and how (message structure and operation success status).",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "LSTM auto-encoder",
+      "evidence": "For automated labeling and detection, a deep learning-based model is applied to thegenerated datasets: Long Short-Term Memory (LSTM) auto-encoder neural networks with specific parameters.",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "unclear"
+      ],
+      "evidence": "The dataset is split for training and validation.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "unclear",
+      "evidence": "The dataset is split for training and validation.",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "precision",
+        "recall",
+        "f1",
+        "accuracy"
+      ],
+      "evidence": "This section defines the metrics used in our evaluation. These are precision, recall, F1, and accuracy.",
+      "evidence_source": "text"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "This paper presents the results of analysis of the metadata associated with the use of an EKM platform, and demonstrates that this can provide useful information to determine whether activity is normal or abnormal.",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "whole flow",
+      "evidence": "In the encoding stage, the model builds a fixed-length vector that contains all of the information and time-wise relationships of the input sequence.",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "inference_only",
+      "evidence": "Also, the saved model could perform detection in a dataset of 2424 samples in ≈100 milliseconds.",
+      "evidence_source": "text"
+    },
+    "hardware": {
+      "value": "Intel Core Desktop Machine",
+      "evidence": "The VMWare Workstation runs on a Windows 10 operating system, hosted by an Intel Core Desktop Machine.",
+      "evidence_source": "text"
+    },
+    "code_released": {
+      "value": "no",
+      "evidence": "['https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA']",
+      "evidence_source": "none"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "['https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA']",
+      "evidence_source": "none"
+    }
+  },
+  "saved_at": "2026-10-31T05:04:16.373577+00:00",
+  "model": "gemini-3.8-flash",
+  "validation_warnings": [
+    "feature_groups: value 'none' not in allowed set"
+  ]
+}

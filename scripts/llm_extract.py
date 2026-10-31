@@ -147,7 +147,7 @@ def call_gemini(model: str, prompt: str, thinking_level: str | None, temperature
         gen["responseSchema"] = schema
     if temperature is not None:
         gen["temperature"] = temperature
-    if thinking_level:
+    if thinking_level and thinking_level.lower() not in ("none", "off", "false", ""):
         gen["thinkingConfig"] = {"thinkingLevel": thinking_level, "includeThoughts": True}
     body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}], "generationConfig": gen}
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
@@ -171,7 +171,10 @@ def call_gemini(model: str, prompt: str, thinking_level: str | None, temperature
             detail = e.read().decode(errors="replace")
             if e.code in (429, 500, 503) and attempt < 5:
                 m = re.search(r'"retryDelay":\s*"(\d+)', detail)
-                time.sleep(int(m.group(1)) + 1 if m else 15 * (attempt + 1))
+                delay = int(m.group(1)) + 1 if m else 15 * (attempt + 1)
+                if delay > 65:
+                    raise SystemExit(f"Gemini daily quota exhausted for {model} (retryDelay={delay}s): {detail[:300]}")
+                time.sleep(delay)
                 continue
             raise SystemExit(f"Gemini HTTP {e.code}: {detail[:500]}")
         except (TimeoutError, urllib.error.URLError, ConnectionError) as e:

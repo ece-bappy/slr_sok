@@ -1,0 +1,143 @@
+{
+  "paper_id": "S3208",
+  "run": "sonnet",
+  "title": "Detection of DoH Tunnels using Time-series Classification of Encrypted Traffic",
+  "venue": "IEEE DASC-PICom-CBDCom-CyberSciTech 2020",
+  "year": 2020,
+  "fields": {
+    "datasets_evaluated": {
+      "value": [
+        {
+          "name": "CIRA-CIC-DoHBrw-2020",
+          "role": "train_and_test",
+          "quote": "Our generated dataset, named CIRA-CIC-DoHBrw-2020, is publicly available at [27]. It consists of HTTPS traffic flows with two levels of distinct labels."
+        }
+      ],
+      "evidence": "Our generated dataset, named CIRA-CIC-DoHBrw-2020, is publicly available at [27]. It consists of HTTPS traffic flows with two levels of distinct labels.",
+      "evidence_source": "text"
+    },
+    "label_source": {
+      "value": [
+        "generated"
+      ],
+      "evidence": "DoH flows created by simulating web browsing activity are marked as benign DoH while the flows captured using DoH tunnels are marked as malicious DoH...simulations were done separately in an isolated network so that any traffic captured can be associated with the correct label",
+      "evidence_source": "text"
+    },
+    "label_feature_overlap": {
+      "value": "no",
+      "evidence": "Dataset is labeled based on the destination IP address of flows because the protocol (TCP) and the destination port (443) remain the same for all the flows.",
+      "evidence_source": "text"
+    },
+    "features_used": {
+      "value": [
+        "28 statistical features: flow bytes sent/received (count and rate), packet length statistics (mean, median, mode, variance, std, CV, skewness), packet time statistics, request/response time difference statistics",
+        "time-series packet clumps: sequences of clumps each described by (size, pktCount, direction, duration, interarrival)"
+      ],
+      "evidence": "we have selected and developed 28 statistical features from captured DoH traffic as shown in Table I...We introduced packet clumps...each clump C is denoted by 5-tuple characteristics as: C = (size, pktCount, direction, duration, interarrival)",
+      "evidence_source": "text"
+    },
+    "feature_groups": {
+      "value": [
+        "G1",
+        "G2"
+      ],
+      "evidence": "we can use other traffic shape parameters such as the packet size, packet direction, and the time difference between packets...28 statistical features...packet length (mean, median, mode, variance, standard deviation)",
+      "evidence_source": "text"
+    },
+    "cert_fields_read": {
+      "value": "not_applicable",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "fingerprints_used": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "tls_versions_stated": {
+      "value": [
+        "not_stated"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "ech_considered": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "model_family": {
+      "value": "LSTM; Random Forest; Decision Tree (C4.5); SVM; Naive Bayes; DNN; CNN",
+      "evidence": "We used a deep neural network with 4 hidden layers (including an LSTM layer at the second hidden layer)...We used Random Forest (RF), Decision Tree (C4.5), Support Vector Machines (SVM), and Naive Bayes (NB) machine learning algorithms and deep neural network (DNN) and convolutional neural network (CNN)",
+      "evidence_source": "text"
+    },
+    "split_protocols": {
+      "value": [
+        "random"
+      ],
+      "evidence": "The resulting dataset was divided to the training set (80% of the flows) and test set (the remaining 20%), to be used with all the classifiers discussed in this paper.",
+      "evidence_source": "text"
+    },
+    "main_split": {
+      "value": "random",
+      "evidence": "The resulting dataset was divided to the training set (80% of the flows) and test set (the remaining 20%)",
+      "evidence_source": "text"
+    },
+    "easy_vs_hard_reported": {
+      "value": "no",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "shortcut_check": {
+      "value": [
+        "none"
+      ],
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "metrics": {
+      "value": [
+        "precision",
+        "recall",
+        "f1"
+      ],
+      "evidence": "Classifier Precision Recall F-Score...RF 0.993 0.993 0.993...LSTM...Precision Recall F1-Score",
+      "evidence_source": "table"
+    },
+    "granularity": {
+      "value": "flow",
+      "evidence": "the data pre-processing module identifies every flow captured from the encrypted network traffic by using tuple containing (source IP, destination IP, source port, destination port and protocol)",
+      "evidence_source": "text"
+    },
+    "first_n_packets": {
+      "value": "6 clumps",
+      "evidence": "after six clumps in layer 1 and three clumps at layer 2, the precision hikes beyond 0.99...a DoH connection can be detected roughly under 0.8 seconds",
+      "evidence_source": "text"
+    },
+    "cost_reported": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "hardware": {
+      "value": "none",
+      "evidence": "",
+      "evidence_source": "none"
+    },
+    "code_released": {
+      "value": "yes",
+      "evidence": "DoHlyzer is a script written in python that uses Scapy to read pcap files or sniff packets online. The tool is publicly available at [26]: https://github.com/ahlashkari/DOHlyzer",
+      "evidence_source": "text"
+    },
+    "data_released": {
+      "value": "yes",
+      "evidence": "Our generated dataset, named CIRA-CIC-DoHBrw-2020, is publicly available at [27]: https://www.unb.ca/cic/datasets/dohbrw-2020.html",
+      "evidence_source": "text"
+    }
+  },
+  "saved_at": "2026-10-31T04:46:10.373483+00:00",
+  "model": "claude-sonnet-4.6",
+  "validation_warnings": []
+}
