@@ -4,7 +4,8 @@
     {
       "name": "CTU-13",
       "aliases": [
-        "ctu[- ]?13"
+        "ctu[- ]?13",
+        "ctu[- ]?botnet"
       ],
       "public": "yes",
       "tls": "mixed; mostly non-TLS (2011 botnet captures)",
@@ -16,7 +17,8 @@
         "mcfp",
         "malware capture facility",
         "ctu[- ]?malware",
-        "stratosphere"
+        "stratosphere",
+        "malware capture famil"
       ],
       "public": "yes",
       "tls": "mixed; many HTTPS captures",
@@ -26,7 +28,8 @@
       "name": "Malware-Traffic-Analysis.net (MTA)",
       "aliases": [
         "malware[- ]?traffic[- ]?analysis",
-        "\\bmta\\b"
+        "\\bmta\\b",
+        "\\bmtan\\b"
       ],
       "public": "yes",
       "tls": "yes (real malware pcaps, 2013-)",
@@ -319,6 +322,93 @@
       "status": "ok"
     },
     {
+      "name": "DoH-Tunnel-Traffic-HKD",
+      "aliases": [
+        "doh[- ]?tunnel[- ]?traffic[- ]?hkd",
+        "hkd"
+      ],
+      "public": "yes",
+      "tls": "DoH (HTTPS)",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "VNAT (MIT LL VPN/non-VPN)",
+      "aliases": [
+        "\\bvnat\\b"
+      ],
+      "public": "yes",
+      "tls": "VPN and non-VPN, mixed",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "CIC-Bell-DNS-EXF-2021",
+      "aliases": [
+        "cic[- ]?bell[- ]?dns"
+      ],
+      "public": "yes",
+      "tls": "DNS, not TLS",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "HTTP CSIC 2010",
+      "aliases": [
+        "csic[- ]?2010"
+      ],
+      "public": "yes",
+      "tls": "HTTP requests, not TLS",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "SWaT / WADI (iTrust)",
+      "aliases": [
+        "\\bswat\\b",
+        "\\bwadi\\b"
+      ],
+      "public": "on_request",
+      "tls": "ICS process data, not TLS",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "NDSec-1",
+      "aliases": [
+        "ndsec"
+      ],
+      "public": "yes",
+      "tls": "mixed",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "X-IIoTID",
+      "aliases": [
+        "x[- ]?iiotid"
+      ],
+      "public": "yes",
+      "tls": "IIoT, mixed",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "ISCX IDS 2012",
+      "aliases": [
+        "cic[- ]?ids[- ]?2012",
+        "iscx[- ]?ids[- ]?2012"
+      ],
+      "public": "yes",
+      "tls": "mostly non-TLS",
+      "status": "added_by_claude_unverified"
+    },
+    {
+      "name": "Blocklist / threat feed (label source, not a traffic dataset)",
+      "aliases": [
+        "sslbl",
+        "feodo",
+        "blocklist",
+        "ja4db"
+      ],
+      "public": "n/a",
+      "tls": "label or fingerprint source",
+      "status": "added_by_claude_unverified"
+    },
+    {
       "name": "own / private capture",
       "aliases": [
         "own",
@@ -331,7 +421,15 @@
         "research network",
         "campus",
         "enterprise",
-        "ucnet"
+        "ucnet",
+        "inhouse",
+        "lab[- ]?generated",
+        "self[- ]?built",
+        "synthetic",
+        "testbed",
+        "\\bgenerated\\b",
+        "benign-capture",
+        "mixture capture"
       ],
       "public": "no",
       "tls": "as described by the paper",
