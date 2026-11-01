@@ -7,7 +7,9 @@ Experiments (plan §5.4, with the dataset limits the user accepted on 1 Nov 2026
   E1  stratified random split, 70/15/15
   E2  grouped split: RAID = capture-grouped (no pcap in two parts; the C2 class is one host pair,
       so host grouping is impossible); HIKARI = client-host-grouped (no client IP in two parts)
-  E3  temporal: HIKARI 2021 -> 2022; RAID infeasible (capture year equals class) and reported so
+  E3  temporal: HIKARI 2021 -> 2022, MTA 2019-22 -> 2023-26, MCFP 2013-15 -> 2016-18;
+      RAID infeasible (capture year equals class) and reported so
+  (E2 for MTA groups by infection case/post, for MCFP by capture)
 Protocol (§5.5): within-class duplicate feature vectors and vectors seen in both classes are removed
 per feature set before splitting; the majority class is subsampled to 1:1 in training only;
 thresholds come from validation data only (max-F1, and FPR = 1e-3); 5 seeds; bootstrap 95% CIs on
@@ -27,6 +29,9 @@ from sklearn.model_selection import StratifiedGroupKFold, train_test_split
 FPR_TARGET = 1e-3
 SETS = {"all": ("g1_", "g2_", "g3_", "g4_", "g5_"), "g1g2": ("g1_", "g2_"), "g1g2_notime": ("g1_", "g2_")}
 TIMING = ("piat", "duration")  # dropped in *_notime sets: timing reflects the capture network (§5.2)
+# E2 grouping: RAID per capture, HIKARI per client host, MTA per infection case (post), MCFP per capture
+GROUP_KEY = {"raid": "k_pcap", "hikari": "k_client_ip", "mta": "k_post", "mcfp": "k_capture"}
+E3_LAST_OLD_YEAR = {"hikari": "2021", "mta": "2022", "mcfp": "2015"}  # train on <= this year, test on later
 
 
 def set_columns(table: pd.DataFrame, fs: str) -> list[str]:
@@ -85,7 +90,7 @@ def split(df: pd.DataFrame, exp: str, dataset: str, seed: int):
     if exp == "E2":
         # test groups are disjoint from training groups; validation (early stopping, thresholds)
         # is a stratified sample of the non-test rows, because HIKARI has only two attacker hosts
-        groups = (df["k_pcap"] if dataset == "raid" else df["k_client_ip"]).values
+        groups = df[GROUP_KEY[dataset]].values
         for attempt in range(20):
             sgk = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=seed * 100 + attempt)
             for _, te in sgk.split(idx, y, groups):
@@ -97,10 +102,12 @@ def split(df: pd.DataFrame, exp: str, dataset: str, seed: int):
     if exp == "E3":
         if dataset == "raid":
             return "infeasible: all C2 flows are from 2022 and all benign flows from 2024 (year = class)"
-        old, new = idx[df["k_year"].values == "2021"], idx[df["k_year"].values == "2022"]
+        cut_year = E3_LAST_OLD_YEAR[dataset]
+        old, new = idx[df["k_year"].values <= cut_year], idx[df["k_year"].values > cut_year]
         if len(np.unique(y[new])) < 2 or len(np.unique(y[old])) < 2:
-            return "infeasible: one year lacks a class"
-        # validation = the latest 15% of 2021 by time, so it is also 'later than training'
+            have = df.groupby(["k_year", "label"]).size().to_dict()
+            return f"infeasible: a period lacks a class (<= {cut_year} vs later); year:label counts {have}"
+        # validation = the latest 15% of the old period by time, so it is also 'later than training'
         old = old[np.argsort(df["k_first_seen_ms"].values[old])]
         cut = int(len(old) * 0.85)
         tr, va = old[:cut], old[cut:]
@@ -177,7 +184,7 @@ def univariate_auc(x: pd.DataFrame, y: np.ndarray) -> pd.Series:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset", choices=["raid", "hikari"])
+    ap.add_argument("dataset", choices=["raid", "hikari", "mta", "mcfp"])
     ap.add_argument("--tables", default="/data/tls-sok/tables")
     ap.add_argument("--out", default="/data/tls-sok/benchmark")
     ap.add_argument("--seeds", type=int, default=5)
@@ -189,7 +196,7 @@ def main() -> None:
     out = Path(a.out) / a.dataset
     out.mkdir(parents=True, exist_ok=True)
     table = pd.read_parquet(f"{a.tables}/{a.dataset}.parquet")
-    sets = (a.sets or ("all,g1g2,g1g2_notime" if a.dataset == "raid" else "g1g2,g1g2_notime")).split(",")
+    sets = (a.sets or ("g1g2,g1g2_notime" if a.dataset == "hikari" else "all,g1g2,g1g2_notime")).split(",")
     rows, ver_rows, dedup_info, shortcut_rows, imp_rows = [], [], {}, [], []
 
     for fs in sets:

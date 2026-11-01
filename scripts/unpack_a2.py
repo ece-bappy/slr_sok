@@ -1,12 +1,13 @@
 """Unpack the archived pcaps on A2 into /data/tls-sok/unpacked, safely resumable.
 
-Usage: python scripts/unpack_a2.py [raid_tranco|raid_ms|hikari_benign|all]
+Usage: python scripts/unpack_a2.py [raid_tranco|raid_ms|hikari_benign|all|mta]
 
 Each member is written to NAME.part and renamed only after its size matches the archive entry, and a
 file is skipped only if it already has the exact size, so an interrupted run never leaves a partial
 pcap that looks complete. Only pcaps are extracted; RAID's sslkeylog_*.txt files are left out because
 they would allow decryption, which this study excludes.
 """
+import re
 import shutil
 import sys
 import tarfile
@@ -37,17 +38,44 @@ def put(src, dest: Path, size: int) -> bool:
     return True
 
 
-def unzip(archive: Path, dest_dir: Path, flat: bool) -> None:
+def unzip(archive: Path, dest_dir: Path, flat: bool, pwd: bytes | None = None,
+          want: tuple = PCAP, quiet: bool = False) -> int:
     with zipfile.ZipFile(archive) as z:
-        members = [m for m in z.infolist() if m.filename.endswith(PCAP)]
+        members = [m for m in z.infolist() if m.filename.endswith(want)]
         new = 0
         for m in members:
             dest = dest_dir / (Path(m.filename).name if flat else m.filename)
             if dest.exists() and dest.stat().st_size == m.file_size:
                 continue
-            with z.open(m) as src:
+            with z.open(m, pwd=pwd) as src:
                 new += put(src, dest, m.file_size)
-    say(f"{archive.name}: {len(members)} pcaps, {new} extracted now")
+    if not quiet:
+        say(f"{archive.name}: {len(members)} files, {new} extracted now")
+    return new
+
+
+def mta() -> None:
+    """MTA post zips: pcaps and IOC text, password 'infected_YYYYMMDD' (older posts: 'infected').
+    Output: unpacked/mta/<year>/<MM>/<DD>[/<n>]/<file>, mirroring the post folders."""
+    ok = new = bad = 0
+    for z in sorted((RAW / "mta").rglob("*.zip")):
+        rel = z.parent.relative_to(RAW / "mta")
+        date = "".join(re.search(r"(20\d\d)-(\d\d)-(\d\d)", z.name).groups()) if re.search(r"20\d\d-\d\d-\d\d", z.name) else ""
+        for pw in (f"infected_{date}", "infected"):
+            try:
+                new += unzip(z, OUT / "mta" / rel, flat=True, pwd=pw.encode(),
+                             want=PCAP + (".txt",), quiet=True)
+                ok += 1
+                break
+            except RuntimeError:  # wrong password
+                continue
+            except (zipfile.BadZipFile, IOError) as e:
+                say(f"BAD {z}: {e}")
+                break
+        else:
+            bad += 1
+            say(f"NO PASSWORD WORKED {z}")
+    say(f"mta: {ok} zips opened, {new} files extracted now, {bad} failed")
 
 
 def untar(archive: Path, dest_dir: Path) -> None:
@@ -71,6 +99,8 @@ def main(what: str) -> None:
         untar(RAW / "raid_ms" / "captures.tar.gz", OUT / "raid_ms")
     if what in ("all", "hikari_benign"):
         unzip(RAW / "hikari" / "ground-truth.zip", OUT / "hikari_benign", flat=True)
+    if what == "mta":  # not part of "all": the E1-E3 RAID/HIKARI launcher does not need it
+        mta()
     say(f"UNPACK_FINISHED {what}")
 
 

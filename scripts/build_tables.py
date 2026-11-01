@@ -19,6 +19,7 @@ import glob
 import json
 import math
 import os
+import re
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -144,12 +145,27 @@ def features(f: pd.DataFrame, x509: dict) -> pd.DataFrame:
     return pd.DataFrame(out, index=f.index)
 
 
+def dns_names(zeek_dir: Path) -> dict:
+    """answer IP -> queried name, from the pcap's own DNS traffic (Zeek dns.log)."""
+    p = zeek_dir / "dns.log"
+    out = {}
+    if not p.exists():
+        return out
+    for line in open(p, encoding="utf-8"):
+        r = json.loads(line)
+        q = r.get("query")
+        for a in r.get("answers") or []:  # answers mix IPs and CNAMEs; keep the IPs
+            if q and isinstance(a, str) and (re.fullmatch(IPV4, a) or ":" in a):
+                out.setdefault(a, q)
+    return out
+
+
 def one_pcap(task: tuple) -> pd.DataFrame | None:
     dataset, source, pcap_dir = task
     p = Path(pcap_dir)
     f = pd.read_parquet(p / "flows.parquet")
     f = f[f["protocol"] == 6] if "protocol" in f else f
-    if dataset == "raid":
+    if dataset in ("raid", "mta", "mcfp"):
         f = f[f["tls_ja3"].notna()] if "tls_ja3" in f else f.iloc[0:0]
     else:
         f = f[f["dst_port"] == 443]
@@ -173,7 +189,126 @@ def one_pcap(task: tuple) -> pd.DataFrame | None:
         keys.loc[m, "k_server_ip"] = f.loc[m, "tls_server_ip"].astype(str)
         keys.loc[m, "k_client_port"] = f.loc[m, "tls_client_port"].astype(int)
         keys.loc[m, "k_server_port"] = f.loc[m, "tls_server_port"].astype(int)
+    if dataset in ("mta", "mcfp"):  # name of the server from the pcap's own DNS, for labelling only
+        names = dns_names(p / "zeek")
+        keys["k_dns_name"] = keys["k_server_ip"].map(names).fillna("")
     return pd.concat([keys, x], axis=1)
+
+
+# ---------------------------------------------------------------- MTA / MCFP labels
+# Labels come from sandbox/IOC metadata only, never from certificates, SSLBL or JA3/JA4 (plan §3, E5b).
+# SNI and in-pcap DNS names are used only to match flows to IOC domains or to the popular-domain list.
+
+FILE_EXT = ("exe", "dll", "doc", "docx", "docm", "xls", "xlsx", "xlsm", "js", "jse", "vbs", "ps1", "bat", "cmd",
+            "zip", "rar", "7z", "iso", "img", "lnk", "hta", "msi", "jar", "txt", "dat", "bin", "png", "jpg",
+            "gif", "pdf", "html", "htm", "php", "aspx", "mov", "cab", "tmp", "log", "json", "csv", "sh", "py")
+REFERENCE_SITES = ("any.run", "virustotal.com", "abuse.ch", "tria.ge", "hybrid-analysis.com", "reverse.it",
+                   "contextis.com", "joesandbox.com", "malware-traffic-analysis.net", "urlscan.io", "github.com",
+                   "twitter.com", "x.com", "bleepingcomputer.com", "unit42.paloaltonetworks.com", "isc.sans.edu")
+IPV4 = r"\b(?:\d{1,3}\.){3}\d{1,3}\b"
+
+
+def _extractor():
+    import tldextract
+    return tldextract.TLDExtract(suffix_list_urls=())  # bundled suffix list, no network
+
+
+def registered(host: str, ext=None) -> str:
+    ext = ext or _extractor()
+    r = ext(host.strip(".").lower())
+    return r.top_domain_under_public_suffix if hasattr(r, "top_domain_under_public_suffix") else r.registered_domain
+
+
+def parse_iocs(text: str, ext) -> tuple[set, set]:
+    """IPs and host names named in an MTA IOC note (defanged forms undone, files and reference sites dropped)."""
+    t = text.replace("[.]", ".").replace("hxxp", "http").replace("[:]", ":")
+    ips = set(re.findall(IPV4, t))
+    hosts = set()
+    for line in t.splitlines():
+        if any(s in line.lower() for s in ("any.run", "virustotal", "sandbox", "analysis:", "reverse.it", "tria.ge")):
+            continue
+        for h in re.findall(r"https?://([^/\s:\"'<>]+)", line):
+            hosts.add(h.lower())
+        m = re.search(IPV4 + r"\s+port\s+\d+\s+-\s+([^\s]+)", line)
+        if m:
+            hosts.add(m.group(1).lower())
+    keep = set()
+    for h in hosts:
+        if re.fullmatch(IPV4, h):
+            ips.add(h)
+            continue
+        if h.rsplit(".", 1)[-1] in FILE_EXT or not registered(h, ext):
+            continue
+        if registered(h, ext) in REFERENCE_SITES:
+            continue
+        keep.add(h)
+    return ips, keep
+
+
+def top_domains(n: int = 10000) -> set:
+    rows = pd.read_csv("/data/tls-sok/raw/tranco/top-1m.csv", header=None, names=["rank", "domain"], nrows=n)
+    return set(rows["domain"].str.lower())
+
+
+def label_mta(df: pd.DataFrame, card: dict) -> pd.DataFrame:
+    """1 = flow to an IOC endpoint; 0 = 'same-host background' (flow to a Tranco top-10k domain the IOCs do
+    not mention); everything else unlabelled and dropped. Posts without an IOC note are dropped."""
+    ext, top = _extractor(), top_domains()
+    df["k_post"] = df["k_pcap"].map(lambda s: str(Path(s).parent))
+    iocs, no_ioc = {}, 0
+    for post in df["k_post"].unique():
+        notes = sorted(Path(f"/data/tls-sok/unpacked/mta/{post}").glob("*.txt"))
+        notes = [n for n in notes if re.search(r"ioc|indicator", n.name, re.I)]
+        if not notes:
+            no_ioc += 1
+            continue
+        ips, hosts = set(), set()
+        for n in notes:
+            i, h = parse_iocs(n.read_text(encoding="utf-8", errors="replace"), ext)
+            ips |= i
+            hosts |= h
+        # IOC hosts on popular domains (ad links, abused cloud services) do not mark flows malicious, but
+        # they still keep those domains out of the background class (flows to them stay unlabelled)
+        regs = {registered(h, ext) for h in hosts}
+        iocs[post] = (ips, {h for h in hosts if registered(h, ext) not in top}, regs)
+    labels = []
+    for post, sni, dns, sip in df[["k_post", "k_sni", "k_dns_name", "k_server_ip"]].itertuples(index=False):
+        if post not in iocs:
+            labels.append(np.nan)
+            continue
+        ips, hosts, regs = iocs[post]
+        name = (sni or dns or "").lower()
+        reg = registered(name, ext) if name else ""
+        mal_dom = bool(name) and any(name == h or name.endswith("." + h) for h in hosts)
+        popular = reg in top and reg not in regs
+        if mal_dom or (sip in ips and not popular):
+            labels.append(1)
+        elif popular and sip not in ips:
+            labels.append(0)
+        else:
+            labels.append(np.nan)
+    df["label"] = labels
+    card.update(mta_posts=int(df["k_post"].nunique()), mta_posts_without_ioc_note=no_ioc,
+                mta_flows_in_posts_without_ioc=int(df["k_post"].isin(set(df["k_post"]) - set(iocs)).sum()),
+                mta_unlabelled_flows=int(df["label"].isna().sum()))
+    df["k_category"] = df["label"].map({1: "IOC endpoint", 0: "same-host background (popular domain)"})
+    df["k_year"] = df["k_post"].str[:4]
+    return df[df["label"].notna()].astype({"label": int})
+
+
+def label_mcfp(df: pd.DataFrame, card: dict) -> pd.DataFrame:
+    """Weak capture-level labels: CTU-Normal captures = 0; malware captures = 1, except flows to Tranco
+    top-10k domains, which are dropped as uncertain (the binetflow Label column is empty)."""
+    ext, top = _extractor(), top_domains()
+    normal = df["k_pcap"].str.startswith("CTU-Normal")
+    reg = [registered(n, ext) if n else "" for n in (df["k_sni"].where(df["k_sni"] != "", df["k_dns_name"])).str.lower()]
+    popular = pd.Series([r in top for r in reg], index=df.index)
+    df["label"] = np.where(normal, 0, np.where(popular, np.nan, 1))
+    card.update(mcfp_malware_flows_dropped_popular=int((~normal & popular).sum()))
+    df["k_category"] = np.where(normal, "CTU-Normal capture", "malware capture (weak, capture-level)")
+    df["k_year"] = pd.to_datetime(df["k_first_seen_ms"], unit="ms").dt.year.astype(str)
+    df["k_capture"] = df["k_pcap"].str.split("/").str[0]
+    return df[df["label"].notna()].astype({"label": int})
 
 
 def hikari_labels() -> dict:
@@ -194,13 +329,14 @@ def hikari_labels() -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset", choices=["raid", "hikari"])
+    ap.add_argument("dataset", choices=["raid", "hikari", "mta", "mcfp"])
     ap.add_argument("--out", default="/data/tls-sok/tables")
     ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--limit", type=int, default=0, help="pcaps per source, for smoke tests")
     a = ap.parse_args()
 
-    sources = {"raid": {"raid_ms": 1, "raid_tranco": 0}, "hikari": {"hikari_attack": None, "hikari_benign": None}}[a.dataset]
+    sources = {"raid": {"raid_ms": 1, "raid_tranco": 0}, "hikari": {"hikari_attack": None, "hikari_benign": None},
+               "mta": {"mta": None}, "mcfp": {"mcfp": None}}[a.dataset]
     tasks = []
     for src in sources:
         dirs = sorted(str(Path(m).parent) for m in glob.glob(f"{OUT_ROOT}/{src}/**/manifest.json", recursive=True))
@@ -210,7 +346,11 @@ def main() -> None:
     df = pd.concat(parts, ignore_index=True).copy()
     card = {"dataset": a.dataset, "pcaps": len(tasks), "rows_extracted": len(df)}
 
-    if a.dataset == "raid":
+    if a.dataset == "mta":
+        df = label_mta(df, card)
+    elif a.dataset == "mcfp":
+        df = label_mcfp(df, card)
+    elif a.dataset == "raid":
         df["label"] = df["k_source"].map(sources)
         df["k_category"] = df["k_source"].map({"raid_ms": "Metasploit C2", "raid_tranco": "benign"})
         df["k_year"] = pd.to_datetime(df["k_first_seen_ms"], unit="ms").dt.year.astype(str)
