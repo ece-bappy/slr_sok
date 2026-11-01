@@ -102,8 +102,13 @@ def split(df: pd.DataFrame, exp: str, dataset: str, seed: int):
     if exp == "E3":
         if dataset == "raid":
             return "infeasible: all C2 flows are from 2022 and all benign flows from 2024 (year = class)"
+        if dataset == "mcfp":
+            return ("infeasible: benign (CTU-Normal) flows are 93 from 2013, 78 from 2016 and 72,801 from 2017, "
+                    "so no year split leaves a usable benign training set")
         cut_year = E3_LAST_OLD_YEAR[dataset]
-        old, new = idx[df["k_year"].values <= cut_year], idx[df["k_year"].values > cut_year]
+        known = df["k_year"].values != "unknown"
+        old = idx[known & (df["k_year"].values <= cut_year)]
+        new = idx[known & (df["k_year"].values > cut_year)]
         if len(np.unique(y[new])) < 2 or len(np.unique(y[old])) < 2:
             have = df.groupby(["k_year", "label"]).size().to_dict()
             return f"infeasible: a period lacks a class (<= {cut_year} vs later); year:label counts {have}"

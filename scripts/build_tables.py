@@ -163,6 +163,8 @@ def dns_names(zeek_dir: Path) -> dict:
 def one_pcap(task: tuple) -> pd.DataFrame | None:
     dataset, source, pcap_dir = task
     p = Path(pcap_dir)
+    if not (p / "flows.parquet").exists():  # pcap with no TCP/UDP flows at all (e.g. a DNS-only MTA capture)
+        return None
     f = pd.read_parquet(p / "flows.parquet")
     f = f[f["protocol"] == 6] if "protocol" in f else f
     if dataset in ("raid", "mta", "mcfp"):
@@ -306,8 +308,13 @@ def label_mcfp(df: pd.DataFrame, card: dict) -> pd.DataFrame:
     df["label"] = np.where(normal, 0, np.where(popular, np.nan, 1))
     card.update(mcfp_malware_flows_dropped_popular=int((~normal & popular).sum()))
     df["k_category"] = np.where(normal, "CTU-Normal capture", "malware capture (weak, capture-level)")
-    df["k_year"] = pd.to_datetime(df["k_first_seen_ms"], unit="ms").dt.year.astype(str)
+    # MCFP pcaps are rebased to start at 1970, so the year comes from the date in the pcap name, else from
+    # the capture year on the MCFP index page (review/datasets/mcfp_sizes.csv); else "unknown"
     df["k_capture"] = df["k_pcap"].str.split("/").str[0]
+    index_year = pd.read_csv(Path(__file__).parent.parent / "review/datasets/mcfp_sizes.csv",
+                             dtype={"year": str}).set_index("name")["year"]
+    df["k_year"] = (df["k_pcap"].str.extract(r"(20\d\d)[-_]\d\d[-_]\d\d", expand=False)
+                    .fillna(df["k_capture"].map(index_year).astype("str")).fillna("unknown"))
     return df[df["label"].notna()].astype({"label": int})
 
 

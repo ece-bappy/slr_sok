@@ -1,0 +1,201 @@
+capture,label_files
+CTU-Malware-Capture-Botnet-102,README.html README.md capture-win2.binetflow capture-win2.weblogng
+CTU-Malware-Capture-Botnet-110-1,2015-03-09_capture-win9.binetflow 2015-03-09_capture-win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-110-2,2014-03-09_capture-win9.binetflow 2014-03-09_capture-win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-110-4,2015-04-22_capture-win9.binetflow 2015-04-22_capture-win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-110-5,2015-04-23_capture-win9.binetflow 2015-04-23_capture-win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-111-1,2015-03-09_capture-win10.binetflow 2015-03-09_capture-win10.weblogng README.html README.md test.binetflow
+CTU-Malware-Capture-Botnet-112-1,2015-03-09_capture-win11.binetflow 2015-03-09_capture-win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-112-3,2015-04-22_capture-win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-117-1,2015-04-11_capture-win3.binetflow 2015-04-11_capture-win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-120-1,2015-04-22_capture-win4.binetflow 2015-04-22_capture-win4.large.binetflow 2015-04-22_capture-win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-123-1,2015-04-22_capture-win8.binetflow 2015-04-22_capture-win8.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-129-1,2015-06-30_capture-win20.binetflow 2015-06-30_capture-win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-137-1,2015-10-04.weblogng 2015-10-04.win.binetflow README.html README.md
+CTU-Malware-Capture-Botnet-138-1,2013-06-08_capture1.binetflow 2013-06-08_capture1.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-140-1,2015-10-23_win11.binetflow 2015-10-23_win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-140-2,2015-10-27_capture-win11.binetflow 2015-10-27_capture-win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-141-1,2015-23-10_win10.binetflow 2015-23-10_win10.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-141-2,2015-10-23_capture-win10.binetflow 2015-10-23_capture-win10.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-142-1,2015-10-23_win7.binetflow 2015-10-23_win7.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-143-1,2015-10-23_win6.binetflow 2015-10-23_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-144-1,2015-10-23_win5.binetflow 2015-10-23_win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-145-1,2015-10-23_win4.binetflow 2015-10-23_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-153-1,2016-02-12-capture_win4.binetflow 2016-02-12-capture_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-157-1,2015-05-01_linux-1.binetflow 2015-05-01_linux-1.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-162-1,2016-05-29_capture-win5.binetflow 2016-05-29_capture-win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-162-2,2016-05-29_capture-win5.binetflow 2016-05-29_capture-win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-163-1,2016-06-02_capture-win6.binetflow 2016-06-02_capture-win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-169-1,2016-08-04_capture-win3.binetflow 2016-08-04_capture-win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-169-2,2016-09-02_win3.binetflow 2016-09-02_win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-169-3,2016-08-03_win4.binetflow 2016-08-03_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-17-1,2013-09-09_capture-win18.binetflow 2013-09-09_capture-win18.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-17-2,2013-09-09_capture-win19.binetflow 2013-09-09_capture-win19.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-174-1,2016-08-05_win6.binetflow 2016-08-05_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-175-1,2016-06-11_win9.binetflow 2016-06-11_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-177-1,2016-06-21_win11.binetflow 2016-06-21_win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-178-1,2016-06-21_win12.binetflow 2016-06-21_win12.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-179-1,2016-06-22_win13.binetflow 2016-06-22_win13.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-180-1,2016-06-22_win14.binetflow 2016-06-22_win14.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-181-1,2016-06-22_win16.binetflow 2016-06-22_win16.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-183-1,2016-07-29_win.binetflow 2016-07-29_win.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-184-1,2016-07-29_winn3.binetflow 2016-07-29_winn3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-185-1,2016-09-09_win1.binetflow 2016-09-09_win1.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-186-1,2016-09-14_win18.binetflow 2016-09-14_win18.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-187-1,2016-09-19_win1.binetflow 2016-09-19_win1.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-188-1,2016-09-19_win2.binetflow 2016-09-19_win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-188-2,2016-09-22_win3.binetflow 2016-09-22_win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-188-3,2016-10-20_win9.binetflow 2016-10-20_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-188-4,2016-10-27_win6.binetflow 2016-10-27_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-189-1,2016-09-26_win7.binetflow 2016-09-26_win7.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-189-2,2017-06-07_win17.binetflow 2017-06-07_win17.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-193-1,2016-10-12_capture_win20.binetflow 2016-10-12_capture_win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-193-2,2016-10-27_capture_win6.binetflow 2016-10-27_capture_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-194-1,2016-10-13_capture_win15.binetflow 2016-10-13_capture_win15.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-195-1,2016-11-1_win20.binetflow 2016-11-1_win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-196-1,2016-11-4_win9.binetflow 2016-11-4_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-198-1,2016-11-4_win11.binetflow 2016-11-4_win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-199-1,2016-11-4_win12.binetflow 2016-11-4_win12.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-199-2,2016-11-17_win17.binetflow 2016-11-17_win17.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-200-1,2016-11-8_win14.binetflow 2016-11-8_win14.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-201-1,2016-11-17_win15.binetflow 2016-11-17_win15.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-202-1,2016-11-17_win20.binetflow 2016-11-17_win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-203-1,2016-11-24_win8.binetflow 2016-11-24_win8.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-204-1,2016-11-29_win9.binetflow 2016-11-29_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-205-1,2016-12-02_win7.binetflow 2016-12-02_win7.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-205-2,2016-12-12_win5.binetflow 2016-12-12_win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-208-2,2016-12-30_win3.binetflow 2016-12-30_win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-209-1,2016-12-05_win13.binetflow 2016-12-05_win13.weblogng README.html README.md README3.html
+CTU-Malware-Capture-Botnet-210-1,2016-12-05_win9.binetflow 2016-12-05_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-213-1,2016-12-22_win5.binetflow 2016-12-22_win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-215-2,2017-04-18_win19.binetflow README.html README.md
+CTU-Malware-Capture-Botnet-217-1,2017-02-22_win8.binetflow 2017-02-22_win8.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-218-1,README.html README.md capture_win19.binetflow capture_win19.weblogng
+CTU-Malware-Capture-Botnet-219-1,README.html README.md capture_win9.binetflow capture_win9.weblogng
+CTU-Malware-Capture-Botnet-219-2,2017-2-22_win3.binetflow 2017-2-22_win3.weblogng README.html README.md labels.config
+CTU-Malware-Capture-Botnet-219-3,README.html README.md capture_win9.binetflow capture_win9.weblogng
+CTU-Malware-Capture-Botnet-220-1,README.html README.md capture_win11.binetflow capture_win11.weblogng
+CTU-Malware-Capture-Botnet-221-1,README.html README.md capture_win11.binetflow capture_win11.weblogng
+CTU-Malware-Capture-Botnet-221-2,2017-02-27_win12.binetflow 2017-02-27_win12.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-222-1,README.html README.md capture_win6.binetflow capture_win6.weblogng
+CTU-Malware-Capture-Botnet-224-1,README.html README.md capture_win11.binetflow capture_win11.weblogng
+CTU-Malware-Capture-Botnet-227-1,2017-02-27_win6.binetflow 2017-02-27_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-228-1,2017-2-27_win13.binetflow 2017-2-27_win13.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-230-1,2017-3-8_win5.binetflow 2017-3-8_win5.weblogng README.html README.md labels.config
+CTU-Malware-Capture-Botnet-230-2,2018-02-15_win7.binetflow 2018-02-15_win7.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-231-1,2017-02-27_win15.binetflow 2017-02-27_win15.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-232-1,2017-02-27_win18.binetflow 2017-02-27_win18.weblogng README.html README.md labels.config
+CTU-Malware-Capture-Botnet-235-1,2017-03-25_win16.binetflow 2017-03-25_win16.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-237-1,2017-3-30_win4.binetflow 2017-3-30_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-238-1,2017-3-30_win6.binetflow 2017-3-30_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-239-1,2017-3-30_win7.binetflow 2017-3-30_win7.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-240-1,2017-3-29_win8.binetflow 2017-3-29_win8.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-241-1,2017-3-30_win9.binetflow 2017-3-30_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-242-1,2017-3-30_win10.binetflow 2017-3-30_win10.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-243-1,2017-04-12_win5.binetflow 2017-04-12_win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-244-1,2017-04-12_win11.binetflow 2017-04-12_win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-245-1,2017-04-12_win12.binetflow 2017-04-12_win12.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-246-1,2017-04-17_win1.binetflow 2017-04-17_win1.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-247-1,2017-04-17_win14.binetflow 2017-04-17_win14.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-248-1,2017-04-18_win18.binetflow 2017-04-18_win18.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-249-1,2017-04-18_win20.binetflow 2017-04-18_win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-25-1,2013-11-06_capture-win6.biargus.labeled 2013-11-06_capture-win6.binetflow 2013-11-06_capture-win6.binetflow.labeled 2013-11-06_capture-win6.binetflow.labeled.sorted 2013-11-06_capture-win6.weblogng 2013-11-06_capture-win6.weblogng.labeled README.html README.md labels.config ralabel-flowfilter.conf ralabel.conf
+CTU-Malware-Capture-Botnet-25-2,2014-01-25_capture_win3.binetflow 2014-01-25_capture_win3.weblogng README.html README.md ralabel-flowfilter.conf ralabel.conf
+CTU-Malware-Capture-Botnet-25-3,2014-02-07_capture-win3.binetflow 2014-02-07_capture-win3.weblogng README.html README.md ralabel-flowfilter.conf ralabel.conf
+CTU-Malware-Capture-Botnet-25-4,2014-02-10_capture-win3.binetflow 2014-02-10_capture-win3.weblogng README.html README.md ralabel-flowfilter.conf ralabel.conf
+CTU-Malware-Capture-Botnet-25-5,2014-03-12_capture-win3.binetflow 2014-03-12_capture-win3.weblogng README.html README.md ralabel-flowfilter.conf ralabel.conf
+CTU-Malware-Capture-Botnet-25-6,2014-12-20_capture-win3.binetflow 2014-12-20_capture-win3.weblogng README.html README.md ralabel-flowfilter.conf ralabel.conf
+CTU-Malware-Capture-Botnet-251-1,2016-05-11_win4.binetflow 2016-05-11_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-253-1,2017-05-14_win10.binetflow 2017-05-14_win10.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-254-1,README.html README.md capture_win13.binetflow capture_win13.weblogng
+CTU-Malware-Capture-Botnet-257-1,2017-05-16_win5.binetflow 2017-05-16_win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-260-1,2017-15-05_win11.binetflow 2017-15-05_win11.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-261-1,2017-05-15_win15.binetflow 2017-05-15_win15.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-261-2,2017-06-07_win12.binetflow 2017-06-07_win12.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-261-3,2017-05-08_win14.binetflow 2017-05-08_win14.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-261-4,2017-06-15_win20.binetflow 2017-06-15_win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-263-1,2017-06-24_win2.binetflow 2017-06-24_win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-264-1,2017-06-24_win3.binetflow 2017-06-24_win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-265-1,2017-06-24_win4.binetflow 2017-06-24_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-266-1,2017-06-24_win5.binetflow 2017-06-24_win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-267-1,2017-06-24_win6.binetflow 2017-06-24_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-270-1,2017-06-24_win9.binetflow 2017-06-24_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-273-1,2017-06-24_win12.binetflow 2017-06-24_win12.weblogng README.html README.json README.md
+CTU-Malware-Capture-Botnet-274-1,2017-04-24_win13.binetflow 2017-04-24_win13.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-275-1,2017-06-24_win14.binetflow 2017-06-24_win14.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-277-1,2017-06-24_win18.binetflow 2017-06-24_win18.weblogng README.html README.json README.md
+CTU-Malware-Capture-Botnet-278-1,2017-06-24_win19.binetflow 2017-06-24_win19.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-279-1,2017-06-24_win20.binetflow 2017-06-24_win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-280-1,2017-06-24_win22.binetflow 2017-06-24_win22.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-281-1,2017-07-03_capture-win13.binetflow 2017-07-03_capture-win13.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-282-1,2017-07-06_capture-win3.binetflow 2017-07-06_capture-win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-285-1,README.html README.md capture_win24.binetflow capture_win24.weblogng
+CTU-Malware-Capture-Botnet-287-1,2017-07-11_capture-win24.binetflow 2017-07-11_capture-win24.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-290-1,2017-07-11_capture-win2.binetflow 2017-07-11_capture-win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-291-1,2017-07-11_capture-win2.binetflow 2017-07-11_capture-win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-292-1,2017-07-11_capture-win2.binetflow 2017-07-11_capture-win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-293-1,2017-07-12_capture-win24.binetflow 2017-07-12_capture-win24.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-294-1,2017-07-13_capture-24.binetflow 2017-07-13_capture-24.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-295-1,2017-07-11_capture-win2.binetflow 2017-07-11_capture-win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-296-1,2017-07-13_capture-win2.binetflow 2017-07-13_capture-win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-297-1,2017-07-13_capture-win24.binetflow 2017-07-13_capture-win24.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-299-1,2017-07-13_capture-win24.binetflow 2017-07-13_capture-win24.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-301-1,README.html README.md capture_win2.binetflow capture_win2.weblogng
+CTU-Malware-Capture-Botnet-302-1,2017-08-03_win6.binetflow 2017-08-03_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-303-1,2017-08-12_capture-win2.binetflow 2017-08-12_capture-win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-305-1,2017-08-14_win3.binetflow 2017-08-14_win3.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-305-2,2017-08-02_win4.binetflow 2017-08-02_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-306-1,2017-08-01_capture-win5.binetflow 2017-08-01_capture-win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-308-1,2017-08-03_win8.binetflow 2017-08-03_win8.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-315-1,README.html README.md capture_win14.binetflow capture_win14.weblogng
+CTU-Malware-Capture-Botnet-317-1,README.html README.md capture1.weblogng
+CTU-Malware-Capture-Botnet-318-1,2017-11-22_win4.binetflow 2017-11-22_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-320-1,2017-12-18_win2.binetflow 2017-12-18_win2.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-320-2,2018-01-30_win17.binetflow 2018-01-30_win17.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-322-1,2018-01-29_win6.binetflow 2018-01-29_win6.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-323-1,2018-01-29_win7.binetflow 2018-01-29_win7.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-324-1,2018-01-30_win13.binetflow 2018-01-30_win13.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-325-1,2018-01-30_win9.binetflow 2018-01-30_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-326-1,2018-01-30_win10.binetflow 2018-01-30_win10.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-327-1,README.html README.md capture_win11.binetflow capture_win11.weblogng
+CTU-Malware-Capture-Botnet-327-2,README.html README.md labels.config
+CTU-Malware-Capture-Botnet-328-1,2018-02-02_win12.binetflow 2018-02-02_win12.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-329-1,2018-02-02_win5.binetflow 2018-02-02_win5.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-334-1,2018-02-16_win4.binetflow 2018-02-16_win4.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-335-1,2018-02-16_win8.binetflow 2018-02-16_win8.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-336-1,2018-02-23_win10.binetflow 2018-02-23_win10.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-339-1,2018-03-01_win9.binetflow 2018-03-01_win9.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-340-1,2018-03-20_win8.binetflow 2018-03-20_win8.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-341-1,2018-03-27_win23.binetflow 2018-03-27_win23.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-344-1,2018-04-03_win10.binetflow 2018-04-03_win10.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-345-1,2018-04-03_win11-copy.binetflow 2018-04-03_win11-copy.binetflow.labeled 2018-04-03_win11.binetflow 2018-04-03_win11.weblogng README.html README.md labels.config
+CTU-Malware-Capture-Botnet-346-1,2018-04-03_win12.binetflow 2018-04-03_win12.weblogng README.html README.md labels.config
+CTU-Malware-Capture-Botnet-348-1,2018-04-04_win20.binetflow 2018-04-04_win20.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-349-1,2018-05-03_win12.binetflow 2018-05-03_win12.weblogng README.html README.md
+CTU-Malware-Capture-Botnet-35-1,2014-01-31_capture-win7.binetflow 2014-01-31_capture-win7.weblogng README
+CTU-Malware-Capture-Botnet-350-1,2018-05-03_win16.binetflow 2018-05-03_win16.weblogng README.html README.md ralabel-data.conf ralabel-datasets.conf
+CTU-Malware-Capture-Botnet-352-1,2018-05-04_win19.binetflow 2018-05-04_win19.weblogng README.html README.md ralabel-data.conf ralabel-datasets.conf test.binetflow
+CTU-Malware-Capture-Botnet-370-1,2017-02-13_win3.binetflow README.html README.md labels.config ralabel-data.conf ralabel-datasets.conf
+CTU-Malware-Capture-Botnet-372-1,2018-12-09_capture-win6.binetflow README.html README.md ralabel-data.conf ralabel-datasets.conf
+CTU-Malware-Capture-Botnet-69,2014-04-07_capture-win17.binetflow 2014-04-07_capture-win17.weblogng README.html README.md
+CTU-Normal-12,2013-12-17_capture1.binetflow 2013-12-17_capture1.weblogng README.html README.md labels.config
+CTU-Normal-14,2017-07-23_capture-winFull.binetflow 2017-07-23_capture-winFull.weblogng README.html README.md
+CTU-Normal-18,2017-09-05_capture-win4.binetflow 2017-09-05_capture-win4.netflow5.uni.binetflow 2017-09-05_capture-win4.weblogng README.html README.md
+CTU-Normal-20,2017-04-30_win-normal.binetflow 2017-04-30_win-normal.weblogng README.html README.md
+CTU-Normal-21,2017-05-02_kali-normal.binetflow 2017-05-02_kali-normal.weblogng README.html README.md
+CTU-Normal-22,2017-05-02_kali-normal.binetflow 2017-05-02_kali-normal.weblogng README.html README.md
+CTU-Normal-23,2017-04-18_win-normal.binetflow 2017-04-18_win-normal.weblogng README.html README.md
+CTU-Normal-24,2017-04-19_win-normal.binetflow 2017-04-19_win-normal.weblogng README.html README.md
+CTU-Normal-25,2017-04-25_win-normal.binetflow 2017-04-25_win-normal.weblogng README.html README.md
+CTU-Normal-26,2017-04-28_normal.binetflow 2017-04-28_normal.weblogng README.html README.md
+CTU-Normal-27,2017_04_30-normal.binetflow 2017_04_30-normal.weblogng README.html README.md
+CTU-Normal-28,2017-05-01_normal.binetflow 2017-05-01_normal.weblogng README.html README.md
+CTU-Normal-29,2017-05-01_normal.binetflow 2017-05-01_normal.weblogng README.html README.md
+CTU-Normal-30,2017-05-01_normal.binetflow 2017-05-01_normal.weblogng README.html README.md
+CTU-Normal-31,2017-05-01_normal.binetflow 2017-05-01_normal.weblogng README.html README.md
+CTU-Normal-32,2017-05-02_normal.binetflow 2017-05-02_normal.weblogng README.html README.md
+CTU-Normal-33,README.html README.md capture-new-Windows-7-Full.binetflow capture-new-Windows-7-Full.weblogng labels.config ralabel-filters.conf ralabel.conf
+CTU-Normal-7,2013-12-17_capture1.binetflow 2013-12-17_capture1.binetflow.labeled 2013-12-17_capture1.weblogng Binetflows-per-hour/ README.html README.md ralabel-filters.conf ralabel.conf
+CTU-Normal-8-1,2016-09-13_win16.binetflow 2016-09-13_win16.weblogng Binetflows-per-hour/ README.html README.md
+CTU-Normal-8-2,2016-09-13_win16.binetflow 2016-09-13_win16.weblogng README.html README.md
+CTU-Normal-9,2016-09-13_win16.binetflow 2016-09-13_win16.weblogng README.html README.md
