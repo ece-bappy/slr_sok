@@ -1,0 +1,45 @@
+{
+  "paper_id": "S2611",
+  "links": [
+    {
+      "url": "https://www.ieee.org/publications/rights/rights-policies.html",
+      "kind": "other",
+      "evidence": "See: https://www.ieee.org/publications/rights/rights-policies.html",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/TZebin/DoH-Attack-explainer",
+      "kind": "own_code_and_data",
+      "evidence": "This paper has supplementary material available at https://github.com/TZebin/DoH-Attack-explainer. The material includes a video recording of the explainable AI dashboard functionalities and code implementation for the model.",
+      "found_in": "text",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.unb.ca/cic/datasets/dohbrw-2020.html",
+      "kind": "third_party_dataset",
+      "evidence": "We have used the publicly available CIRA-CIC-DoHBrw-2020 dataset[8] from the Canadian Institute for Cybersecurity (CIC).",
+      "found_in": "reference [8]",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/TZebin/DoH-Attack-explainer"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/TZebin/DoH-Attack-explainer"
+    ]
+  }
+}

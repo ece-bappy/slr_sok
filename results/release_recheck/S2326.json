@@ -1,0 +1,75 @@
+{
+  "paper_id": "S2326",
+  "links": [
+    {
+      "url": "https://www.ieee.org/publications/rights/index.html",
+      "kind": "other",
+      "evidence": "Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/TDSCCode/ERNN/tree/main/transition",
+      "kind": "own_code_and_data",
+      "evidence": "We provide proposal Fm value ranges for a wired network in online repository2.",
+      "found_in": "text",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/TDSCCode/ERNN",
+      "kind": "own_code_and_data",
+      "evidence": "Available at https://github.com/TDSCCode/ERNN.",
+      "found_in": "text",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/TDSCCode/ERNN/tree/main/metrics",
+      "kind": "own_code_and_data",
+      "evidence": "ation are overall Acc and F1, as detailed in our online repository6.",
+      "found_in": "text",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/TDSCCode/ERNN/tree/main/decision_boundary",
+      "kind": "own_code_and_data",
+      "evidence": "The analysis is detailed on https://github.com/TDSCCode/ERNN/tree/main/decision_boundary.",
+      "found_in": "text",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://captum.ai/",
+      "kind": "third_party_tool",
+      "evidence": "To this end, we use the Integrated Gradients method [57] from the Captum [58] to generate the attribution matrix to provide the model interpretability.",
+      "found_in": "reference [58]",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/TDSCCode/ERNN/tree/main/transition",
+      "https://github.com/TDSCCode/ERNN",
+      "https://github.com/TDSCCode/ERNN/tree/main/metrics",
+      "https://github.com/TDSCCode/ERNN/tree/main/decision_boundary"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/TDSCCode/ERNN/tree/main/transition",
+      "https://github.com/TDSCCode/ERNN",
+      "https://github.com/TDSCCode/ERNN/tree/main/metrics",
+      "https://github.com/TDSCCode/ERNN/tree/main/decision_boundary"
+    ]
+  }
+}

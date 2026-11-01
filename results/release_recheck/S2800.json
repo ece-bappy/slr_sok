@@ -1,0 +1,37 @@
+{
+  "paper_id": "S2800",
+  "links": [
+    {
+      "url": "https://www.ieee.org/publications/rights/index.html",
+      "kind": "other",
+      "evidence": "republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.stratosphereips.org/datasets-overview",
+      "kind": "third_party_dataset",
+      "evidence": "Both Stratosphere IPS [30] and Canadian Institute for Cybersecurity (CIC) provide public network capture data in ‘.pcap’ format for research purpose.",
+      "found_in": "reference [30]",
+      "votes": "3/3",
+      "same_authors": [
+        "Barut",
+        "Luo",
+        "Zhang"
+      ]
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

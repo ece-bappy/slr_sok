@@ -1,0 +1,20 @@
+{
+  "paper_id": "S1717",
+  "links": [],
+  "not_released_statements": [
+    "Data availability Data will be made available on request."
+  ],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": [
+      "no_link_found"
+    ]
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

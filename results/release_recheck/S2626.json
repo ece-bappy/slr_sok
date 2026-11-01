@@ -1,0 +1,62 @@
+{
+  "paper_id": "S2626",
+  "links": [
+    {
+      "url": "https://www.ieee.org/publications/rights/index.html",
+      "kind": "other",
+      "evidence": "See ht_tps://www.ieee.org/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://dgarchive.caad.fkie.fraunhofer.de/",
+      "kind": "third_party_dataset",
+      "evidence": "Authors made their dataset (“DGArchive”) available to the public [9], and they have been consistently expanding their database over time.",
+      "found_in": "reference [9]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://bit.ly/39tMIte",
+      "kind": "cited_work",
+      "evidence": "“Tinba” (Tiny banker was first discovered in 2012), is a malware program, targeting banking websites to steal online banking data [60].",
+      "found_in": "reference [60]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://zeek.org",
+      "kind": "third_party_tool",
+      "evidence": "Comparing Our Diagnosis Models with Zeek IDS: Lastly, we validate our results against logs of an open-source IDS Zeek (formerly Bro) – which is a powerful network analysis tool",
+      "found_in": "reference [78]",
+      "votes": "3/3",
+      "same_authors": [
+        "Ahmed",
+        "Gharakheili",
+        "Russell",
+        "Sivaraman"
+      ]
+    },
+    {
+      "url": "https://osrg.github.io/ryubook/en/html/",
+      "kind": "third_party_tool",
+      "evidence": "Ryu-Development-Community, “Ryu SDN framework,” 2020. Accessed: May 16, 2022. [Online]. Available: https://osrg.github.io/ryubook/en/html/",
+      "found_in": "reference [76] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

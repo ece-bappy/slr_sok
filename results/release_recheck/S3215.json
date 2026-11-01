@@ -1,0 +1,90 @@
+{
+  "paper_id": "S3215",
+  "links": [
+    {
+      "url": "https://www.fortinet.com/products/next-generation-firewall.html",
+      "kind": "cited_work",
+      "evidence": "1https://www.fortinet.com/products/next-generation-firewall.html ARES 2020",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://s3.amazonaws.com/alexa-static/top-1m.csv.zip",
+      "kind": "third_party_dataset",
+      "evidence": "2https://s3.amazonaws.com/alexa-static/top-1m.csv.zip",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1543811",
+      "kind": "cited_work",
+      "evidence": "3https://bugzilla.mozilla.org/show_bug.cgi?id=1543811",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://bdtechtalks.com/2019/12/11/google-chrome-dns-over-https-privacy/",
+      "kind": "cited_work",
+      "evidence": "https://bdtechtalks.com/2019/12/11/google-chrome-dns-over-https-privacy/",
+      "found_in": "reference [13]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/cisco/joy",
+      "kind": "third_party_tool",
+      "evidence": "https://github.com/cisco/joy",
+      "found_in": "reference [1] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/cloudflare/cloudflared",
+      "kind": "third_party_tool",
+      "evidence": "https://github.com/cloudflare/cloudflared",
+      "found_in": "reference [12] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.3818004",
+      "kind": "own_data",
+      "evidence": "Dmitrii Vekshin, Karel Hynek, and Tomas Cejka. 2020. Dataset used for detecting DNS over HTTPS by Machine Learning. https://doi.org/10.5281/zenodo.3818004",
+      "found_in": "?",
+      "votes": "1/3",
+      "same_authors": null
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo",
+      "kind": "own_data",
+      "evidence": "Dmitrii Vekshin, Karel Hynek, and Tomas Cejka. 2020. Dataset used for detecting DNS over HTTPS by Machine Learning. https://doi.org/10.5281/zenodo. 3818004",
+      "found_in": "reference [30] (not cited as code/data)",
+      "votes": "2/3",
+      "same_authors": [
+        "Hynek",
+        "Vekshin"
+      ]
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://doi.org/10.5281/zenodo.3818004",
+      "https://doi.org/10.5281/zenodo"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://doi.org/10.5281/zenodo.3818004",
+      "https://doi.org/10.5281/zenodo"
+    ]
+  }
+}

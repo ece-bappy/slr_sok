@@ -1,0 +1,25 @@
+{
+  "paper_id": "S1342",
+  "links": [
+    {
+      "url": "https://www.ieee.org/publications/rights/index.html",
+      "kind": "other",
+      "evidence": "See https://www.ieee.org/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

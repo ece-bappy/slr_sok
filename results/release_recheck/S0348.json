@@ -1,0 +1,41 @@
+{
+  "paper_id": "S0348",
+  "links": [
+    {
+      "url": "https://www.ieee.org/publications/rights/index.html",
+      "kind": "other",
+      "evidence": "See https://www.ieee.org/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://cypress-project.be",
+      "kind": "other",
+      "evidence": "1) CYPRESS project (https://cypress-project.be), supported by the FPS Economy of Belgium through the Energy Transition Fund.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://research.unsw.edu.au/projects/bot-iotdataset",
+      "kind": "third_party_dataset",
+      "evidence": "N. Koroniotis, N. Moustafa, E. Sitnikova, and B. Turnbull. (2018). The BoT-IoT Dataset. UNSW Canberra Cyber, University of New South Wales. [Online]. Available: https://research.unsw.edu.au/projects/bot-iotdataset",
+      "found_in": "reference [25]",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

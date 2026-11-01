@@ -1,0 +1,29 @@
+{
+  "paper_id": "S0639",
+  "links": [
+    {
+      "url": "https://github.com/watsonhuhpi/LotBoNC",
+      "kind": "own_code",
+      "evidence": "Source code: https://github.com/watsonhuhpi/LotBoNC",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/watsonhuhpi/LotBoNC"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/watsonhuhpi/LotBoNC"
+    ]
+  }
+}

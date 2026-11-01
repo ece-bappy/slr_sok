@@ -1,0 +1,25 @@
+{
+  "paper_id": "S1163",
+  "links": [
+    {
+      "url": "https://www.proquest.com/dissertations-theses/deeptransfer-learning-based-ddos-attack/docview/3182458500/se-2",
+      "kind": "cited_work",
+      "evidence": "B. Farzaneh, ‘‘Deep transfer learning-based DDoS attack detection in 5G and beyond networks,’’ M.S. thesis, Dept. Comput. Sci., Univ. Regina, Saskatchewan, Canada, Tevh. Rep. 3182458500, 2024. [Online]. Available: https://www.proquest.com/dissertations-theses/deeptransfer-learning-based-ddos-attack/docview/3182458500/se-2",
+      "found_in": "reference [26]",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

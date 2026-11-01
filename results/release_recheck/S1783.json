@@ -1,0 +1,39 @@
+{
+  "paper_id": "S1783",
+  "links": [
+    {
+      "url": "https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA",
+      "kind": "own_data",
+      "evidence": "The open-source datasets produced and shared by this research study to provide a support, accessible via: https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://doi.org/10.1109/OJCS.2024.3386715",
+      "kind": "own_code_and_data",
+      "evidence": "This article has supplementary downloadable material available at https://doi.org/10.1109/OJCS.2024.3386715, provided by the authors.",
+      "found_in": "?",
+      "votes": "1/3",
+      "same_authors": null
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA",
+      "https://doi.org/10.1109/OJCS.2024.3386715"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://baeeco-my.sharepoint.com/:f:/g/personal/mar_baee_co/EnBVsufPGwtAkrWgG3gUWFwBAwVVWua7V1EyCdwvmw4PhA",
+      "https://doi.org/10.1109/OJCS.2024.3386715"
+    ]
+  }
+}

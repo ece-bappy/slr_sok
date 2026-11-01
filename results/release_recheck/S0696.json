@@ -1,0 +1,25 @@
+{
+  "paper_id": "S0696",
+  "links": [
+    {
+      "url": "http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/",
+      "kind": "other",
+      "evidence": "To view a copy of this licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

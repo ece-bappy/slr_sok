@@ -1,0 +1,105 @@
+{
+  "paper_id": "S3059",
+  "links": [
+    {
+      "url": "https://www.snort.org/",
+      "kind": "third_party_tool",
+      "evidence": "perform DPI with Snort2 or Suricata3",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://suricata-ids.org/",
+      "kind": "third_party_tool",
+      "evidence": "perform DPI with Snort2 or Suricata3",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://virusshare.com/",
+      "kind": "third_party_dataset",
+      "evidence": "4 https://virusshare.com/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.proxifier.com/",
+      "kind": "third_party_tool",
+      "evidence": "6 https://www.proxifier.com/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://mitmproxy.org/",
+      "kind": "third_party_tool",
+      "evidence": "7 https://mitmproxy.org/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/cuckoosandbox/community",
+      "kind": "third_party_tool",
+      "evidence": "8 https://github.com/cuckoosandbox/community.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.wireshark.org/docs/man-pages/tshark.html",
+      "kind": "third_party_tool",
+      "evidence": "9 https://www.wireshark.org/docs/man-pages/tshark.html.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/cisco/joy",
+      "kind": "third_party_tool",
+      "evidence": "10 https://github.com/cisco/joy.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://scapy.net/",
+      "kind": "third_party_tool",
+      "evidence": "11 https://scapy.net/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://molo.ch/",
+      "kind": "third_party_tool",
+      "evidence": "12 https://molo.ch/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.alexa.com/topsites",
+      "kind": "third_party_dataset",
+      "evidence": "13 https://www.alexa.com/topsites.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

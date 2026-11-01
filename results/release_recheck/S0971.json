@@ -1,0 +1,25 @@
+{
+  "paper_id": "S0971",
+  "links": [
+    {
+      "url": "https://ja4db.com/",
+      "kind": "third_party_dataset",
+      "evidence": "The dataset used in this study, JA4DB [15], is a communitymaintained repository of JA4 fingerprints collected through two primary strategies: active submission and passive network monitoring.",
+      "found_in": "reference [15]",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

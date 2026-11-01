@@ -1,0 +1,63 @@
+{
+  "paper_id": "S1155",
+  "links": [
+    {
+      "url": "https://gitlab.com/compromise3/decentralizedfedsim",
+      "kind": "own_code",
+      "evidence": "Code is available online: https://gitlab.com/compromise3/decentralizedfedsim",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://gitlab.com/compromise3/co-defend",
+      "kind": "own_code",
+      "evidence": "Code is available online: https://gitlab.com/compromise3/co-defend",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/yarrick/iodine",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [10]: E. Ekman and B. Andersson, “iodine,” 2014. [Online]. Available: https://github.com/yarrick/iodine",
+      "found_in": "reference [10] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/alex-sector/dns2tcp",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [11]: O. Dembour and N. Collignon, “dns2tcp,” 2017. [Online]. Available: https://github.com/alex-sector/dns2tcp",
+      "found_in": "reference [11] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/iagox86/dnscat2",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [12]: R. Bowes, “dnscat2,” 2017. [Online]. Available: https://github.com/iagox86/dnscat2",
+      "found_in": "reference [12] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://gitlab.com/compromise3/decentralizedfedsim",
+      "https://gitlab.com/compromise3/co-defend"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://gitlab.com/compromise3/decentralizedfedsim",
+      "https://gitlab.com/compromise3/co-defend"
+    ]
+  }
+}

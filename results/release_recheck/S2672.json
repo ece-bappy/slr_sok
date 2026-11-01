@@ -1,0 +1,83 @@
+{
+  "paper_id": "S2672",
+  "links": [
+    {
+      "url": "https://github.com/cloudflare/cloudflared",
+      "kind": "third_party_tool",
+      "evidence": "ahttps://github.com/cloudflare/cloudflared bhttps://github.com/AdguardTeam/dnsproxy",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/AdguardTeam/dnsproxy",
+      "kind": "third_party_tool",
+      "evidence": "bhttps://github.com/AdguardTeam/dnsproxy chttps://github.com/facebookexperimental/doh-proxy",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/facebookexperimental/doh-proxy",
+      "kind": "third_party_tool",
+      "evidence": "chttps://github.com/facebookexperimental/doh-proxy dhttps://github.com/DNSCrypt/dnscrypt-proxy",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/DNSCrypt/dnscrypt-proxy",
+      "kind": "third_party_tool",
+      "evidence": "dhttps://github.com/DNSCrypt/dnscrypt-proxy ehttps://github.com/aarond10/https_dns_proxy",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/aarond10/https_dns_proxy",
+      "kind": "third_party_tool",
+      "evidence": "ehttps://github.com/aarond10/https_dns_proxy fNo releases, version committed on Sep 25, 2020 is used.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://tlsfingerprint.io/id/9c673fd64a32c8dc",
+      "kind": "cited_work",
+      "evidence": "e.g., Chrome 86: https://tlsfingerprint.io/id/9c673fd64a32c8dc",
+      "found_in": "text",
+      "votes": "1/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://sensepost.com/blog/2018/waiting-for-godoh/",
+      "kind": "cited_work",
+      "evidence": "DNS exfiltration over DNS over HTTPS (DoH) with godoh, https://sensepost.com/blog/2018/waiting-for-godoh/.",
+      "found_in": "reference [31]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/Arno0x/DNSExfiltrator",
+      "kind": "third_party_tool",
+      "evidence": "Data exfiltration over DNS request covert channel, https://github.com/Arno0x/DNSExfiltrator.",
+      "found_in": "reference [32]",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [
+    "To receive the data, the attacker needs to take over the Name Server (NS) of the target domain name, so that all subdomain resolution requests of the target domain name will eventually reach the controlled NS."
+  ],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

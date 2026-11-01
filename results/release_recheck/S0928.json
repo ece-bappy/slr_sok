@@ -1,0 +1,35 @@
+{
+  "paper_id": "S0928",
+  "links": [
+    {
+      "url": "https://zeek.org",
+      "kind": "third_party_tool",
+      "evidence": "Zeek (Version 6.0; The Zeek Project, https://zeek.org) [24] is used to extract",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://scikit-learn.org",
+      "kind": "third_party_tool",
+      "evidence": "Feature selection was implemented using the scikit-learn library (Version 1.4.2; https://scikit-learn.org) in Python",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [
+    "Processed features and experimental configurations used in this research are available from the corresponding author upon reasonable request."
+  ],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

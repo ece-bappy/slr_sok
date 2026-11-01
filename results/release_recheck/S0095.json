@@ -1,0 +1,27 @@
+{
+  "paper_id": "S0095",
+  "links": [
+    {
+      "url": "https://github.com/ahlashkari/CICFlowMeter",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [15]: BCCC, Cicflowmeter, 2018, https://github.com/ahlashkari/CICFlowMeter. (Accessed: 23 September 2025).",
+      "found_in": "reference [15] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [
+    "Data availability Data will be made available on request."
+  ],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

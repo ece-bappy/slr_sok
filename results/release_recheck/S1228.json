@@ -1,0 +1,55 @@
+{
+  "paper_id": "S1228",
+  "links": [
+    {
+      "url": "https://github.com/niebikong/Open-Detect",
+      "kind": "own_code",
+      "evidence": "Our code is available at: https:// github.com/niebikong/Open-Detect",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.ieee.org/publications/rights/index.html",
+      "kind": "other",
+      "evidence": "See https://www.ieee.org/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/yungshenglu/USTC-TFC2016",
+      "kind": "third_party_dataset",
+      "evidence": "1https://github.com/yungshenglu/USTC-TFC2016",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/gcx-Yuan/Malicious",
+      "kind": "own_data",
+      "evidence": "2https://github.com/gcx-Yuan/Malicious",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/niebikong/Open-Detect",
+      "https://github.com/gcx-Yuan/Malicious"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/niebikong/Open-Detect",
+      "https://github.com/gcx-Yuan/Malicious"
+    ]
+  }
+}

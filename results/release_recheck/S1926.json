@@ -1,0 +1,63 @@
+{
+  "paper_id": "S1926",
+  "links": [
+    {
+      "url": "https://github.com/CarlosANovo/extending12to13",
+      "kind": "own_code_and_data",
+      "evidence": "Our classifiers, datasets and experiments are open-source [47].",
+      "found_in": "reference [47]",
+      "votes": "3/3",
+      "same_authors": [
+        "Novo"
+      ]
+    },
+    {
+      "url": "https://github.com/cisco/joy",
+      "kind": "third_party_tool",
+      "evidence": "Cisco Systems. 2019. cisco/joy: A package for capturing and analyzing network flow data and intraflow data",
+      "found_in": "reference [17] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/rapid7/metasploit-framework/blob/6.3.17/lib/msf/core/cert_provider.rb#L41",
+      "kind": "third_party_tool",
+      "evidence": "Rapid7. 2023. cert_provider.rb – Metasploit framework (source code).",
+      "found_in": "reference [51] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/rapid7/metasploitpayloads/tree/master/python/meterpreter",
+      "kind": "third_party_tool",
+      "evidence": "Rapid7. 2023. metasploit-payloads.",
+      "found_in": "reference [52] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/sitespeedio/browsertime",
+      "kind": "third_party_tool",
+      "evidence": "sitespeed.io. 2023. Browsertime.",
+      "found_in": "reference [57] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/CarlosANovo/extending12to13"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/CarlosANovo/extending12to13"
+    ]
+  }
+}

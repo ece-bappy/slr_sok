@@ -1,0 +1,49 @@
+{
+  "paper_id": "S3208",
+  "links": [
+    {
+      "url": "https://github.com/ahlashkari/DOHlyzer/tree/master/DoHMeter",
+      "kind": "own_code",
+      "evidence": "To create the DoH flows (the combination of all request and response packets in one connection) and extract these features, we developed an opensource package by Python named DoHMeter which is publicly available in GitHub [23].",
+      "found_in": "reference [23]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/ahlashkari/DOHlyzer",
+      "kind": "own_code",
+      "evidence": "The tool is publicly available at [26].",
+      "found_in": "reference [26]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.unb.ca/cic/datasets/dohbrw-2020.html",
+      "kind": "own_data",
+      "evidence": "Our generated dataset, named CIRA-CIC-DoHBrw-2020, is publicly available at [27].",
+      "found_in": "reference [27]",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/ahlashkari/DOHlyzer/tree/master/DoHMeter",
+      "https://github.com/ahlashkari/DOHlyzer",
+      "https://www.unb.ca/cic/datasets/dohbrw-2020.html"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/ahlashkari/DOHlyzer/tree/master/DoHMeter",
+      "https://github.com/ahlashkari/DOHlyzer",
+      "https://www.unb.ca/cic/datasets/dohbrw-2020.html"
+    ]
+  }
+}

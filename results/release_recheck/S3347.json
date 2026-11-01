@@ -1,0 +1,33 @@
+{
+  "paper_id": "S3347",
+  "links": [
+    {
+      "url": "http://www.ieee.org/publications",
+      "kind": "other",
+      "evidence": "See http://www.ieee.org/publications standards/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://2017.hack.lu/archive/2009/InfoVisContest/could",
+      "kind": "cited_work",
+      "evidence": "coding-based method 1https://2017.hack.lu/archive/2009/InfoVisContest/could falsely regard encrypted or unencrypted message with visible characters as unencrypted",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

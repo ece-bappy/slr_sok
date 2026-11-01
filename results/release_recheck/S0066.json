@@ -1,0 +1,33 @@
+{
+  "paper_id": "S0066",
+  "links": [
+    {
+      "url": "https://www.sciencepubco.com/index.php/IJBAS",
+      "kind": "other",
+      "evidence": "International Journal of Basic and Applied Sciences Website: www.sciencepubco.com/index.php/IJBAS",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://doi.org/10.14419/xw7zzh51",
+      "kind": "other",
+      "evidence": "International Journal of Basic and Applied Sciences Website: www.sciencepubco.com/index.php/IJBAS https://doi.org/10.14419/xw7zzh51",
+      "found_in": "?",
+      "votes": "1/3",
+      "same_authors": null
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

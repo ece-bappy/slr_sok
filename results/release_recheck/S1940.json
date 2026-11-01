@@ -1,0 +1,41 @@
+{
+  "paper_id": "S1940",
+  "links": [
+    {
+      "url": "https://www.ieee.org/publications/rights/index.html",
+      "kind": "other",
+      "evidence": "See https://www.ieee.org/publications/rights/index.html for more information.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/Z3Prover/z3",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [50]: Microsoft. A Theorem Prover From Microsoft Research. Accessed: May 2022. [Online]. Available: https://github.com/Z3Prover/z3",
+      "found_in": "reference [50] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://pcapplusplus.github.io/",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [52]: PcapPlusPlus. A C++ Library for Capturing, Parsing and Crafting of Network Packets. Accessed: May 2022. [Online]. Available: https://pcapplusplus.github.io/",
+      "found_in": "reference [52] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

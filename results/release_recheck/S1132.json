@@ -1,0 +1,33 @@
+{
+  "paper_id": "S1132",
+  "links": [
+    {
+      "url": "http://doi.org/10.5281/zenodo.4743746",
+      "kind": "third_party_dataset",
+      "evidence": "REFERENCE [72]: S. Garcia, A. Parmisano, and M. J. Erquiaga, 2020, “IoT- 23: A labeled dataset with malicious and benign IoT network traffic, Version 1.0.0,” Data set, Zenodo.",
+      "found_in": "reference [72] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/yungshenglu/USTC-TFC2016",
+      "kind": "third_party_dataset",
+      "evidence": "REFERENCE [76]: Y. Lu, “USTC-TFC2016 dataset,” 2019. [Online]. Available: https:// github.com/yungshenglu/USTC-TFC2016",
+      "found_in": "reference [76] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

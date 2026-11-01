@@ -1,0 +1,101 @@
+{
+  "paper_id": "S2760",
+  "links": [
+    {
+      "url": "https://hdl.handle.net/2115/87440",
+      "kind": "other",
+      "evidence": "Doc URL https://hdl.handle.net/2115/87440",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/doh-trafficdataset/DoH-Tunnel-Traffic-HKD",
+      "kind": "own_data",
+      "evidence": "We publish the traffic data of emerging malicious DNS tunnel tools as the DoH-Tunnel- Traffic-HKD dataset [40].",
+      "found_in": "reference [40]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/m13253/dns-over-https",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [5]: “DNS-over-HTTPS,” https://github.com/m13253/dns-over-https.",
+      "found_in": "reference [5] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/facebookarchive/dohproxy",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [6]: “DNS Over HTTPS Proxy,” https://github.com/facebookarchive/dohproxy.",
+      "found_in": "reference [6] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/DNSCrypt",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [7]: “DNSCrypt,” https://github.com/DNSCrypt.",
+      "found_in": "reference [7] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/alex-sector/dns2tcp",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [34]: “dns2tcp,” https://github.com/alex-sector/dns2tcp.",
+      "found_in": "reference [34] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/iagox86/dnscat2",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [35]: “dnscat2,” https://github.com/iagox86/dnscat2.",
+      "found_in": "reference [35] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/lnussbaum/tuns",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [38]: “tuns,” https://github.com/lnussbaum/tuns.",
+      "found_in": "reference [38] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/ahlashkari/DoHlyzer",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [41]: “DoHlyzer,” https://github.com/ahlashkari/DoHlyzer.",
+      "found_in": "reference [41] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.kaggle.com/",
+      "kind": "cited_work",
+      "evidence": "REFERENCE [46]: “Kaggle,” https://www.kaggle.com/.",
+      "found_in": "reference [46] (not cited as code/data)",
+      "votes": "2/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/doh-trafficdataset/DoH-Tunnel-Traffic-HKD"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/doh-trafficdataset/DoH-Tunnel-Traffic-HKD"
+    ]
+  }
+}

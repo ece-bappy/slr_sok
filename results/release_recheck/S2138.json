@@ -1,0 +1,37 @@
+{
+  "paper_id": "S2138",
+  "links": [
+    {
+      "url": "https://github.com/wesly2000/TLSFingerprint",
+      "kind": "own_code",
+      "evidence": "The codes for this paper is available at https://github.com/wesly2000/TLSFingerprint.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/salesforce/ja3",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [45]: JA3, 2023, URL https://github.com/salesforce/ja3.",
+      "found_in": "reference [45] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/wesly2000/TLSFingerprint"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/wesly2000/TLSFingerprint"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "paper_id": "S2338",
+  "links": [
+    {
+      "url": "https://mcfp",
+      "kind": "third_party_dataset",
+      "evidence": "Malware Capture Facility Project published by Stratosphere Lab [19].",
+      "found_in": "reference [19]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://doi.org/10.17632/xw7r4tt54g.1",
+      "kind": "own_data",
+      "evidence": "To facilitate the research in this domain, Our dataset [29] is released in Mendeley Data.",
+      "found_in": "reference [29]",
+      "votes": "3/3",
+      "same_authors": [
+        "Thing",
+        "Wang"
+      ]
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://doi.org/10.17632/xw7r4tt54g.1"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://doi.org/10.17632/xw7r4tt54g.1"
+    ]
+  }
+}

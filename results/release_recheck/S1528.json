@@ -1,0 +1,31 @@
+{
+  "paper_id": "S1528",
+  "links": [
+    {
+      "url": "https://github.com/TerryYao19/PSFAN",
+      "kind": "own_code",
+      "evidence": "The code of our research can be found at https://github.com/TerryYao19/PSFAN",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [
+    "This results in the depletion of the server’s computational resources, affecting  legitimate connection requests."
+  ],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/TerryYao19/PSFAN"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/TerryYao19/PSFAN"
+    ]
+  }
+}

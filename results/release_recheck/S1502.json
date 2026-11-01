@@ -1,0 +1,25 @@
+{
+  "paper_id": "S1502",
+  "links": [
+    {
+      "url": "https://www.example.com",
+      "kind": "other",
+      "evidence": "user-understandable domain labels (e.g., www.example.com) are mapped to machine-readable IP addresses",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

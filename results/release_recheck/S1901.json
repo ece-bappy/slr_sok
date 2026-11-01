@@ -1,0 +1,25 @@
+{
+  "paper_id": "S1901",
+  "links": [
+    {
+      "url": "https://github.com/seakfind/examples/blob/main/xtls-vision/README.md",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [42]: Seakfind, XTLS vision, 2024, https://github.com/seakfind/examples/blob/main/xtls-vision/README.md. (Accessed 22 July 2024).",
+      "found_in": "reference [42] (not cited as code/data)",
+      "votes": "2/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

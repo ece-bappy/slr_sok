@@ -1,0 +1,32 @@
+{
+  "paper_id": "S0939",
+  "links": [
+    {
+      "url": "https://github.com/zm1060/TrafficCross",
+      "kind": "own_promised",
+      "evidence": "The source code, preprocessing scripts, configuration files, and  split settings will be made publicly available at: https://github.com/zm1060/TrafficCross.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [
+    "Data availability The source code, preprocessing scripts, configuration files, and  split settings will be made publicly available at: https://github.com/zm1060/TrafficCross."
+  ],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": [
+      "release_only_promised"
+    ]
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": [
+      "release_only_promised"
+    ]
+  }
+}

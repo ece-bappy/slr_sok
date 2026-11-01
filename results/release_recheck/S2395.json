@@ -1,0 +1,69 @@
+{
+  "paper_id": "S2395",
+  "links": [
+    {
+      "url": "https://apwg.org/trendsreports/",
+      "kind": "cited_work",
+      "evidence": "1 https://apwg.org/trendsreports/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://transparencyreport.google.com/https/overview?hl=en",
+      "kind": "cited_work",
+      "evidence": "2 https://transparencyreport.google.com/https/overview?hl=en.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://scikit-learn.org/stable/",
+      "kind": "third_party_tool",
+      "evidence": "3 https://scikit-learn.org/stable/.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www",
+      "kind": "third_party_dataset",
+      "evidence": "The legitimate URLs are collected from the Alexa database (https://www.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.phishtank.com/devel",
+      "kind": "third_party_dataset",
+      "evidence": "valid phishing sites are collected from the Phishtank (https://www.phishtank.com/devel oper).",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/Munish999/Dataset-URL-Phishing-detection-TLS-1.2-and-TLS-1.3",
+      "kind": "own_data",
+      "evidence": "4 https://github.com/Munish999/Dataset-URL-Phishing-detection-TLS-1.2-and-TLS-1.3.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/Munish999/Dataset-URL-Phishing-detection-TLS-1.2-and-TLS-1.3"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/Munish999/Dataset-URL-Phishing-detection-TLS-1.2-and-TLS-1.3"
+    ]
+  }
+}

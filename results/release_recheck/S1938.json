@@ -1,0 +1,93 @@
+{
+  "paper_id": "S1938",
+  "links": [
+    {
+      "url": "https://doi.org/10.5281/zenodo.10655329",
+      "kind": "own_data",
+      "evidence": "The already processed data is available and ready-to-use in [25].",
+      "found_in": "reference [25]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/alexdrk14/SAMLP",
+      "kind": "third_party_tool",
+      "evidence": "To ensure a robust implementation, we have chosen a publicly available semi-automatic machine learning pipeline that addresses common issues encountered in classification tasks [20, 58].",
+      "found_in": "reference [20]",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/LeeBrotherston/tls-fingerprinting",
+      "kind": "third_party_tool",
+      "evidence": "2016. FingerprinTLS. https://github.com/LeeBrotherston/tls-fingerprinting.",
+      "found_in": "reference [2] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/salesforce/jarm",
+      "kind": "third_party_tool",
+      "evidence": "2020. JARM: An active Transport Layer Security (TLS) server fingerprinting tool. https://github.com/salesforce/jarm.",
+      "found_in": "reference [6] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/nabla-c0d3/sslyze",
+      "kind": "third_party_tool",
+      "evidence": "2023. SSLyze: A fast and powerful SSL/TLS scanning tool. https://github.com/nabla-c0d3/sslyze.",
+      "found_in": "reference [23] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/cisco/mercury",
+      "kind": "third_party_tool",
+      "evidence": "2019. Mercury: A network metadata tool for capturing and analysis. https://github.com/cisco/mercury.",
+      "found_in": "reference [29] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/cisco/joy",
+      "kind": "third_party_tool",
+      "evidence": "2017. Joy. https://github.com/cisco/joy.",
+      "found_in": "reference [33] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/salesforce/ja3",
+      "kind": "third_party_tool",
+      "evidence": "2017. JA3. https://github.com/salesforce/ja3.",
+      "found_in": "reference [40] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/ssllabs/sslhaf",
+      "kind": "third_party_tool",
+      "evidence": "2012. Sslhalf. https://github.com/ssllabs/sslhaf.",
+      "found_in": "reference [55] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://doi.org/10.5281/zenodo.10655329"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://doi.org/10.5281/zenodo.10655329"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "paper_id": "S1886",
+  "links": [
+    {
+      "url": "https://tumi8.github.io/active-tls-fingerprinting/TABLE",
+      "kind": "own_data",
+      "evidence": "We selected them because they all extract 1https://tumi8.github.io/active-tls-fingerprinting/TABLE I SUMMARY OF RELATED TLS SCANNING AND FINGERPRINTING TOOLS metadata from the TLS layer that can be used for fingerprinting.",
+      "found_in": "text",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://cloudflare.com/cdn-cgi/trace",
+      "kind": "third_party_tool",
+      "evidence": "3https://cloudflare.com/cdn-cgi/trace SOSNOWSKI et al.: EFACTLS: EFFECTIVE ACTIVE TLS FINGERPRINTING 2593",
+      "found_in": "text",
+      "votes": "2/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://tumi8.github.io/active-tls-fingerprinting/",
+      "kind": "own_code_and_data",
+      "evidence": "We have open-sourced the general-purpose CHs and their generation code as part of our scanner [38].",
+      "found_in": "reference [38]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/nabla-c0d3/sslyze",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [18]: A. Diquet. “SSLyze.” Accessed: Oct. 6, 2023. [Online]. Available: https://github.com/nabla-c0d3/sslyze",
+      "found_in": "reference [18] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/WestpointLtd/tls_prober",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [21]: R. Moore. “TLS prober-an SSL/TLS server fingerprinting tool.” Accessed: Oct. 6, 2023. [Online]. Available: https://github.com/WestpointLtd/tls_prober",
+      "found_in": "reference [21] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/blechschmidt/massdns",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [31]: Q. S. Birk Blechschmidt. “MassDNS.” 2023. Accessed: Jan. 19, 2024. [Online]. Available: https://github.com/blechschmidt/massdns",
+      "found_in": "reference [31] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/tumi8/goscanner",
+      "kind": "own_code",
+      "evidence": "REFERENCE [33]: O. Gasser, M. Sosnowski, P. Sattler, and J. Zirngibl. “TUM goscanner.” Accessed: Jan. 19, 2024. [Online]. Available: https://github.com/tumi8/goscanner",
+      "found_in": "reference [33] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": [
+        "Sattler",
+        "Sosnowski",
+        "Zirngibl"
+      ]
+    },
+    {
+      "url": "https://github.com/hadiasghari/pyasn",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [46]: H. Asghari, “Pyasn.” Accessed: Jan. 18, 2024. [Online]. Available: https://github.com/hadiasghari/pyasn",
+      "found_in": "reference [46] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://tumi8.github.io/active-tls-fingerprinting/TABLE",
+      "https://tumi8.github.io/active-tls-fingerprinting/",
+      "https://github.com/tumi8/goscanner"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://tumi8.github.io/active-tls-fingerprinting/TABLE",
+      "https://tumi8.github.io/active-tls-fingerprinting/",
+      "https://github.com/tumi8/goscanner"
+    ]
+  }
+}

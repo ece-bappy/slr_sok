@@ -1,0 +1,41 @@
+{
+  "paper_id": "S0217",
+  "links": [
+    {
+      "url": "https://github.com/AmyDylen/C2Detector-V2.0",
+      "kind": "own_code_and_data",
+      "evidence": "To foster reproducibility, we have made our source code and experimental setup publicly available at: https://github.com/AmyDylen/C2Detector-V2.0.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/AmyDylen/IEU-C2D",
+      "kind": "own_data",
+      "evidence": "REFERENCE [58]: Dylen, IEU-C2D: C2 Threat Traffic Collection, 2025. https://github.com/AmyDylen/IEU-C2D.",
+      "found_in": "reference [58] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [
+    "Data availability Data will be made available on request."
+  ],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/AmyDylen/C2Detector-V2.0",
+      "https://github.com/AmyDylen/IEU-C2D"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/AmyDylen/C2Detector-V2.0",
+      "https://github.com/AmyDylen/IEU-C2D"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "paper_id": "S1254",
+  "links": [
+    {
+      "url": "https://github.com/ggyggy666/DNS-Tunnel-Datasets",
+      "kind": "third_party_dataset",
+      "evidence": "Benign Samples: 641,642 records of valid DNS traffic, collected through HTTP requests to Alexa’s top 1 million domains. 1https://github.com/ggyggy666/DNS-Tunnel-Datasets",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.unb.ca/cic/datasets/dns-exf-2021.html",
+      "kind": "third_party_dataset",
+      "evidence": "CIC-Bell-DNS-EXF-2021: Supplementary dataset with 1,019,318 structured records, including 641,642 benign samples and 377,676 tunneling instances, available at https://www.unb.ca/cic/datasets/dns-exf-2021.html.",
+      "found_in": "text",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

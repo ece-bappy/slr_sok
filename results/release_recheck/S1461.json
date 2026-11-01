@@ -1,0 +1,28 @@
+{
+  "paper_id": "S1461",
+  "links": [
+    {
+      "url": "https://github.com/justmao945/mallory",
+      "kind": "third_party_tool",
+      "evidence": "REFERENCE [12]: Mallory, HTTP/HTTPS proxy over SSH, https://github.com/justmao945/mallory.",
+      "found_in": "reference [12] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [
+    "Data availability Data will be made available on request.",
+    "[28] utilize a Transformer encoder model, taking fixed-length sequences of  packet lengths and arrival time intervals as input features, to assess  the risk posed by SSH connection requests."
+  ],
+  "code_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": []
+  }
+}

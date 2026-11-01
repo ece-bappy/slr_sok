@@ -1,0 +1,61 @@
+{
+  "paper_id": "S1854",
+  "links": [
+    {
+      "url": "https://osm.etsi.org/",
+      "kind": "third_party_tool",
+      "evidence": "It is an open-source project that focuses on developing a Management and Orchestration (MANO) stack for NFV",
+      "found_in": "reference [17]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://www.openstack.org/",
+      "kind": "third_party_tool",
+      "evidence": "It is an open-source cloud computing platform that provides a set of services for building and managing both public and private clouds.",
+      "found_in": "reference [18]",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/vrnetlab/vrnetlab",
+      "kind": "third_party_tool",
+      "evidence": "“vrnetlab/vrnetlab: Run virtual routers with docker,”",
+      "found_in": "reference [13] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/free5gc/free5gc",
+      "kind": "third_party_tool",
+      "evidence": "“free5gc/free5gc: Open source 5g core network based on 3gpp r15,”",
+      "found_in": "reference [15] (not cited as code/data)",
+      "votes": "3/3",
+      "same_authors": []
+    },
+    {
+      "url": "https://github.com/UPM-RSTI/STGUTG",
+      "kind": "own_code",
+      "evidence": "“Upm-rsti/stgutg: Signaling and user traffic injection tools for 5g testing platforms,”",
+      "found_in": "reference [16] (not cited as code/data)",
+      "votes": "2/3",
+      "same_authors": []
+    }
+  ],
+  "not_released_statements": [],
+  "code_released": {
+    "value": "yes",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/UPM-RSTI/STGUTG"
+    ],
+    "review_flags": []
+  },
+  "data_released": {
+    "value": "no",
+    "source": "link scan + LLM",
+    "evidence": [
+      "https://github.com/UPM-RSTI/STGUTG"
+    ]
+  }
+}
