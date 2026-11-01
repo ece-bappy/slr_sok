@@ -48,9 +48,17 @@ These runs repeat the E2/E3/E4 headline settings with other model families. The 
 3. **Fixed-threshold transfer is where models differ most.** LR's TPR at val-FPR 10⁻³ is ≈ 0.02 on MTA `g1g2_notime` E2 and E3 (trees on E2: 0.84–0.89): its score distribution does not separate the extreme tail.
 4. **The CNN on raw packet sequences is not better than trees on flow statistics.** On MTA and MCFP it is 0.02–0.18 PR-AUC below XGBoost and does no better in E4. It needs the IAT channel more than the trees do (MCFP E2: 0.9997 with IAT vs 0.814 without).
 
-## Open issue: CNN on HIKARI
+## CNN on HIKARI: below chance because of the split, not a bug
 
-With the IAT channel, the CNN scores below chance on HIKARI (ROC 0.12–0.26 on E2 in all five seeds; 0.20–0.41 on E3). It trains for 15–30 epochs on 9,742 balanced rows. The input has no NaNs, and the same code behaves normally on MTA, MCFP and RAID. HIKARI's malicious flows have a mean second-packet IAT of 1.4 ms, against 212 ms for benign. The likely cause is a client-group shift in timing, where held-out attacker clients invert the pattern, but this is not verified. Treat the HIKARI CNN row as a failure, not as evidence about deep models.
+With the IAT channel, the CNN scores below chance on HIKARI (ROC 0.12–0.26 on E2 in all five seeds; 0.20–0.41 on E3). The input has no NaNs, and the same code behaves normally on MTA, MCFP and RAID. Diagnosis (1 Nov 2026):
+
+- HIKARI has **two attacker IPs** against 4,731 benign clients. The client-grouped E2 split always places attacker 203.178.143.112 (4,871 deduped flows) in training and validation, and attacker 103.255.15.23 (247 flows) in test, in every seed.
+- The two attackers look nothing alike. The training attacker has median second-packet IAT 0 ms and third-packet size 583 B. These values are shared by most of the benign test clients (a large group of 103.210.35.x and similar hosts with IAT 0 and size 236/583).
+- The test attacker has IAT 29 ms and size 370 B. These match its own benign traffic: the same IP also has 36,052 benign flows (IAT 24 ms, size 393 B), and so does its neighbour 103.255.15.150.
+- So the test question is "which flows of host 103.255.15.23 are attacks", and a model that learned the training attacker's profile ranks the many benign hosts resembling it above the real test attacker. That gives ROC < 0.5.
+- The tree models avoid the inversion only because the whole-flow statistics (G1: packet counts, RST/PSH counts; attack flows have a median of 99 packets vs about 24) still separate that host's attacks. The CNN sees only 20 packets.
+
+Conclusion: HIKARI E2 is a one-attacker-to-another-attacker transfer test with n = 2, not a grouped generalisation estimate. Its numbers for every model (PR-AUC 0.15–0.62) should be reported with that caveat, or HIKARI E2 dropped from headline tables.
 
 ## Caveats
 - No hyperparameter tuning for any family, and one CNN architecture only. The point is spread across reasonable defaults, not the best attainable score.
