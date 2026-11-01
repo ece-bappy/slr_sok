@@ -22,23 +22,80 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 from sklearn.metrics import average_precision_score, f1_score, roc_auc_score
 from sklearn.model_selection import StratifiedGroupKFold, train_test_split
 
 FPR_TARGET = 1e-3
-SETS = {"all": ("g1_", "g2_", "g3_", "g4_", "g5_"), "g1g2": ("g1_", "g2_"), "g1g2_notime": ("g1_", "g2_")}
+SETS = {"all": ("g1_", "g2_", "g3_", "g4_", "g5_"), "g1g2": ("g1_", "g2_"), "g1g2_notime": ("g1_", "g2_"),
+        "all_notime": ("g1_", "g2_", "g3_", "g4_", "g5_"),
+        # E8 visibility tiers (plan §5.2 table): TLS 1.2 = everything; TLS 1.3 = no certificate fields;
+        # TLS 1.3 + ECH = no SNI/ClientHello extensions/fingerprints either, i.e. sizes, directions, timing
+        "tier_tls12_full": ("g1_", "g2_", "g3_", "g4_", "g5_"), "tier_tls13": ("g1_", "g2_", "g3_", "g5_"),
+        "tier_tls13_ech": ("g1_", "g2_")}
 TIMING = ("piat", "duration")  # dropped in *_notime sets: timing reflects the capture network (§5.2)
+EARLY_N = (3, 5, 10, 20)  # E6: sets early_<N> and early_<N>_notime, built by early_features()
+# E6 visibility tags: features observable once the ClientHello / ServerHello / Certificate packet is seen
+CH_FEATS = ("g3_ch_", "g3_n_ciphers", "g3_n_extensions", "g3_n_groups", "g3_n_sigalgs", "g3_n_ec_formats",
+            "g3_ext_", "g3_has_alpn", "g3_alpn_first", "g3_sni_", "g3_has_ech", "g5_ja3", "g5_ja4")
+SH_FEATS = ("g3_has_server_hello", "g3_sh_", "g3_n_sh_extensions", "g5_ja3s", "g5_ja4s")
+
+
+def base_name(dataset: str) -> str:
+    """'mta_sslbl' -> 'mta': variants of a table share its grouping and temporal rules."""
+    return dataset.split("_")[0]
 # E2 grouping: RAID per capture, HIKARI per client host, MTA per infection case (post), MCFP per capture
 GROUP_KEY = {"raid": "k_pcap", "hikari": "k_client_ip", "mta": "k_post", "mcfp": "k_capture"}
 E3_LAST_OLD_YEAR = {"hikari": "2021", "mta": "2022", "mcfp": "2015"}  # train on <= this year, test on later
 
 
 def set_columns(table: pd.DataFrame, fs: str) -> list[str]:
-    cols = [c for c in table.columns if c.startswith(SETS[fs])]
+    if fs.startswith("early_"):
+        cols = [c for c in table.columns if c.startswith(f"e{fs.split('_')[1]}_")]
+    else:
+        cols = [c for c in table.columns if c.startswith(SETS[fs])]
     if fs.endswith("_notime"):
         cols = [c for c in cols if not any(t in c for t in TIMING)]
     return cols
+
+
+def early_features(table: pd.DataFrame, n: int) -> pd.DataFrame:
+    """Columns e<n>_* = what a detector has seen after the first n packets of a flow (E6).
+
+    Packet features come from the first-20-packet sequences (never from full-flow G1 statistics):
+    the first n sizes/directions/inter-arrival times plus per-direction counts and size/IAT statistics
+    over those n packets. TLS fields are kept only for flows whose ClientHello (or ServerHello, or
+    Certificate) packet index is <= n, and are missing otherwise, as for a live detector.
+    """
+    ps = table[[f"g2_ps_{i:02d}" for i in range(n)]].to_numpy(float)
+    dr = table[[f"g2_dir_{i:02d}" for i in range(n)]].to_numpy(float)
+    iat = table[[f"g2_piat_{i:02d}" for i in range(n)]].to_numpy(float)
+    seen = ps >= 0  # -1 = flow had fewer packets
+    out = {}
+    for i in range(n):
+        out[f"e{n}_ps_{i:02d}"], out[f"e{n}_dir_{i:02d}"], out[f"e{n}_piat_{i:02d}"] = ps[:, i], dr[:, i], iat[:, i]
+    out[f"e{n}_packets"] = seen.sum(1)
+    for name, m in (("up", seen & (dr == 0)), ("down", seen & (dr == 1)), ("bi", seen)):
+        v = np.where(m, ps, np.nan)
+        out[f"e{n}_{name}_packets"] = m.sum(1)
+        out[f"e{n}_{name}_bytes"] = np.nansum(v, 1)
+        with np.errstate(all="ignore"):
+            for s, fn in (("mean_ps", np.nanmean), ("std_ps", np.nanstd), ("max_ps", np.nanmax), ("min_ps", np.nanmin)):
+                out[f"e{n}_{name}_{s}"] = fn(v, 1)
+    with np.errstate(all="ignore"):
+        it = np.where(seen, iat, np.nan)
+        out[f"e{n}_mean_piat"], out[f"e{n}_std_piat"], out[f"e{n}_max_piat"] = (
+            np.nanmean(it, 1), np.nanstd(it, 1), np.nanmax(it, 1))
+    out = pd.DataFrame(out, index=table.index)
+    for tag, prefixes in (("k_pkt_ch", CH_FEATS), ("k_pkt_sh", SH_FEATS), ("k_pkt_cert", ("g4_",))):
+        if tag not in table:
+            continue
+        vis = (table[tag] <= n).to_numpy()
+        for c in [c for c in table.columns if c.startswith(prefixes)]:
+            col = table[c].where(vis, "" if is_text(table[c]) else np.nan)
+            out[f"e{n}_{c}"] = col
+        if tag == "k_pkt_sh" and "g3_has_server_hello" in table:  # 'not yet seen' is itself observable
+            out[f"e{n}_g3_has_server_hello"] = vis.astype(float)
+    return out
 
 
 # ---------------------------------------------------------------- data
@@ -83,6 +140,7 @@ def split(df: pd.DataFrame, exp: str, dataset: str, seed: int):
     """Return (train_idx, val_idx, test_idx) or a string saying why the split is infeasible."""
     idx = np.arange(len(df))
     y = df["label"].values
+    dataset = base_name(dataset)
     if exp == "E1":
         tr, rest = train_test_split(idx, test_size=0.30, stratify=y, random_state=seed)
         va, te = train_test_split(rest, test_size=0.50, stratify=y[rest], random_state=seed)
@@ -102,7 +160,7 @@ def split(df: pd.DataFrame, exp: str, dataset: str, seed: int):
     if exp == "E3":
         if dataset == "raid":
             return "infeasible: all C2 flows are from 2022 and all benign flows from 2024 (year = class)"
-        if dataset == "mcfp":
+        if dataset == "mcfp":  # also covers the mcfp_sslbl audit table, whose negatives are the same
             return ("infeasible: benign (CTU-Normal) flows are 93 from 2013, 78 from 2016 and 72,801 from 2017, "
                     "so no year split leaves a usable benign training set")
         cut_year = E3_LAST_OLD_YEAR[dataset]
@@ -127,6 +185,84 @@ def balance(tr: np.ndarray, y: np.ndarray, seed: int) -> np.ndarray:
     pos, neg = tr[y[tr] == 1], tr[y[tr] == 0]
     n = min(len(pos), len(neg))
     return np.concatenate([rng.choice(pos, n, replace=False), rng.choice(neg, n, replace=False)])
+
+
+# ---------------------------------------------------------------- models
+
+MODELS = ("xgb", "lgbm", "rf", "lr")
+
+
+def _numeric(x: pd.DataFrame) -> pd.DataFrame:
+    """Categoricals -> training-category codes (missing/unseen = NaN), for random forest."""
+    x = x.copy()
+    for c in x.columns:
+        if str(x[c].dtype) == "category":
+            x[c] = x[c].cat.codes.astype(float).replace(-1, np.nan)
+    return x.astype(float)
+
+
+class LinearPrep:
+    """Logistic-regression input: signed log1p, train-median imputation with missing flags, z-scaling;
+    categoricals one-hot over their 30 most frequent training values."""
+
+    def fit(self, x: pd.DataFrame):
+        self.cats = {c: x[c].value_counts().index[:30].tolist() for c in x if str(x[c].dtype) == "category"}
+        num = self._num(x)
+        self.med = num.median()
+        self.flag = [c for c in num if num[c].isna().any()]
+        z = self._fill(num)
+        self.mu, self.sd = z.mean(), z.std().replace(0, 1)
+        return self
+
+    def _num(self, x):
+        num = x[[c for c in x if c not in self.cats]].astype(float)
+        return np.sign(num) * np.log1p(num.abs())
+
+    def _fill(self, num):
+        flags = num[self.flag].isna().astype(float).add_suffix("__missing")
+        return pd.concat([num.fillna(self.med).fillna(0), flags], axis=1)
+
+    def transform(self, x: pd.DataFrame) -> np.ndarray:
+        z = (self._fill(self._num(x)) - self.mu) / self.sd
+        hots = [(x[c].astype(object) == v).astype(float).rename(f"{c}={v}") for c, vs in self.cats.items() for v in vs]
+        return pd.concat([z] + hots, axis=1).to_numpy(float)
+
+
+def fit_predict(kind: str, x_tr, y_tr, x_va, y_va, x_others: list, seed: int, jobs: int):
+    """Fit one model; return (validation scores, [scores for x_others], best iteration, {feature: importance})."""
+    if kind == "xgb":
+        import xgboost as xgb  # imported here so the torch venv (run_deep.py) can use this module without it
+        m = xgb.XGBClassifier(n_estimators=1000, max_depth=8, learning_rate=0.1, subsample=0.8,
+                              colsample_bytree=0.8, tree_method="hist", enable_categorical=True,
+                              max_cat_to_onehot=1, n_jobs=jobs, random_state=seed,
+                              early_stopping_rounds=30, eval_metric="logloss")
+        m.fit(x_tr, y_tr, eval_set=[(x_va, y_va)], verbose=False)
+        imp, best = m.get_booster().get_score(importance_type="gain"), m.best_iteration
+        score = lambda x: m.predict_proba(x)[:, 1]
+    elif kind == "lgbm":
+        import lightgbm as lgb
+        m = lgb.LGBMClassifier(n_estimators=1000, num_leaves=63, learning_rate=0.05, subsample=0.8,
+                               subsample_freq=1, colsample_bytree=0.8, n_jobs=jobs, random_state=seed, verbose=-1)
+        m.fit(x_tr, y_tr, eval_set=[(x_va, y_va)], callbacks=[lgb.early_stopping(30, verbose=False)])
+        imp = dict(zip(x_tr.columns, m.booster_.feature_importance("gain")))
+        best, score = m.best_iteration_, lambda x: m.predict_proba(x)[:, 1]
+    elif kind == "rf":
+        from sklearn.ensemble import RandomForestClassifier
+        m = RandomForestClassifier(n_estimators=300, min_samples_leaf=2, max_features="sqrt", n_jobs=jobs,
+                                   random_state=seed)
+        m.fit(_numeric(x_tr), y_tr)
+        imp, best = dict(zip(x_tr.columns, m.feature_importances_)), None
+        score = lambda x: m.predict_proba(_numeric(x))[:, 1]
+    elif kind == "lr":
+        from sklearn.linear_model import LogisticRegression
+        prep = LinearPrep().fit(x_tr)
+        m = LogisticRegression(C=1.0, max_iter=2000)
+        m.fit(prep.transform(x_tr), y_tr)
+        imp, best = {}, None
+        score = lambda x: m.predict_proba(prep.transform(x))[:, 1]
+    else:
+        raise ValueError(kind)
+    return score(x_va), [score(x) for x in x_others], best, imp
 
 
 # ---------------------------------------------------------------- metrics
@@ -189,19 +325,24 @@ def univariate_auc(x: pd.DataFrame, y: np.ndarray) -> pd.Series:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset", choices=["raid", "hikari", "mta", "mcfp"])
+    ap.add_argument("dataset", help="table name: raid, hikari, mta, mcfp, or a variant such as mta_sslbl")
     ap.add_argument("--tables", default="/data/tls-sok/tables")
     ap.add_argument("--out", default="/data/tls-sok/benchmark")
+    ap.add_argument("--name", default=None, help="output folder name (default: dataset, plus _<model> if not xgb)")
+    ap.add_argument("--model", default="xgb", choices=MODELS)
+    ap.add_argument("--exps", default="E1,E2,E3")
     ap.add_argument("--seeds", type=int, default=5)
     ap.add_argument("--boot", type=int, default=200)
     ap.add_argument("--jobs", type=int, default=16)
     ap.add_argument("--sets", default=None)
     a = ap.parse_args()
 
-    out = Path(a.out) / a.dataset
+    out = Path(a.out) / (a.name or a.dataset + ("" if a.model == "xgb" else f"_{a.model}"))
     out.mkdir(parents=True, exist_ok=True)
     table = pd.read_parquet(f"{a.tables}/{a.dataset}.parquet")
     sets = (a.sets or ("g1g2,g1g2_notime" if a.dataset == "hikari" else "all,g1g2,g1g2_notime")).split(",")
+    early = sorted({int(fs.split("_")[1]) for fs in sets if fs.startswith("early_")})
+    table = pd.concat([table] + [early_features(table, n) for n in early], axis=1)
     rows, ver_rows, dedup_info, shortcut_rows, imp_rows = [], [], {}, [], []
 
     for fs in sets:
@@ -209,10 +350,10 @@ def main() -> None:
         df, dedup_info[fs] = dedup(table, cols)
         print(fs, dedup_info[fs], flush=True)
         y = df["label"].values
-        for exp in ("E1", "E2", "E3"):
+        for exp in a.exps.split(","):
             for seed in range(a.seeds):
                 sp = split(df, exp, a.dataset, seed)
-                base = {"dataset": a.dataset, "feature_set": fs, "experiment": exp, "seed": seed}
+                base = {"dataset": a.dataset, "model": a.model, "feature_set": fs, "experiment": exp, "seed": seed}
                 if isinstance(sp, str):
                     rows.append({**base, "status": sp})
                     break
@@ -220,24 +361,18 @@ def main() -> None:
                 trb = balance(tr, y, seed)
                 x_tr, (x_va, x_te) = to_model_matrix(feature_frame(df.iloc[trb], cols),
                                                      [feature_frame(df.iloc[va], cols), feature_frame(df.iloc[te], cols)])
-                model = xgb.XGBClassifier(n_estimators=1000, max_depth=8, learning_rate=0.1, subsample=0.8,
-                                          colsample_bytree=0.8, tree_method="hist", enable_categorical=True,
-                                          max_cat_to_onehot=1, n_jobs=a.jobs, random_state=seed,
-                                          early_stopping_rounds=30, eval_metric="logloss")
-                model.fit(x_tr, y[trb], eval_set=[(x_va, y[va])], verbose=False)
-                s_va, s_te = model.predict_proba(x_va)[:, 1], model.predict_proba(x_te)[:, 1]
+                s_va, (s_te,), best, g = fit_predict(a.model, x_tr, y[trb], x_va, y[va], [x_te], seed, a.jobs)
                 thr_f1, thr_fpr = thresholds(y[va], s_va)
                 m = metrics(y[te], s_te, thr_f1, thr_fpr)
                 ci = bootstrap(y[te], s_te, thr_f1, thr_fpr, a.boot, seed)
-                rows.append({**base, "status": "ok", "n_train_balanced": len(trb), "n_val": len(va),
-                             "best_iteration": model.best_iteration, "thr_f1": thr_f1, "thr_fpr": thr_fpr,
+                rows.append({**base, "status": "ok", "n_features": len(cols), "n_train_balanced": len(trb),
+                             "n_val": len(va), "best_iteration": best, "thr_f1": thr_f1, "thr_fpr": thr_fpr,
                              **m, **{k: f"{v[0]:.4f}-{v[1]:.4f}" for k, v in ci.items()}})
                 vers = df["k_tls_version"].values[te]
                 for v in np.unique(vers):
                     i = vers == v
                     ver_rows.append({**base, "tls_version": v, **metrics(y[te][i], s_te[i], thr_f1, thr_fpr)})
                 if seed == 0:
-                    g = model.get_booster().get_score(importance_type="gain")
                     for k, val in sorted(g.items(), key=lambda kv: -kv[1])[:15]:
                         imp_rows.append({**base, "feature": k, "gain": val})
                     if exp == "E1":
@@ -256,11 +391,12 @@ def main() -> None:
     ok = res[res["status"] == "ok"]
     keys = ["pr_auc", "roc_auc", "macro_f1", "recall_malicious", "recall_benign", "tpr_at_val_fpr1e-3",
             "test_fpr_at_that_threshold", "accuracy"]
-    summ = ok.groupby(["dataset", "feature_set", "experiment"])[keys].agg(["mean", "std"]) if len(ok) else pd.DataFrame()
+    by = ["dataset", "model", "feature_set", "experiment"]
+    summ = ok.groupby(by, sort=False)[keys].agg(["mean", "std"]) if len(ok) else pd.DataFrame()
     if len(summ):
         summ.columns = [f"{k}_{s}" for k, s in summ.columns]
         summ = summ.reset_index()
-    infeasible = res[res["status"] != "ok"][["dataset", "feature_set", "experiment", "status"]].drop_duplicates()
+    infeasible = res[res["status"] != "ok"][by + ["status"]].drop_duplicates()
     summ = pd.concat([summ, infeasible], ignore_index=True)
     summ.to_csv(out / "summary.csv", index=False)
     (out / "dedup.json").write_text(json.dumps(dedup_info, indent=2))

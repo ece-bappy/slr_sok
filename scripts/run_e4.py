@@ -22,11 +22,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 from sklearn.model_selection import GroupShuffleSplit, train_test_split
 
-from run_benchmark import (balance, bootstrap, dedup, feature_frame, metrics, set_columns, thresholds,
-                           to_model_matrix)
+from run_benchmark import (MODELS, balance, bootstrap, dedup, feature_frame, fit_predict, metrics, set_columns,
+                           thresholds, to_model_matrix)
 
 PAIRS = ["mcfp>mta", "mta>mcfp", "raid>mta", "raid>mcfp", "mtaN_ctu>mtaN_bg", "mtaN_bg>mtaN_ctu",
          "mtaN_bg>mtaN_bg"]
@@ -56,9 +55,10 @@ def main() -> None:
     ap.add_argument("--jobs", type=int, default=16)
     ap.add_argument("--sets", default="all,g1g2,g1g2_notime")
     ap.add_argument("--pairs", default=",".join(PAIRS))
+    ap.add_argument("--model", default="xgb", choices=MODELS)
     a = ap.parse_args()
 
-    out = Path(a.out)
+    out = Path(a.out) if a.model == "xgb" else Path(f"{a.out}_{a.model}")
     out.mkdir(parents=True, exist_ok=True)
     pairs = a.pairs.split(",")
     names = sorted({n.replace("mtaN", "mta").split("_")[0] for p in pairs for n in p.split(">")} | {"mta"}
@@ -84,27 +84,21 @@ def main() -> None:
                 overlap = int(pd.util.hash_pandas_object(f_te, index=False)
                               .isin(set(pd.util.hash_pandas_object(feature_frame(train, cols), index=False))).sum())
                 x_tr, (x_va, x_te) = to_model_matrix(f_tr, [feature_frame(train.iloc[va], cols), f_te])
-                model = xgb.XGBClassifier(n_estimators=1000, max_depth=8, learning_rate=0.1, subsample=0.8,
-                                          colsample_bytree=0.8, tree_method="hist", enable_categorical=True,
-                                          max_cat_to_onehot=1, n_jobs=a.jobs, random_state=seed,
-                                          early_stopping_rounds=30, eval_metric="logloss")
-                model.fit(x_tr, y[trb], eval_set=[(x_va, y[va])], verbose=False)
-                s_va, s_te = model.predict_proba(x_va)[:, 1], model.predict_proba(x_te)[:, 1]
+                s_va, (s_te,), best, g = fit_predict(a.model, x_tr, y[trb], x_va, y[va], [x_te], seed, a.jobs)
                 thr_f1, thr_fpr = thresholds(y[va], s_va)
                 m = metrics(y_te, s_te, thr_f1, thr_fpr)
                 n_boot = a.boot if len(y_te) <= MAX_BOOT_ROWS else max(20, a.boot // 4)
                 ci = bootstrap(y_te, s_te, thr_f1, thr_fpr, n_boot, seed)
-                base = {"pair": pair, "feature_set": fs, "seed": seed}
+                base = {"pair": pair, "model": a.model, "feature_set": fs, "seed": seed}
                 rows.append({**base, "n_features": len(cols), "n_train_balanced": len(trb), "n_val": len(va),
                              "test_rows_seen_in_train": overlap, "n_boot": n_boot,
-                             "best_iteration": model.best_iteration, "thr_f1": thr_f1, "thr_fpr": thr_fpr,
+                             "best_iteration": best, "thr_f1": thr_f1, "thr_fpr": thr_fpr,
                              **m, **{k: f"{v[0]:.4f}-{v[1]:.4f}" for k, v in ci.items()}})
                 vers = test["k_tls_version"].values
                 for v in np.unique(vers):
                     i = vers == v
                     ver_rows.append({**base, "tls_version": v, **metrics(y_te[i], s_te[i], thr_f1, thr_fpr)})
                 if seed == 0:
-                    g = model.get_booster().get_score(importance_type="gain")
                     for k, val in sorted(g.items(), key=lambda kv: -kv[1])[:15]:
                         imp_rows.append({**base, "feature": k, "gain": val})
                 print(pair, fs, seed, {k: round(m[k], 4) for k in ("pr_auc", "macro_f1", "recall_malicious",
@@ -116,7 +110,7 @@ def main() -> None:
     pd.DataFrame(imp_rows).to_csv(out / "feature_importance_seed0.csv", index=False)
     keys = ["pr_auc", "roc_auc", "macro_f1", "recall_malicious", "recall_benign", "tpr_at_val_fpr1e-3",
             "test_fpr_at_that_threshold", "accuracy"]
-    summ = res.groupby(["pair", "feature_set"])[keys + ["n", "n_pos"]].agg(["mean", "std"])
+    summ = res.groupby(["pair", "model", "feature_set"], sort=False)[keys + ["n", "n_pos"]].agg(["mean", "std"])
     summ.columns = [f"{k}_{s}" for k, s in summ.columns]
     summ = summ.reset_index()
     summ.to_csv(out / "summary.csv", index=False)

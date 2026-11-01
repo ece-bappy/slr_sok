@@ -185,6 +185,11 @@ def one_pcap(task: tuple) -> pd.DataFrame | None:
         "k_tls_version": pd.to_numeric(f["tls_sh_selected_version"], errors="coerce").map(TLS_VER).fillna("none")
                          if "tls_sh_selected_version" in f else "none",
     })
+    # per-flow packet index (1-based, TCP handshake included) at which each TLS message was seen, for
+    # visibility-tagged early detection (E6); missing = never seen
+    for col, k in (("tls_pkt_idx_client_hello", "k_pkt_ch"), ("tls_pkt_idx_server_hello", "k_pkt_sh"),
+                   ("tls_pkt_idx_certificate", "k_pkt_cert")):
+        keys[k] = pd.to_numeric(f[col], errors="coerce").values if col in f else np.nan
     if "tls_client_ip" in f:  # use the TLS parser's client/server roles where it saw a handshake
         m = f["tls_client_ip"].notna()
         keys.loc[m, "k_client_ip"] = f.loc[m, "tls_client_ip"].astype(str)
@@ -208,6 +213,12 @@ REFERENCE_SITES = ("any.run", "virustotal.com", "abuse.ch", "tria.ge", "hybrid-a
                    "contextis.com", "joesandbox.com", "malware-traffic-analysis.net", "urlscan.io", "github.com",
                    "twitter.com", "x.com", "bleepingcomputer.com", "unit42.paloaltonetworks.com", "isc.sans.edu")
 IPV4 = r"\b(?:\d{1,3}\.){3}\d{1,3}\b"
+# public-IP / geolocation lookup services: malware calls them right after infection, so they are never
+# background; a flow to one is malicious only when the post's IOC note names it, otherwise unlabelled
+IP_LOOKUP = ("ipify.org", "ipinfo.io", "icanhazip.com", "ifconfig.me", "ip-api.com", "checkip.amazonaws.com",
+             "dyndns.org", "myexternalip.com", "wtfismyip.com", "ipecho.net", "ip.sb", "ident.me", "myip.com",
+             "ipwho.is", "ipapi.co", "geoplugin.net", "ipapi.com", "ip2location.com", "db-ip.com", "seeip.org",
+             "trackip.net", "whatismyipaddress.com", "ipgeolocation.io", "iplocation.net", "myip.dnsomatic.com")
 
 
 def _extractor():
@@ -219,6 +230,11 @@ def registered(host: str, ext=None) -> str:
     ext = ext or _extractor()
     r = ext(host.strip(".").lower())
     return r.top_domain_under_public_suffix if hasattr(r, "top_domain_under_public_suffix") else r.registered_domain
+
+
+def is_lookup(host: str) -> bool:
+    h = host.strip(".").lower()
+    return any(h == d or h.endswith("." + d) for d in IP_LOOKUP)
 
 
 def parse_iocs(text: str, ext) -> tuple[set, set]:
@@ -272,8 +288,8 @@ def label_mta(df: pd.DataFrame, card: dict) -> pd.DataFrame:
         # IOC hosts on popular domains (ad links, abused cloud services) do not mark flows malicious, but
         # they still keep those domains out of the background class (flows to them stay unlabelled)
         regs = {registered(h, ext) for h in hosts}
-        iocs[post] = (ips, {h for h in hosts if registered(h, ext) not in top}, regs)
-    labels = []
+        iocs[post] = (ips, {h for h in hosts if registered(h, ext) not in top or is_lookup(h)}, regs)
+    labels, n_lookup = [], [0, 0]  # IP-lookup flows: [unlabelled, malicious]
     for post, sni, dns, sip in df[["k_post", "k_sni", "k_dns_name", "k_server_ip"]].itertuples(index=False):
         if post not in iocs:
             labels.append(np.nan)
@@ -282,7 +298,10 @@ def label_mta(df: pd.DataFrame, card: dict) -> pd.DataFrame:
         name = (sni or dns or "").lower()
         reg = registered(name, ext) if name else ""
         mal_dom = bool(name) and any(name == h or name.endswith("." + h) for h in hosts)
-        popular = reg in top and reg not in regs
+        lookup = bool(name) and is_lookup(name)
+        popular = reg in top and reg not in regs and not lookup
+        if lookup:
+            n_lookup[int(mal_dom or sip in ips)] += 1
         if mal_dom or (sip in ips and not popular):
             labels.append(1)
         elif popular and sip not in ips:
@@ -292,10 +311,11 @@ def label_mta(df: pd.DataFrame, card: dict) -> pd.DataFrame:
     df["label"] = labels
     card.update(mta_posts=int(df["k_post"].nunique()), mta_posts_without_ioc_note=no_ioc,
                 mta_flows_in_posts_without_ioc=int(df["k_post"].isin(set(df["k_post"]) - set(iocs)).sum()),
-                mta_unlabelled_flows=int(df["label"].isna().sum()))
+                mta_unlabelled_flows=int(df["label"].isna().sum()),
+                mta_ip_lookup_flows_named_in_ioc=n_lookup[1], mta_ip_lookup_flows_unlabelled=n_lookup[0])
     df["k_category"] = df["label"].map({1: "IOC endpoint", 0: "same-host background (popular domain)"})
     df["k_year"] = df["k_post"].str[:4]
-    return df[df["label"].notna()].astype({"label": int})
+    return df  # unlabelled rows (label NaN) are filtered in main()
 
 
 def label_mcfp(df: pd.DataFrame, card: dict) -> pd.DataFrame:
@@ -315,7 +335,7 @@ def label_mcfp(df: pd.DataFrame, card: dict) -> pd.DataFrame:
                              dtype={"year": str}).set_index("name")["year"]
     df["k_year"] = (df["k_pcap"].str.extract(r"(20\d\d)[-_]\d\d[-_]\d\d", expand=False)
                     .fillna(df["k_capture"].map(index_year).astype("str")).fillna("unknown"))
-    return df[df["label"].notna()].astype({"label": int})
+    return df  # unlabelled rows (label NaN) are filtered in main()
 
 
 def hikari_labels() -> dict:
@@ -353,10 +373,14 @@ def main() -> None:
     df = pd.concat(parts, ignore_index=True).copy()
     card = {"dataset": a.dataset, "pcaps": len(tasks), "rows_extracted": len(df)}
 
-    if a.dataset == "mta":
-        df = label_mta(df, card)
-    elif a.dataset == "mcfp":
-        df = label_mcfp(df, card)
+    tag = a.dataset + (f"_limit{a.limit}" if a.limit else "")
+    Path(a.out).mkdir(parents=True, exist_ok=True)
+    if a.dataset in ("mta", "mcfp"):
+        df = label_mta(df, card) if a.dataset == "mta" else label_mcfp(df, card)
+        # every TLS flow including unlabelled ones, for the E5b SSLBL label-circularity audit only
+        df.drop_duplicates(["k_client_ip", "k_client_port", "k_server_ip", "k_server_port", "k_first_seen_ms"]).to_parquet(
+            f"{a.out}/{tag}_all.parquet", index=False)
+        df = df[df["label"].notna()].astype({"label": int})
     elif a.dataset == "raid":
         df["label"] = df["k_source"].map(sources)
         df["k_category"] = df["k_source"].map({"raid_ms": "Metasploit C2", "raid_tranco": "benign"})
@@ -395,8 +419,6 @@ def main() -> None:
         "servers_per_label": df.groupby("label")["k_server_ip"].nunique().to_dict(),
         "dropped_from_features": "IPs, ports, MACs/OUI, VLAN/tunnel ids, absolute timestamps, SNI string, pcap name, NFStream ids",
     })
-    Path(a.out).mkdir(parents=True, exist_ok=True)
-    tag = a.dataset + (f"_limit{a.limit}" if a.limit else "")
     df.to_parquet(f"{a.out}/{tag}.parquet", index=False)
     Path(f"{a.out}/{tag}.card.json").write_text(json.dumps(card, indent=2, default=str))
     print(json.dumps(card, indent=2, default=str))
