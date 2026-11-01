@@ -113,21 +113,16 @@ def _run_nfstream(pcap: Path, n_packets: int) -> pd.DataFrame:
 # Flow key normalisation
 # ---------------------------------------------------------------------------
 
-def _norm_key(row: pd.Series, src_col: str, sport_col: str, dst_col: str, dport_col: str) -> tuple:
-    """Return canonical (low_ip, low_port, high_ip, high_port) tuple."""
-    a = (str(row[src_col]), int(row[sport_col]))
-    b = (str(row[dst_col]), int(row[dport_col]))
-    if a <= b:
-        return (a[0], a[1], b[0], b[1])
-    return (b[0], b[1], a[0], a[1])
-
-
 def _add_flow_key(df: pd.DataFrame, src_col: str, sport_col: str,
                    dst_col: str, dport_col: str, key_col: str = "flow_key") -> pd.DataFrame:
+    """Add a direction-independent key "low_ip|low_port|high_ip|high_port" (vectorised)."""
     df = df.copy()
-    df[key_col] = df.apply(
-        lambda r: _norm_key(r, src_col, sport_col, dst_col, dport_col), axis=1
-    )
+    s, d = df[src_col].astype(str), df[dst_col].astype(str)
+    sp, dp = df[sport_col].astype(int), df[dport_col].astype(int)
+    swap = (s > d) | ((s == d) & (sp > dp))
+    fwd = s + "|" + sp.astype(str) + "|" + d + "|" + dp.astype(str)
+    rev = d + "|" + dp.astype(str) + "|" + s + "|" + sp.astype(str)
+    df[key_col] = fwd.where(~swap, rev)
     return df
 
 
@@ -184,7 +179,8 @@ def extract(
     _run_zeek(pcap, zeek_dir, zeek_bin)
 
     log.info("Running tlsfp parser")
-    tls_df = parse_pcap(pcap)
+    read_stats: dict = {}
+    tls_df = parse_pcap(pcap, read_stats)
 
     nfs_df = _run_nfstream(pcap, n_packets)
 
@@ -263,6 +259,10 @@ def extract(
         "zeek_match_rate_of_zeek": _rate(zeek_matched, zeek_tcp_rows),
         "nfs_with_tls_match": tls_matched,
         "tls_match_rate_of_tls": _rate(tls_matched, tls_rows),
+        "packets_read": read_stats.get("packets_read"),
+        "max_caplen": read_stats.get("max_caplen"),
+        "truncated": read_stats.get("truncated"),
+        "read_error": read_stats.get("read_error"),
     }
 
     report_path = outdir / "join_report.json"

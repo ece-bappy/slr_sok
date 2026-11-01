@@ -664,25 +664,40 @@ def _ip_to_str(addr: bytes) -> str:
 # Main public API
 # ---------------------------------------------------------------------------
 
-def parse_pcap(path: str | Path) -> pd.DataFrame:
+def parse_pcap(path: str | Path, stats: dict | None = None) -> pd.DataFrame:
     """Parse a pcap/pcapng file and return a DataFrame of TLS flows.
 
-    One row per flow that contains at least a ClientHello.
+    One row per flow that contains at least a ClientHello. If *stats* is given it is filled with
+    packets_read, truncated (True when the file ends inside a packet) and read_error.
     """
     path = Path(path)
     reader, _is_ng = _open_pcap(path)
 
     flows: dict[_FlowKey, _Flow] = {}
-    flow_order: list[_FlowKey] = []  # insertion order for stable output
+    finished: list[_Flow] = []  # flows closed by idle timeout, kept for output
+    order: dict[int, int] = {}  # id(flow) -> creation index, for stable output order
     FLOW_TIMEOUT = 120.0  # seconds idle
+    EXPIRE_EVERY = 10.0  # scan for idle flows at most every 10 s of capture time
+    next_expire = None
 
     global_pkt_idx = 0  # 1-based per-flow packet counter stored per flow
+    read_error = None
+    bytes_read = 24  # classic pcap: global header + (16-byte record header + data) per packet
+    max_caplen = 0
 
     linktype = reader.datalink()
 
     try:
         for ts, raw in reader:
             global_pkt_idx += 1
+            bytes_read += 16 + len(raw)
+            max_caplen = max(max_caplen, len(raw))
+            if next_expire is None:
+                next_expire = ts + EXPIRE_EVERY
+            elif ts >= next_expire:
+                for k in [k for k, f in flows.items() if ts - f.last_ts > FLOW_TIMEOUT]:
+                    finished.append(flows.pop(k))
+                next_expire = ts + EXPIRE_EVERY
             try:
                 ip_layer = _decode_ip(raw, linktype)
             except Exception:
@@ -707,10 +722,9 @@ def parse_pcap(path: str | Path) -> pd.DataFrame:
 
             fkey, lower_is_src = _canonical_key(ip_src, port_src, ip_dst, port_dst)
 
-            # Expire old flows on timeout
-            expired = [k for k, f in flows.items() if ts - f.last_ts > FLOW_TIMEOUT and k != fkey]
-            for k in expired:
-                del flows[k]
+            # A reused 5-tuple after the idle timeout starts a new flow
+            if fkey in flows and ts - flows[fkey].last_ts > FLOW_TIMEOUT:
+                finished.append(flows.pop(fkey))
 
             if fkey not in flows:
                 # Determine client side: prefer SYN; fall back to first sender
@@ -733,7 +747,7 @@ def parse_pcap(path: str | Path) -> pd.DataFrame:
                     last_ts=ts,
                 )
                 flows[fkey] = flow
-                flow_order.append(fkey)
+                order[id(flow)] = len(order)
 
             flow = flows[fkey]
             flow.last_ts = ts
@@ -746,14 +760,21 @@ def parse_pcap(path: str | Path) -> pd.DataFrame:
             if payload and not flow.done_parsing:
                 flow.feed_packet(is_from_client, payload, flow.pkt_count)
 
-    except Exception as exc:
-        log.warning("Error reading pcap %s: %s", path, exc)
+    except Exception as exc:  # e.g. dpkt.NeedData when the capture ends inside a packet
+        read_error = f"{type(exc).__name__}: {exc}"
+        log.warning("Stopped reading %s after %d packets: %s", path, global_pkt_idx, read_error)
+
+    if stats is not None:
+        # dpkt stops silently at a record cut short at the end of the file; for classic pcap that
+        # shows up as fewer bytes read than the file holds (pcapng: not checked)
+        cut = not _is_ng and bytes_read < path.stat().st_size
+        stats.update(packets_read=global_pkt_idx, read_error=read_error, max_caplen=max_caplen,
+                     truncated=cut or (read_error is not None and "NeedData" in read_error))
 
     # Build DataFrame rows
     rows: list[dict] = []
-    for fkey in flow_order:
-        flow = flows.get(fkey)
-        if flow is None or flow.client_hello is None:
+    for flow in sorted(finished + list(flows.values()), key=lambda f: order[id(f)]):
+        if flow.client_hello is None:
             continue
 
         ch = flow.client_hello
