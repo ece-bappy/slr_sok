@@ -12,7 +12,12 @@ L=/data/tls-sok/out/lists
 WORKERS=${WORKERS:-6}
 mkdir -p "$L"
 
-bash scripts/unpack_a2.sh all || { echo "unpack failed"; exit 1; }
+# only one launcher at a time; a second copy exits immediately
+exec 9> /data/tls-sok/out/.e1e3.lock
+flock -n 9 || { echo "$(date +%F' '%T) another launcher is running; exiting"; exit 1; }
+echo "$(date +%F' '%T) LAUNCH pid $$"
+
+.venv/bin/python scripts/unpack_a2.py all || { echo "unpack failed"; exit 1; }
 
 find "$U/raid_tranco" -name '*.pcap' | sort > "$L/raid_tranco.txt"
 find "$U/raid_ms" -name '*.pcap' -o -name '*.pcapng' | sort > "$L/raid_ms.txt"
