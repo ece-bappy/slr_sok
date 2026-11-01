@@ -1,0 +1,56 @@
+{
+  "dataset": "mcfp",
+  "pcaps": 201,
+  "rows_extracted": 2160834,
+  "mcfp_malware_flows_dropped_popular": 597949,
+  "exact_flow_duplicates_removed": 106,
+  "rows": 1562779,
+  "label_counts": {
+    "1": 1488127,
+    "0": 74652
+  },
+  "category_counts": {
+    "malware capture (weak, capture-level)": 1488127,
+    "CTU-Normal capture": 74652
+  },
+  "tls_version_counts": {
+    "0:1.0": 620,
+    "0:1.2": 73130,
+    "0:none": 902,
+    "1:1.0": 600864,
+    "1:1.1": 203,
+    "1:1.2": 248937,
+    "1:1.3": 35,
+    "1:none": 638088
+  },
+  "year_counts": {
+    "0:2013": 93,
+    "0:2016": 78,
+    "0:2017": 72801,
+    "0:unknown": 1680,
+    "1:2013": 46,
+    "1:2014": 34661,
+    "1:2015": 5847,
+    "1:2016": 158420,
+    "1:2017": 1161367,
+    "1:2018": 127786
+  },
+  "features_per_group": {
+    "g1_": 57,
+    "g2_": 60,
+    "g3_": 45,
+    "g4_": 8,
+    "g5_": 4
+  },
+  "same_feature_vector_duplicates_within_class": 652557,
+  "feature_vectors_in_both_classes_rows": 0,
+  "clients_per_label": {
+    "0": 210,
+    "1": 34
+  },
+  "servers_per_label": {
+    "0": 8013,
+    "1": 5752
+  },
+  "dropped_from_features": "IPs, ports, MACs/OUI, VLAN/tunnel ids, absolute timestamps, SNI string, pcap name, NFStream ids"
+}

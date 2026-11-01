@@ -1,0 +1,65 @@
+{
+  "dataset": "mta",
+  "pcaps": 889,
+  "rows_extracted": 125487,
+  "mta_posts": 629,
+  "mta_posts_without_ioc_note": 225,
+  "mta_flows_in_posts_without_ioc": 57169,
+  "mta_unlabelled_flows": 62300,
+  "exact_flow_duplicates_removed": 0,
+  "rows": 63187,
+  "label_counts": {
+    "1": 45769,
+    "0": 17418
+  },
+  "category_counts": {
+    "IOC endpoint": 45769,
+    "same-host background (popular domain)": 17418
+  },
+  "tls_version_counts": {
+    "0:1.0": 9,
+    "0:1.2": 14615,
+    "0:1.3": 2621,
+    "0:none": 173,
+    "1:1.0": 576,
+    "1:1.2": 38505,
+    "1:1.3": 6363,
+    "1:none": 325
+  },
+  "year_counts": {
+    "0:2019": 1083,
+    "0:2020": 2415,
+    "0:2021": 3765,
+    "0:2022": 3416,
+    "0:2023": 4070,
+    "0:2024": 616,
+    "0:2025": 1195,
+    "0:2026": 858,
+    "1:2019": 562,
+    "1:2020": 2600,
+    "1:2021": 16909,
+    "1:2022": 19515,
+    "1:2023": 3959,
+    "1:2024": 595,
+    "1:2025": 228,
+    "1:2026": 1401
+  },
+  "features_per_group": {
+    "g1_": 57,
+    "g2_": 60,
+    "g3_": 45,
+    "g4_": 8,
+    "g5_": 4
+  },
+  "same_feature_vector_duplicates_within_class": 23,
+  "feature_vectors_in_both_classes_rows": 0,
+  "clients_per_label": {
+    "0": 289,
+    "1": 301
+  },
+  "servers_per_label": {
+    "0": 3221,
+    "1": 1125
+  },
+  "dropped_from_features": "IPs, ports, MACs/OUI, VLAN/tunnel ids, absolute timestamps, SNI string, pcap name, NFStream ids"
+}
