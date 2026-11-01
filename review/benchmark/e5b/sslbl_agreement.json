@@ -1,0 +1,60 @@
+{
+  "sslbl_downloaded_on": "2026-11-01",
+  "sslbl_cert_sha1": 11119,
+  "sslbl_ja3": 97,
+  "mta": {
+    "tls_flows": 125485,
+    "with_leaf_sha1": 51155,
+    "sslbl_hits": 26059,
+    "cert_hits": 1316,
+    "ja3_hits": 25633,
+    "hits_by_main_label": {
+      "1.0": 14325,
+      "-1.0": 11136,
+      "0.0": 598
+    },
+    "main_positives_with_sslbl_hit": 14325,
+    "main_positives": 45774,
+    "main_negatives_with_sslbl_hit": 598,
+    "sslbl_table_rows": {
+      "1": 26059,
+      "0": 15975
+    },
+    "sslbl_positive_reasons_top": {
+      "IcedID C&C": 638,
+      "Gozi C&C": 293,
+      "Malware C&C": 140,
+      "AKBuilder C&C": 91,
+      "TrickBot C&C": 81,
+      "ZLoader C&C": 17,
+      "CobaltStrike C&C": 16,
+      "ACRStealer C&C": 13,
+      "Dridex C&C": 12,
+      "PsiXBot C&C": 3
+    }
+  },
+  "mcfp": {
+    "tls_flows": 2160728,
+    "with_leaf_sha1": 1712331,
+    "sslbl_hits": 290822,
+    "cert_hits": 42207,
+    "ja3_hits": 248615,
+    "hits_by_main_label": {
+      "1.0": 247699,
+      "-1.0": 41348,
+      "0.0": 1775
+    },
+    "main_positives_with_sslbl_hit": 247699,
+    "main_positives": 1488127,
+    "main_negatives_with_sslbl_hit": 1775,
+    "sslbl_table_rows": {
+      "1": 290822,
+      "0": 72877
+    },
+    "sslbl_positive_reasons_top": {
+      "TrickBot C&C": 22246,
+      "Dridex C&C": 19030,
+      "Shylock C&C": 931
+    }
+  }
+}

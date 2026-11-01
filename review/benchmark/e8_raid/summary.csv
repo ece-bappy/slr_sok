@@ -1,0 +1,4 @@
+dataset,model,feature_set,experiment,pr_auc_mean,pr_auc_std,roc_auc_mean,roc_auc_std,macro_f1_mean,macro_f1_std,recall_malicious_mean,recall_malicious_std,recall_benign_mean,recall_benign_std,tpr_at_val_fpr1e-3_mean,tpr_at_val_fpr1e-3_std,test_fpr_at_that_threshold_mean,test_fpr_at_that_threshold_std,accuracy_mean,accuracy_std,status
+raid,xgb,tier_tls12_full,E2,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,5.982650314089142e-06,1.337761278791379e-05,1.0,0.0,
+raid,xgb,tier_tls13,E2,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.1965419936383852e-05,1.6384326022948663e-05,1.0,0.0,
+raid,xgb,tier_tls13_ech,E2,0.9999999999848971,3.3771401607114604e-11,0.9999999999913323,1.938158478421267e-11,0.9992394915232534,0.0001422756386189528,0.9987938301107973,0.0006951824894897196,0.9997586203457114,0.0005397413153744327,1.0,0.0,0.0007002004847541818,0.00010518109519705611,0.9992430293686029,0.00014166077538564867,

@@ -1,0 +1,29 @@
+feature_set,split,true,RAID Tranco,HIKARI benign,CTU-Normal,MTA background
+g1g2,random,RAID Tranco,4489,1.0,10,0
+g1g2,random,HIKARI benign,2,4497.0,1,0
+g1g2,random,CTU-Normal,4,1.0,4492,3
+g1g2,random,MTA background,0,0.0,0,4500
+g1g2,grouped,RAID Tranco,14970,2.0,28,0
+g1g2,grouped,HIKARI benign,3459,11147.0,394,0
+g1g2,grouped,CTU-Normal,1,0.0,14992,7
+g1g2,grouped,MTA background,0,0.0,23,4120
+g1g2_notime,random,RAID Tranco,4471,2.0,27,0
+g1g2_notime,random,HIKARI benign,3,4493.0,4,0
+g1g2_notime,random,CTU-Normal,17,1.0,4470,12
+g1g2_notime,random,MTA background,0,0.0,5,4495
+g1g2_notime,grouped,RAID Tranco,14911,17.0,72,0
+g1g2_notime,grouped,HIKARI benign,69,14669.0,262,0
+g1g2_notime,grouped,CTU-Normal,0,0.0,14939,61
+g1g2_notime,grouped,MTA background,0,0.0,55,3868
+tier_tls13,random,RAID Tranco,4499,,0,1
+tier_tls13,random,CTU-Normal,0,,4494,6
+tier_tls13,random,MTA background,0,,0,4500
+tier_tls13,grouped,RAID Tranco,14995,,0,5
+tier_tls13,grouped,CTU-Normal,0,,12763,2237
+tier_tls13,grouped,MTA background,0,,8,4135
+all,random,RAID Tranco,4499,,0,1
+all,random,CTU-Normal,0,,4494,6
+all,random,MTA background,0,,0,4500
+all,grouped,RAID Tranco,15000,,0,0
+all,grouped,CTU-Normal,0,,12761,2239
+all,grouped,MTA background,0,,8,4135

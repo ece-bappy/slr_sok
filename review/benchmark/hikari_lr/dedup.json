@@ -1,0 +1,8 @@
+{
+  "g1g2_notime": {
+    "rows_in": 141045,
+    "dropped_in_both_classes": 25,
+    "dropped_within_class_duplicates": 82382,
+    "rows_out": 58638
+  }
+}

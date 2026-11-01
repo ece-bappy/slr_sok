@@ -6,10 +6,10 @@
     "rows_out": 908616
   },
   "all:mta": {
-    "rows_in": 63187,
+    "rows_in": 62347,
     "dropped_in_both_classes": 0,
     "dropped_within_class_duplicates": 23,
-    "rows_out": 63164
+    "rows_out": 62324
   },
   "all:raid": {
     "rows_in": 1294313,
@@ -24,10 +24,10 @@
     "rows_out": 894245
   },
   "g1g2:mta": {
-    "rows_in": 63187,
+    "rows_in": 62347,
     "dropped_in_both_classes": 0,
     "dropped_within_class_duplicates": 23,
-    "rows_out": 63164
+    "rows_out": 62324
   },
   "g1g2:raid": {
     "rows_in": 1294313,
@@ -42,10 +42,10 @@
     "rows_out": 97149
   },
   "g1g2_notime:mta": {
-    "rows_in": 63187,
+    "rows_in": 62347,
     "dropped_in_both_classes": 2,
-    "dropped_within_class_duplicates": 31863,
-    "rows_out": 31322
+    "dropped_within_class_duplicates": 31437,
+    "rows_out": 30908
   },
   "g1g2_notime:raid": {
     "rows_in": 1294313,

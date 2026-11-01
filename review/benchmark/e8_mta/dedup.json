@@ -1,0 +1,20 @@
+{
+  "tier_tls12_full": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "tier_tls13": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "tier_tls13_ech": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  }
+}
