@@ -1,0 +1,45 @@
+{
+  "dataset": "raid",
+  "pcaps": 2048,
+  "rows_extracted": 1294313,
+  "exact_flow_duplicates_removed": 0,
+  "rows": 1294313,
+  "label_counts": {
+    "1": 791226,
+    "0": 503087
+  },
+  "category_counts": {
+    "Metasploit C2": 791226,
+    "benign": 503087
+  },
+  "tls_version_counts": {
+    "0:1.0": 63,
+    "0:1.2": 226322,
+    "0:1.3": 223742,
+    "0:none": 52960,
+    "1:1.2": 396325,
+    "1:1.3": 394901
+  },
+  "year_counts": {
+    "0:2024": 503087,
+    "1:2022": 791226
+  },
+  "features_per_group": {
+    "g1_": 57,
+    "g2_": 60,
+    "g3_": 45,
+    "g4_": 8,
+    "g5_": 4
+  },
+  "same_feature_vector_duplicates_within_class": 199845,
+  "feature_vectors_in_both_classes_rows": 0,
+  "clients_per_label": {
+    "0": 6,
+    "1": 1
+  },
+  "servers_per_label": {
+    "0": 58041,
+    "1": 1
+  },
+  "dropped_from_features": "IPs, ports, MACs/OUI, VLAN/tunnel ids, absolute timestamps, SNI string, pcap name, NFStream ids"
+}
