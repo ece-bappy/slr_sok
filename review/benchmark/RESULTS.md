@@ -68,9 +68,12 @@ Figure: `figures/fig_d_early.pdf`. Summary: `SUMMARY_e6.md`.
 | MTA E3, first 10 packets | 0.896 [0.891–0.901]; macro-F1 0.799 | |
 | MTA E3, first 5 packets | 0.860 [0.852–0.868] | Background recall drops to 0.69 |
 | MCFP E2, first 10 packets | 1.000 [1.000–1.000] | Capture shortcut, as in RQ2 |
-| N = 3 | not reported as a result | Artefact: almost no TLS fields are visible yet, and dedup collapses the classes (`SUMMARY_e6.md`) |
+| N = 3 | not reported as a result | Artefact: only the TCP handshake is visible, so dedup removes 87–99.8% of flows and the residue is separated by round-trip time (`SUMMARY_e6.md`) |
 
-**Answer:** about 10 packets are enough to match whole-flow accuracy.
+**Answer:**
+- About 10 packets (through the ServerHello) are enough to match whole-flow accuracy.
+- The jump from N = 3 to N = 5 is the ClientHello fingerprint, not behaviour.
+- Without timing, early features drift worse: MTA E3 at N = 5 scores 0.37.
 
 ## RQ4: What does detection cost end to end? (E7)
 
