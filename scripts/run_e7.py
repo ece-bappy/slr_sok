@@ -52,24 +52,30 @@ def save(row: dict, name: str) -> None:
 
 # ---------------------------------------------------------------- training (once)
 
-def prep(jobs: int) -> None:
+def sfx(fs: str) -> str:
+    """File-name suffix for models trained on a feature set other than `all` (e.g. the Zeek-free g1g2g3)."""
+    return "" if fs == "all" else f"_{fs}"
+
+
+def prep(jobs: int, fs: str = "all") -> None:
     from run_benchmark import balance, dedup, feature_frame, fit_predict, set_columns, split, to_model_matrix
     E7.mkdir(parents=True, exist_ok=True)
     table = pd.read_parquet("/data/tls-sok/tables/mta.parquet")
-    cols = set_columns(table, "all")
+    cols = set_columns(table, fs)
     df, _ = dedup(table, cols)
     tr, va, te = split(df, "E2", "mta", 0)
     y = df["label"].values
     trb = balance(tr, y, 0)
-    for name, idx in (("train", trb), ("val", va), ("test", te)):
-        df.iloc[idx].reset_index(drop=True).to_parquet(E7 / f"{name}.parquet")
+    if fs == "all":  # the CNN (prep_cnn) reads these
+        for name, idx in (("train", trb), ("val", va), ("test", te)):
+            df.iloc[idx].reset_index(drop=True).to_parquet(E7 / f"{name}.parquet")
     x_tr, (x_va, x_te) = to_model_matrix(feature_frame(df.iloc[trb], cols),
                                          [feature_frame(df.iloc[va], cols), feature_frame(df.iloc[te], cols)])
-    pickle.dump({"x_te": x_te, "y_te": y[te], "cols": cols}, open(E7 / "test_matrix.pkl", "wb"))
+    pickle.dump({"x_te": x_te, "y_te": y[te], "cols": cols}, open(E7 / f"test_matrix{sfx(fs)}.pkl", "wb"))
     for kind in ("xgb", "lgbm", "rf", "lr"):
         t0 = time.time()
         model = train_model(kind, x_tr, y[trb], x_va, y[va], jobs)
-        pickle.dump(model, open(E7 / f"{kind}.pkl", "wb"))
+        pickle.dump(model, open(E7 / f"{kind}{sfx(fs)}.pkl", "wb"))
         print(kind, "trained in", round(time.time() - t0, 1), "s", flush=True)
 
 
@@ -116,7 +122,7 @@ def prep_cnn() -> None:
 
 # ---------------------------------------------------------------- inference
 
-def scorer(kind: str, threads: int, device: str):
+def scorer(kind: str, threads: int, device: str, fs: str = "all"):
     """Load a trained model; return (score(x) -> probabilities, model bytes on disk, test x, test y)."""
     if kind == "cnn":
         import torch
@@ -132,8 +138,8 @@ def scorer(kind: str, threads: int, device: str):
                 out = torch.sigmoid(model(torch.from_numpy(xb).to(device)))
                 return out.cpu().numpy()
         return score, os.path.getsize(E7 / "cnn.pt"), x, y
-    d = pickle.load(open(E7 / "test_matrix.pkl", "rb"))
-    m = pickle.load(open(E7 / f"{kind}.pkl", "rb"))
+    d = pickle.load(open(E7 / f"test_matrix{sfx(fs)}.pkl", "rb"))
+    m = pickle.load(open(E7 / f"{kind}{sfx(fs)}.pkl", "rb"))
     if kind == "xgb":
         m.set_params(n_jobs=threads)
         if device == "cuda":
@@ -151,11 +157,11 @@ def scorer(kind: str, threads: int, device: str):
     return (lambda xb: lr.predict_proba(prep_.transform(xb))[:, 1]), len(pickle.dumps(m)), d["x_te"], d["y_te"]
 
 
-def infer(kind: str, threads: int, device: str, tag: str) -> None:
+def infer(kind: str, threads: int, device: str, tag: str, fs: str = "all") -> None:
     from sklearn.metrics import average_precision_score
     os.environ["OMP_NUM_THREADS"] = str(threads)
     rss0 = rss_mb()
-    score, size, x, y = scorer(kind, threads, device)
+    score, size, x, y = scorer(kind, threads, device, fs)
     data_mb = (x.memory_usage(deep=True).sum() if isinstance(x, pd.DataFrame) else x.nbytes) / 2**20
     take = (lambda i: x.iloc[i]) if isinstance(x, pd.DataFrame) else (lambda i: x[i])
     n = len(y)
@@ -175,14 +181,14 @@ def infer(kind: str, threads: int, device: str, tag: str) -> None:
     s_all = score(take(slice(0, n)))
     w_all = time.perf_counter() - w1
     c2 = cpu_s()
-    save({"stage": "inference", "model": kind, "device": device, "threads": threads, "tag": tag,
+    save({"stage": "inference", "model": kind, "feature_set": fs, "device": device, "threads": threads, "tag": tag,
           "affinity_cores": len(os.sched_getaffinity(0)), "test_flows": n, "model_bytes": size,
           "batch1_ms_median": float(np.median(lat)), "batch1_ms_p95": float(np.percentile(lat, 95)),
           "batch1_ms_p99": float(np.percentile(lat, 99)), "batch1_flows_per_s": float(1e3 / np.mean(lat)),
           "batch1024_flows_per_s": n / w_b, "batch1024_cpu_pct": 100 * (c1 - c0) / w_b,
           "full_batch_flows_per_s": n / w_all, "full_batch_cpu_pct": 100 * (c2 - c1) / w_all,
           "peak_rss_mb": rss_mb(), "rss_before_load_mb": rss0, "data_mb": data_mb,
-          "test_pr_auc": float(average_precision_score(y, s_all))}, f"infer_{kind}_{device}_{tag}")
+          "test_pr_auc": float(average_precision_score(y, s_all))}, f"infer_{kind}_{device}_{tag}{sfx(fs)}")
 
 
 # ---------------------------------------------------------------- extraction
@@ -194,13 +200,14 @@ def sample_pcaps(k: int = 30) -> list[str]:
     return [r["pcap"] for r in rows[:k]]
 
 
-def extract_all(threads: int, tag: str) -> None:
+def extract_all(threads: int, tag: str, no_zeek: bool = False) -> None:
     """One child process per pcap (fresh RSS), all inheriting this process's CPU affinity."""
     import subprocess
+    tag = f"{tag}_nozeek" if no_zeek else tag
     rows = []
     for p in sample_pcaps():
-        r = subprocess.run([sys.executable, __file__, "extract_one", p, "--threads", str(threads)],
-                           capture_output=True, text=True)
+        r = subprocess.run([sys.executable, __file__, "extract_one", p, "--threads", str(threads)]
+                           + (["--no-zeek"] if no_zeek else []), capture_output=True, text=True)
         line = [l for l in r.stdout.splitlines() if l.startswith("{")]
         rows.append(json.loads(line[-1]) if line else {"pcap": p, "error": r.stderr[-2000:]})
     df = pd.DataFrame(rows)
@@ -209,7 +216,8 @@ def extract_all(threads: int, tag: str) -> None:
     ok = df[df.get("error", pd.Series(index=df.index, dtype=object)).isna()] if "error" in df else df
     tot = {k: float(ok[k].sum()) for k in ("pcap_bytes", "packets", "tcp_flows", "tls_flows", "wall_s", "zeek_s",
                                             "tlsfp_s", "nfstream_s", "join_s", "features_s", "cpu_s")}
-    save({"stage": "extraction", "tag": tag, "threads": threads, "affinity_cores": len(os.sched_getaffinity(0)),
+    save({"stage": "extraction", "tag": tag, "zeek": not no_zeek, "threads": threads,
+          "affinity_cores": len(os.sched_getaffinity(0)),
           "pcaps_ok": len(ok), "pcaps_failed": len(df) - len(ok), **tot,
           "ms_per_tcp_flow": 1e3 * tot["wall_s"] / max(tot["tcp_flows"], 1),
           "ms_per_tls_flow": 1e3 * tot["wall_s"] / max(tot["tls_flows"], 1),
@@ -219,7 +227,7 @@ def extract_all(threads: int, tag: str) -> None:
          f"extract_{tag}")
 
 
-def extract_one(pcap: str, threads: int) -> None:
+def extract_one(pcap: str, threads: int, no_zeek: bool = False) -> None:
     import tempfile
     sys.path.insert(0, str(HERE.parent / "src"))
     import nfstream
@@ -237,7 +245,9 @@ def extract_one(pcap: str, threads: int) -> None:
         return run
     real = nfstream.NFStreamer
     ex.nfstream.NFStreamer = lambda *a, **k: real(*a, n_meters=threads, **k)
-    ex._run_zeek = timed("zeek_s", ex._run_zeek)
+    # Zeek-free pipeline: no conn/ssl/x509 logs, so G4 validity/key/sig fields are empty; G1-G3, G5 unaffected
+    ex._run_zeek = timed("zeek_s", (lambda pcap, zdir, zbin: zdir.mkdir(parents=True, exist_ok=True))
+                         if no_zeek else ex._run_zeek)
     ex.parse_pcap = timed("tlsfp_s", ex.parse_pcap)
     ex._run_nfstream = timed("nfstream_s", ex._run_nfstream)
     E7.mkdir(parents=True, exist_ok=True)
@@ -266,14 +276,16 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cpu")
     ap.add_argument("--tag", default="server")
     ap.add_argument("--jobs", type=int, default=16)
+    ap.add_argument("--set", default="all", help="prep/infer: feature set (g1g2g3 = Zeek-free option)")
+    ap.add_argument("--no-zeek", action="store_true", help="extract: skip Zeek (NFStream + tlsfp only)")
     a = ap.parse_args()
     if a.mode == "prep":
-        prep(a.jobs)
+        prep(a.jobs, a.set)
     elif a.mode == "prep_cnn":
         prep_cnn()
     elif a.mode == "infer":
-        infer(a.model, a.threads, a.device, a.tag)
+        infer(a.model, a.threads, a.device, a.tag, a.set)
     elif a.mode == "extract":
-        extract_all(a.threads, a.tag)
+        extract_all(a.threads, a.tag, a.no_zeek)
     else:
-        extract_one(a.pcap, a.threads)
+        extract_one(a.pcap, a.threads, a.no_zeek)

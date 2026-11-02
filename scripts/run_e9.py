@@ -24,8 +24,8 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from run_benchmark import (balance, bootstrap, dedup, feature_frame, fit_predict, metrics, split, thresholds,
-                           to_model_matrix)
+from run_benchmark import (MODELS, balance, bootstrap, dedup, feature_frame, fit_predict, metrics, split,
+                           thresholds, to_model_matrix)
 
 FP = ("g5_ja3", "g5_ja3s", "g5_ja4", "g5_ja4s")
 
@@ -60,6 +60,8 @@ def main() -> None:
     ap.add_argument("--boot", type=int, default=200)
     ap.add_argument("--jobs", type=int, default=16)
     ap.add_argument("--scenarios", default="mta_old>mta_new,mcfp>mta_new")
+    ap.add_argument("--model", default="xgb", choices=MODELS)
+    ap.add_argument("--sets", default=None, help="comma-separated subset of the feature sets (default: all)")
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -67,6 +69,8 @@ def main() -> None:
     rows, ver_rows, unseen_rows, dedup_info = [], [], [], {}
 
     for fs, cols in sets_for(mta).items():
+        if a.sets and fs not in a.sets.split(","):
+            continue
         cols = [c for c in cols if c in mcfp.columns]
         d_mta, dedup_info[f"{fs}:mta"] = dedup(mta, cols)
         d_mcfp, dedup_info[f"{fs}:mcfp"] = dedup(mcfp, cols)
@@ -86,11 +90,11 @@ def main() -> None:
                 trb = balance(tr, y, seed)
                 x_tr, (x_va, x_te) = to_model_matrix(feature_frame(train.iloc[trb], cols),
                                                      [feature_frame(train.iloc[va], cols), feature_frame(test, cols)])
-                s_va, (s_te,), best, _ = fit_predict("xgb", x_tr, y[trb], x_va, y[va], [x_te], seed, a.jobs)
+                s_va, (s_te,), best, _ = fit_predict(a.model, x_tr, y[trb], x_va, y[va], [x_te], seed, a.jobs)
                 thr_f1, thr_fpr = thresholds(y[va], s_va)
                 m = metrics(y_te, s_te, thr_f1, thr_fpr)
                 ci = bootstrap(y_te, s_te, thr_f1, thr_fpr, a.boot, seed)
-                base = {"scenario": sc, "feature_set": fs, "seed": seed}
+                base = {"scenario": sc, "model": a.model, "feature_set": fs, "seed": seed}
                 rows.append({**base, "n_features": len(cols), "n_train_balanced": len(trb), "best_iteration": best,
                              **m, **{k: f"{v[0]:.4f}-{v[1]:.4f}" for k, v in ci.items()}})
                 vers = test["k_tls_version"].values

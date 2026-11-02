@@ -31,7 +31,9 @@ SETS = {"all": ("g1_", "g2_", "g3_", "g4_", "g5_"), "g1g2": ("g1_", "g2_"), "g1g
         # E8 visibility tiers (plan §5.2 table): TLS 1.2 = everything; TLS 1.3 = no certificate fields;
         # TLS 1.3 + ECH = no SNI/ClientHello extensions/fingerprints either, i.e. sizes, directions, timing
         "tier_tls12_full": ("g1_", "g2_", "g3_", "g4_", "g5_"), "tier_tls13": ("g1_", "g2_", "g3_", "g5_"),
-        "tier_tls13_ech": ("g1_", "g2_")}
+        "tier_tls13_ech": ("g1_", "g2_"),
+        # Zeek-free deployable option (E7): NFStream + tlsfp only, no certificate or fingerprint groups
+        "g1g2g3": ("g1_", "g2_", "g3_"), "g1g2g3_notime": ("g1_", "g2_", "g3_")}
 # E5a feature-group ablation: only_gK = group K alone, loo_gK = every group except K (each also as *_notime)
 GROUPS = ("g1_", "g2_", "g3_", "g4_", "g5_")
 for _g in GROUPS:
