@@ -1,0 +1,22 @@
+{
+  "stage": "inference",
+  "model": "lr",
+  "device": "cpu",
+  "threads": 1,
+  "tag": "edge1",
+  "affinity_cores": 1,
+  "test_flows": 12436,
+  "model_bytes": 33413,
+  "batch1_ms_median": 40.21133999049198,
+  "batch1_ms_p95": 65.28214104764629,
+  "batch1_ms_p99": 67.27406290825456,
+  "batch1_flows_per_s": 23.180927359192204,
+  "batch1024_flows_per_s": 18013.050974376587,
+  "batch1024_cpu_pct": 99.99155258235113,
+  "full_batch_flows_per_s": 80300.13343900692,
+  "full_batch_cpu_pct": 99.97159986888423,
+  "peak_rss_mb": 273.46875,
+  "rss_before_load_mb": 176.81640625,
+  "data_mb": 16.128753662109375,
+  "test_pr_auc": 0.9969234064662611
+}

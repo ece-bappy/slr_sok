@@ -1,0 +1,22 @@
+{
+  "stage": "inference",
+  "model": "rf",
+  "device": "cpu",
+  "threads": 16,
+  "tag": "server",
+  "affinity_cores": 40,
+  "test_flows": 12436,
+  "model_bytes": 9633510,
+  "batch1_ms_median": 129.98471451282967,
+  "batch1_ms_p95": 142.63318876473932,
+  "batch1_ms_p99": 148.88892460090574,
+  "batch1_flows_per_s": 7.71171690118497,
+  "batch1024_flows_per_s": 3318.865760707283,
+  "batch1024_cpu_pct": 113.81534522562222,
+  "full_batch_flows_per_s": 36455.97383693414,
+  "full_batch_cpu_pct": 230.13111975841207,
+  "peak_rss_mb": 280.22265625,
+  "rss_before_load_mb": 176.86328125,
+  "data_mb": 16.128753662109375,
+  "test_pr_auc": 0.9992762592112749
+}

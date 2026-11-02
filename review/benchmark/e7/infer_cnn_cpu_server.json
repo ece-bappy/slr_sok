@@ -1,0 +1,22 @@
+{
+  "stage": "inference",
+  "model": "cnn",
+  "device": "cpu",
+  "threads": 16,
+  "tag": "server",
+  "affinity_cores": 40,
+  "test_flows": 12436,
+  "model_bytes": 55013,
+  "batch1_ms_median": 0.07794499106239527,
+  "batch1_ms_p95": 0.08517530077369884,
+  "batch1_ms_p99": 0.1682034000987187,
+  "batch1_flows_per_s": 11865.72615177598,
+  "batch1024_flows_per_s": 259584.85662248475,
+  "batch1024_cpu_pct": 1601.5776142686325,
+  "full_batch_flows_per_s": 209364.59766930775,
+  "full_batch_cpu_pct": 1560.2915160206549,
+  "peak_rss_mb": 912.09375,
+  "rss_before_load_mb": 172.45703125,
+  "data_mb": 2.84637451171875,
+  "test_pr_auc": 0.9957101538342104
+}

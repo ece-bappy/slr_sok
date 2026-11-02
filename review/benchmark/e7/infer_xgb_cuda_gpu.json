@@ -1,0 +1,22 @@
+{
+  "stage": "inference",
+  "model": "xgb",
+  "device": "cuda",
+  "threads": 16,
+  "tag": "gpu",
+  "affinity_cores": 40,
+  "test_flows": 12436,
+  "model_bytes": 980999,
+  "batch1_ms_median": 8.949561510235071,
+  "batch1_ms_p95": 10.909086055471562,
+  "batch1_ms_p99": 11.281738614779897,
+  "batch1_flows_per_s": 110.87892023190136,
+  "batch1024_flows_per_s": 89803.91766358621,
+  "batch1024_cpu_pct": 950.5978654369956,
+  "full_batch_flows_per_s": 274143.96913308906,
+  "full_batch_cpu_pct": 988.7347461850569,
+  "peak_rss_mb": 443.78515625,
+  "rss_before_load_mb": 177.15625,
+  "data_mb": 16.128753662109375,
+  "test_pr_auc": 0.9938874497465706
+}

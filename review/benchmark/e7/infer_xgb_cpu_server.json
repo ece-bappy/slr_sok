@@ -1,0 +1,22 @@
+{
+  "stage": "inference",
+  "model": "xgb",
+  "device": "cpu",
+  "threads": 16,
+  "tag": "server",
+  "affinity_cores": 40,
+  "test_flows": 12436,
+  "model_bytes": 980999,
+  "batch1_ms_median": 6.957850506296381,
+  "batch1_ms_p95": 7.5172520519117825,
+  "batch1_ms_p99": 8.606817616382614,
+  "batch1_flows_per_s": 138.39675711161013,
+  "batch1024_flows_per_s": 122573.70519502285,
+  "batch1024_cpu_pct": 951.004788431125,
+  "full_batch_flows_per_s": 1037835.5140564075,
+  "full_batch_cpu_pct": 1022.788735093371,
+  "peak_rss_mb": 390.76171875,
+  "rss_before_load_mb": 176.66796875,
+  "data_mb": 16.128753662109375,
+  "test_pr_auc": 0.9956226899639877
+}
