@@ -1,9 +1,10 @@
-"""Regenerate every paper figure from the committed benchmark CSVs.
+"""Regenerate every paper figure, and figures/CAPTIONS.md, from the committed benchmark CSVs.
 
 Usage: python review/benchmark/figures/make_figures.py
 Writes fig_*.pdf (vector) and fig_*.png (300 dpi) next to this script. Sized for a single column
-(3.5 in wide); Okabe-Ito colours (colour-blind safe) plus hatching where bars must be told apart in
-greyscale.
+(3.5 in wide); Okabe-Ito colours (colour-blind safe), with hatching or marker shape so conditions can
+also be told apart in greyscale. Captions carry each figure's metric and test prevalence, computed
+from the same CSVs, so they stay in sync with the plots.
 """
 from pathlib import Path
 
@@ -22,6 +23,7 @@ OI = {"orange": "#E69F00", "sky": "#56B4E9", "green": "#009E73", "yellow": "#F0E
 plt.rcParams.update({"font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8, "legend.fontsize": 7,
                      "xtick.labelsize": 7, "ytick.labelsize": 7, "pdf.fonttype": 42, "ps.fonttype": 42,
                      "axes.spines.top": False, "axes.spines.right": False, "legend.frameon": False})
+CAPTIONS = {}
 
 
 def save(fig, name: str) -> None:
@@ -31,121 +33,189 @@ def save(fig, name: str) -> None:
     print("wrote", name)
 
 
-def bars(ax, groups, series, values, colours, hatches=None, errs=None, width=0.8, na_text="n/a"):
-    """Grouped bars; values[s][g] may be NaN (drawn as a small 'n/a' label)."""
-    k = len(series)
-    x = np.arange(len(groups))
-    for i, s in enumerate(series):
-        v = np.array(values[s], dtype=float)
-        pos = x - width / 2 + (i + 0.5) * width / k
-        ax.bar(pos, np.nan_to_num(v), width / k, color=colours[i], label=s, edgecolor="white", linewidth=0.4,
-               hatch=(hatches or [None] * k)[i], yerr=None if errs is None else np.nan_to_num(errs[s]),
-               error_kw={"elinewidth": 0.6, "capsize": 1.2})
-        for p, val in zip(pos, v):
-            if np.isnan(val):
-                ax.text(p, 0.02, na_text, rotation=90, ha="center", va="bottom", fontsize=5.5, color=OI["grey"])
-    ax.set_xticks(x)
-    ax.set_xticklabels(groups)
-    return x
+def seeds(folder: str, query: str) -> pd.DataFrame:
+    d = pd.read_csv(B / folder / "results_per_seed.csv").query(query)
+    return d[d["status"].isna() | (d["status"] == "ok")] if "status" in d else d
+
+
+def stat(d: pd.DataFrame, metric: str = "pr_auc") -> dict:
+    """Mean over seeds, SD, mean of the per-seed bootstrap CI bounds, mean test prevalence."""
+    out = {"mean": d[metric].mean(), "sd": d[metric].std(), "prev": (d["n_pos"] / d["n"]).mean()}
+    ci = d.get(f"{metric}_ci")
+    if ci is not None and ci.notna().any():
+        p = ci.dropna().str.split("-")
+        out["lo"], out["hi"] = p.str[0].astype(float).mean(), p.str[1].astype(float).mean()
+    else:
+        out["lo"], out["hi"] = out["mean"] - out["sd"], out["mean"] + out["sd"]
+    return out
+
+
+def pct(x: float) -> str:
+    return f"{100 * x:.0f}%"
+
+
+def dots(ax, groups, conds, cell, colours, markers, span=0.7):
+    """Dot-and-CI plot: cell(group, cond) -> stat dict or None; one marker per condition, offset in-group."""
+    k = len(conds)
+    for i, c in enumerate(conds):
+        off = -span / 2 + (i + 0.5) * span / k
+        for g, grp in enumerate(groups):
+            s = cell(grp, c)
+            if s is None:
+                continue
+            # CI bounds are rounded to 4 decimals in the CSVs, so at PR-AUC ~1 they can sit a hair inside the mean
+            err = [[max(s["mean"] - s["lo"], 0)], [max(s["hi"] - s["mean"], 0)]]
+            ax.errorbar(g + off, s["mean"], yerr=err, fmt=markers[i],
+                        color=colours[i], ms=4, mfc=colours[i] if i == 0 else "white", mew=1, elinewidth=0.9,
+                        capsize=1.5, label=c if g == 0 else None, zorder=3)
+    ax.set_xticks(range(len(groups)))
+    ax.set_xlim(-0.6, len(groups) - 0.4)
+    ax.grid(axis="y", lw=0.3, color="#dddddd", zorder=0)
 
 
 # --------------------------------------------------------------------------- (a) collapse
 def fig_collapse() -> None:
     fs = "g1g2_notime"  # the only feature set available for every dataset and every protocol
-    within = {d: pd.read_csv(B / d / "summary.csv").query("feature_set == @fs").set_index("experiment")
-              for d in ("mta", "mcfp", "raid", "hikari")}
-    e4 = pd.read_csv(B / "e4" / "summary.csv").query("feature_set == @fs").set_index("pair")
-    e4_pair = {"mta": "mta>mcfp", "mcfp": "mcfp>mta", "raid": "raid>mta", "hikari": None}
-    names = {"mta": "MTA", "mcfp": "MCFP", "raid": "RAID", "hikari": "HIKARI†"}
-    series = ["E1 random", "E2 grouped", "E3 temporal", "E4 cross-dataset"]
-    fig, axes = plt.subplots(2, 1, figsize=(W, 3.6), sharex=True)
-    for ax, metric, label in zip(axes, ("pr_auc", "macro_f1"), ("PR-AUC", "Macro-F1")):
-        vals, errs = {s: [] for s in series}, {s: [] for s in series}
-        for d in names:
-            t = within[d]
-            for s, e in zip(series[:3], ("E1", "E2", "E3")):
-                ok = e in t.index and pd.isna(t.loc[e].get("status", np.nan))
-                vals[s].append(t.loc[e, f"{metric}_mean"] if ok else np.nan)
-                errs[s].append(t.loc[e, f"{metric}_std"] if ok else np.nan)
-            p = e4_pair[d]
-            vals[series[3]].append(e4.loc[p, f"{metric}_mean"] if p else np.nan)
-            errs[series[3]].append(e4.loc[p, f"{metric}_std"] if p else np.nan)
-        bars(ax, list(names.values()), series, vals, [OI["blue"], OI["sky"], OI["orange"], OI["red"]],
-             [None, None, "///", "xx"], errs)
-        ax.set_ylim(0, 1.05)
+    ds = {"mta": ("MTA", "mta>mcfp", "→MCFP"), "mcfp": ("MCFP", "mcfp>mta", "→MTA"),
+          "raid": ("RAID", "raid>mta", "→MTA"), "hikari": ("HIKARI", None, " none")}
+    exps = ["E1 random", "E2 grouped", "E3 temporal", "E4 cross-dataset"]
+    cols = [OI["blue"], OI["sky"], OI["orange"], OI["red"]]
+    hatch = [None, None, "///", "xx"]
+    cells = {}
+    for d, (_, pair, _) in ds.items():
+        for e, name in zip(("E1", "E2", "E3"), exps):
+            r = seeds(d, f"feature_set == '{fs}' and experiment == '{e}'")
+            cells[(d, name)] = (stat(r), stat(r, "macro_f1")) if len(r) else None
+        r = seeds("e4", f"pair == '{pair}' and feature_set == '{fs}'") if pair else []
+        cells[(d, exps[3])] = (stat(r), stat(r, "macro_f1")) if len(r) else None
+    fig, axes = plt.subplots(2, 1, figsize=(W, 3.9), sharex=True)
+    width = 0.8 / len(exps)
+    for row, (ax, label) in enumerate(zip(axes, ("PR-AUC", "Macro-F1"))):
+        for g, d in enumerate(ds):
+            for i, e in enumerate(exps):
+                x = g - 0.4 + (i + 0.5) * width
+                c = cells[(d, e)]
+                if c is None:
+                    ax.text(x, 0.02, "n/a", rotation=90, ha="center", va="bottom", fontsize=5.5, color=OI["grey"])
+                    continue
+                s = c[row]
+                transfer = d == "hikari" and e in exps[1:3]  # 2-attacker transfer tests: outlined, daggered
+                ax.bar(x, s["mean"], width, yerr=s["sd"], error_kw={"elinewidth": 0.6, "capsize": 1.2},
+                       color="white" if transfer else cols[i], edgecolor=cols[i] if transfer else "white",
+                       linewidth=0.9 if transfer else 0.4, hatch=hatch[i] if not transfer else "....",
+                       label=e if (row == 0 and g == 0) else None)
+                if transfer:
+                    ax.text(x, s["mean"] + s["sd"] + 0.02, "†", ha="center", va="bottom", fontsize=7)
+                if row == 0:  # no-skill PR-AUC = test prevalence
+                    ax.plot([x - width / 2, x + width / 2], [s["prev"]] * 2, color="black", lw=1.2,
+                            label="No-skill (test prevalence)" if (g == 0 and i == 0) else None, zorder=4)
+        ax.set_ylim(0, 1.08)
         ax.set_ylabel(label)
-    axes[0].legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0))
-    axes[1].text(1.0, -0.32, "† HIKARI E2/E3: 2-attacker transfer tests. E4 = MTA→MCFP, MCFP→MTA, "
-                 "RAID→MTA.\nFeatures G1+G2 without timing; XGBoost; mean ± SD over 5 seeds.",
-                 transform=axes[1].transAxes, ha="right", va="top", fontsize=6)
+    axes[1].set_xticks(range(len(ds)))
+    axes[1].set_xticklabels([f"{n}\n(E4{e4})" for n, _, e4 in ds.values()])
+    axes[0].legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=0.8, handlelength=1.4)
     save(fig, "fig_a_collapse")
+
+    rows = []
+    for d, (n, _, e4) in ds.items():
+        prevs = [f"{e.split()[0]} {pct(cells[(d, e)][0]['prev'])}" for e in exps if cells[(d, e)]]
+        rows.append(f"{n}: " + ", ".join(prevs))
+    CAPTIONS["fig_a_collapse"] = (
+        "**Performance collapse beyond random splits.** XGBoost, features G1+G2 without timing (the only set "
+        "available for every dataset and protocol); bars are the mean over 5 seeds, whiskers ± 1 SD. "
+        "Top: PR-AUC; the black tick on each bar is that test set's no-skill PR-AUC (the malicious share), "
+        "because PR-AUC is not comparable across test sets with different prevalence. Bottom: macro-F1 at the "
+        "validation-selected max-F1 threshold. E1 random split; E2 grouped by infection case (MTA), capture "
+        "(MCFP, RAID) or client host (HIKARI); E3 trained on older years, tested on newer (infeasible for MCFP "
+        "and RAID, where year and class coincide); E4 trained on the group's dataset and tested on the dataset "
+        "named under it (MTA→MCFP, MCFP→MTA, RAID→MTA; HIKARI has no same-concept partner). † HIKARI E2 and E3 (outlined bars) are 2-attacker transfer tests (one attacker "
+        "IP in training, the other in test), not grouped-generalisation estimates. Test malicious share: "
+        + "; ".join(rows) + ".")
 
 
 # --------------------------------------------------------------------------- (b) E8 tiers
 def fig_tiers() -> None:
     tiers = ["tier_tls12_full", "tier_tls13", "tier_tls13_ech"]
-    labels = ["Full (TLS 1.2 view)", "TLS 1.3 (no cert.)", "TLS 1.3 + ECH (G1/G2)"]
-    groups, vals = [], {l: [] for l in labels}
-    for ds, exp, name in (("mta", "E2", "MTA\nE2"), ("mta", "E3", "MTA\nE3"), ("mcfp", "E2", "MCFP\nE2")):
-        s = pd.read_csv(B / f"e8_{ds}" / "summary.csv").query("experiment == @exp").set_index("feature_set")
-        groups.append(name)
-        for t, l in zip(tiers, labels):
-            vals[l].append(s.loc[t, "pr_auc_mean"])
-    v = pd.read_csv(B / "e8_mta" / "results_per_tls_version.csv").query("experiment == 'E3'")
-    v["tls_version"] = v["tls_version"].astype(str)
-    for ver, name in (("1.2", "MTA E3\nTLS 1.2\nflows"), ("1.3", "MTA E3\nTLS 1.3\nflows")):
-        groups.append(name)
-        m = v[v.tls_version == ver].groupby("feature_set")["pr_auc"].mean()
-        for t, l in zip(tiers, labels):
-            vals[l].append(m[t])
-    fig, ax = plt.subplots(figsize=(W, 2.2))
-    bars(ax, groups, labels, vals, [OI["blue"], OI["green"], OI["orange"]], [None, "..", "///"])
-    ax.set_ylim(0.5, 1.02)
-    ax.set_ylabel("PR-AUC")
+    labels = ["Full (TLS 1.2 view)", "TLS 1.3 (no certificate)", "TLS 1.3 + ECH (G1/G2 only)"]
+    groups = [("mta", "E2", None, "MTA\nE2"), ("mta", "E3", None, "MTA\nE3"), ("mcfp", "E2", None, "MCFP\nE2"),
+              ("mta", "E3", "1.2", "MTA E3\nTLS 1.2\nflows"), ("mta", "E3", "1.3", "MTA E3\nTLS 1.3\nflows")]
+    ver = pd.read_csv(B / "e8_mta" / "results_per_tls_version.csv").query("experiment == 'E3'")
+    ver["tls_version"] = ver["tls_version"].astype(str)
+
+    def cell(g, c):
+        dset, exp, v, _ = g
+        t = tiers[labels.index(c)]
+        if v is None:
+            return stat(seeds(f"e8_{dset}", f"feature_set == '{t}' and experiment == '{exp}'"))
+        return stat(ver[(ver.tls_version == v) & (ver.feature_set == t)])  # no per-version CI: ± 1 SD
+    fig, ax = plt.subplots(figsize=(W, 2.3))
+    dots(ax, groups, labels, cell, [OI["blue"], OI["green"], OI["orange"]], ["o", "s", "^"])
+    ax.set_xticklabels([g[3] for g in groups])
     ax.axvline(2.5, color=OI["grey"], lw=0.6, ls=":")
+    ax.set_ylabel("PR-AUC")
     ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=0.8, handlelength=1.2)
     save(fig, "fig_b_tiers")
+
+    prev = {g[3].replace("\n", " "): pct(cell(g, labels[0])["prev"]) for g in groups}
+    CAPTIONS["fig_b_tiers"] = (
+        "**Accuracy by TLS visibility tier.** XGBoost, 5 seeds. Tiers are simulated by masking feature groups on "
+        "the same flows: full = G1–G5; TLS 1.3 = without the certificate group (G4); TLS 1.3 + ECH = flow "
+        "statistics and packet sizes/directions/timing only (G1, G2). Points are mean PR-AUC; whiskers are the "
+        "mean 95% bootstrap CI for the three left groups and ± 1 SD over seeds for the per-TLS-version "
+        "groups (right of the dotted line; the flows of the MTA E3 test set split by the TLS version actually "
+        "negotiated). The y-axis does not start at 0. Test malicious share: "
+        + "; ".join(f"{k} {v}" for k, v in prev.items()) + ".")
 
 
 # --------------------------------------------------------------------------- (c) fingerprints
 def fig_fingerprints() -> None:
-    e9 = pd.read_csv(B / "e9" / "summary.csv").set_index(["scenario", "feature_set"])
     sets = ["no_fp", "fp_ja3", "fp_ja4", "fp_both"]
-    labels = ["No fingerprint", "+JA3/JA3S", "+JA4/JA4S", "+both"]
-    scen = {"mta_old>mta_new": "MTA ≤2022 → 2023–26", "mcfp>mta_new": "MCFP → MTA 2023–26"}
+    labels = ["No fingerprint (G1–G4)", "+JA3/JA3S", "+JA4/JA4S", "+both"]
     cols = [OI["green"], OI["orange"], OI["purple"], OI["red"]]
-    hatch = [None, "///", "\\\\\\", "xx"]
-    cf = sorted(B.glob("cf_e9_*/summary.csv"))
-    fig = plt.figure(figsize=(W, 4.0 if cf else 2.2))
-    gs = fig.add_gridspec(2 if cf else 1, 2, hspace=0.55, wspace=0.15)
+    marks = ["o", "s", "D", "^"]
+    scen = {"mta_old>mta_new": "MTA ≤2022 → 2023–26", "mcfp>mta_new": "MCFP → MTA 2023–26"}
+    fams = {"xgb": ("e9", "XGB"), "lgbm": ("cf_e9_lgbm", "LGBM"), "rf": ("cf_e9_rf", "RF"), "lr": ("cf_e9_lr", "LR")}
+    fams = {k: v for k, v in fams.items() if (B / v[0] / "results_per_seed.csv").exists()}
+
+    def cell_for(folder):
+        return lambda sc, lab: stat(seeds(folder, f"scenario == '{sc}' and feature_set == '{sets[labels.index(lab)]}'"))
+    fig = plt.figure(figsize=(W, 4.1 if len(fams) > 1 else 2.3))
+    gs = fig.add_gridspec(2 if len(fams) > 1 else 1, 2, hspace=0.6, wspace=0.12)
     ax = fig.add_subplot(gs[0, :])
-    vals = {l: [e9.loc[(s, f), "pr_auc_mean"] for s in scen] for f, l in zip(sets, labels)}
-    errs = {l: [e9.loc[(s, f), "pr_auc_std"] for s in scen] for f, l in zip(sets, labels)}
-    bars(ax, list(scen.values()), labels, vals, cols, hatch, errs)
-    ax.set_ylim(0.5, 1.0)
+    dots(ax, list(scen), labels, cell_for("e9"), cols, marks)
+    ax.set_xticklabels(list(scen.values()))
     ax.set_ylabel("PR-AUC")
     ax.set_title("XGBoost, E9", loc="left")
-    ax.legend(ncol=4, loc="lower left", bbox_to_anchor=(0, 1.1), columnspacing=0.8, handlelength=1.2)
-    if cf:  # cross-family check (batch 4): no fingerprints vs JA3+JA4, per scenario
-        fam = {"xgb": e9}
-        for p in cf:
-            fam[p.parent.name.split("_")[-1]] = pd.read_csv(p).set_index(["scenario", "feature_set"])
-        names = {"xgb": "XGB", "lgbm": "LGBM", "rf": "RF", "lr": "LR"}
-        order = [k for k in names if k in fam]
-        for i, (sc, title) in enumerate(scen.items()):
-            ax = fig.add_subplot(gs[1, i])
-            vals = {l: [fam[k].loc[(sc, f), "pr_auc_mean"] for k in order]
-                    for f, l in (("no_fp", "No fingerprint"), ("fp_both", "+both"))}
-            errs = {l: [fam[k].loc[(sc, f), "pr_auc_std"] for k in order]
-                    for f, l in (("no_fp", "No fingerprint"), ("fp_both", "+both"))}
-            bars(ax, [names[k] for k in order], list(vals), vals, [cols[0], cols[3]], [None, "xx"], errs)
-            ax.set_ylim(0.5, 1.0)
+    ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.1), columnspacing=0.8, handlelength=1.2)
+    if len(fams) > 1:  # cross-family check (batch 4): no fingerprint vs +both, per scenario
+        axes = [fig.add_subplot(gs[1, i]) for i in range(2)]
+        for ax, (sc, title) in zip(axes, scen.items()):
+            dots(ax, list(fams), [labels[0], labels[3]],
+                 lambda f, lab, sc=sc: stat(seeds(fams[f][0], f"scenario == '{sc}' and "
+                                                               f"feature_set == '{sets[labels.index(lab)]}'")),
+                 [cols[0], cols[3]], [marks[0], marks[3]])
+            ax.set_xticklabels([v[1] for v in fams.values()])
             ax.set_title(title, fontsize=7, loc="left")
+        lo = min(a.get_ylim()[0] for a in axes)
+        hi = max(a.get_ylim()[1] for a in axes)
+        for i, a in enumerate(axes):
+            a.set_ylim(lo, hi)
             if i:
-                ax.set_yticklabels([])
-            else:
-                ax.set_ylabel("PR-AUC")
+                a.set_yticklabels([])
+        axes[0].set_ylabel("PR-AUC")
     save(fig, "fig_c_fingerprints")
+
+    prev = {v: pct(stat(seeds("e9", f"scenario == '{k}' and feature_set == 'no_fp'"))["prev"]) for k, v in scen.items()}
+    CAPTIONS["fig_c_fingerprints"] = (
+        "**Fingerprints under drift.** Top: XGBoost on G1–G4 with no fingerprint, or with JA3/JA3S, "
+        "JA4/JA4S or both added (E9). Bottom: every tabular model family, no fingerprint vs both. Training on "
+        "MTA ≤2022 (left) or on MCFP (right); test is always MTA 2023–26. Points are mean PR-AUC over "
+        "5 seeds; whiskers are the mean 95% test-set bootstrap CI, which does not include seed-to-seed variation "
+        "(SD up to 0.06 for XGBoost and LightGBM on MCFP → MTA; see SUMMARY_crossfamily.md). The y-axis does "
+        "not start at 0. Test malicious share: "
+        + "; ".join(f"{k} {v}" for k, v in prev.items())
+        + " (the same test flows in both scenarios). "
+        "About half of the test flows carry a JA3 or JA4 value never seen in MTA training (53% / 52%).")
 
 
 # --------------------------------------------------------------------------- (d) E6 early detection
@@ -154,6 +224,7 @@ def fig_early() -> None:
     ns = [3, 5, 10, 20]
     style = {("mta", "E2"): (OI["blue"], "o", "MTA E2"), ("mta", "E3"): (OI["orange"], "s", "MTA E3"),
              ("mcfp", "E2"): (OI["green"], "^", "MCFP E2")}
+    prevs = []
     for (ds, exp), (c, mk, name) in style.items():
         s = pd.read_csv(B / f"e6_{ds}" / "summary.csv").query("experiment == @exp").set_index("feature_set")
         for suffix, ls, fill in (("", "-", c), ("_notime", "--", "white")):
@@ -164,6 +235,10 @@ def fig_early() -> None:
             full = f"all{suffix}"
             if full in s.index:
                 ax.axhline(s.loc[full, "pr_auc_mean"], color=c, ls=ls, lw=0.5, alpha=0.5)
+        r = seeds(f"e6_{ds}", f"experiment == '{exp}' and feature_set.str.startswith('early_') and "
+                              f"feature_set != 'early_3' and feature_set != 'early_3_notime'", )
+        p = r["n_pos"] / r["n"]
+        prevs.append(f"{name} {pct(p.min())}–{pct(p.max())}")
     ax.set_xscale("log")
     ax.set_xticks(ns)
     ax.set_xticklabels([str(n) for n in ns])
@@ -174,9 +249,14 @@ def fig_early() -> None:
     ax.axvspan(2.6, 3.6, color=OI["grey"], alpha=0.15, lw=0)
     ax.text(3.0, 0.42, "N=3:\nartefact", ha="center", va="bottom", fontsize=5.5, color="#555555")
     ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), handlelength=2.2, columnspacing=0.8)
-    ax.text(0, -0.3, "Thin lines: whole-flow features, all groups (dashed: no timing). XGBoost, 5 seeds.",
-            transform=ax.transAxes, fontsize=6)
     save(fig, "fig_d_early")
+    CAPTIONS["fig_d_early"] = (
+        "**Early detection.** XGBoost on the features visible after the first N packets of a flow (E6), mean "
+        "PR-AUC over 5 seeds; solid = with timing, dashed/hollow = without. Thin horizontal lines: whole-flow "
+        "features, all groups (dashed: without timing). The y-axis does not start at 0. N = 3 (shaded) covers "
+        "only the TCP handshake; per-feature-set deduplication removes 87–99.8% of flows there, so those "
+        "points describe an unrepresentative residue, not detection. Test malicious share for N ≥ 5 "
+        "(varies with deduplication): " + "; ".join(prevs) + ".")
 
 
 # --------------------------------------------------------------------------- (e) origin probe
@@ -186,7 +266,8 @@ def fig_origin() -> None:
     cls = ["RAID Tranco", "HIKARI benign", "CTU-Normal", "MTA background"]
     short = ["RAID", "HIKARI", "MCFP\n(CTU-Normal)", "MTA bg"]
     m = c.loc[cls, cls].astype(float).fillna(0).to_numpy()
-    m = m / m.sum(axis=1, keepdims=True)
+    n = m.sum(axis=1)
+    m = m / n[:, None]
     fig, ax = plt.subplots(figsize=(W * 0.75, W * 0.65))
     im = ax.imshow(m, cmap="cividis", vmin=0, vmax=1)
     for i in range(4):
@@ -202,6 +283,25 @@ def fig_origin() -> None:
     ax.spines[:].set_visible(True)
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.03, label="Row fraction")
     save(fig, "fig_e_origin_probe")
+    s = pd.read_csv(B / "e5b" / "origin_probe_summary.csv").query(
+        "feature_set == 'g1g2_notime' and split == 'grouped'").iloc[0]
+    CAPTIONS["fig_e_origin_probe"] = (
+        "**Dataset-of-origin probe.** An XGBoost classifier trained to tell which dataset a *benign* flow comes "
+        "from, using G1+G2 without timing, with a split grouped by capture/host (seed 0). Cells are row-normalised "
+        f"(test flows per true source: {', '.join(f'{a} {int(b):,}' for a, b in zip(short, n)).replace(chr(10), ' ')}). "
+        f"Metric: balanced accuracy {s['balanced_accuracy_mean']:.3f} ± {s['balanced_accuracy_std']:.3f} over "
+        f"5 seeds, against a chance level of {s['chance_mean']:.2f} (4 classes). Any benchmark that mixes "
+        "benign and malicious traffic from different sources can be separated by environment alone.")
+
+
+def write_captions() -> None:
+    text = ["# Figure captions", "",
+            "Generated by `make_figures.py` from the committed CSVs, so the numbers match the plots. "
+            "Copy into the paper as-is; every caption names the metric and the test malicious share.", ""]
+    for k, v in CAPTIONS.items():
+        text += [f"## {k}", "", v, ""]
+    (OUT / "CAPTIONS.md").write_text("\n".join(text), encoding="utf-8")
+    print("wrote CAPTIONS.md")
 
 
 if __name__ == "__main__":
@@ -210,3 +310,4 @@ if __name__ == "__main__":
     fig_fingerprints()
     fig_early()
     fig_origin()
+    write_captions()
