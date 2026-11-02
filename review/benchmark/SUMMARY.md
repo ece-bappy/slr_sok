@@ -42,11 +42,13 @@ The benchmark uses only flows with exactly one label (user decision: clean subse
 | RAID | g1g2_notime | E2 | 1.000 ± 0 | 0.999 ± 0.000 | 1.000 | 0.998 | 1.000 |
 | RAID | any | E3 | infeasible: capture year = class (C2 2022, benign 2024) | | | | |
 | HIKARI | g1g2 | E1 random | 0.9998 ± 0.0004 | 0.995 ± 0.002 | 0.980 | 1.000 | 1.000 |
-| HIKARI | g1g2 | E2 host-grouped | 0.166 ± 0.099 | 0.506 ± 0.013 | 0.008 | 1.000 | 0.011 |
-| HIKARI | g1g2 | E3 2021→2022 | 0.454 ± 0.112 | 0.484 ± 0.000 | 0.000 | 1.000 | 0.002 |
+| HIKARI | g1g2 | E3 2021→2022 (†) | 0.454 ± 0.112 | 0.484 ± 0.000 | 0.000 | 1.000 | 0.002 |
 | HIKARI | g1g2_notime | E1 | 0.9999 ± 0.0002 | 0.995 ± 0.001 | 0.996 | 0.999 | 0.996 |
-| HIKARI | g1g2_notime | E2 | 0.236 ± 0.092 | 0.509 ± 0.023 | 0.019 | 0.998 | 0.139 |
-| HIKARI | g1g2_notime | E3 | 0.902 ± 0.050 | 0.773 ± 0.127 | 0.433 | 1.000 | 0.417 |
+| HIKARI | g1g2_notime | E3 (†) | 0.902 ± 0.050 | 0.773 ± 0.127 | 0.433 | 1.000 | 0.417 |
+
+HIKARI E2 is not in this table. It is a **2-attacker transfer test**, not a grouped-generalisation estimate: HIKARI has two attacker IPs, and the client-grouped split always trains on one (203.178.143.112) and tests on the other (103.255.15.23). Its numbers (PR-AUC 0.17 `g1g2`, 0.24 `g1g2_notime`; other models 0.15–0.62) are reported only as that transfer test, in finding 2 below and in `SUMMARY_models.md`, with the CNN-inversion diagnosis as the caveat.
+
+(†) HIKARI E3 is the same two attackers in the reverse direction (train on the 2021 attacker's 210 flows, test on the 2022 one), so it is also a 2-attacker transfer test and should carry the same label.
 
 Per-TLS-version results are in `*/results_per_tls_version.csv`.
 - RAID scores the same on TLS 1.2 and 1.3.
@@ -62,8 +64,8 @@ Per-TLS-version results are in `*/results_per_tls_version.csv`.
    - **Conclusion:** within RAID, E1 = E2 = "perfect" says nothing about generalisation. RAID is usable only for cross-dataset tests (E4) or with the benign side drawn from another environment.
 2. **HIKARI shows the classic collapse.**
    - E1 is near-perfect (PR-AUC ≈ 1.0).
-   - E2, with an unseen attacker host, falls to PR-AUC 0.17–0.24 and malicious recall ≈ 1–2%.
-   - With only two attacker hosts, E2 always trains on the 2022 attacker and tests on the 2021 one (247 flows), so it is also a reverse-time test.
+   - E2 (2-attacker transfer test, not in the headline table) falls to PR-AUC 0.17–0.24 and malicious recall ≈ 1–2%.
+   - With only two attacker hosts, E2 always trains on the 2022 attacker and tests on the 2021 one (247 flows), so it is also a reverse-time test. The test attacker shares its IP with 36k benign flows and resembles them, while the training attacker resembles most benign test hosts. A packet-sequence CNN therefore scores below chance (`SUMMARY_models.md`).
    - **E3 has a small training set:** it trains on only 210 attack flows (2021).
    - Timing features hurt transfer: E3 PR-AUC is 0.45 with timing and 0.90 without, though recall at the validation threshold stays low (0.43, SD 0.25).
    - The most important feature is `src2dst_rst_packets` (how the attack tool closes connections), which is tool behaviour, not TLS.

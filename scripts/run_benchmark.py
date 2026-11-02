@@ -32,6 +32,12 @@ SETS = {"all": ("g1_", "g2_", "g3_", "g4_", "g5_"), "g1g2": ("g1_", "g2_"), "g1g
         # TLS 1.3 + ECH = no SNI/ClientHello extensions/fingerprints either, i.e. sizes, directions, timing
         "tier_tls12_full": ("g1_", "g2_", "g3_", "g4_", "g5_"), "tier_tls13": ("g1_", "g2_", "g3_", "g5_"),
         "tier_tls13_ech": ("g1_", "g2_")}
+# E5a feature-group ablation: only_gK = group K alone, loo_gK = every group except K (each also as *_notime)
+GROUPS = ("g1_", "g2_", "g3_", "g4_", "g5_")
+for _g in GROUPS:
+    for _t in ("", "_notime"):
+        SETS[f"only_{_g[:2]}{_t}"] = (_g,)
+        SETS[f"loo_{_g[:2]}{_t}"] = tuple(x for x in GROUPS if x != _g)
 TIMING = ("piat", "duration")  # dropped in *_notime sets: timing reflects the capture network (§5.2)
 EARLY_N = (3, 5, 10, 20)  # E6: sets early_<N> and early_<N>_notime, built by early_features()
 # E6 visibility tags: features observable once the ClientHello / ServerHello / Certificate packet is seen
@@ -228,14 +234,17 @@ class LinearPrep:
         return pd.concat([z] + hots, axis=1).to_numpy(float)
 
 
-def fit_predict(kind: str, x_tr, y_tr, x_va, y_va, x_others: list, seed: int, jobs: int):
-    """Fit one model; return (validation scores, [scores for x_others], best iteration, {feature: importance})."""
+XGB_DEFAULTS = {"n_estimators": 1000, "max_depth": 8, "learning_rate": 0.1, "subsample": 0.8,
+                "colsample_bytree": 0.8, "early_stopping_rounds": 30}
+
+
+def fit_predict(kind: str, x_tr, y_tr, x_va, y_va, x_others: list, seed: int, jobs: int, params: dict | None = None):
+    """Fit one model; return (validation scores, [scores for x_others], best iteration, {feature: importance}).
+    params overrides the fixed XGBoost hyperparameters (used by tune.py only)."""
     if kind == "xgb":
         import xgboost as xgb  # imported here so the torch venv (run_deep.py) can use this module without it
-        m = xgb.XGBClassifier(n_estimators=1000, max_depth=8, learning_rate=0.1, subsample=0.8,
-                              colsample_bytree=0.8, tree_method="hist", enable_categorical=True,
-                              max_cat_to_onehot=1, n_jobs=jobs, random_state=seed,
-                              early_stopping_rounds=30, eval_metric="logloss")
+        m = xgb.XGBClassifier(**{**XGB_DEFAULTS, **(params or {})}, tree_method="hist", enable_categorical=True,
+                              max_cat_to_onehot=1, n_jobs=jobs, random_state=seed, eval_metric="logloss")
         m.fit(x_tr, y_tr, eval_set=[(x_va, y_va)], verbose=False)
         imp, best = m.get_booster().get_score(importance_type="gain"), m.best_iteration
         score = lambda x: m.predict_proba(x)[:, 1]

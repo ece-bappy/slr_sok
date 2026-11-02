@@ -17,8 +17,10 @@ These runs repeat the E2/E3/E4 headline settings with other model families. The 
 | MTA | g1g2_notime | E2 | 0.995 | 0.995 | 0.994 | 0.953 | 0.976 |
 | MTA | g1g2_notime | E3 | 0.859 | 0.867 | 0.883 | 0.823 | 0.788 |
 | MTA | g1g2 (CNN: with IAT) | E2 / E3 | 0.9995 / 0.912 | – | – | – | 0.962 / 0.891 |
-| HIKARI | g1g2_notime | E2 | 0.236 (ROC 0.965) | 0.153 | **0.617** | 0.185 | 0.017 (ROC 0.77) |
-| HIKARI | g1g2_notime | E3 | 0.902 | 0.853 | 0.875 | 0.500 | 0.010 |
+| HIKARI ‡ | g1g2_notime | E2 (2-attacker transfer) | 0.236 (ROC 0.965) | 0.153 | **0.617** | 0.185 | 0.017 (ROC 0.77) |
+| HIKARI ‡ | g1g2_notime | E3 (2-attacker transfer, reversed) | 0.902 | 0.853 | 0.875 | 0.500 | 0.010 |
+
+‡ Not a headline result. HIKARI has two attacker IPs; E2 trains on one and tests on the other, and E3 does the reverse. See the CNN diagnosis below.
 | MCFP | all | E2 | 0.9999 (recall neg 0.85) | 1.000 (0.87) | 1.000 (0.85) | 0.959 (0.86) | – |
 | MCFP | g1g2_notime | E2 | 0.998 | 0.999 | 0.991 | 0.850 | 0.814 |
 | RAID | G2 | E2 | 1.000 | – | – | – | 1.000 |
@@ -43,7 +45,7 @@ These runs repeat the E2/E3/E4 headline settings with other model families. The 
    - The ctu → bg benign recall is model-dependent (0.07–0.74), but it never approaches the control's 0.97.
 2. **Model choice moves the temporal and grouped numbers by up to ±0.06 PR-AUC, and the HIKARI E2 number by far more.**
    - MTA E3 `all` ranges from 0.90 (XGB) to 0.96 (LightGBM).
-   - HIKARI E2 PR-AUC ranges from 0.15 to 0.62, with ROC ≈ 0.95–0.98 for all four tabular models. That task has 2 attacker hosts and extreme imbalance, so its PR-AUC is unstable.
+   - On the HIKARI 2-attacker transfer test (E2), PR-AUC ranges from 0.15 to 0.62, with ROC ≈ 0.95–0.98 for all four tabular models. With n = 2 attackers and extreme imbalance, its PR-AUC is unstable.
    - Single-model leaderboards in this area are therefore not comparable within ±0.05.
 3. **Fixed-threshold transfer is where models differ most.** LR's TPR at val-FPR 10⁻³ is ≈ 0.02 on MTA `g1g2_notime` E2 and E3 (trees on E2: 0.84–0.89): its score distribution does not separate the extreme tail.
 4. **The CNN on raw packet sequences is not better than trees on flow statistics.** On MTA and MCFP it is 0.02–0.18 PR-AUC below XGBoost and does no better in E4. It needs the IAT channel more than the trees do (MCFP E2: 0.9997 with IAT vs 0.814 without).
