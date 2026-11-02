@@ -54,6 +54,41 @@ Test PR-AUC (sanity check that the right model was timed): XGBoost 0.996, LightG
 | edge2 | 46.9 s | 2.75 | 5.34 | 364 | 101 | 21.6 / 13.7 / 6.1 / 3.5 / 2.0 | 285 |
 | edge1 | 29.1 s | **1.71** | 3.32 | 586 | 163 | 12.4 / 9.2 / 4.1 / 2.2 / 1.2 | 256 |
 
+## Zeek-free option (batch 4, 2 Nov 19:37 WITA, `launch_batch4.sh`)
+
+Pipeline: NFStream + tlsfp handshake parser only, with features G1 + G2 + G3 (`g1g2g3`, 162 features). It drops Zeek, which is needed only for the certificate details in G4, and drops the G5 fingerprints. It was timed the same way on the same 30 pcaps. The full pipeline was re-timed alongside it with a warm page cache (`*_w`).
+
+| Hardware | Full pipeline, warm (ms/TCP flow; flows/s) | **Zeek-free** (ms/TCP flow; flows/s) | Zeek-free ms/TLS flow | Mbit/s | Peak RSS (MB) |
+|---|---|---|---|---|---|
+| server | 2.11; 474 | **1.17; 854** | 2.28 | 237 | 253 |
+| edge2 | 2.23; 447 | **0.97; 1,030** | 1.89 | 286 | 264 |
+| edge1 | 1.70; 590 | **0.92; 1,090** | 1.78 | 303 | 243 |
+
+Zeek-free stage times on edge1 (30 pcaps): tlsfp 9.2 s, NFStream 4.0 s, join 1.3 s, features 1.2 s. tlsfp, the pure-Python handshake parser, is now about 60% of the cost and the next thing to optimise.
+
+Inference with the `g1g2g3` model (MTA E2 split seed 0, same settings):
+
+| Model | Size | Batch=1 median (edge1 / server) | Flows/s, batch 1,024 (edge1 / server) | Peak RSS | Test PR-AUC (E2) |
+|---|---|---|---|---|---|
+| XGBoost | 466 KB | 5.1 / 5.9 ms | 130k / 151k | 389 MB | 0.999 |
+| LightGBM | 878 KB | 1.5 / 1.7 ms | 173k / 383k | 224 MB | 0.999 |
+
+**Accuracy of the Zeek-free feature set** (5 seeds; `cf_mta_*`, `cf_e4_*`; details in `SUMMARY_crossfamily.md`):
+
+| Setting | XGBoost | LightGBM | RF | LR | Full `all` (XGBoost) |
+|---|---|---|---|---|---|
+| MTA E3, PR-AUC [CI] | **0.971** [0.969–0.974] | 0.978 [0.976–0.980] | 0.954 | 0.908 | 0.901 |
+| MTA E3, macro-F1 / test FPR | 0.817 / 0.001 | 0.784 / 0.000 | 0.831 / 0.001 | 0.851 / 0.019 | 0.777 / 0.012 |
+| MCFP → MTA, with timing, PR-AUC | 0.925 [0.922–0.928] | 0.891 | 0.923 | 0.731 | 0.844 |
+| MCFP → MTA, no timing, PR-AUC | 0.776 [0.769–0.783] | 0.628 | 0.789 | 0.786 | 0.734 (`all_notime`) |
+| MCFP → MTA, no timing, macro-F1 / test FPR | 0.727 / 0.61 | 0.552 / 0.80 | 0.777 / 0.37 | 0.662 / 0.04 | 0.355 / 0.98 |
+
+**Takeaways:**
+- The Zeek-free pipeline is about 2× cheaper to extract (0.9–1.2 ms per TCP flow, about 1,000 flows/s per core).
+- It is *more* accurate than the full feature set under temporal drift: MTA E3 0.971 vs 0.901 for XGBoost, because it also drops the fingerprints.
+- For XGBoost it is also better across datasets (0.925 vs 0.844).
+- No pipeline gives a usable cross-dataset operating point (test FPR at the validated threshold stays 0.04–0.80).
+
 ## End to end (extraction + inference, per flow)
 
 Extraction dominates. It costs about 1.7–2.7 ms per TCP flow (3.3–5.3 ms per TLS flow) on one or two cores. Model inference in batches costs 0.002–0.06 ms per flow for every model.
@@ -81,7 +116,10 @@ Extraction dominates. It costs about 1.7–2.7 ms per TCP flow (3.3–5.3 ms per
 
 ## Caveats
 - **Edge = taskset proxy on a Xeon**, not an embedded device: it gives an upper bound for a 1–2-core box.
-- **Extraction run order and page cache.** The three runs read the same 30 pcaps in the order server → edge2 → edge1, so edge1 ran with a warm page cache. This, plus Zeek's and NFStream's multi-thread start-up cost on small pcaps, probably explains why edge1 is fastest. Read the three rows as one range (1.7–2.7 ms per TCP flow), not as a ranking.
+- **Why 1 core is fastest for extraction.**
+  - The first runs read the pcaps in the order server → edge2 → edge1, so a warm page cache was a suspect. The batch-4 warm rerun rules it out: edge1 is still fastest (1.70 vs 2.11–2.23 ms per TCP flow).
+  - The remaining explanation is the start-up and synchronisation cost of Zeek's and NFStream's extra threads and processes on small pcaps (about 20 MB on average).
+  - Read the rows as one range (1.7–2.7 ms full; 0.9–1.2 ms Zeek-free), not as a ranking. A long-running live sensor would amortise these start-up costs.
 - **Zeek start-up overhead.** Zeek is launched once per pcap. On small pcaps its start-up (about 0.5–0.7 s per run in the smoke test) is a large part of its time, so per-flow extraction cost is overstated compared with a long-running live sensor.
 - **Offline pcap processing**, not live capture: there is no packet loss, NIC or ring-buffer behaviour, and no flow-timeout delay. In a live deployment a flow can only be scored after its first 20 packets (G2) or after it ends (G1 whole-flow statistics).
 - **Batch=1 latencies include Python, pandas and sklearn wrapper overhead.**

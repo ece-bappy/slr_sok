@@ -1,0 +1,20 @@
+{
+  "all": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "loo_g5": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "g1g2g3": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  }
+}

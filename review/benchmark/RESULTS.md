@@ -50,7 +50,8 @@ Figure: `figures/fig_e_origin_probe.pdf` (and `fig_c` for G5). Summaries: `SUMMA
 | E5a MTA E3, G4 certificate alone (8 features) | 0.903 [0.871–0.931], macro-F1 0.837 | Absent under TLS 1.3 |
 | E5a MCFP E2, G1 alone | 1.000, macro-F1 0.992, test FPR 0.0006 | Capture shortcut; adding TLS groups raises FPR to 0.14–0.20 |
 | E5a MCFP → MTA, without G5, no timing | 0.808 [0.801–0.815] (other leave-one-out sets 0.57–0.76) | Most sets keep no usable threshold (FPR ≈ 0.97) |
-| Cross-family check of the G5 result | *batch 4, pending* | |
+| Cross-family check: MTA E3 without G5 vs all | XGB +0.081, LightGBM +0.023, RF +0.029 (CIs disjoint); LR 0.000 | Temporal penalty for every tree family; LR sees only the top-30 values (`SUMMARY_crossfamily.md`) |
+| Cross-family check: MCFP → MTA without G5 vs all | XGB +0.087, LightGBM +0.014, RF −0.009, LR −0.003 (with timing) | Model-dependent; transfer fails with or without fingerprints |
 
 **Answer:**
 - The signal is redundant across G1–G4.
@@ -82,7 +83,8 @@ Summary: `SUMMARY_e7.md`. Hardware: Xeon Silver 4410T and NVIDIA A2. "Edge" = th
 | Setting | Result | Caveat |
 |---|---|---|
 | Feature extraction, full pipeline (Zeek + tlsfp + NFStream), 1–2 cores | **1.7–2.7 ms per TCP flow**; 350–590 flows/s per core; peak RSS ≤ 293 MB | Offline from pcap; Zeek is restarted per pcap; warm or cold page cache varies between runs |
-| Zeek-free pipeline (NFStream + tlsfp, G1–G3) | *batch 4, pending* | |
+| **Zeek-free pipeline** (NFStream + tlsfp, G1–G3) | **0.9–1.2 ms per TCP flow**; about 1,000 flows/s per core; RSS ≤ 264 MB | Same 30 pcaps, warm cache; full pipeline re-timed alongside at 1.7–2.2 ms |
+| Zeek-free features, accuracy | MTA E3 0.971 [0.969–0.974] (XGB; full `all` 0.901); MCFP → MTA 0.925 with timing / 0.776 without | Better than the full set because it also drops fingerprints. No cross-dataset operating point (FPR 0.27–0.61) |
 | Inference, batches of 1,024, any model | ≤ 0.06 ms per flow (XGBoost 106–123k flows/s on 1–16 threads) | |
 | Inference, batch=1 | CNN 0.05 ms, LightGBM 2.9 ms, XGBoost 6.3 ms, RF 13.6 ms, LR 40 ms | Mostly Python/pandas wrapper overhead |
 | GPU (A2) | No gain for XGBoost; CNN 1.6–2× when batched | |
@@ -90,7 +92,8 @@ Summary: `SUMMARY_e7.md`. Hardware: Xeon Silver 4410T and NVIDIA A2. "Edge" = th
 
 **Answer:**
 - Extraction, not the model, is the cost.
-- A 1–2-core box handles a few hundred new TLS flows per second through the full pipeline.
+- A 1–2-core box handles a few hundred new TLS flows per second through the full pipeline, or about 1,000 through the Zeek-free one.
+- The Zeek-free feature set is also the more accurate one under drift.
 
 ## RQ5: Visibility tiers and fingerprint drift (E8, E9)
 
@@ -105,9 +108,12 @@ Figures: `figures/fig_b_tiers.pdf`, `figures/fig_c_fingerprints.pdf`. Summaries:
 | E9 MCFP → MTA 2023–26: no fingerprints / +any fingerprint | 0.794 [0.781–0.806] / 0.67–0.72 | With fingerprints, the source threshold flags 100% of test flows |
 | Test flows whose JA3 / JA4 was never seen in training (MTA ≤2022) | 53% / 52% (1,230 of 1,245 distinct JA3) | Background JA3/JA4 mix follows the sandbox hosts |
 | Fingerprint-only models, later period | JA3 0.28, JA4 0.50 (at or below prevalence) | Evaluated on deduplicated distinct values (n = 45–1,418) |
-| Cross-family E9 | *batch 4, pending* | |
+| Cross-family E9, MTA ≤2022 → 2023–26: no fp vs +both | XGB 0.982 vs 0.901; LightGBM 0.983 vs 0.954; RF 0.973 vs 0.948; LR 0.932 vs 0.932 | Holds for every tree family; neutral for LR (`SUMMARY_crossfamily.md`, `fig_c` bottom row) |
+| Cross-family E9, MCFP → MTA 2023–26 | XGB 0.794 vs 0.665; LightGBM 0.699 vs 0.677; RF 0.831 vs 0.853; LR 0.538 vs 0.535 | Not universal: RF ranks slightly better with fingerprints, but has a worse macro-F1 |
 
 **Answer:**
 - Losing the certificate costs ≤ 0.008.
 - The size and timing view (ECH tier) matches the full view except on newer TLS 1.3 flows.
-- JA3 and JA4 both drift: about half of later-period flows carry an unseen hash, and adding either one lowers accuracy under drift.
+- JA3 and JA4 both drift: about half of later-period flows carry an unseen hash.
+- Adding either fingerprint lowers temporal-drift accuracy for every tree family and is neutral for LR.
+- Across datasets the effect depends on the model.

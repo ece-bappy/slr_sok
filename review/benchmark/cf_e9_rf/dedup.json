@@ -1,0 +1,50 @@
+{
+  "no_fp:mta": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "no_fp:mcfp": {
+    "rows_in": 1562779,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 654163,
+    "rows_out": 908616
+  },
+  "fp_ja3:mta": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "fp_ja3:mcfp": {
+    "rows_in": 1562779,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 654163,
+    "rows_out": 908616
+  },
+  "fp_ja4:mta": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "fp_ja4:mcfp": {
+    "rows_in": 1562779,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 654163,
+    "rows_out": 908616
+  },
+  "fp_both:mta": {
+    "rows_in": 62347,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 23,
+    "rows_out": 62324
+  },
+  "fp_both:mcfp": {
+    "rows_in": 1562779,
+    "dropped_in_both_classes": 0,
+    "dropped_within_class_duplicates": 654163,
+    "rows_out": 908616
+  }
+}

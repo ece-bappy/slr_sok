@@ -1,0 +1,17 @@
+scenario,model,feature_set,seed,fingerprint,test_distinct,test_distinct_unseen,test_rows,test_rows_unseen,test_rows_unseen_malicious,test_rows_malicious,test_rows_unseen_benign,test_rows_benign
+mta_old>mta_new,lr,fp_ja3,0,g5_ja3,1245,1230,12882,6837,2958,6186,3879,6696
+mta_old>mta_new,lr,fp_ja3,0,g5_ja3s,151,62,12882,820,281,6186,539,6696
+mcfp>mta_new,lr,fp_ja3,0,g5_ja3,1245,1245,12882,12882,6186,6186,6696,6696
+mcfp>mta_new,lr,fp_ja3,0,g5_ja3s,151,111,12882,8685,4626,6186,4059,6696
+mta_old>mta_new,lr,fp_ja4,0,g5_ja4,85,69,12882,6667,2936,6186,3731,6696
+mta_old>mta_new,lr,fp_ja4,0,g5_ja4s,165,69,12882,839,297,6186,542,6696
+mcfp>mta_new,lr,fp_ja4,0,g5_ja4,85,85,12882,12882,6186,6186,6696,6696
+mcfp>mta_new,lr,fp_ja4,0,g5_ja4s,165,125,12882,9189,4699,6186,4490,6696
+mta_old>mta_new,lr,fp_both,0,g5_ja3,1245,1230,12882,6837,2958,6186,3879,6696
+mta_old>mta_new,lr,fp_both,0,g5_ja3s,151,62,12882,820,281,6186,539,6696
+mta_old>mta_new,lr,fp_both,0,g5_ja4,85,69,12882,6667,2936,6186,3731,6696
+mta_old>mta_new,lr,fp_both,0,g5_ja4s,165,69,12882,839,297,6186,542,6696
+mcfp>mta_new,lr,fp_both,0,g5_ja3,1245,1245,12882,12882,6186,6186,6696,6696
+mcfp>mta_new,lr,fp_both,0,g5_ja3s,151,111,12882,8685,4626,6186,4059,6696
+mcfp>mta_new,lr,fp_both,0,g5_ja4,85,85,12882,12882,6186,6186,6696,6696
+mcfp>mta_new,lr,fp_both,0,g5_ja4s,165,125,12882,9189,4699,6186,4490,6696

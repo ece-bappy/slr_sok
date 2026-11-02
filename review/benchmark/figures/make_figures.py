@@ -112,32 +112,39 @@ def fig_fingerprints() -> None:
     e9 = pd.read_csv(B / "e9" / "summary.csv").set_index(["scenario", "feature_set"])
     sets = ["no_fp", "fp_ja3", "fp_ja4", "fp_both"]
     labels = ["No fingerprint", "+JA3/JA3S", "+JA4/JA4S", "+both"]
-    scen = {"mta_old>mta_new": "MTA ≤2022\n→ 2023–26", "mcfp>mta_new": "MCFP\n→ MTA 2023–26"}
+    scen = {"mta_old>mta_new": "MTA ≤2022 → 2023–26", "mcfp>mta_new": "MCFP → MTA 2023–26"}
+    cols = [OI["green"], OI["orange"], OI["purple"], OI["red"]]
+    hatch = [None, "///", "\\\\\\", "xx"]
     cf = sorted(B.glob("cf_e9_*/summary.csv"))
-    fig, axes = plt.subplots(1, 2 if cf else 1, figsize=(W if cf else W * 0.6, 2.2), squeeze=False,
-                             gridspec_kw={"width_ratios": [1, 1.3] if cf else [1]})
-    ax = axes[0, 0]
+    fig = plt.figure(figsize=(W, 4.0 if cf else 2.2))
+    gs = fig.add_gridspec(2 if cf else 1, 2, hspace=0.55, wspace=0.15)
+    ax = fig.add_subplot(gs[0, :])
     vals = {l: [e9.loc[(s, f), "pr_auc_mean"] for s in scen] for f, l in zip(sets, labels)}
     errs = {l: [e9.loc[(s, f), "pr_auc_std"] for s in scen] for f, l in zip(sets, labels)}
-    bars(ax, list(scen.values()), labels, vals, [OI["green"], OI["orange"], OI["purple"], OI["red"]],
-         [None, "///", "\\\\\\", "xx"], errs)
+    bars(ax, list(scen.values()), labels, vals, cols, hatch, errs)
     ax.set_ylim(0.5, 1.0)
     ax.set_ylabel("PR-AUC")
-    ax.set_title("XGBoost (E9)")
-    ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.08), columnspacing=0.8, handlelength=1.2)
-    if cf:  # cross-family check (batch 4): no fingerprints vs JA3+JA4, MTA <=2022 -> 2023-26
-        ax = axes[0, 1]
-        fam = {"xgb": e9.xs("mta_old>mta_new")}
+    ax.set_title("XGBoost, E9", loc="left")
+    ax.legend(ncol=4, loc="lower left", bbox_to_anchor=(0, 1.1), columnspacing=0.8, handlelength=1.2)
+    if cf:  # cross-family check (batch 4): no fingerprints vs JA3+JA4, per scenario
+        fam = {"xgb": e9}
         for p in cf:
-            fam[p.parent.name.split("_")[-1]] = pd.read_csv(p).set_index(["scenario", "feature_set"]).xs(
-                "mta_old>mta_new")
+            fam[p.parent.name.split("_")[-1]] = pd.read_csv(p).set_index(["scenario", "feature_set"])
         names = {"xgb": "XGB", "lgbm": "LGBM", "rf": "RF", "lr": "LR"}
         order = [k for k in names if k in fam]
-        vals = {l: [fam[k].loc[f, "pr_auc_mean"] for k in order] for f, l in (("no_fp", "No fingerprint"),
-                                                                              ("fp_both", "+both"))}
-        bars(ax, [names[k] for k in order], list(vals), vals, [OI["green"], OI["red"]], [None, "xx"])
-        ax.set_ylim(0.5, 1.0)
-        ax.set_title("All families, MTA ≤2022 → 2023–26")
+        for i, (sc, title) in enumerate(scen.items()):
+            ax = fig.add_subplot(gs[1, i])
+            vals = {l: [fam[k].loc[(sc, f), "pr_auc_mean"] for k in order]
+                    for f, l in (("no_fp", "No fingerprint"), ("fp_both", "+both"))}
+            errs = {l: [fam[k].loc[(sc, f), "pr_auc_std"] for k in order]
+                    for f, l in (("no_fp", "No fingerprint"), ("fp_both", "+both"))}
+            bars(ax, [names[k] for k in order], list(vals), vals, [cols[0], cols[3]], [None, "xx"], errs)
+            ax.set_ylim(0.5, 1.0)
+            ax.set_title(title, fontsize=7, loc="left")
+            if i:
+                ax.set_yticklabels([])
+            else:
+                ax.set_ylabel("PR-AUC")
     save(fig, "fig_c_fingerprints")
 
 
