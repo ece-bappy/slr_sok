@@ -19,11 +19,11 @@ These runs repeat the E2/E3/E4 headline settings with other model families. The 
 | MTA | g1g2 (CNN: with IAT) | E2 / E3 | 0.9995 / 0.912 | – | – | – | 0.962 / 0.891 |
 | HIKARI ‡ | g1g2_notime | E2 (2-attacker transfer) | 0.236 (ROC 0.965) | 0.153 | **0.617** | 0.185 | 0.017 (ROC 0.77) |
 | HIKARI ‡ | g1g2_notime | E3 (2-attacker transfer, reversed) | 0.902 | 0.853 | 0.875 | 0.500 | 0.010 |
-
-‡ Not a headline result. HIKARI has two attacker IPs; E2 trains on one and tests on the other, and E3 does the reverse. See the CNN diagnosis below.
 | MCFP | all | E2 | 0.9999 (recall neg 0.85) | 1.000 (0.87) | 1.000 (0.85) | 0.959 (0.86) | – |
 | MCFP | g1g2_notime | E2 | 0.998 | 0.999 | 0.991 | 0.850 | 0.814 |
 | RAID | G2 | E2 | 1.000 | – | – | – | 1.000 |
+
+‡ Not a headline result. HIKARI has two attacker IPs; E2 trains on one and tests on the other, and E3 does the reverse. See the CNN diagnosis below.
 
 ## E4 cross-dataset, `g1g2_notime` (ROC-AUC, mean over 5 seeds)
 
@@ -37,9 +37,40 @@ These runs repeat the E2/E3/E4 headline settings with other model families. The 
 | MTA bg → ctu | 0.973 | 0.975 | 0.952 | 0.852 | 0.866 | 0.935 |
 | MTA bg → bg (control) | 0.993 | 0.994 | 0.989 | 0.946 | 0.965 | 0.975 |
 
+## BiLSTM next to the CNN (batch 5, 3 Nov 2026)
+
+`run_deep.py --arch bilstm`: one bidirectional LSTM layer (64 units per direction) over the same 20-packet input, max-pooled over time. Same training, early stopping, thresholds and seeds as the CNN rows. Launched in `launch_batch5.sh` (A2, 3 Nov 14:56 WITA; exit 0). Results are in `deep_bilstm/` and `e4_deep_bilstm/`.
+
+Within-dataset, PR-AUC mean ± SD [mean 95% CI]:
+
+| Dataset | Input | Exp | CNN | BiLSTM |
+|---|---|---|---|---|
+| MTA | G2 with IAT | E2 | 0.962 ± 0.005 | 0.965 ± 0.013 [0.963–0.968] |
+| MTA | G2 with IAT | E3 | **0.891** ± 0.008 | 0.864 ± 0.066 [0.856–0.873] |
+| MTA | G2 no timing | E2 | **0.976** ± 0.003 | 0.948 ± 0.027 [0.940–0.956] |
+| MTA | G2 no timing | E3 | 0.788 ± 0.011 | 0.783 ± 0.058 [0.768–0.799] |
+| MCFP | G2 with IAT / no timing | E2 | 1.000 / **0.814** | 0.999 / 0.746 ± 0.037 |
+| RAID | G2 (both) | E2 | 1.000 | 1.000 |
+| HIKARI ‡ | G2 with IAT / no timing | E2 | 0.004 / 0.017 (ROC 0.17 / 0.77) | 0.004 / 0.006 (ROC 0.16 / 0.60) |
+
+E4, ROC-AUC (as in the table above; PR-AUC is in `e4_deep_bilstm/summary.csv`):
+
+| Train → test | CNN no timing | BiLSTM no timing | CNN with IAT | BiLSTM with IAT |
+|---|---|---|---|---|
+| MCFP → MTA | 0.530 | **0.686** | 0.645 | 0.672 |
+| MTA → MCFP | 0.690 | **0.781** | 0.752 | 0.517 |
+| RAID → MTA | 0.656 | 0.646 | 0.402 | 0.525 |
+| RAID → MCFP | 0.615 | 0.723 | 0.859 | 0.939 |
+| MTA bg → ctu | 0.866 | 0.833 | 0.935 | 0.921 |
+| MTA bg → bg (control) | 0.965 | 0.960 | 0.975 | 0.970 |
+
+- The BiLSTM matches the CNN within-dataset (±0.03 PR-AUC), except MCFP without timing (0.75 vs 0.81). It is much less stable across seeds (SD up to 0.15, against up to 0.06 for the CNN).
+- In E4 without timing it ranks better than the CNN (MCFP → MTA ROC 0.69 vs 0.53; MTA → MCFP 0.78 vs 0.69), but it stays far below the bg → bg control (0.96). The E4 conclusion is unchanged.
+- It inverts on HIKARI exactly like the CNN (ROC 0.16 with IAT): the cause is the 2-attacker split, not the architecture.
+
 ## Findings
 
-1. **The E4 conclusions hold for every model family.**
+1. **The E4 conclusions hold for every model family** (the BiLSTM included, see above).
    - No model transfers MCFP → MTA (ROC 0.48–0.65). The RAID-trained models catch little real malware.
    - The control (bg → bg) beats the swapped-negative setting for all six models.
    - The ctu → bg benign recall is model-dependent (0.07–0.74), but it never approaches the control's 0.97.
@@ -63,5 +94,5 @@ With the IAT channel, the CNN scores below chance on HIKARI (ROC 0.12–0.26 on 
 Conclusion: HIKARI E2 is a one-attacker-to-another-attacker transfer test with n = 2, not a grouped generalisation estimate. Its numbers for every model (PR-AUC 0.15–0.62) should be reported with that caveat, or HIKARI E2 dropped from headline tables.
 
 ## Caveats
-- No hyperparameter tuning for any family, and one CNN architecture only. The point is spread across reasonable defaults, not the best attainable score.
+- These rows use fixed defaults per family; the point is spread across reasonable defaults, not the best attainable score. Optuna tuning for every family (batch 5) is in `SUMMARY_tuning.md` and changes no conclusion.
 - The CNN sees 20 packets; the tree models with `g1g2` also see whole-flow statistics (G1).

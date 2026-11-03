@@ -1,0 +1,74 @@
+{
+  "mta|all|E2": {
+    "n_estimators": 530,
+    "max_depth": 21,
+    "min_samples_leaf": 1,
+    "max_features": 0.11781692114002242,
+    "class_weight": "balanced_subsample",
+    "val_pr_auc": 0.9999240948977034,
+    "n_trials_run": 40
+  },
+  "mta|all|E3": {
+    "n_estimators": 257,
+    "max_depth": 26,
+    "min_samples_leaf": 1,
+    "max_features": 0.11868066980753733,
+    "class_weight": "balanced_subsample",
+    "val_pr_auc": 0.9999762578323224,
+    "n_trials_run": 40
+  },
+  "mta|g1g2_notime|E2": {
+    "n_estimators": 375,
+    "max_depth": 26,
+    "min_samples_leaf": 1,
+    "max_features": 0.38977431622814135,
+    "class_weight": null,
+    "val_pr_auc": 0.9980684417108621,
+    "n_trials_run": 40
+  },
+  "mta|g1g2_notime|E3": {
+    "n_estimators": 314,
+    "max_depth": 25,
+    "min_samples_leaf": 2,
+    "max_features": 0.14161350406230894,
+    "class_weight": "balanced_subsample",
+    "val_pr_auc": 0.9946817532869691,
+    "n_trials_run": 40
+  },
+  "mcfp|all|E2": {
+    "n_estimators": 393,
+    "max_depth": 39,
+    "min_samples_leaf": 1,
+    "max_features": 0.1588971652025492,
+    "class_weight": null,
+    "val_pr_auc": 0.9999999395583204,
+    "n_trials_run": 40
+  },
+  "mcfp|g1g2_notime|E2": {
+    "n_estimators": 109,
+    "max_depth": 26,
+    "min_samples_leaf": 1,
+    "max_features": 0.31535613669842255,
+    "class_weight": null,
+    "val_pr_auc": 0.9988427373444942,
+    "n_trials_run": 40
+  },
+  "mcfp>mta|g1g2_notime|E4": {
+    "n_estimators": 577,
+    "max_depth": 32,
+    "min_samples_leaf": 1,
+    "max_features": 0.4287604498640453,
+    "class_weight": null,
+    "val_pr_auc": 0.999302985555594,
+    "n_trials_run": 40
+  },
+  "mta>mcfp|g1g2_notime|E4": {
+    "n_estimators": 188,
+    "max_depth": 27,
+    "min_samples_leaf": 1,
+    "max_features": 0.4755475046571459,
+    "class_weight": null,
+    "val_pr_auc": 0.9980256662114896,
+    "n_trials_run": 40
+  }
+}

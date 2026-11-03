@@ -1,0 +1,265 @@
+--- 02-C-ALL.ipynb cell 19
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell19", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+
+--- 02-C-ALL.ipynb cell 20
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell20", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+
+--- 02-C-ALL.ipynb cell 32
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell32", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+
+--- 02-C-ALL.ipynb cell 33
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell33", line 4, in <module>
+NameError: name 'feature_importances_rf' is not defined
+
+--- 02-C-ALL.ipynb cell 34
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell34", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+
+--- 02-C-ALL.ipynb cell 40
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell40", line 1, in <module>
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1866, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 423, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2721, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2988, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 948, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all.csv'
+
+--- 02-C-ALL.ipynb cell 41
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell41", line 1, in <module>
+NameError: name 'realnet_all' is not defined
+
+--- 02-C-ALL.ipynb cell 42
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell42", line 1, in <module>
+NameError: name 'realnet_all' is not defined
+
+--- 02-C-ALL.ipynb cell 43
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell43", line 2, in <module>
+NameError: name 'realnet_all' is not defined
+
+--- 02-C-ALL.ipynb cell 44
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell44", line 1, in <module>
+NameError: name 'realnet_all_test' is not defined
+
+--- 02-C-ALL.ipynb cell 45
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell45", line 1, in <module>
+NameError: name 'realnet_all_test' is not defined
+
+--- 03-C-CERT.ipynb cell 15
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell15", line 2, in <module>
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/plotting/_core.py", line 261, in hist_frame
+    plot_backend = _get_plot_backend(backend)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/plotting/_core.py", line 2546, in _get_plot_backend
+    module = _load_backend(backend_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/plotting/_core.py", line 2478, in _load_backend
+    raise ImportError(
+ImportError: matplotlib is required for plotting when the default backend "matplotlib" is selected.
+
+--- 03-C-CERT.ipynb cell 40
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell40", line 1, in <module>
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1866, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 423, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2721, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2988, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 948, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all_data13.csv'
+
+--- 03-C-CERT.ipynb cell 41
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell41", line 1, in <module>
+NameError: name 'realnet_all' is not defined
+
+--- 03-C-CERT.ipynb cell 42
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell42", line 3, in <module>
+NameError: name 'realnet13' is not defined
+
+--- 03-C-CERT.ipynb cell 43
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell43", line 1, in <module>
+NameError: name 'x_test_all13' is not defined
+
+--- 03-C-CERT.ipynb cell 45
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell45", line 1, in <module>
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1866, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 423, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2721, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2988, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 948, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all.csv'
+
+--- 03-C-CERT.ipynb cell 46
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell46", line 1, in <module>
+NameError: name 'realnet_all12' is not defined
+
+--- 03-C-CERT.ipynb cell 47
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell47", line 1, in <module>
+NameError: name 'realnet_all12' is not defined
+
+--- 03-C-CERT.ipynb cell 48
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell48", line 1, in <module>
+NameError: name 'realnet_all12' is not defined
+
+--- 03-C-CERT.ipynb cell 49
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell49", line 1, in <module>
+NameError: name 'realnet_all12' is not defined
+
+--- 03-C-CERT.ipynb cell 50
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell50", line 1, in <module>
+NameError: name 'x_test_all12' is not defined
+
+--- 03-C-CERT.ipynb cell 51
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell51", line 1, in <module>
+NameError: name 'x_test_all13' is not defined
+
+--- 04-C-BEHAV.ipynb cell 42
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "04-C-BEHAV.ipynb:cell42", line 1, in <module>
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1866, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 423, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2721, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2988, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 948, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all_data12.csv'
+
+--- 04-C-BEHAV.ipynb cell 43
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "04-C-BEHAV.ipynb:cell43", line 1, in <module>
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1866, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 423, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2721, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 2988, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 948, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all_behav13_new.csv'
+
+--- 04-C-BEHAV.ipynb cell 44
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 101, in main
+    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+  File "04-C-BEHAV.ipynb:cell44", line 1, in <module>
+NameError: name 'realnet_test' is not defined
+

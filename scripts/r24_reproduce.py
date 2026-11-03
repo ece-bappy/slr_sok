@@ -10,7 +10,8 @@ fetch separately. Nothing in the notebooks is edited. Deviations, all logged per
   - cells marked "Skip this if not performing grid search again!" are skipped unless --grid; the notebooks
     then use the hard-coded best parameters that the authors recorded from their own grid search;
   - cells that read data/ucnet/* fail: UCNet (the authors' campus network) is not in the repository;
-  - `display` prints nothing; `multiprocess` and `tqdm.notebook` are mapped to multiprocessing / tqdm.
+  - `display` prints nothing; `multiprocess` and `tqdm.notebook` are mapped to multiprocessing / tqdm;
+    matplotlib, if not installed, is replaced by a no-op stub (plots only; no effect on any number).
 Every result line printed as "a & b & c" (the paper's LaTeX table rows) is compared with the same cell's
 stored output in the notebook, which matches the paper's Tables 2-4; the gaps are in compare.csv.
 """
@@ -33,6 +34,19 @@ WORK = Path("/data/tls-sok/ext/r24")
 NOTEBOOKS = ["02-C-ALL.ipynb", "03-C-CERT.ipynb", "04-C-BEHAV.ipynb"]
 GRID_MARK = "Skip this if not performing grid search again!"
 NUM = re.compile(r"-?\d+\.\d+")
+
+
+class _NoOp:
+    """Stand-in for matplotlib: every attribute and call returns another no-op (plots do not affect results)."""
+
+    def __getattr__(self, name):
+        return _NoOp()
+
+    def __call__(self, *a, **k):
+        return _NoOp()
+
+    def __iter__(self):
+        return iter((_NoOp(), _NoOp()))
 
 
 def table_lines(text: str) -> list[list[float]]:
@@ -61,8 +75,12 @@ def main() -> None:
     import tqdm
     sys.modules["multiprocess"] = multiprocessing
     sys.modules["tqdm.notebook"] = tqdm
-    import matplotlib
-    matplotlib.use("Agg")
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+    except ImportError:  # not in the A2 venv and nothing new is installed: plots become no-ops
+        for m in ("matplotlib", "matplotlib.pyplot", "matplotlib.ticker"):
+            sys.modules[m] = _NoOp()
     os.chdir(WORK)
     sys.path.insert(0, str(WORK))
     cells, compare = [], []

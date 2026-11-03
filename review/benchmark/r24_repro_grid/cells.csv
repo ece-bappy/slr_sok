@@ -1,0 +1,161 @@
+notebook,cell,status,seconds,stdout
+02-C-ALL.ipynb,0,ok,1.1,
+02-C-ALL.ipynb,1,ok,0.0,
+02-C-ALL.ipynb,3,ok,0.2,
+02-C-ALL.ipynb,4,ok,1.6,
+02-C-ALL.ipynb,5,ok,1.6,
+02-C-ALL.ipynb,6,ok,1.5,
+02-C-ALL.ipynb,7,ok,0.5,
+02-C-ALL.ipynb,8,ok,0.0,
+02-C-ALL.ipynb,9,ok,0.7,
+02-C-ALL.ipynb,10,ok,0.6,
+02-C-ALL.ipynb,11,ok,0.4,
+02-C-ALL.ipynb,12,ok,0.0,
+02-C-ALL.ipynb,13,ok,0.7,
+02-C-ALL.ipynb,14,ok,4.3,
+02-C-ALL.ipynb,16,ok,0.0,
+02-C-ALL.ipynb,17,ok,0.0,
+02-C-ALL.ipynb,18,ok,0.0,
+02-C-ALL.ipynb,19,error: AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_',0.0,
+02-C-ALL.ipynb,20,error: AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_',0.0,
+02-C-ALL.ipynb,21,ok,1.1,
+02-C-ALL.ipynb,23,ok,3.6,
+02-C-ALL.ipynb,24,ok,0.8,"2479
+"
+02-C-ALL.ipynb,25,ok,0.0,
+02-C-ALL.ipynb,26,ok,0.1,
+02-C-ALL.ipynb,27,ok,0.2,"96.87 & 98.82 & 100.00 & 99.98 & 100.00 & 0.00 & 0.00 & 0.00 & 99.98
+"
+02-C-ALL.ipynb,28,ok,0.0,"100.00 & 99.98 & 100.00 & 0.00 & 0.00
+"
+02-C-ALL.ipynb,30,ok,0.0,
+02-C-ALL.ipynb,31,ok,0.0,
+02-C-ALL.ipynb,32,error: AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_',0.0,
+02-C-ALL.ipynb,33,error: NameError: name 'feature_importances_rf' is not defined,0.0,
+02-C-ALL.ipynb,34,error: AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_',0.0,
+02-C-ALL.ipynb,35,ok,9.2,
+02-C-ALL.ipynb,36,ok,1.2,"96.68 & 98.92 & 100.00 & 100.00 & 100.00 & 0.00 & 0.00 & 0.00 & 99.98
+"
+02-C-ALL.ipynb,38,ok,0.3,"100.00 & 100.00 & 100.00 & 0.00 & 0.00
+"
+02-C-ALL.ipynb,40,error: FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all.csv' (UCNet data not released),0.0,
+02-C-ALL.ipynb,41,error: NameError: name 'realnet_all' is not defined,0.0,
+02-C-ALL.ipynb,42,error: NameError: name 'realnet_all' is not defined,0.0,
+02-C-ALL.ipynb,43,error: NameError: name 'realnet_all' is not defined,0.0,
+02-C-ALL.ipynb,44,error: NameError: name 'realnet_all_test' is not defined,0.0,
+02-C-ALL.ipynb,45,error: NameError: name 'realnet_all_test' is not defined,0.0,
+03-C-CERT.ipynb,0,ok,0.0,
+03-C-CERT.ipynb,2,ok,38.7,
+03-C-CERT.ipynb,3,ok,0.0,
+03-C-CERT.ipynb,4,ok,0.6,
+03-C-CERT.ipynb,5,ok,0.0,
+03-C-CERT.ipynb,6,ok,0.0,
+03-C-CERT.ipynb,7,ok,0.0,"258478
+"
+03-C-CERT.ipynb,8,ok,0.0,
+03-C-CERT.ipynb,9,ok,0.0,
+03-C-CERT.ipynb,10,ok,0.3,
+03-C-CERT.ipynb,11,ok,0.0,
+03-C-CERT.ipynb,12,ok,0.8,
+03-C-CERT.ipynb,13,ok,1.4,
+03-C-CERT.ipynb,14,ok,0.1,
+03-C-CERT.ipynb,15,"error: ImportError: matplotlib is required for plotting when the default backend ""matplotlib"" is selected.",0.0,
+03-C-CERT.ipynb,16,ok,0.0,
+03-C-CERT.ipynb,17,ok,0.0,
+03-C-CERT.ipynb,18,ok,2.5,
+03-C-CERT.ipynb,19,ok,0.0,
+03-C-CERT.ipynb,20,ok,0.0,
+03-C-CERT.ipynb,22,ok,0.0,
+03-C-CERT.ipynb,23,ok,0.0,
+03-C-CERT.ipynb,24,ok,0.0,"-22
+-467
+"
+03-C-CERT.ipynb,25,ok,1.4,
+03-C-CERT.ipynb,26,ok,0.0,
+03-C-CERT.ipynb,27,ok,31.9,"0.9838644605179621 {'class_weight': 'balanced', 'criterion': 'gini', 'max_depth': 1}
+"
+03-C-CERT.ipynb,28,ok,0.1,
+03-C-CERT.ipynb,29,ok,0.2,"56.61 & 98.89 & 99.73 & 94.91 & 100.00 & 0.00 & 100.00 & 0.00 & 99.61
+"
+03-C-CERT.ipynb,30,ok,0.1,"56.61 & 98.89 & 99.73 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,31,ok,0.1,"94.91 & 100.00 & 0.00 & 99.61
+"
+03-C-CERT.ipynb,32,ok,0.1,"99.80 & 94.89 & 100.00 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,33,ok,940.9,"0.9824044017056396 {'class_weight': 'balanced', 'criterion': 'gini', 'max_depth': 5, 'n_estimators': 40}
+"
+03-C-CERT.ipynb,34,ok,1.6,
+03-C-CERT.ipynb,35,ok,0.5,"76.69 & 99.77 & 99.74 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,36,ok,0.3,"99.91 & 100.00 & 0.00 & 99.48
+"
+03-C-CERT.ipynb,37,ok,0.2,"99.78 & 99.94 & 100.00 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,38,ok,0.2,"99.86 & 75.00
+"
+03-C-CERT.ipynb,40,error: FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all_data13.csv' (UCNet data not released),0.0,
+03-C-CERT.ipynb,41,error: NameError: name 'realnet_all' is not defined,0.0,
+03-C-CERT.ipynb,42,error: NameError: name 'realnet13' is not defined,0.0,
+03-C-CERT.ipynb,43,error: NameError: name 'x_test_all13' is not defined,0.0,
+03-C-CERT.ipynb,44,ok,0.0,
+03-C-CERT.ipynb,45,error: FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all.csv' (UCNet data not released),0.0,
+03-C-CERT.ipynb,46,error: NameError: name 'realnet_all12' is not defined,0.0,
+03-C-CERT.ipynb,47,error: NameError: name 'realnet_all12' is not defined,0.0,
+03-C-CERT.ipynb,48,error: NameError: name 'realnet_all12' is not defined,0.0,
+03-C-CERT.ipynb,49,error: NameError: name 'realnet_all12' is not defined,0.0,
+03-C-CERT.ipynb,50,error: NameError: name 'x_test_all12' is not defined,0.0,
+03-C-CERT.ipynb,51,error: NameError: name 'x_test_all13' is not defined,0.0,
+04-C-BEHAV.ipynb,0,ok,0.0,
+04-C-BEHAV.ipynb,1,ok,0.0,
+04-C-BEHAV.ipynb,2,ok,0.0,
+04-C-BEHAV.ipynb,3,ok,0.0,
+04-C-BEHAV.ipynb,4,ok,1.1,
+04-C-BEHAV.ipynb,5,ok,0.0,
+04-C-BEHAV.ipynb,6,ok,3.5,
+04-C-BEHAV.ipynb,7,ok,0.0,
+04-C-BEHAV.ipynb,8,ok,0.3,
+04-C-BEHAV.ipynb,9,ok,0.2,
+04-C-BEHAV.ipynb,10,ok,0.3,
+04-C-BEHAV.ipynb,11,ok,0.0,
+04-C-BEHAV.ipynb,12,ok,0.3,
+04-C-BEHAV.ipynb,13,ok,0.1,
+04-C-BEHAV.ipynb,14,ok,0.0,
+04-C-BEHAV.ipynb,15,ok,0.3,
+04-C-BEHAV.ipynb,16,ok,0.6,
+04-C-BEHAV.ipynb,17,ok,0.0,
+04-C-BEHAV.ipynb,18,ok,0.1,
+04-C-BEHAV.ipynb,19,ok,0.1,
+04-C-BEHAV.ipynb,21,ok,0.0,
+04-C-BEHAV.ipynb,22,ok,0.0,
+04-C-BEHAV.ipynb,23,ok,296.2,"0.9218217907791771 {'class_weight': None, 'criterion': 'entropy', 'max_depth': 16, 'splitter': 'best'}
+"
+04-C-BEHAV.ipynb,24,ok,2.7,
+04-C-BEHAV.ipynb,25,ok,1.0,
+04-C-BEHAV.ipynb,26,ok,0.1,"93.90 & 95.64 & 99.93 & 98.97 & 98.85
+"
+04-C-BEHAV.ipynb,27,ok,0.1,"93.90 & 95.64 & 99.93 & 98.97 & 98.85
+"
+04-C-BEHAV.ipynb,28,ok,0.4,"89.90 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,29,ok,0.4,"98.64 & 93.93 & 93.54 & 97.27
+"
+04-C-BEHAV.ipynb,30,ok,0.2,"99.30 & 93.50
+"
+04-C-BEHAV.ipynb,32,ok,0.0,
+04-C-BEHAV.ipynb,33,ok,5322.5,"0.9314494643362377 {'class_weight': 'balanced', 'max_depth': 25, 'max_features': 'sqrt', 'n_estimators': 40}
+"
+04-C-BEHAV.ipynb,34,ok,4.9,
+04-C-BEHAV.ipynb,35,ok,0.1,
+04-C-BEHAV.ipynb,36,ok,13.3,
+04-C-BEHAV.ipynb,37,ok,1.0,"90.61 & 98.14 & 99.82 & 99.20 & 99.10
+"
+04-C-BEHAV.ipynb,38,ok,0.8,"100.00 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,39,ok,1.6,"99.73 & 93.93 & 93.23 & 99.21
+"
+04-C-BEHAV.ipynb,40,ok,0.1,"99.80 & 93.50
+"
+04-C-BEHAV.ipynb,42,error: FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all_data12.csv' (UCNet data not released),0.0,
+04-C-BEHAV.ipynb,43,error: FileNotFoundError: [Errno 2] No such file or directory: 'data/ucnet/all_behav13_new.csv' (UCNet data not released),0.0,
+04-C-BEHAV.ipynb,44,error: NameError: name 'realnet_test' is not defined,0.0,

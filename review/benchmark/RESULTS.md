@@ -29,13 +29,17 @@ Figure: `figures/fig_a_collapse.pdf`. Summaries: `SUMMARY.md`, `SUMMARY_mta_mcfp
 | E4 MCFP → MTA, all | 0.844 [0.840–0.849] | 0.448 [0.445–0.450] | Ranks, but the source threshold flags 98% of MTA background |
 | E4 MTA → MCFP, G1+G2 no timing | 0.849 [0.846–0.853] | 0.821 [0.819–0.823] | Test prevalence 34% |
 | E4 RAID → MTA, G1+G2 no timing | 0.637 [0.628–0.645] | 0.337 [0.334–0.339] | Malicious recall 0.000 at the max-F1 threshold |
-| Other families (LightGBM, RF, LR, 1D-CNN) | same pattern | | E4 conclusions hold across every family (`SUMMARY_models.md`) |
-| Tuned XGBoost (Optuna, 40 trials) | E2 ≤ +0.004; E4 ±0.01 | | Only MTA all E3 gains (0.899 → 0.949); tuning on source validation cannot fix shift (`SUMMARY_tuning.md`) |
+| Other families (LightGBM, RF, LR, 1D-CNN, BiLSTM) | same pattern | | E4 conclusions hold across every family. BiLSTM ≈ CNN within-dataset; ROC 0.69 vs 0.53 on MCFP → MTA without timing, still far below the control's 0.96 (`SUMMARY_models.md`) |
+| Optuna tuning, all six families (40 trials, source validation only) | within ±0.10; 10 of 42 settings worse after tuning | | Tuned MCFP → MTA stays at 0.51–0.63 (prevalence 0.46–0.49) in every family; no conclusion changes (`SUMMARY_tuning.md`) |
+| **Published baseline, RAID 2024** C-Cert / C-Behav RF, reproduced from the authors' code | RAID E2 0.999 / 1.000; MTA E3 0.880 [0.872–0.887] / 0.890 [0.883–0.896] | MTA E3 0.773 / 0.792 | Code reproduces the paper's tables exactly (C-Basic, C-Cert) or within 1 pp (C-Behav). Under drift both trail XGB on the same rows (0.941 / 0.903). C-Cert covers only 45% of MTA flows (28% of malicious) (`SUMMARY_r24.md`) |
+| RAID 2024 baselines, E4 MCFP → MTA | C-Cert RF 0.820, C-Behav RF 0.863 | **C-Cert 0.789** vs XGB same rows 0.333 | The low-capacity C-Cert keeps its operating point (TNR 0.99, TPR 0.48), but only on the flows it covers. C-Behav does not transfer (TPR 0.16) |
+| Unsupervised (Isolation Forest, autoencoder; benign-only training) | MTA E2 AE ROC 0.88; E3 0.78; MCFP → MTA ≈ 0.5–0.6 | | At a 1% benign-validation FPR threshold they catch only 0.3–21% of malicious flows; on MTA E3 that threshold gives a 13.6% test FPR (`SUMMARY_unsup.md`) |
 
 **Answer:**
 - In-dataset grouped splits remain near-perfect.
 - Temporal drift costs about 0.1 PR-AUC on MTA.
 - Cross-dataset transfer loses 0.15–0.4 PR-AUC, and no source-validated operating point survives it.
+- This holds for six model families with or without tuning, for the published RAID 2024 classifiers, and for unsupervised anomaly detectors. The one partial exception is the single-feature C-Cert, which keeps a usable operating point across datasets on the minority of flows where it applies.
 
 ## RQ2: Which feature groups carry the signal; how much is shortcut or circularity? (E5a, E5b)
 
