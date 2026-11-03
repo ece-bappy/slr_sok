@@ -1,14 +1,16 @@
-"""Deep packet-sequence model (1D-CNN) for E2/E3/E4 headline settings (runs on A2's GPU, torch venv).
+"""Deep packet-sequence models (1D-CNN, BiLSTM) for E2/E3/E4 headline settings (runs on A2's GPU, torch venv).
 
-Usage: /data/tls-sok/venv-torch/bin/python scripts/run_deep.py {within,e4} [--seeds 5]
+Usage: /data/tls-sok/venv-torch/bin/python scripts/run_deep.py {within,e4} [--seeds 5] [--arch cnn|bilstm]
 
 Input: the first 20 packets of each flow (G2): signed size (direction x size / 1500), direction, and
 log1p(inter-arrival ms); the *_notime variant drops the inter-arrival channel. No TLS fields, so the
 model sits in the TLS 1.3 + ECH visibility tier. Same protocol as run_benchmark.py / run_e4.py:
 per-table dedup on the G2 columns, 1:1 training balance, validation-only early stopping and thresholds,
 5 seeds, bootstrap CIs.
-Model: Conv1d(C->64, k3) -> ReLU -> Conv1d(64->64, k3) -> ReLU -> global max pool -> Linear(64->1);
-Adam 1e-3, batch 512, at most 30 epochs, early stopping on validation loss (patience 3).
+Models: CNN = Conv1d(C->64, k3) -> ReLU -> Conv1d(64->64, k3) -> ReLU -> global max pool -> Linear(64->1);
+BiLSTM = 1-layer bidirectional LSTM (hidden 64 per direction) over the 20 packets -> max pool over time ->
+Linear(128->1). Both: Adam 1e-3, batch 512, at most 30 epochs, early stopping on validation loss
+(patience 3). train() takes an optional hyperparameter dict (used by tune.py only).
 """
 import argparse
 import json
@@ -47,13 +49,28 @@ def tensor(df: pd.DataFrame, timing: bool) -> np.ndarray:
 
 
 class CNN(nn.Module):
-    def __init__(self, c: int):
+    def __init__(self, c: int, width: int = 64, dropout: float = 0.0):
         super().__init__()
-        self.net = nn.Sequential(nn.Conv1d(c, 64, 3, padding=1), nn.ReLU(), nn.Conv1d(64, 64, 3, padding=1),
-                                 nn.ReLU(), nn.AdaptiveMaxPool1d(1), nn.Flatten(), nn.Linear(64, 1))
+        self.net = nn.Sequential(nn.Conv1d(c, width, 3, padding=1), nn.ReLU(), nn.Conv1d(width, width, 3, padding=1),
+                                 nn.ReLU(), nn.AdaptiveMaxPool1d(1), nn.Flatten(), nn.Dropout(dropout),
+                                 nn.Linear(width, 1))
 
     def forward(self, x):
         return self.net(x).squeeze(1)
+
+
+class BiLSTM(nn.Module):
+    def __init__(self, c: int, width: int = 64, dropout: float = 0.0):
+        super().__init__()
+        self.lstm = nn.LSTM(c, width, batch_first=True, bidirectional=True)
+        self.head = nn.Sequential(nn.Dropout(dropout), nn.Linear(2 * width, 1))
+
+    def forward(self, x):  # x: (batch, channels, 20) as for the CNN
+        out, _ = self.lstm(x.transpose(1, 2))
+        return self.head(out.max(dim=1).values).squeeze(1)
+
+
+ARCH = {"cnn": (CNN, "cnn1d"), "bilstm": (BiLSTM, "bilstm")}
 
 
 def scores(model, x: np.ndarray) -> np.ndarray:
@@ -65,10 +82,11 @@ def scores(model, x: np.ndarray) -> np.ndarray:
     return np.concatenate(out) if out else np.array([])
 
 
-def train(x_tr, y_tr, x_va, y_va, seed: int):
+def train(x_tr, y_tr, x_va, y_va, seed: int, arch: str = "cnn", hp: dict | None = None):
+    hp = {"lr": 1e-3, "batch": 512, "width": 64, "dropout": 0.0, "weight_decay": 0.0, **(hp or {})}
     torch.manual_seed(seed)
-    model = CNN(x_tr.shape[1]).to(DEV)
-    opt = torch.optim.Adam(model.parameters(), lr=1e-3)
+    model = ARCH[arch][0](x_tr.shape[1], hp["width"], hp["dropout"]).to(DEV)
+    opt = torch.optim.Adam(model.parameters(), lr=hp["lr"], weight_decay=hp["weight_decay"])
     loss_fn = nn.BCEWithLogitsLoss()
     xt, yt = torch.from_numpy(x_tr), torch.from_numpy(y_tr.astype(np.float32))
     xv, yv = torch.from_numpy(x_va).to(DEV), torch.from_numpy(y_va.astype(np.float32)).to(DEV)
@@ -76,7 +94,7 @@ def train(x_tr, y_tr, x_va, y_va, seed: int):
     g = torch.Generator().manual_seed(seed)
     for epoch in range(30):
         model.train()
-        for idx in torch.randperm(len(xt), generator=g).split(512):
+        for idx in torch.randperm(len(xt), generator=g).split(int(hp["batch"])):
             opt.zero_grad()
             loss = loss_fn(model(xt[idx].to(DEV)), yt[idx].to(DEV))
             loss.backward()
@@ -112,8 +130,9 @@ KEYS = ["pr_auc", "roc_auc", "macro_f1", "recall_malicious", "recall_benign", "t
         "test_fpr_at_that_threshold", "accuracy"]
 
 
-def within(seeds: int, boot: int, datasets: str, out_name: str) -> None:
+def within(seeds: int, boot: int, datasets: str, out_name: str, arch: str = "cnn") -> None:
     rows, ver_rows = [], []
+    name = ARCH[arch][1]
     plan = {"mta": ("E2", "E3"), "hikari": ("E2", "E3"), "mcfp": ("E2",), "raid": ("E2",)}
     plan = {k: v for k, v in plan.items() if k in datasets.split(",")}
     for ds, exps in plan.items():
@@ -125,21 +144,22 @@ def within(seeds: int, boot: int, datasets: str, out_name: str) -> None:
             for exp in exps:
                 for seed in range(seeds):
                     sp = split(df, exp, ds, seed)
-                    base = {"dataset": ds, "model": "cnn1d", "feature_set": fs, "experiment": exp, "seed": seed}
+                    base = {"dataset": ds, "model": name, "feature_set": fs, "experiment": exp, "seed": seed}
                     if isinstance(sp, str):
                         rows.append({**base, "status": sp})
                         break
                     tr, va, te = sp
                     trb = balance(tr, y, seed)
-                    model, ep = train(x[trb], y[trb], x[va], y[va], seed)
+                    model, ep = train(x[trb], y[trb], x[va], y[va], seed, arch)
                     evaluate(base, y[va], scores(model, x[va]), y[te], scores(model, x[te]),
                              df["k_tls_version"].to_numpy()[te], boot, seed, rows, ver_rows,
                              {"status": "ok", "n_train_balanced": len(trb), "epochs": ep})
     save(OUT / out_name, rows, ver_rows, ["dataset", "model", "feature_set", "experiment"])
 
 
-def e4(seeds: int, boot: int, out_name: str) -> None:
+def e4(seeds: int, boot: int, out_name: str, arch: str = "cnn") -> None:
     rows, ver_rows = [], []
+    name = ARCH[arch][1]
     tables = {n: pd.read_parquet(f"{TABLES}/{n}.parquet") for n in ("mta", "mcfp", "raid")}
     for timing in (True, False):
         fs = "cnn_g2" if timing else "cnn_g2_notime"
@@ -151,8 +171,8 @@ def e4(seeds: int, boot: int, out_name: str) -> None:
                 tr, va = train_test_split(np.arange(len(train_df)), test_size=0.15, stratify=y, random_state=seed)
                 trb = balance(tr, y, seed)
                 x = tensor(train_df, timing)
-                model, ep = train(x[trb], y[trb], x[va], y[va], seed)
-                base = {"pair": pair, "model": "cnn1d", "feature_set": fs, "seed": seed}
+                model, ep = train(x[trb], y[trb], x[va], y[va], seed, arch)
+                base = {"pair": pair, "model": name, "feature_set": fs, "seed": seed}
                 evaluate(base, y[va], scores(model, x[va]), test_df["label"].to_numpy(),
                          scores(model, tensor(test_df, timing)), test_df["k_tls_version"].to_numpy(), boot, seed,
                          rows, ver_rows, {"n_train_balanced": len(trb), "epochs": ep})
@@ -182,8 +202,11 @@ if __name__ == "__main__":
     ap.add_argument("--boot", type=int, default=200)
     ap.add_argument("--datasets", default="mta,hikari,mcfp,raid", help="within only")
     ap.add_argument("--name", default=None, help="output folder (default deep / e4_deep)")
+    ap.add_argument("--arch", default="cnn", choices=list(ARCH))
+    ap.add_argument("--pairs", default=",".join(PAIRS), help="e4 only")
     a = ap.parse_args()
     if a.part == "within":
-        within(a.seeds, a.boot, a.datasets, a.name or "deep")
+        within(a.seeds, a.boot, a.datasets, a.name or "deep", a.arch)
     else:
-        e4(a.seeds, a.boot, a.name or "e4_deep")
+        PAIRS[:] = a.pairs.split(",")
+        e4(a.seeds, a.boot, a.name or "e4_deep", a.arch)

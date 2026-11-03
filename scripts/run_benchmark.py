@@ -211,10 +211,13 @@ def _numeric(x: pd.DataFrame) -> pd.DataFrame:
 
 class LinearPrep:
     """Logistic-regression input: signed log1p, train-median imputation with missing flags, z-scaling;
-    categoricals one-hot over their 30 most frequent training values."""
+    categoricals one-hot over their top_k (default 30) most frequent training values."""
+
+    def __init__(self, top_k: int = 30):
+        self.top_k = top_k
 
     def fit(self, x: pd.DataFrame):
-        self.cats = {c: x[c].value_counts().index[:30].tolist() for c in x if str(x[c].dtype) == "category"}
+        self.cats = {c: x[c].value_counts().index[:self.top_k].tolist() for c in x if str(x[c].dtype) == "category"}
         num = self._num(x)
         self.med = num.median()
         self.flag = [c for c in num if num[c].isna().any()]
@@ -238,36 +241,41 @@ class LinearPrep:
 
 XGB_DEFAULTS = {"n_estimators": 1000, "max_depth": 8, "learning_rate": 0.1, "subsample": 0.8,
                 "colsample_bytree": 0.8, "early_stopping_rounds": 30}
+LGBM_DEFAULTS = {"n_estimators": 1000, "num_leaves": 63, "learning_rate": 0.05, "subsample": 0.8, "subsample_freq": 1,
+                 "colsample_bytree": 0.8}
+RF_DEFAULTS = {"n_estimators": 300, "min_samples_leaf": 2, "max_features": "sqrt"}
+LR_DEFAULTS = {"C": 1.0, "top_k": 30}
 
 
 def fit_predict(kind: str, x_tr, y_tr, x_va, y_va, x_others: list, seed: int, jobs: int, params: dict | None = None):
     """Fit one model; return (validation scores, [scores for x_others], best iteration, {feature: importance}).
-    params overrides the fixed XGBoost hyperparameters (used by tune.py only)."""
+    params overrides the fixed hyperparameters of that family (used by tune.py only)."""
+    params = dict(params or {})
     if kind == "xgb":
         import xgboost as xgb  # imported here so the torch venv (run_deep.py) can use this module without it
-        m = xgb.XGBClassifier(**{**XGB_DEFAULTS, **(params or {})}, tree_method="hist", enable_categorical=True,
+        m = xgb.XGBClassifier(**{**XGB_DEFAULTS, **params}, tree_method="hist", enable_categorical=True,
                               max_cat_to_onehot=1, n_jobs=jobs, random_state=seed, eval_metric="logloss")
         m.fit(x_tr, y_tr, eval_set=[(x_va, y_va)], verbose=False)
         imp, best = m.get_booster().get_score(importance_type="gain"), m.best_iteration
         score = lambda x: m.predict_proba(x)[:, 1]
     elif kind == "lgbm":
         import lightgbm as lgb
-        m = lgb.LGBMClassifier(n_estimators=1000, num_leaves=63, learning_rate=0.05, subsample=0.8,
-                               subsample_freq=1, colsample_bytree=0.8, n_jobs=jobs, random_state=seed, verbose=-1)
-        m.fit(x_tr, y_tr, eval_set=[(x_va, y_va)], callbacks=[lgb.early_stopping(30, verbose=False)])
+        stop = params.pop("early_stopping_rounds", 30)
+        m = lgb.LGBMClassifier(**{**LGBM_DEFAULTS, **params}, n_jobs=jobs, random_state=seed, verbose=-1)
+        m.fit(x_tr, y_tr, eval_set=[(x_va, y_va)], callbacks=[lgb.early_stopping(stop, verbose=False)])
         imp = dict(zip(x_tr.columns, m.booster_.feature_importance("gain")))
         best, score = m.best_iteration_, lambda x: m.predict_proba(x)[:, 1]
     elif kind == "rf":
         from sklearn.ensemble import RandomForestClassifier
-        m = RandomForestClassifier(n_estimators=300, min_samples_leaf=2, max_features="sqrt", n_jobs=jobs,
-                                   random_state=seed)
+        m = RandomForestClassifier(**{**RF_DEFAULTS, **params}, n_jobs=jobs, random_state=seed)
         m.fit(_numeric(x_tr), y_tr)
         imp, best = dict(zip(x_tr.columns, m.feature_importances_)), None
         score = lambda x: m.predict_proba(_numeric(x))[:, 1]
     elif kind == "lr":
         from sklearn.linear_model import LogisticRegression
-        prep = LinearPrep().fit(x_tr)
-        m = LogisticRegression(C=1.0, max_iter=2000)
+        p = {**LR_DEFAULTS, **params}
+        prep = LinearPrep(int(p["top_k"])).fit(x_tr)
+        m = LogisticRegression(C=p["C"], max_iter=2000)
         m.fit(prep.transform(x_tr), y_tr)
         imp, best = {}, None
         score = lambda x: m.predict_proba(prep.transform(x))[:, 1]
