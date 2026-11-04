@@ -9,7 +9,8 @@ data/ms -> our OSF download of the Metasploit dataset (certificates_length.csv),
 fetch separately. Nothing in the notebooks is edited. Deviations, all logged per cell in cells.csv:
   - cells marked "Skip this if not performing grid search again!" are skipped unless --grid; the notebooks
     then use the hard-coded best parameters that the authors recorded from their own grid search;
-  - cells that read data/ucnet/* fail: UCNet (the authors' campus network) is not in the repository;
+  - cells that read data/ucnet/* fail: UCNet (the authors' campus network) is not in the repository; the
+    README links an anonymised preprocessed copy (osf.io/x6yjg), which was not downloaded here;
   - `display` prints nothing; `multiprocess` and `tqdm.notebook` are mapped to multiprocessing / tqdm;
     matplotlib, if not installed, is replaced by a no-op stub (plots only; no effect on any number).
 Every result line printed as "a & b & c" (the paper's LaTeX table rows) is compared with the same cell's
@@ -103,7 +104,7 @@ def main() -> None:
             except Exception as exc:
                 status = f"error: {type(exc).__name__}: {str(exc)[:200]}"
                 if "ucnet" in src:
-                    status += " (UCNet data not released)"
+                    status += " (UCNet data not downloaded: osf.io/x6yjg)"
                 (out / "errors.log").open("a").write(f"--- {nb_name} cell {i}\n{traceback.format_exc()}\n")
             got = buf.getvalue()
             cells.append({**rec, "status": status, "seconds": round(time.time() - t0, 1), "stdout": got[-500:]})

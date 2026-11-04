@@ -21,7 +21,7 @@ Barradas, Novo et al., *Extending C2 Traffic Detection Methodologies: From TLS 1
   - C-Behav DT: identical (CV F1 0.92182 vs 0.92185).
   - C-Behav RF: depth 25 with 40 trees instead of depth 20 with 70 trees (CV F1 0.931 vs 0.934).
   - The notebooks then use the hard-coded values, so the tables are unaffected.
-- **Not reproducible:** the UCNet results (their campus network; the data is not released). Those cells fail with FileNotFoundError.
+- **Not reproduced here:** the UCNet results (their campus network). The raw traces are not released; the README links an anonymised, preprocessed copy for validation (osf.io/x6yjg). We did not download it, because no new downloads were approved, so those cells fail with FileNotFoundError. Fetching that copy into `data/ucnet/` would let them run.
 - **Deviations** (logged per cell in `cells.csv`):
   - `display()` is silenced.
   - `multiprocess` → `multiprocessing`; `tqdm.notebook` → `tqdm`.
