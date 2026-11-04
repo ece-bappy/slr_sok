@@ -9,8 +9,9 @@ data/ms -> our OSF download of the Metasploit dataset (certificates_length.csv),
 fetch separately. Nothing in the notebooks is edited. Deviations, all logged per cell in cells.csv:
   - cells marked "Skip this if not performing grid search again!" are skipped unless --grid; the notebooks
     then use the hard-coded best parameters that the authors recorded from their own grid search;
-  - cells that read data/ucnet/* fail: UCNet (the authors' campus network) is not in the repository; the
-    README links an anonymised preprocessed copy (osf.io/x6yjg), which was not downloaded here;
+  - UCNet (the authors' campus network) is not in the repository; the README links an anonymised Joy table
+    (osf.io/x6yjg). With it downloaded and data/ucnet/ built by r24_ucnet_prep.py, the UCNet cells run and
+    their printed true-negative rates are compared with the stored outputs as well;
   - `display` prints nothing; `multiprocess` and `tqdm.notebook` are mapped to multiprocessing / tqdm;
     matplotlib, if not installed, is replaced by a no-op stub (plots only; no effect on any number).
 Every result line printed as "a & b & c" (the paper's LaTeX table rows) is compared with the same cell's
@@ -69,6 +70,7 @@ def main() -> None:
     a = ap.parse_args()
     out = Path(a.out + ("_grid" if a.grid else ""))
     out.mkdir(parents=True, exist_ok=True)
+    (out / "errors.log").unlink(missing_ok=True)
     (WORK / "data").mkdir(parents=True, exist_ok=True)
     if not (WORK / "data" / "ms").exists():
         os.symlink("/data/tls-sok/raw/raid_ms", WORK / "data" / "ms")
@@ -109,6 +111,9 @@ def main() -> None:
             got = buf.getvalue()
             cells.append({**rec, "status": status, "seconds": round(time.time() - t0, 1), "stdout": got[-500:]})
             ours, theirs = table_lines(got), table_lines(stored_text(c))
+            if "realnet" in src:  # UCNet cells print plain numbers (percent in 02/03, fractions in 04), not table rows
+                pct = lambda t: [[v * 100 if v <= 1 else v for v in map(float, NUM.findall(t))]]
+                ours, theirs = (pct(got), pct(stored_text(c))) if NUM.findall(stored_text(c)) else ([], [])
             for k, (o, t) in enumerate(zip(ours, theirs)):
                 compare.append({"notebook": nb_name, "cell": i, "row": k, "reported": " & ".join(f"{v:.2f}" for v in t),
                                 "reproduced": " & ".join(f"{v:.2f}" for v in o),
