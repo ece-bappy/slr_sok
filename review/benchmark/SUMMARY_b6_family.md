@@ -39,7 +39,30 @@ Recall on the held-out family's malicious flows at the validation max-F1 thresho
    - At the strict operating point (TPR at val-FPR 10⁻³) the gap is larger: IcedID 0.24 → 0.96, Ursnif 0.41 → 0.99.
 2. **The no-G5 model pays on the background of two families.** Emotet posts' benign recall is 0.82 → 0.66, and Hancitor's 0.99 → 0.94. Those posts' background traffic resembles other families' C2 in flow and handshake terms.
 3. **Some families are hard regardless.** ClickFix (20 malicious flows) and DarkGate (10) stay below 0.6 recall. They are small and recent (2024–26), and both are delivery chains rather than one C2 protocol.
-4. **This is the family-level version of the E3/E9 result:** a hash-based model recognises the families it has seen; flow and handshake features generalise to new ones.
+4. **For XGBoost, this is the family-level version of the E3/E9 result:** a hash-based model recognises the families it has seen; flow and handshake features generalise to new ones. 7b below shows this is strongest for XGBoost and partial for RF and LightGBM.
+
+## 7b: LightGBM and RF (`b6_family_models/`, same families and splits, 5 seeds)
+
+Launched in `launch_batch6c.sh` (A2, 8 Nov 14:30–14:38 WITA; exit 0). Recall on the held-out family's malicious flows at the validation max-F1 threshold, G1–G5 → no G5:
+
+| Held-out family (malicious flows) | XGBoost | LightGBM | RF |
+|---|---|---|---|
+| Lumma (1,356) | 0.49 → **0.90** | 0.93 → 0.94 | 0.47 → **0.76** |
+| IcedID (993) | 0.43 → **0.99** | 0.99 → 0.98 | 0.98 → 0.99 |
+| Cobalt Strike (419) | 0.63 → **0.98** | 0.88 → **0.98** | 0.95 → 0.95 |
+| Gootloader (258) | 0.57 → 0.72 | 0.67 → 0.76 | 0.52 → 0.71 |
+| Ursnif (195) | 0.82 → **0.99** | 0.99 → 0.99 | 0.98 → 0.99 |
+| ClickFix (20) | 0.35 → 0.57 | 0.50 → 0.55 | 0.49 → 0.43 |
+| DarkGate (10) | 0.26 → 0.42 | 0.38 → 0.40 | 0.32 → 0.44 |
+| The other 6 families | ≥ 0.98 either way | ≥ 0.99 either way | ≥ 0.98 either way |
+
+Background recall in Emotet posts is the weak spot for every family (LightGBM 0.73 → 0.63, RF 0.64 → 0.63), and in Qakbot posts for RF (0.86 → 0.88).
+
+**The unseen-family penalty of hashes is largely XGBoost-specific.**
+- LightGBM with G5 already detects held-out IcedID, Lumma and Ursnif at 0.93–0.99. Dropping G5 helps it only on Cobalt Strike (+0.10) and Gootloader (+0.09).
+- RF gains clearly only on Lumma (+0.29) and Gootloader (+0.19).
+- So the family-level claim must be scoped: *no family is detected worse without hashes (within 0.06), and XGBoost and, for some families, RF detect unseen families much better without them.*
+- This differs from the rolling-origin result (item 3b), where LightGBM collapses with hashes in 2026 just as XGBoost does. Unseen *families* within the same years are less of a problem for LightGBM than unseen *periods*.
 
 ## Caveats
 - Labels come from titles; 35% of malicious pcaps are excluded as two-family titles, which removes many IcedID/Qakbot-plus-Cobalt-Strike chains.

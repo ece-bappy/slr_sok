@@ -1,0 +1,41 @@
+{
+  "pcaps_with_malicious_flows": 371,
+  "by_status": {
+    "single family": 200,
+    "ambiguous": 129,
+    "unknown": 42
+  },
+  "posts_per_family": {
+    "IcedID": 40,
+    "Qakbot": 17,
+    "Ursnif": 15,
+    "Emotet": 13,
+    "Dridex": 12,
+    "Lumma": 11,
+    "Hancitor": 7,
+    "Trickbot": 7,
+    "DarkGate": 6,
+    "CobaltStrike": 6,
+    "ZLoader": 5,
+    "Gootloader": 5,
+    "ClickFix": 5,
+    "BazarLoader": 5,
+    "Koi": 4,
+    "Formbook": 4,
+    "Kongtuke": 4,
+    "Pikabot": 3,
+    "NetSupport": 3,
+    "Matanbuchus": 2,
+    "Remcos": 2,
+    "AsyncRAT": 1,
+    "Bumblebee": 1,
+    "GuLoader": 1,
+    "AgentTesla": 1,
+    "RedLine": 1,
+    "Latrodectus": 1,
+    "SocGholish": 1,
+    "SSLoad": 1,
+    "Rhadamanthys": 1,
+    "StealC": 1
+  }
+}
