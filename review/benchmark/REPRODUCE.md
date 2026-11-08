@@ -46,7 +46,7 @@ The download queues (relative path, URL, size) are in `review/datasets/q_*.tsv`;
 |---|---|---|---|
 | RAID 2024 Metasploit C2 (`raid_ms`) and Tranco benign (`raid_tranco`) | OSF projects osf.io/b64e5 (MS: `captures.tar.gz`, `ms-full.csv`, `certificates_length.csv`) and osf.io/zq9vs (Tranco: 7 pcap zips, `dataset.csv`) | `q_osf.tsv` → `fetch.sh`; `unpack_a2.py` | Public on OSF; the authors ask for a citation. We publish only derived per-flow results, not the pcaps |
 | RAID 2024 code | github.com/CarlosANovo/extending12to13 at commit 5562b6a (notebooks, `tls_paper_funcs.py`, `processed-datasets.zip`, `data/{mta,doh}.zip`) | `git clone` into `/data/tls-sok/ext/` | Their repository; not copied into ours |
-| RAID 2024 UCNet (their campus network) | Raw traces **not released**; an anonymised preprocessed copy for validation is linked from their README (osf.io/x6yjg) | **Not downloaded** (no approval for new downloads), so the UCNet cells of their notebooks were not reproduced | Theirs; follow the OSF terms |
+| RAID 2024 UCNet (their campus network) | Raw traces **not released**. The README links an anonymised Joy table for validation: OSF osf.io/x6yjg, "University Network Traffic", one file `processed_all.csv` (3.73 GB, 11.1M TLS flows, no licence set) | Downloaded 4 Nov 2026 with user approval (`/data/tls-sok/dl/q_ucnet.tsv` → `fetch.sh`). Matches OSF's MD5 `48db4e96…` and SHA-256 `7766df1c…` (`dl/ucnet.{md5,sha256}`) | Theirs; not redistributed. Used only to rerun their UCNet cells |
 | HIKARI-2021 (attack pcaps, label CSVs, anonymised benign pcaps in `ground-truth.zip`) | Zenodo record 6463389 | `q_zen.tsv`, `q_hikari_labels.tsv` → `fetch.sh`; MD5s were checked against the record | Check the Zenodo record's licence before redistributing; we publish derived results only |
 | Malware-Traffic-Analysis.net (MTA), 2019–2026 posts | malware-traffic-analysis.net: pcap zip and IOC text per post (never the malware-sample zips) | `q_mta.tsv` (1,282 posts) + `q_mta_extra.tsv` (`mta_extra.py`); zip passwords follow the site's published scheme (see `unpack_a2.py`) | **Do not redistribute.** No explicit bulk terms, and the pcaps carry live malware traffic. Publish the URL list (`q_mta*.tsv`) and our labels/derived tables only |
 | Stratosphere MCFP (CTU malware captures + CTU-Normal) | mcfp.felk.cvut.cz/publicDatasets/ (open directory, no terms file) | `q_mcfp.tsv` (TLS captures ≤ 2 GB, 2013–2018, plus Normal captures) → `fetch.sh` | Cite Stratosphere; republishing their pcaps is not ours to do. Publish the URL list and derived results |
@@ -94,14 +94,34 @@ All result folders are under `review/benchmark/`, copied from `/data/tls-sok/ben
 | Unsupervised baselines | `launch_batch5.sh` step `unsup` (`run_unsup.py`, torch venv) | 11 min | `unsup/` → `SUMMARY_unsup.md` |
 | RAID 2024 reproduction | `launch_batch5_r24.sh` steps `r24_repro` (`r24_reproduce.py`) and `r24_repro_grid` (`--grid`) | 3 min; 1 h 52 min | `r24_repro/`, `r24_repro_grid/` (`compare.csv`) → `SUMMARY_r24.md` |
 | RAID 2024 under our protocol | `launch_batch5_r24.sh` step `r24_protocol` (`r24_benchmark.py`) | 53 min | `r24_protocol/` (joined tables of about 1 GB stay on the host) → `SUMMARY_r24.md` |
+| RAID 2024 UCNet cells | `launch_ucnet.sh`: checksum check, `r24_ucnet_prep.py` (rebuilds the notebooks' three derived UCNet files with the authors' functions), then `r24_reproduce.py` and `--grid` | Prep 10 min; notebooks need most of the 30 GB RAM, so run them alone (OOM-killed next to batch 6) | `r24_repro_ucnet/ucnet_prep.json`, `r24_repro*/compare.csv` → `SUMMARY_r24.md` |
 
-Batch logs: `/data/tls-sok/out/batch2.log`, `batch3_1509.log`, `batch4_1937.log`, `batch5_1256.log`, `batch5r24_1340.log`. Each step's own log is `/data/tls-sok/logs/<step>.log`.
+**Batch 6 robustness checks** (`scripts/run_b6.py <item>`, 8 Nov). Launchers `launch_batch6.sh` (two lanes) and `launch_batch6b–e.sh`. Every launcher log ends with `BATCH <name> DONE|FAILED <steps>`.
+
+| RESULTS.md item | `run_b6.py` item (launcher) | Runtime | Output folder → summary |
+|---|---|---|---|
+| 20 seeds + paired Wilcoxon | `seeds` (batch6, lane A); saves test predictions to `/data/tls-sok/b6pred/` | 86 min | `b6_seeds/` → `SUMMARY_b6_seeds.md` |
+| Realistic base rates | `baserate` (batch6); reads `b6pred/`, runs C-Cert with 20 seeds | 2 min | `b6_baserate/` (`pooled_precision.csv`) → `SUMMARY_b6_baserate.md` |
+| Rolling origin (fig_f) | `rolling` (batch6); `rolling_models` and `rolling_enc` (batch6b); `post2026` (batch6b) | 8 + 11 + 11 min; 25 s | `b6_rolling*/`, `b6_post2026/` → `SUMMARY_b6_rolling.md` |
+| Fingerprint encodings | `encoding` (batch6, 20 seeds); joins raw handshake lists from `flows.parquet` into `/data/tls-sok/b6/lists_*.parquet` | 34 min | `b6_encoding/` → `SUMMARY_b6_encoding.md` |
+| ECH-padded tier | `ech` (batch6) | 1.5 min | `b6_ech/` → `SUMMARY_b6_ech.md` |
+| Training-set sensitivity | `training` (batch6, lane A) | 27 min | `b6_training/` → `SUMMARY_b6_training.md` |
+| Leave-one-family-out | `family` (batch6); `family_models` (batch6c) | 4 + 8 min | `b6_family*/` (`pcap_family.csv`) → `SUMMARY_b6_family.md` |
+| Evasion (corrected padding rule) | `evasion` (batch6d step `b6_evasion_v2`) | 4 min | `b6_evasion/` → `SUMMARY_b6_evasion.md` |
+| TLS 1.3 diagnostic | `tls13` (batch6c) | 2 min | `b6_tls13/` → `SUMMARY_b6_tls13.md` |
+| Padding vs ECH tier | `padech` (batch6d) | 1 min | `b6_padech/` → `SUMMARY_b6_padech.md` |
+| Leave-one-dataset-out | `lodo` (batch6e) | 15 min | `b6_lodo/` → `SUMMARY_b6_lodo.md` |
+| Host-level alerting | `hosts` (batch6e) | 1 min | `b6_hosts/` → `SUMMARY_b6_hosts.md` |
+
+`scripts/smoke_b6.py <item> …` runs any item on a reduced scope into `/data/tls-sok/smoke6` (not results).
+
+Batch logs: `/data/tls-sok/out/batch2.log`, `batch3_1509.log`, `batch4_1937.log`, `batch5_1256.log`, `batch5r24_1340.log`, `batch6_1136.log`, `batch6b_1213.log`, `batch6c_1228.log`, `batch6d_1237.log`, `batch6e_1453.log`, `ucnet_*.log`. Each step's own log is `/data/tls-sok/logs/<step>.log`.
 
 **Figures and captions** (any PC, from the committed CSVs only, in a few seconds):
 ```bash
 python review/benchmark/figures/make_figures.py
 ```
-This writes `figures/fig_{a_collapse,b_tiers,c_fingerprints,d_early,e_origin_probe}.{pdf,png}` and `figures/CAPTIONS.md`.
+This writes `figures/fig_{a_collapse,b_tiers,c_fingerprints,d_early,e_origin_probe,f_rolling}.{pdf,png}` and `figures/CAPTIONS.md`.
 
 **Re-running everything after the tables exist** takes about 9 h of host time sequentially (batches 2–5 plus E4 and the CNN). About 5 h of that is the two parallel lanes of batch 5 and the RAID 2024 grid search.
 
@@ -111,6 +131,8 @@ This writes `figures/fig_{a_collapse,b_tiers,c_fingerprints,d_early,e_origin_pro
 - **RAID 2024 reproduction:**
   - C-Behav RF differs by ≤ 0.97 pp, likely from scikit-learn 1.9.1 vs 1.3.2.
   - matplotlib is not installed on the host, so a no-op stub replaces it (plots only).
-  - UCNet cells were not run (data not downloaded).
+  - UCNet: the three derived input files are our reconstruction with the authors' functions (their preparation notebook is not released). On 20 TLS 1.3 flows (0.0003%) their certificate-size inference raises ValueError; those are counted as failed inferences.
+- **Batch 6 base rates:** precision is pooled over seeds (ratio of mean TP to mean FP), not averaged per seed (`SUMMARY_b6_baserate.md`).
+- **Batch 6 padding rule:** only data-carrying packets (G2 frame > 66 B) are padded, capped at 1,514 B. The first item 8 run padded ACKs too and was superseded.
 - **The SSLBL snapshot date matters.** Later snapshots contain more entries and will change the E5b hit counts.
 - **MTA posts can be updated or removed by the site.** The `q_mta*.tsv` lists and the SHA-256 checksums on the host record exactly what was used.

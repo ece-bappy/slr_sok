@@ -1,6 +1,20 @@
-# Benchmark results by research question (consolidated, 2 Nov 2026)
+# Benchmark results by research question (consolidated 2 Nov 2026; batch 6 robustness checks added 8 Nov)
 
 One table per RQ (plan.md §2), giving the headline number, its 95% CI, the setting and the caveat that must travel with it. Details, per-seed CSVs and the full caveat lists are in the linked summaries; figures are in `figures/` (regenerate with `python review/benchmark/figures/make_figures.py`).
+
+**Batch 6 (8 Nov)** re-tested the headline claims, with one `SUMMARY_b6_*.md` per item:
+- 20 seeds with paired tests;
+- realistic base rates;
+- rolling-origin drift;
+- fingerprint encodings;
+- ECH padding and evasion;
+- TLS 1.3;
+- leave-one-family-out;
+- leave-one-dataset-out;
+- host-level alerting;
+- training-set sensitivity.
+
+Rows from batch 6 are marked **[b6]**. Where batch 6 refines an earlier row, the earlier row is kept and the refinement follows it.
 
 **Common protocol (unless stated):**
 - Model: XGBoost with fixed hyperparameters, 5 seeds.
@@ -12,7 +26,7 @@ One table per RQ (plan.md §2), giving the headline number, its 95% CI, the sett
 
 ## RQ1: How much does performance drop beyond random splits? (E1–E4)
 
-Figure: `figures/fig_a_collapse.pdf`. Summaries: `SUMMARY.md`, `SUMMARY_mta_mcfp.md`, `SUMMARY_e4.md`, `SUMMARY_models.md`.
+Figures: `figures/fig_a_collapse.pdf`, `figures/fig_f_rolling.pdf`. Summaries: `SUMMARY.md`, `SUMMARY_mta_mcfp.md`, `SUMMARY_e4.md`, `SUMMARY_models.md`, `SUMMARY_b6_*.md`.
 
 | Setting | PR-AUC [95% CI] | Macro-F1 [CI] | Caveat |
 |---|---|---|---|
@@ -34,12 +48,19 @@ Figure: `figures/fig_a_collapse.pdf`. Summaries: `SUMMARY.md`, `SUMMARY_mta_mcfp
 | **Published baseline, RAID 2024** C-Cert / C-Behav RF, reproduced from the authors' code | RAID E2 0.999 / 1.000; MTA E3 0.880 [0.872–0.887] / 0.890 [0.883–0.896] | MTA E3 0.773 / 0.792 | Code reproduces the paper's tables exactly (C-Basic, C-Cert) or within 1 pp (C-Behav). Under drift both trail XGB on the same rows (0.941 / 0.903). C-Cert covers only 45% of MTA flows (28% of malicious) (`SUMMARY_r24.md`) |
 | RAID 2024 baselines, E4 MCFP → MTA | C-Cert RF 0.820, C-Behav RF 0.863 | **C-Cert 0.789** vs XGB same rows 0.333 | The low-capacity C-Cert keeps its operating point (TNR 0.99, TPR 0.48), but only on the flows it covers. C-Behav does not transfer (TPR 0.16) |
 | Unsupervised (Isolation Forest, autoencoder; benign-only training) | MTA E2 AE ROC 0.88; E3 0.78; MCFP → MTA ≈ 0.5–0.6 | | At a 1% benign-validation FPR threshold they catch only 0.3–21% of malicious flows; on MTA E3 that threshold gives a 13.6% test FPR (`SUMMARY_unsup.md`) |
+| **[b6] Rolling origin on MTA**, train on years < Y, test Y (2020–26), G1–G5 vs no G5 | XGB 2026: **0.606 (ROC 0.41)** vs 0.970; 2025: 0.395 vs 0.672; gap widens from +0.07 (2023) to +0.36 (2026) | | Not XGB-specific: LightGBM 2026 0.585 (ROC 0.40) vs 0.973; RF milder (0.910 vs 0.962). Without hashes, all families reach ≥ 0.95 in 2024 and 2026; 2025 is hard for every model (small test set, 230 malicious flows). Retraining on the last 2 years rescues the hash models (≥ 0.99 in 2026). Figure `fig_f_rolling` (`SUMMARY_b6_rolling.md`) |
+| **[b6] Leave-one-dataset-out** (train on the other sources pooled, balanced per source) | Held-out MTA ROC 0.56 (G1+G2 no timing; single-source 0.61–0.69), 0.92 (no G5), 0.84 (all) | | Training on several sources at once does not remove the dataset shortcut: a probe identifies the pooled sources at ≥ 0.98 balanced accuracy. On held-out MTA no feature set keeps a usable operating point (test FPR 0.31–0.98). Held-out MCFP and RAID do, but both are separable by capture environment. HIKARI ‡ (`SUMMARY_b6_lodo.md`) |
+| **[b6] Realistic base rates** (benign reweighted; strict threshold; pooled precision over 20 seeds) | MTA E3 no G5: 22 false alarms per 10k benign; precision 0.67 / **0.17** / 0.02 at 1% / 0.1% / 0.01% malicious | | At a 0.1% malicious share, 17% of the best temporal model's alerts are true; the hash model drops to 5% (101 per 10k); Zeek-free 24%. Cross-dataset models are unusable at any realistic base rate (precision ≤ 0.02 at 1%). C-Cert RF ≈ no G5 once pooled (0.70 / 0.19 / 0.02) (`SUMMARY_b6_baserate.md`) |
+| **[b6] Host-level alerting**, MTA E3 (host × 1 h, max score, strict threshold) | No G5: 60% of infected host-hours, 0 false alarms in 127 benign host-hours; G1–G5: 70%, **2.5 false alarms per benign host-day** | | Only 45 benign-only hosts (≈ 5.3 benign host-days): one false alarm ≈ 0.19 per host-day; zero is still ≤ 0.57 at 95%. Not an enterprise estimate (`SUMMARY_b6_hosts.md`) |
+| **[b6] 20 seeds, paired Wilcoxon** | MTA E3 without vs with G5: 20/20 seeds for XGB, LightGBM and RF (p < 10⁻⁵) | | Replaces the 5-seed contrasts; directions unchanged everywhere (`SUMMARY_b6_seeds.md`) |
+| **[b6] Training-set sensitivity** (dedup on/off × 1:1 / natural / 1:10 benign-heavy) | No-G5 advantage +0.07 to +0.11 in all 6 combinations on MTA E3 | | Cross-dataset threshold unusable in every combination (FPR 0.20–0.98). Dedup off inflates cross-dataset PR-AUC by up to +0.13 via duplicated test vectors (ROC +0.01–0.04) (`SUMMARY_b6_training.md`) |
 
 **Answer:**
 - In-dataset grouped splits remain near-perfect.
-- Temporal drift costs about 0.1 PR-AUC on MTA.
-- Cross-dataset transfer loses 0.15–0.4 PR-AUC, and no source-validated operating point survives it.
-- This holds for six model families with or without tuning, for the published RAID 2024 classifiers, and for unsupervised anomaly detectors. The one partial exception is the single-feature C-Cert, which keeps a usable operating point across datasets on the minority of flows where it applies.
+- Temporal drift costs about 0.1 PR-AUC on MTA in one cut. Year by year it grows to a below-chance ranking for hash models by 2026, while models without hashes stay ≥ 0.95 except in 2025.
+- Cross-dataset transfer loses 0.15–0.4 PR-AUC, and no source-validated operating point survives it. Pooling several training sources does not change this.
+- This holds for six model families with or without tuning, for the published RAID 2024 classifiers, for unsupervised anomaly detectors, and for every dedup and class-ratio choice tested. The single-feature C-Cert keeps a usable operating point across datasets on the minority of flows where it applies.
+- At realistic base rates (≤ 0.1% malicious), even the best temporal model's alerts are mostly false: 17% precision at 0.1%. Host-level aggregation on MTA flags half the infected hosts with no false alarm in the (small) benign sample.
 
 ## RQ2: Which feature groups carry the signal; how much is shortcut or circularity? (E5a, E5b)
 
@@ -56,11 +77,15 @@ Figure: `figures/fig_e_origin_probe.pdf` (and `fig_c` for G5). Summaries: `SUMMA
 | E5a MCFP → MTA, without G5, no timing | 0.808 [0.801–0.815] (other leave-one-out sets 0.57–0.76) | Most sets keep no usable threshold (FPR ≈ 0.97) |
 | Cross-family check: MTA E3 without G5 vs all | XGB +0.081, LightGBM +0.023, RF +0.029 (CIs disjoint); LR 0.000 | Temporal penalty for every tree family; LR sees only the top-30 values (`SUMMARY_crossfamily.md`) |
 | Cross-family check: MCFP → MTA without G5 vs all | XGB +0.087, LightGBM +0.014, RF −0.009, LR −0.003 (with timing) | Model-dependent; transfer fails with or without fingerprints |
+| **[b6] 20 seeds**, MCFP → MTA without vs with G5 | PR-AUC: XGB +0.06 (p ≤ 2·10⁻⁴); LightGBM n.s.; RF n.s. (no timing) / −0.008 (with timing, p = 0.007). **Macro-F1 improves in 5 of 6 rows** (up to +0.36, p < 10⁻³) | Hashes mostly break the cross-dataset *threshold*, not the ranking (`SUMMARY_b6_seeds.md`) |
+| **[b6] What about fingerprints hurts?** Same rows, 20 seeds, MTA E3: (a) hash as category / (b) training frequency / (c) seen-in-training flag / (d) decomposed cipher/extension lists, no hash / (e) none | **0.901** [0.895–0.906] / 0.964 / **0.983** / 0.982 / **0.983** [0.981–0.985] | (c) = (e), p = 0.93; every alternative beats (a), p < 10⁻⁵. Across datasets: (a) 0.741, (c) 0.802, (e) 0.808. The seen flag tracks no-G5 within 0.01 in every rolling-origin year (`SUMMARY_b6_encoding.md`, `SUMMARY_b6_rolling.md`) |
+| **[b6] Leave-one-family-out** (13 MTA families from pcap titles, all posts of the held-out family removed from training) | XGB recall on the unseen family, G1–G5 → no G5: IcedID 0.43 → 0.99, Lumma 0.49 → 0.90, Cobalt Strike 0.63 → 0.98, Ursnif 0.82 → 0.99 | Largely XGBoost-specific: LightGBM's hash model already detects IcedID / Lumma / Ursnif at 0.93–0.99; RF gains on Lumma (+0.29) and Gootloader (+0.19). No family is detected worse without hashes (within 0.06). 35% of malicious pcaps excluded as two-family titles (`SUMMARY_b6_family.md`) |
 
 **Answer:**
 - The signal is redundant across G1–G4.
-- The fingerprints (G5) add case- and era-specific shortcuts.
-- MCFP and RAID are separable by capture environment.
+- **Raw JA3/JA4 hashes used as categorical features age badly; neither hash novelty nor the decomposed cipher/extension lists add signal beyond the other flow and handshake features.** This replaces the broader "fingerprints hurt".
+- The temporal penalty is significant for every tree family (20 seeds). Across datasets and across families, it is strongest for XGBoost and partial for RF and LightGBM.
+- MCFP and RAID are separable by capture environment, even for a model that never saw them.
 - Blocklist-derived labels make certificate and fingerprint features circular.
 
 ## RQ3: How early can a flow be classified? (E6)
@@ -106,7 +131,11 @@ Figures: `figures/fig_b_tiers.pdf`, `figures/fig_c_fingerprints.pdf`. Summaries:
 | Setting | PR-AUC [95% CI] | Caveat |
 |---|---|---|
 | MTA E3, full (TLS 1.2 view) / TLS 1.3 tier / TLS 1.3 + ECH tier | 0.901 / 0.893 [0.887–0.899] / **0.912** [0.907–0.917] | Tiers are simulated by masking features on the same flows. Real ECH padding is not modelled |
-| MTA E3, **TLS 1.3 flows only**: full / TLS 1.3 / ECH | 0.848 / 0.859 / **0.683** | The one place where the ECH tier loses (about 3.5k test flows) |
+| MTA E3, **TLS 1.3 flows only**: full / TLS 1.3 / ECH | 0.848 / 0.859 / **0.683** | The one place where the ECH tier loses (about 3.5k test flows; prevalence 0.56) |
+| **[b6] TLS 1.3 diagnostic** (ROC on the MTA E3 TLS 1.3 subset) | ECH tier (G1+G2) **0.537**; no G5 **0.943**; Zeek-free 0.938; G1–G5 0.828. ECH tier trained on TLS 1.3 flows only: **0.892** | The ECH-tier PR-AUC 0.683 is mostly prevalence. Malicious TLS 1.3 is 0% of 2019–20 training and 22% of 2022, vs 84% of 2026 test. Not concentrated in a few posts (max influence 0.04) (`SUMMARY_b6_tls13.md`) |
+| **[b6] ECH-padded tier**: ClientHello-completing packet rounded up to a multiple of 32 B (draft-ietf-tls-esni §6.1.3) or 256 B | MTA E3 0.909 / 0.907 vs 0.903 unpadded control; TLS 1.3 flows 0.681 / 0.717 | Padding the ClientHello does not change the ECH-tier conclusion. G1 size columns are dropped in these variants (`SUMMARY_b6_ech.md`) |
+| **[b6] Record padding vs the ECH tier** (malicious test flows, every data packet +256 B; TLS 1.3 subset) | ECH tier trained on TLS 1.3: ROC 0.892 → **0.592**; with symmetric padding-augmented training 0.903 → **0.576** | 32 B costs ≤ 0.06. Augmenting malicious flows only "recovers" (0.87) through a "large = malicious" shortcut and is reported as a contrast. Non-adaptive attacker (`SUMMARY_b6_padech.md`) |
+| **[b6] Simple evasion**, MTA E3 (malicious test flows only) | +256 B per data packet: G1+G2 0.912 → 0.838 (recall 0.72 → 0.51); no G5 0.982 → 0.981; IAT jitter ×0.5–2: no effect | The padding-robust set needs handshake visibility, which ECH removes (`SUMMARY_b6_evasion.md`, corrected rerun) |
 | MCFP E2, ECH tier | 1.000; test FPR 0.0004 (full: 0.15) | Capture shortcut |
 | E9 MTA ≤2022 → 2023–26: no fingerprints / +JA3 / +JA4 / +both | **0.982** [0.980–0.985] / 0.894 / 0.895 / 0.901 | JA4 is no more robust than JA3 |
 | E9 MCFP → MTA 2023–26: no fingerprints / +any fingerprint | 0.794 [0.781–0.806] / 0.67–0.72 | With fingerprints, the source threshold flags 100% of test flows |
@@ -118,6 +147,8 @@ Figures: `figures/fig_b_tiers.pdf`, `figures/fig_c_fingerprints.pdf`. Summaries:
 **Answer:**
 - Losing the certificate costs ≤ 0.008.
 - The size and timing view (ECH tier) matches the full view except on newer TLS 1.3 flows.
+- **Under ECH, size/timing patterns learned on TLS 1.2 malware do not transfer to TLS 1.3 malware (ROC 0.54). With TLS 1.3 training data the same view recovers to 0.89. Handshake-visible models transfer across versions (0.94).**
+- **Even with TLS 1.3 training data, cheap record padding (256 B per data packet) reduces the ECH-tier detector to ROC ≈ 0.6, and augmenting training with padding does not recover it.** This is a non-adaptive attacker and one augmentation scheme.
 - JA3 and JA4 both drift: about half of later-period flows carry an unseen hash.
-- Adding either fingerprint lowers temporal-drift accuracy for every tree family and is neutral for LR.
+- Adding either fingerprint lowers temporal-drift accuracy for every tree family and is neutral for LR. The cause is the hash value as a feature, not the handshake content (RQ2).
 - Across datasets the effect depends on the model.
