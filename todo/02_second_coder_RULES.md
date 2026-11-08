@@ -1,21 +1,30 @@
-# Task 2: confirm the second coder
+# Task 2: adjudicate the second-coder disagreements
 
-**File:** `review/coding/second_coder_14_papers.csv` (guide: `rulebooks/rulebooktask9.txt`).
+**Status:** you confirmed the second coder was a colleague coding blind (8 Nov). κ is computed: see `review/coding/kappa_report.md`, produced by `scripts/kappa_second_coder.py`.
 
-**Current state:** all 295 rows are filled in (last changed 30 Oct 2026), and `review/coding/todo_for_me.csv` marks task 9 "done". The Screening session's 3 Nov status still listed "second-coder κ (needs a real person)" as open, so Claude can't tell how the sheet was filled.
+| Measure | Result |
+|---|---|
+| Single-choice fields (10) | 82% agreement; per-field κ mean 0.51, median 0.56 |
+| List fields (6), pooled yes/no decisions | κ 0.77 |
+| Weakest fields | cert_fields_read κ 0.11, label_feature_overlap −0.17, shortcut_check 0.41, main_split 0.43 |
 
-**Why it matters:** Cohen's κ only means something if the second coder is an independent human who coded blind. A sheet filled by an AI model, or by you, isn't inter-rater reliability. Reporting it as such would be a methods error that reviewers can catch.
+Low κ next to high agreement (e.g. easy_vs_hard_reported: 12/14 but κ 0.00) is the usual artefact when one answer dominates. It is not necessarily poor reliability.
 
-## Answer one question
+**cert_fields_read is a rulebook ambiguity, not a disagreement.** All 7 cases are "no" (you) vs "not_applicable" (colleague) on papers that use no certificate information. The rulebook allows both readings ("no = … or not used"; "not_applicable = no certificate information at all"). Both give the same visibility tier. Merged, the field agrees 14/14.
 
-Who filled `second_coder_14_papers.csv`?
+## What to do
 
-- **A colleague, coding blind with the rulebook:** tell Claude "second coder confirmed: <their initials>". Claude computes κ per field and overall, and lists the disagreements for you to adjudicate.
-- **An AI model, or not sure:** tell Claude. The sheet becomes an LLM-agreement check (still useful, but reported as such), and you need a colleague to code the 14 papers again.
+**File:** `review/coding/second_coder_disagreements.csv`, 106 rows: 25 single-choice, 34 list, 47 free-text. Have each paper's PDF open (`pdf` column).
 
-## If a colleague has to (re)do it
+For each row fill:
+- `adjudicated_value`: the correct value per the coding rulebook, decided from the paper.
+- `who_was_right`: `coder1`, `coder2`, `both` (same meaning, different wording; the usual outcome for free text) or `neither`.
+- `note`: why, especially for `coder1` errors and rulebook ambiguities.
 
-- Give them only `rulebooks/rulebooktask9.txt`, `rulebooks/coding_rulebook.txt`, a blank copy of the sheet (Claude can make one) and the PDFs in `papers/core/`.
-- They must not see your coding or any LLM output for those papers.
-- About 6 hours for 14 papers. They fill `your_value`, `page` and `quote` for every row; `unsure` plus a note is allowed.
-- Disagreements are then adjudicated by you, with the paper open, after κ is computed (never before).
+Rules:
+1. Decide from the paper and `rulebooks/coding_rulebook.txt`, not from who usually knows best. Where `coder1` was wrong, the verified coding gets corrected.
+2. Free text: `both` if the two answers describe the same set (different wording or detail level is fine). Only real content differences count.
+3. Keep κ as computed. κ is reported **before** adjudication; adjudication only fixes the final dataset.
+4. Rulebook decision needed from you: should `cert_fields_read` keep `not_applicable`? Recommendation: drop it (merge into `no`), add a dated rule in section 6 of the rulebook, and report the field's κ both ways.
+
+About 2–3 hours. Then tell Claude "adjudication done". Claude applies the corrections to the verified coding and records the rulebook change.
