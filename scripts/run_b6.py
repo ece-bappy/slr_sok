@@ -290,6 +290,115 @@ def item_rolling(a):
     print(summ.to_string())
 
 
+def rolling_splits(d, windows=("expanding", "2y")):
+    """(test_year, window, train_years, tr, va, test_idx) for the rolling-origin setup of item 3."""
+    yr = d["k_year"].astype(str).to_numpy()
+    y = d["label"].to_numpy()
+    idx = np.arange(len(d))
+    for test_year in range(2020, 2027):
+        for window in windows:
+            lo = {"expanding": 0, "1y": test_year - 1, "2y": test_year - 2}[window]
+            old = idx[(yr >= str(lo)) & (yr <= str(test_year - 1)) & (yr != "unknown")]
+            new = idx[yr == str(test_year)]
+            if min(len(np.unique(y[old])), len(np.unique(y[new]))) < 2:
+                continue
+            old = old[np.argsort(d["k_first_seen_ms"].to_numpy()[old])]
+            cut = int(len(old) * 0.85)
+            tr, va = old[:cut], old[cut:]
+            if len(np.unique(y[va])) < 2 or len(np.unique(y[tr])) < 2:
+                tr, va = train_test_split(old, test_size=0.15, stratify=y[old], random_state=0)
+            yield test_year, window, f"{max(lo, 2019)}-{test_year - 1}", tr, va, new
+
+
+def summarise(rows, out, by, keys=("pr_auc", "roc_auc", "macro_f1", "recall_malicious", "recall_benign",
+                                    "test_fpr_at_that_threshold", "n", "n_pos")):
+    res = pd.DataFrame(rows)
+    res.to_csv(out / "results_per_seed.csv", index=False)
+    summ = res.groupby(by, sort=False)[list(keys)].agg(["mean", "std"])
+    summ.columns = [f"{k}_{s}" for k, s in summ.columns]
+    summ.reset_index().to_csv(out / "summary.csv", index=False)
+    return summ
+
+
+def item_rolling_models(a):
+    """3b: the rolling-origin curve for LightGBM and RF (all past years and last 2 years, with / without G5)."""
+    out = BENCH / "b6_rolling_models"
+    out.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for fs in ("all", "loo_g5"):
+        cols = set_columns(table("mta"), fs)
+        d = dd("mta", cols)
+        for test_year, window, years, tr, va, new in rolling_splits(d):
+            for model in ("lgbm", "rf"):
+                for seed in range(a.seeds):
+                    r, _, _ = fit_eval(d, d.iloc[new].reset_index(drop=True), tr, va, cols, seed, a.jobs, model, boot=100)
+                    rows.append({"model": model, "feature_set": fs, "window": window, "test_year": test_year,
+                                 "train_years": years, "seed": seed, **r})
+                    print(model, fs, window, test_year, seed, round(r["pr_auc"], 4), flush=True)
+            summarise(rows, out, ["model", "feature_set", "window", "test_year"])
+    print(summarise(rows, out, ["model", "feature_set", "window", "test_year"]).to_string())
+
+
+def item_rolling_enc(a):
+    """3c: the rolling-origin curve with the fingerprint encodings of item 4 (XGBoost): (a) hash categorical,
+    (b) training frequency, (c) seen-in-training flag, (e) none. Same rows for every encoding (dedup on G1-G5)."""
+    out = BENCH / "b6_rolling_enc"
+    out.mkdir(parents=True, exist_ok=True)
+    cols = set_columns(table("mta"), "all")
+    d = dd("mta", cols)
+    nog5 = [c for c in cols if c not in G5]
+    enc = {"a_hash_categorical": (cols, None), "b_frequency": (cols, enc_extra("freq")),
+           "c_seen_flag": (cols, enc_extra("seen")), "e_none": (nog5, None)}
+    rows = []
+    for test_year, window, years, tr, va, new in rolling_splits(d):
+        for name, (use, ex) in enc.items():
+            for seed in range(a.seeds):
+                r, _, _ = fit_eval(d, d.iloc[new].reset_index(drop=True), tr, va, use, seed, a.jobs, extra=ex, boot=100)
+                rows.append({"encoding": name, "window": window, "test_year": test_year, "train_years": years,
+                             "seed": seed, **r})
+                print(name, window, test_year, seed, round(r["pr_auc"], 4), flush=True)
+        summarise(rows, out, ["encoding", "window", "test_year"])
+    print(summarise(rows, out, ["encoding", "window", "test_year"]).to_string())
+
+
+def item_post2026(a):
+    """Which 2026 posts / families drive the G5 model's below-chance ROC (all past years, XGBoost)? Scores are
+    averaged over seeds; per post: size, malicious share, mean score per class, and the overall ROC-AUC when
+    that post is left out of the test set (its influence)."""
+    out = BENCH / "b6_post2026"
+    out.mkdir(parents=True, exist_ok=True)
+    fam = pd.read_csv(BENCH / "b6_family" / "pcap_family.csv").set_index("k_pcap")["family"] \
+        if (BENCH / "b6_family" / "pcap_family.csv").exists() else pd.Series(dtype=str)
+    if fam.empty:  # item 7 not run yet: derive the title families here
+        t = table("mta")
+        fam = pd.Series({p: family_of(Path(p).name) for p in t["k_pcap"].unique()})
+    summ = []
+    for fs in ("all", "loo_g5"):
+        cols = set_columns(table("mta"), fs)
+        d = dd("mta", cols)
+        sp = [s for s in rolling_splits(d, ("expanding",)) if s[0] == 2026][0]
+        _, _, _, tr, va, new = sp
+        test = d.iloc[new].reset_index(drop=True)
+        s = np.mean([fit_eval(d, test, tr, va, cols, seed, a.jobs, boot=0)[1] for seed in range(a.seeds)], axis=0)
+        y = test["label"].to_numpy()
+        test = test.assign(score=s, family=test["k_pcap"].map(fam).fillna("unknown"))
+        overall = roc_auc_score(y, s)
+        for key in ("k_post", "family"):
+            for g, part in test.groupby(key):
+                rest = test[test[key] != g]
+                summ.append({"feature_set": fs, "group_by": key, "group": g, "n": len(part), "n_malicious": int(part.label.sum()),
+                             "mean_score_malicious": part.loc[part.label == 1, "score"].mean(),
+                             "mean_score_benign": part.loc[part.label == 0, "score"].mean(),
+                             "roc_auc_within": roc_auc_score(part.label, part.score) if part.label.nunique() == 2 else np.nan,
+                             "roc_auc_all": overall,
+                             "roc_auc_without_this_group": roc_auc_score(rest.label, rest.score) if rest.label.nunique() == 2 else np.nan})
+        test[["k_post", "k_pcap", "family", "label", "k_tls_version", "score"]].to_csv(out / f"scores_{fs}.csv", index=False)
+    res = pd.DataFrame(summ)
+    res["influence"] = res["roc_auc_without_this_group"] - res["roc_auc_all"]
+    res.sort_values(["feature_set", "group_by", "influence"], ascending=[True, True, False]).to_csv(out / "breakdown.csv", index=False)
+    print(res.sort_values("influence", ascending=False).head(30).to_string())
+
+
 # ------------------------------------------------------------------ item 4: fingerprint encodings
 LISTS = ["tls_ch_cipher_suites", "tls_ch_extension_types", "tls_ch_supported_groups", "tls_ch_signature_algorithms",
          "tls_ch_ec_point_formats", "tls_sh_extension_types"]
@@ -598,11 +707,13 @@ def item_evasion(a):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion"])
+    ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion",
+                                     "rolling_models", "rolling_enc", "post2026"])
     ap.add_argument("--seeds", type=int, default=None)
     ap.add_argument("--jobs", type=int, default=24)
     ap.add_argument("--min-posts", type=int, default=5)
     a = ap.parse_args()
     a.seeds = a.seeds or {"seeds": 20, "baserate": 20, "encoding": 20}.get(a.item, 5)
     {"seeds": item_seeds, "baserate": item_baserate, "rolling": item_rolling, "encoding": item_encoding,
-     "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion}[a.item](a)
+     "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion,
+     "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026}[a.item](a)
