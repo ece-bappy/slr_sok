@@ -31,7 +31,7 @@ The top-3 mean lowers both rates: no G5 at FPR 10⁻³ flags 52% of infected hos
 
 ## Findings
 1. **Operational reading of the flow results.** At the strict threshold, the no-G5 model flags 60% of infected host-hours and half of the infected hosts, with **no false alarm in 127 benign host-hours** (≤ 0.57 per host-day at 95%).
-2. **The hash model's extra detections cost false alarms.** G1–G5 flags 70% of infected host-hours, but also 10% of benign host-hours: 2.5 false alarms per benign host-day, or about one for every two benign hosts in a day. Its validated flow threshold does not hold on 2023–26 traffic (flow FPR 1.2% against the 0.1% target).
+2. **The hash model's extra detections cost false alarms.** G1–G5 flags 70% of infected host-hours, but also 10% of benign host-hours: 2.5 false alarms per benign host per day. Its validated flow threshold does not hold on 2023–26 traffic (flow FPR 1.2% against the 0.1% target).
 3. **The ECH tier is quiet but misses more:** 58% of infected host-hours and 42% of hosts at the strict threshold, with ≈ 0.04 false alarms per host-day. At max-F1 it flags 90% of infected hours, but at 3.1 false alarms per host-day.
 4. **Per-pcap (whole-capture) detection is lower than per-hour detection** (50% vs 60% for no G5), because hours are weighted by the long, easy captures. Half the infected hosts never cross the strict threshold in any flow.
 
