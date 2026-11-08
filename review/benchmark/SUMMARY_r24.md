@@ -21,7 +21,25 @@ Barradas, Novo et al., *Extending C2 Traffic Detection Methodologies: From TLS 1
   - C-Behav DT: identical (CV F1 0.92182 vs 0.92185).
   - C-Behav RF: depth 25 with 40 trees instead of depth 20 with 70 trees (CV F1 0.931 vs 0.934).
   - The notebooks then use the hard-coded values, so the tables are unaffected.
-- **Not reproduced here:** the UCNet results (their campus network). The raw traces are not released; the README links an anonymised, preprocessed copy for validation (osf.io/x6yjg). We did not download it, because no new downloads were approved, so those cells fail with FileNotFoundError. Fetching that copy into `data/ucnet/` would let them run.
+- **UCNet (their campus network), added 8 Nov 2026.** The raw traces are not released.
+  - **The released copy.** The README links an anonymised Joy table for validation: OSF osf.io/x6yjg, "University Network Traffic", one file `processed_all.csv`, 3.73 GB, no licence set. With user approval it was downloaded to A2 on 4 Nov and matches OSF's MD5 and SHA-256. It is not redistributed.
+  - **What has to be rebuilt.** The notebooks read four files. `all.csv` is that table; the three derived ones (`all_data12/13.csv`, `all_behav13_new.csv`) and the notebook that made them are not released. `scripts/r24_ucnet_prep.py` rebuilds them with the authors' own functions, step for step as their Tranco preparation notebook does. **This is our reconstruction.**
+  - **Stage counts against the paper's §6:**
+
+    | Count | Ours | Paper |
+    |---|---|---|
+    | TLS 1.3 flows | 5,775,901 | 5,769,412 |
+    | TLS 1.3 with PSK | 1,413,538 | 1.4M |
+    | TLS 1.3 HelloRetryRequest | 993,642 | ≈ 1M |
+    | TLS 1.3 certificate size inferred | 3,224,058 | 3.2M |
+    | TLS 1.3 inference failed | 144,656 | 144K |
+    | TLS 1.3 empty after behaviour extraction | 258,745 | 258K |
+    | TLS 1.2 flows | 5,314,990 | 4,337,589 |
+    | TLS 1.2 without application data | 245,978 | 192K |
+
+    The TLS 1.3 side matches; the released table holds about 1M more TLS 1.2 flows than the paper counts (`r24_repro_ucnet/ucnet_prep.json`).
+  - **Deviation from the authors' (unreleased) preparation.** On **20 TLS 1.3 flows (0.0003% of 5.78M)**, their `cert_size_inference_simple_diagram` raises ValueError (`max()` of an empty list, when the cut at the Finished record leaves no records). These are counted as failed inferences (−1), the function's own outcome for its other failure cases.
+  - **Status.** The notebook rerun was OOM-killed on A2 (exit 137) while batch 6 used the memory: the notebooks load the 11M-flow table next to their own data. It is queued to run when batch 6 finishes (`launch_after_batch6.sh`). The UCNet comparison will be added here.
 - **Deviations** (logged per cell in `cells.csv`):
   - `display()` is silenced.
   - `multiprocess` → `multiprocessing`; `tqdm.notebook` → `tqdm`.

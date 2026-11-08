@@ -36,6 +36,20 @@
    - Fingerprint models need frequent retraining; flow-statistics and handshake models age more slowly.
 4. **2025 is hard for everyone** (PR-AUC 0.40–0.75 against a 0.16 prevalence; ROC 0.74–0.90). Its test set is small (230 malicious flows), with a different family mix (`b6_family` will show which). It is not a pipeline error: ROC stays at 0.8–0.9.
 
+## Why the G5 model fails on 2026 (`b6_post2026/`)
+
+Setup: XGBoost on G1–G5, trained on all past years, test 2026 (2,235 flows); scores averaged over 5 seeds. The ROC-AUC of the averaged score is **0.35** (the per-seed mean is 0.41). Without G5 it is **0.96**.
+
+| Group | Flows (malicious) | Mean score: malicious / benign | ROC within the group | ROC of the rest if this group is left out |
+|---|---|---|---|---|
+| Post 2026/01/14 (Lumma) | 1,481 (1,248) | 0.39 / 0.32 | 0.65 | 0.42 |
+| Post 2026/10/02 | 116 (5) | 0.43 / 0.52 | 0.11 | 0.40 |
+| Every other single post | 1–80 | – | 12 of the 19 posts with both classes are below 0.5 | 0.33–0.37 |
+| Family Lumma / ClickFix / unknown / two-family titles | 1,610 / 83 / 309 / 103 | 0.39/0.35, 0.43/0.51, 0.48/0.50, 0.41/0.50 | 0.55, 0.22, 0.35, 0.34 | 0.43, 0.38, 0.41, 0.37 |
+
+- **Not a few posts.** Leaving out any single post, or any single family, keeps ROC below 0.5 (at most 0.43). The inversion is spread across the year.
+- **Mechanism.** 79% of benign and 91% of malicious 2026 flows have a client JA3/JA4 never seen in 2019–2025 training. Among those unseen flows, benign traffic scores *higher* than malicious (mean 0.48 vs 0.41), while seen-hash flows score about the same (0.23 vs 0.25–0.26; `unseen_by_class.csv`). The fingerprint model's treatment of new hashes is what inverts the ranking. Item 3c (the seen-in-training flag in the rolling setup) tests this directly.
+
 ## Caveats
 - 2024 and 2025 have small test sets (1.2–1.4k flows). Their SDs (up to 0.07) cover seed variation only, not test-set sampling. Bootstrap CIs are in `results_per_seed.csv`.
 - For 2020, all windows are identical (only 2019 precedes it). For 2021, the 2-year and expanding windows are identical.
