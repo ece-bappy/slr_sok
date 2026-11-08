@@ -5,8 +5,8 @@ Work through the tasks in order. When one is done, tell Claude the phrase in the
 
 | # | Task | Rulebook | File to fill | Time | Done → say |
 |---|---|---|---|---|---|
-| 1 | Grade 20 free-text extraction answers | `01_free_text_grading_RULES.md` | `01_free_text_grading.csv` | 30–45 min | "grading done" |
-| 2 | Adjudicate 106 second-coder disagreements (κ already computed) | `02_second_coder_RULES.md` | `review/coding/second_coder_disagreements.csv` | 2–3 h | "adjudication done" |
+| 1 | **DONE 8 Nov** (7e8ce8b, `review/coding/validation_report.md`). Grade 20 free-text extraction answers | `01_free_text_grading_RULES.md` | `01_free_text_grading.csv` | 30–45 min | "grading done" |
+| 2 | **DONE 8 Nov** (17 verified values changed, `review/coding/adjudication_changes.csv`). Adjudicate 106 second-coder disagreements (κ already computed) | `02_second_coder_RULES.md` | `review/coding/second_coder_disagreements.csv` | 2–3 h | "adjudication done" |
 | 3 | Confirm or redo the PRISMA spot-check | `03_prisma_spot_check_RULES.md` (+ `rulebooks/screening_rulebook.txt`) | `review/final_screening/spot_check_120.csv` | 2 min, or 2–3 h if redone | "spot-check confirmed" |
 | 4 | Verify 9 registry entries; map 26 dataset names | `04_dataset_registry_RULES.md` | `04a_registry_check.csv`, `04b_unmapped_datasets.csv` | 60–90 min | "registry done" |
 | 5 | Decide S1103 | `05_S1103_decision.md` | the same file | 2 min | "S1103: include / exclude / maybe" |

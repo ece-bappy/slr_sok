@@ -1,5 +1,5 @@
 ﻿dataset,papers,public,tls_content,in_registry,paper_ids
-own / private capture,15,no,as described by the paper,True,S0669 S1337 S1500 S1682 S1783 S1926 S1940 S2138 S2338 S2395 S2626 S2672 S3214 S3215 S3347
+own / private capture,16,no,as described by the paper,True,S0669 S0932 S1337 S1500 S1682 S1783 S1926 S1940 S2138 S2338 S2395 S2626 S2672 S3214 S3215 S3347
 CIC-IDS2017,14,yes,mixed; little TLS attack traffic,True,S0097 S0217 S0664 S0905 S1042 S1449 S1461 S1940 S2326 S2338 S2360 S2524 S2800 S2982
 CIRA-CIC-DoHBrw-2020,13,yes,"yes (DoH over HTTPS, benign + malicious tunnels)",True,S0095 S0907 S0932 S1155 S1342 S1682 S1717 S1926 S2338 S2611 S2760 S3005 S3208
 ISCX VPN-nonVPN 2016,13,yes,partly; no malicious class,True,S0639 S0669 S0905 S0926 S0939 S0952 S1132 S1243 S1449 S1460 S2344 S2360 S2363
@@ -10,8 +10,8 @@ IoT-23,5,yes,mixed,True,S0066 S0639 S0928 S1132 S2008
 Malware-Traffic-Analysis.net (MTA),4,yes,"yes (real malware pcaps, 2013-)",True,S1449 S1926 S2576 S2958
 DoH-Tunnel-Traffic-HKD,4,yes,DoH (HTTPS),True,S0095 S1682 S1717 S2760
 CIC-DDoS2019,4,yes,mostly non-TLS,True,S0097 S1528 S1940 S2800
+CSE-CIC-IDS2018,4,yes,mixed,True,S0932 S1342 S2326 S2524
 ToN_IoT,4,yes,mixed,True,S0066 S0639 S0928 S1132
-CSE-CIC-IDS2018,3,yes,mixed,True,S1342 S2326 S2524
 Tranco browsing captures (Barradas et al.),3,yes,"yes (benign, TLS 1.2 and 1.3)",True,S1886 S1926 S1938
 "Blocklist / threat feed (label source, not a traffic dataset)",3,n/a,label or fingerprint source,True,S0971 S1886 S1938
 VNAT (MIT LL VPN/non-VPN),3,yes,"VPN and non-VPN, mixed",True,S0217 S0639 S1132
