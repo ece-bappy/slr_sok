@@ -1,14 +1,18 @@
 """Regenerate every paper figure, and figures/CAPTIONS.md, from the committed benchmark CSVs.
 
 Usage: python review/benchmark/figures/make_figures.py
-Writes fig_*.pdf (vector) and fig_*.png (300 dpi) next to this script. Sized for a single column
-(3.5 in wide); Okabe-Ito colours (colour-blind safe), with hatching or marker shape so conditions can
-also be told apart in greyscale. Captions carry each figure's metric and test prevalence, computed
-from the same CSVs, so they stay in sync with the plots.
+Writes fig_*.pdf (vector, TrueType fonts embedded) and fig_*.png (300 dpi previews) next to this script.
+Drawn at final print size for the manuscript (elsarticle preprint, 12 pt, text width 390 pt = 5.39 in;
+figures are included at natural size, never scaled): full text width, Times (first available of the
+FONTS list, never DejaVu), labels and titles 10 pt, everything else 9 pt, lines >= 1 pt. Okabe-Ito
+colours (colour-blind safe), with hatching, marker shape or line style so conditions can also be told
+apart in greyscale. Captions carry each figure's metric and test prevalence, computed from the same
+CSVs, so they stay in sync with the plots.
 """
 from pathlib import Path
 
 import matplotlib
+import matplotlib.font_manager as fm
 import numpy as np
 import pandas as pd
 
@@ -17,18 +21,26 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 B = Path(__file__).resolve().parent.parent  # review/benchmark
 OUT = Path(__file__).resolve().parent
-W = 3.5  # single-column width, inches
+W = 5.39  # manuscript text width, inches (390 pt = 137 mm)
+FONTS = ["Times New Roman", "Nimbus Roman", "TeX Gyre Termes", "Times"]
+_have = {f.name for f in fm.fontManager.ttflist}
+FONT = next((f for f in FONTS if f in _have), None)
+if FONT is None:  # never fall back to DejaVu silently
+    raise SystemExit(f"none of {FONTS} is installed; install one before rendering the figures")
+LBL, SMALL = 10, 9  # axis labels / titles; ticks, legends, annotations
 OI = {"orange": "#E69F00", "sky": "#56B4E9", "green": "#009E73", "yellow": "#F0E442", "blue": "#0072B2",
       "red": "#D55E00", "purple": "#CC79A7", "black": "#000000", "grey": "#999999"}
-plt.rcParams.update({"font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8, "legend.fontsize": 7,
-                     "xtick.labelsize": 7, "ytick.labelsize": 7, "pdf.fonttype": 42, "ps.fonttype": 42,
+plt.rcParams.update({"font.family": "serif", "font.serif": [FONT], "mathtext.fontset": "stix",
+                     "font.size": SMALL, "axes.titlesize": LBL, "axes.labelsize": LBL, "legend.fontsize": SMALL,
+                     "xtick.labelsize": SMALL, "ytick.labelsize": SMALL, "pdf.fonttype": 42, "ps.fonttype": 42,
+                     "lines.linewidth": 1.2, "axes.linewidth": 0.8, "hatch.linewidth": 1.0,
                      "axes.spines.top": False, "axes.spines.right": False, "legend.frameon": False})
 CAPTIONS = {}
 
 
 def save(fig, name: str) -> None:
-    fig.savefig(OUT / f"{name}.pdf", bbox_inches="tight")
-    fig.savefig(OUT / f"{name}.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / f"{name}.pdf", bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(OUT / f"{name}.png", dpi=300, bbox_inches="tight", pad_inches=0.02)
     plt.close(fig)
     print("wrote", name)
 
@@ -66,11 +78,11 @@ def dots(ax, groups, conds, cell, colours, markers, span=0.7):
             # CI bounds are rounded to 4 decimals in the CSVs, so at PR-AUC ~1 they can sit a hair inside the mean
             err = [[max(s["mean"] - s["lo"], 0)], [max(s["hi"] - s["mean"], 0)]]
             ax.errorbar(g + off, s["mean"], yerr=err, fmt=markers[i],
-                        color=colours[i], ms=4, mfc=colours[i] if i == 0 else "white", mew=1, elinewidth=0.9,
-                        capsize=1.5, label=c if g == 0 else None, zorder=3)
+                        color=colours[i], ms=5.5, mfc=colours[i] if i == 0 else "white", mew=1.2, elinewidth=1.0,
+                        capsize=2, label=c if g == 0 else None, zorder=3)
     ax.set_xticks(range(len(groups)))
     ax.set_xlim(-0.6, len(groups) - 0.4)
-    ax.grid(axis="y", lw=0.3, color="#dddddd", zorder=0)
+    ax.grid(axis="y", lw=0.5, color="#dddddd", zorder=0)
 
 
 # --------------------------------------------------------------------------- (a) collapse
@@ -88,7 +100,7 @@ def fig_collapse() -> None:
             cells[(d, name)] = (stat(r), stat(r, "macro_f1")) if len(r) else None
         r = seeds("e4", f"pair == '{pair}' and feature_set == '{fs}'") if pair else []
         cells[(d, exps[3])] = (stat(r), stat(r, "macro_f1")) if len(r) else None
-    fig, axes = plt.subplots(2, 1, figsize=(W, 3.9), sharex=True)
+    fig, axes = plt.subplots(2, 1, figsize=(W, 4.3), sharex=True)
     width = 0.8 / len(exps)
     for row, (ax, label) in enumerate(zip(axes, ("PR-AUC", "Macro-F1"))):
         for g, d in enumerate(ds):
@@ -96,24 +108,24 @@ def fig_collapse() -> None:
                 x = g - 0.4 + (i + 0.5) * width
                 c = cells[(d, e)]
                 if c is None:
-                    ax.text(x, 0.02, "n/a", rotation=90, ha="center", va="bottom", fontsize=5.5, color=OI["grey"])
+                    ax.text(x, 0.02, "n/a", rotation=90, ha="center", va="bottom", fontsize=SMALL, color="#555555")
                     continue
                 s = c[row]
                 transfer = d == "hikari" and e in exps[1:3]  # 2-attacker transfer tests: outlined, daggered
-                ax.bar(x, s["mean"], width, yerr=s["sd"], error_kw={"elinewidth": 0.6, "capsize": 1.2},
+                ax.bar(x, s["mean"], width, yerr=s["sd"], error_kw={"elinewidth": 1.0, "capsize": 2},
                        color="white" if transfer else cols[i], edgecolor=cols[i] if transfer else "white",
-                       linewidth=0.9 if transfer else 0.4, hatch=hatch[i] if not transfer else "....",
+                       linewidth=1.2 if transfer else 0.5, hatch=hatch[i] if not transfer else "....",
                        label=e if (row == 0 and g == 0) else None)
                 if transfer:
-                    ax.text(x, s["mean"] + s["sd"] + 0.02, "†", ha="center", va="bottom", fontsize=7)
+                    ax.text(x, s["mean"] + s["sd"] + 0.02, "†", ha="center", va="bottom", fontsize=SMALL)
                 if row == 0:  # no-skill PR-AUC = test prevalence
-                    ax.plot([x - width / 2, x + width / 2], [s["prev"]] * 2, color="black", lw=1.2,
+                    ax.plot([x - width / 2, x + width / 2], [s["prev"]] * 2, color="black", lw=1.5,
                             label="No-skill (test prevalence)" if (g == 0 and i == 0) else None, zorder=4)
         ax.set_ylim(0, 1.08)
         ax.set_ylabel(label)
     axes[1].set_xticks(range(len(ds)))
     axes[1].set_xticklabels([f"{n}\n(E4{e4})" for n, _, e4 in ds.values()])
-    axes[0].legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=0.8, handlelength=1.4)
+    axes[0].legend(ncol=3, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=1.0, handlelength=1.6)
     save(fig, "fig_a_collapse")
 
     rows = []
@@ -148,12 +160,12 @@ def fig_tiers() -> None:
         if v is None:
             return stat(seeds(f"e8_{dset}", f"feature_set == '{t}' and experiment == '{exp}'"))
         return stat(ver[(ver.tls_version == v) & (ver.feature_set == t)])  # no per-version CI: ± 1 SD
-    fig, ax = plt.subplots(figsize=(W, 2.3))
+    fig, ax = plt.subplots(figsize=(W, 2.9))
     dots(ax, groups, labels, cell, [OI["blue"], OI["green"], OI["orange"]], ["o", "s", "^"])
     ax.set_xticklabels([g[3] for g in groups])
-    ax.axvline(2.5, color=OI["grey"], lw=0.6, ls=":")
+    ax.axvline(2.5, color=OI["grey"], lw=1.0, ls=":")
     ax.set_ylabel("PR-AUC")
-    ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=0.8, handlelength=1.2)
+    ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=1.0, handlelength=1.2)
     save(fig, "fig_b_tiers")
 
     prev = {g[3].replace("\n", " "): pct(cell(g, labels[0])["prev"]) for g in groups}
@@ -179,14 +191,15 @@ def fig_fingerprints() -> None:
 
     def cell_for(folder):
         return lambda sc, lab: stat(seeds(folder, f"scenario == '{sc}' and feature_set == '{sets[labels.index(lab)]}'"))
-    fig = plt.figure(figsize=(W, 4.1 if len(fams) > 1 else 2.3))
-    gs = fig.add_gridspec(2 if len(fams) > 1 else 1, 2, hspace=0.6, wspace=0.12)
+    fig = plt.figure(figsize=(W, 4.5 if len(fams) > 1 else 2.6))
+    gs = fig.add_gridspec(2 if len(fams) > 1 else 1, 2, hspace=0.55, wspace=0.1)
     ax = fig.add_subplot(gs[0, :])
     dots(ax, list(scen), labels, cell_for("e9"), cols, marks)
     ax.set_xticklabels(list(scen.values()))
     ax.set_ylabel("PR-AUC")
     ax.set_title("XGBoost, E9", loc="left")
-    ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.1), columnspacing=0.8, handlelength=1.2)
+    ax.legend(ncol=4, loc="lower left", bbox_to_anchor=(0, 1.1), columnspacing=0.9, handlelength=1.0,
+              handletextpad=0.3)
     if len(fams) > 1:  # cross-family check (batch 4): no fingerprint vs +both, per scenario
         axes = [fig.add_subplot(gs[1, i]) for i in range(2)]
         for ax, (sc, title) in zip(axes, scen.items()):
@@ -195,9 +208,9 @@ def fig_fingerprints() -> None:
                                                                f"feature_set == '{sets[labels.index(lab)]}'")),
                  [cols[0], cols[3]], [marks[0], marks[3]])
             ax.set_xticklabels([v[1] for v in fams.values()])
-            ax.set_title(title, fontsize=7, loc="left")
+            ax.set_title(title, loc="left")
         lo = min(a.get_ylim()[0] for a in axes)
-        hi = max(a.get_ylim()[1] for a in axes)
+        hi = max(a.get_ylim()[1] for a in axes) + 0.02  # room for markers at the top
         for i, a in enumerate(axes):
             a.set_ylim(lo, hi)
             if i:
@@ -220,7 +233,7 @@ def fig_fingerprints() -> None:
 
 # --------------------------------------------------------------------------- (d) E6 early detection
 def fig_early() -> None:
-    fig, ax = plt.subplots(figsize=(W, 2.2))
+    fig, ax = plt.subplots(figsize=(W, 3.0))
     ns = [3, 5, 10, 20]
     style = {("mta", "E2"): (OI["blue"], "o", "MTA E2"), ("mta", "E3"): (OI["orange"], "s", "MTA E3"),
              ("mcfp", "E2"): (OI["green"], "^", "MCFP E2")}
@@ -230,11 +243,11 @@ def fig_early() -> None:
         for suffix, ls, fill in (("", "-", c), ("_notime", "--", "white")):
             y = [s.loc[f"early_{n}{suffix}", "pr_auc_mean"] if f"early_{n}{suffix}" in s.index else np.nan
                  for n in ns]
-            ax.plot(ns, y, ls=ls, color=c, marker=mk, mfc=fill, ms=4, lw=1,
+            ax.plot(ns, y, ls=ls, color=c, marker=mk, mfc=fill, ms=5.5, mew=1.2, lw=1.4,
                     label=f"{name}{'' if not suffix else ', no timing'}")
             full = f"all{suffix}"
             if full in s.index:
-                ax.axhline(s.loc[full, "pr_auc_mean"], color=c, ls=ls, lw=0.5, alpha=0.5)
+                ax.axhline(s.loc[full, "pr_auc_mean"], color=c, ls=ls, lw=1.0, alpha=0.45)
         r = seeds(f"e6_{ds}", f"experiment == '{exp}' and feature_set.str.startswith('early_') and "
                               f"feature_set != 'early_3' and feature_set != 'early_3_notime'", )
         p = r["n_pos"] / r["n"]
@@ -247,8 +260,8 @@ def fig_early() -> None:
     ax.set_ylabel("PR-AUC")
     ax.set_ylim(0.2, 1.02)
     ax.axvspan(2.6, 3.6, color=OI["grey"], alpha=0.15, lw=0)
-    ax.text(3.0, 0.42, "N=3:\nartefact", ha="center", va="bottom", fontsize=5.5, color="#555555")
-    ax.legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), handlelength=2.2, columnspacing=0.8)
+    ax.text(3.0, 0.42, "N=3:\nartefact", ha="center", va="bottom", fontsize=SMALL, color="#444444")
+    ax.legend(ncol=3, loc="lower left", bbox_to_anchor=(0, 1.0), handlelength=2.4, columnspacing=1.0)
     save(fig, "fig_d_early")
     CAPTIONS["fig_d_early"] = (
         "**Early detection.** XGBoost on the features visible after the first N packets of a flow (E6), mean "
@@ -268,16 +281,16 @@ def fig_origin() -> None:
     m = c.loc[cls, cls].astype(float).fillna(0).to_numpy()
     n = m.sum(axis=1)
     m = m / n[:, None]
-    fig, ax = plt.subplots(figsize=(W * 0.75, W * 0.65))
+    fig, ax = plt.subplots(figsize=(4.4, 3.6))
     im = ax.imshow(m, cmap="cividis", vmin=0, vmax=1)
     for i in range(4):
         for j in range(4):
-            ax.text(j, i, f"{m[i, j]:.2f}", ha="center", va="center", fontsize=7,
+            ax.text(j, i, f"{m[i, j]:.2f}", ha="center", va="center", fontsize=SMALL,
                     color="black" if m[i, j] > 0.5 else "white")
     ax.set_xticks(range(4))
-    ax.set_xticklabels(short, fontsize=6.5)
+    ax.set_xticklabels(short)
     ax.set_yticks(range(4))
-    ax.set_yticklabels(short, fontsize=6.5)
+    ax.set_yticklabels(short)
     ax.set_xlabel("Predicted source dataset")
     ax.set_ylabel("True source (benign flows only)")
     ax.spines[:].set_visible(True)
@@ -300,26 +313,26 @@ def fig_rolling() -> None:
     if not p.exists():
         return
     s = pd.read_csv(p)
-    fig, axes = plt.subplots(2, 1, figsize=(W, 3.6), sharex=True, gridspec_kw={"height_ratios": [2.2, 1]})
+    fig, axes = plt.subplots(2, 1, figsize=(W, 4.3), sharex=True, gridspec_kw={"height_ratios": [2.2, 1]})
     style = {("all", "expanding"): (OI["red"], "-", "^", "G1–G5, all past years"),
              ("all", "2y"): (OI["red"], "--", "^", "G1–G5, last 2 years"),
              ("loo_g5", "expanding"): (OI["green"], "-", "o", "No fingerprints, all past years"),
              ("loo_g5", "2y"): (OI["green"], "--", "o", "No fingerprints, last 2 years")}
     for (fs, win), (c, ls, mk, lab) in style.items():
         d = s[(s.feature_set == fs) & (s.window == win)].sort_values("test_year")
-        axes[0].errorbar(d.test_year, d.pr_auc_mean, yerr=d.pr_auc_std, color=c, ls=ls, marker=mk, ms=4,
-                         mfc=c if ls == "-" else "white", lw=1, capsize=1.5, label=lab)
+        axes[0].errorbar(d.test_year, d.pr_auc_mean, yerr=d.pr_auc_std, color=c, ls=ls, marker=mk, ms=5.5,
+                         mfc=c if ls == "-" else "white", mew=1.2, lw=1.4, elinewidth=1.0, capsize=2, label=lab)
     d = s[(s.feature_set == "all") & (s.window == "expanding")].sort_values("test_year")
     prev = d.n_pos_mean / d.n_mean
-    axes[0].plot(d.test_year, prev, ls="none", marker="_", ms=9, mew=1.5, color="black", label="No-skill (prevalence)")
+    axes[0].plot(d.test_year, prev, ls="none", marker="_", ms=11, mew=1.8, color="black", label="No-skill (prevalence)")
     axes[0].set_ylabel("PR-AUC")
     axes[0].set_ylim(0, 1.04)
-    axes[0].legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=0.8, handlelength=2.2, fontsize=6.5)
-    axes[0].grid(axis="y", lw=0.3, color="#dddddd")
+    axes[0].legend(ncol=2, loc="lower left", bbox_to_anchor=(0, 1.0), columnspacing=1.0, handlelength=2.4)
+    axes[0].grid(axis="y", lw=0.5, color="#dddddd")
     for fs, c, mk in (("all", OI["red"], "^"), ("loo_g5", OI["green"], "o")):
         d = s[(s.feature_set == fs) & (s.window == "expanding")].sort_values("test_year")
-        axes[1].plot(d.test_year, d.roc_auc_mean, color=c, marker=mk, ms=4, lw=1)
-    axes[1].axhline(0.5, color=OI["grey"], lw=0.6, ls=":")
+        axes[1].plot(d.test_year, d.roc_auc_mean, color=c, marker=mk, ms=5.5, lw=1.4)
+    axes[1].axhline(0.5, color=OI["grey"], lw=1.0, ls=":")
     axes[1].set_ylabel("ROC-AUC\n(all past years)")
     axes[1].set_ylim(0.3, 1.02)
     axes[1].set_xlabel("Test year (trained on earlier years only)")
