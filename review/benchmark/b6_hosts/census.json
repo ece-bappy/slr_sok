@@ -1,0 +1,11 @@
+{
+  "test_flows": 12882,
+  "pcaps": 173,
+  "hosts": 174,
+  "hosts_with_malicious": 129,
+  "benign_only_hosts": 45,
+  "host_hours": 381,
+  "host_hours_with_malicious": 254,
+  "benign_host_hours": 127,
+  "benign_flows_on_infected_hosts": 5388
+}
