@@ -1,0 +1,279 @@
+================================================================================
+INDEPENDENT CODER RULEBOOK & GUIDE FOR TASK 9: 14 CORE PAPERS SAMPLE
+================================================================================
+Study: Systematization of Knowledge (SoK): Machine-Learning Detection of 
+       Malicious TLS Traffic
+Purpose: Independent Inter-Rater Reliability Assessment (Cohen's Kappa)
+Target Venue: CORE A-ranked Security Conference / Q1 Journal
+Spreadsheet to Fill: second_coder_14_papers.xlsx (or second_coder_14_papers.csv)
+Papers Directory: papers/core/
+================================================================================
+
+1. WELCOME & PURPOSE OF YOUR CODING
+--------------------------------------------------------------------------------
+Thank you for agreeing to serve as the independent second coder for this 
+systematic literature review! 
+
+To meet rigorous open-science and PRISMA 2020 review standards, we conduct an 
+inter-coder agreement study on a random 20% sample of the review's core 
+literature (14 randomly sampled papers). 
+
+Your independent coding will be compared against the primary coder's data to 
+compute Cohen's kappa (κ), quantifying the reproducibility of the extraction 
+protocol in the published paper.
+
+CRITICAL BLIND PROTOCOL:
+- You must code these 14 papers completely independently.
+- Do NOT consult the primary coder's answers, and do NOT consult any LLM outputs.
+- Base every single decision STRICTLY on the text, tables, and figures of the 
+  provided paper PDF in papers/core/<paper_id>.pdf.
+
+
+================================================================================
+2. HOW THE SPREADSHEET IS STRUCTURED
+================================================================================
+Open second_coder_14_papers.xlsx in Excel.
+
+- Row 2 is an EXAMPLE row (Sample ID: EXAMPLE, yellow fill) demonstrating how 
+  to code a field, cite the page, and provide a verbatim quote.
+- Rows 3–296 contain the 14 sampled papers (C01 through C14), each evaluated 
+  across 21 fields.
+
+Columns provided for you:
+  - sample_id: C01 to C14
+  - paper_id: Paper identifier (e.g., S0066, S0664, S1926)
+  - year: Publication year
+  - venue: Journal or conference
+  - title: Title of the study
+  - pdf_file: Relative path to the PDF (papers/core/<paper_id>.pdf)
+  - field: The specific field being coded
+  - allowed_values: The exact vocabulary or syntax required
+
+Columns you will fill (highlighted in light green):
+  - your_value: Your extracted value (MUST adhere to allowed_values syntax).
+  - page: The PDF page number where you found the evidence (e.g., "p6").
+  - quote: ONE verbatim passage (max 40 words) copied character-for-character.
+  - note: Optional brief remark explaining your choice or any paper ambiguity.
+
+
+================================================================================
+3. GENERAL CODING RULES (G1–G6)
+================================================================================
+Please memorize these 6 golden rules before coding:
+
+G1. CODE THE PAPER'S OWN METHOD:
+    Code what the paper says about ITS OWN proposed detector/experiments. Ignore 
+    related work sections, background, and other papers' baselines, even when the 
+    authors re-implement them.
+
+G2. CODE THE MAIN METHOD:
+    Code the primary model behind the paper's headline result (the one highlighted 
+    in the abstract and main results table). If the paper compares several feature 
+    sets, code the final recommended detector. Side experiments (sensitivity, 
+    ablation) only count for split_protocols, easy_vs_hard_reported, and shortcut_check.
+
+G3. VERBATIM QUOTE REQUIRED:
+    Every answer must be supported by ONE contiguous quote (max ~40 words) copied 
+    exactly as written from the PDF. Never paraphrase, never join sentences, and 
+    never use ellipses ("..."). For tables/figures, copy the caption or row label. 
+    If no passage in the paper states it, then the paper does not state it.
+
+G4. STRICT UNPROVEN = NOT STATED:
+    Do NOT use your external knowledge of networking, datasets, or tools. For example, 
+    do NOT code "1.3" for TLS versions just because you know a dataset contains TLS 1.3; 
+    code it only if the paper text explicitly states it.
+
+G5. USE NULL VOCABULARY ACCURATELY:
+    If the paper does not state an answer, use "unclear", "none", "not_applicable", 
+    or "not_stated", whichever is permitted by the field's allowed_values.
+
+G6. CODE THE CITED VERSION:
+    Code the provided PDF in papers/core/ (the peer-reviewed published version).
+
+
+================================================================================
+4. FIELD-BY-FIELD CODING REFERENCE (21 FIELDS)
+================================================================================
+
+--------------------------------------------------------------------------------
+GROUP A: DATA AND LABELS
+--------------------------------------------------------------------------------
+1. datasets_evaluated
+   - Allowed values: Semicolon-separated data sources with role train / test / train_and_test.
+   - Format: "DatasetName (role); DatasetName2 (role)"
+   - Definition: Every dataset used to train or test the authors' method. Name the data 
+     SOURCE as described in the paper ("CIC-IDS2017", "CTU-13", "traffic from campus edge", 
+     "private testbed capture"). Do NOT write internal split names ("Dataset_A", "Train_set").
+   - Where to look: "Data Collection", "Dataset Description", "Experimental Setup".
+
+2. label_source
+   - Allowed values (list with semicolons if multiple):
+     * sandbox: every flow from a sandbox detonation is labelled malicious.
+     * blocklist_cert: certificate blocklist (e.g. SSLBL, abuse.ch).
+     * blocklist_ja3: JA3/JA4 hash blocklist.
+     * ids_alerts: Suricata/Snort/Zeek alerts.
+     * dataset_provided: labels pre-packaged with the public benchmark dataset.
+     * manual: human inspection by analysts.
+     * generated: attack traffic generated by authors in lab/testbed (labelled by construction).
+     * other: VirusTotal, AVClass, OSINT (explain in note).
+   - Definition: The signal used to decide malicious vs benign (NOT where traffic was recorded).
+
+3. label_feature_overlap
+   - Allowed values: yes | no | unclear | not_applicable
+   - Definition: Does any feature input to the classifier use the SAME signal that was used 
+     to label the data? (E.g. labels came from a certificate blocklist, and classifier uses 
+     certificate features -> "yes"; labels from sandbox, features are flow sizes -> "no").
+   - Use "not_applicable" if no trained model.
+
+--------------------------------------------------------------------------------
+GROUP B: FEATURES AND TLS VISIBILITY
+--------------------------------------------------------------------------------
+4. features_used
+   - Allowed values: Short descriptive phrases in the paper's own words.
+   - Definition: The classifier's inputs. Fields used only to filter, group, or label traffic 
+     do NOT count as classifier features.
+   - Where to look: "Feature Extraction", "Feature Selection", feature tables.
+
+5. feature_groups
+   - Allowed values (semicolon-separated list among): G1 | G2 | G3 | G4 | G5
+   - Definition:
+     * G1: Whole-flow summary statistics (flow duration, byte counts, packet totals, mean packet size, inter-arrival times).
+     * G2: Sequences of packet/record sizes, directions, or timing (e.g., first 20 packet lengths).
+     * G3: Handshake fields from ClientHello or ServerHello (SNI, cipher suites, extensions, ALPN, versions).
+     * G4: X.509 Certificate fields (issuer, subject, validity dates, SAN, self-signed flag, certificate size).
+     * G5: TLS Fingerprints (JA3, JA3S, JA4, JA4S, JARM, Mercury).
+
+6. cert_fields_read
+   - Allowed values: yes | no | not_applicable
+   - Definition: 
+     * yes: The method reads cleartext Certificate fields (issuer, subject, etc.).
+     * no: Certificate size is only INFERRED from encrypted record lengths, or certs are not parsed.
+     * not_applicable: No certificate information used at all.
+
+7. fingerprints_used
+   - Allowed values: none | JA3 | JA3S | JA4 | JA4S | other (semicolon list)
+   - Definition: Fingerprints used as CLASSIFIER INPUTS. (If JA3 was only used to filter or 
+     label data, write "none").
+
+8. tls_versions_stated
+   - Allowed values: 1.0 | 1.1 | 1.2 | 1.3 | not_stated (semicolon list)
+   - Definition: Specific TLS protocol versions that the paper EXPLICITLY STATES are present 
+     in its evaluation data. If the paper does not state versions, write "not_stated". 
+     Never infer the version from a dataset name or date (Rule G4).
+
+9. ech_considered
+   - Allowed values: yes | no
+   - Definition: 
+     * yes: Encrypted Client Hello (ECH / ESNI) is evaluated, simulated, or explicitly assumed 
+       in the threat model or feature design.
+     * no: ECH is only mentioned in passing, related work, or future work (or not mentioned).
+
+--------------------------------------------------------------------------------
+GROUP C: EVALUATION PROTOCOL
+--------------------------------------------------------------------------------
+10. model_family
+    - Allowed values: Short text (e.g., "Random Forest", "CNN-LSTM", "XGBoost", "Transformer", "SVM").
+    - Definition: The machine learning or deep learning architecture of the paper's own method. 
+      Write "none" if rule-based or lookup-based.
+
+11. split_protocols
+    - Allowed values (semicolon list if multiple):
+      * random: standard random train/test split or k-fold cross-validation.
+      * stratified_random: random split preserving class balance.
+      * per_packet: packets of the same flow can appear in both train and test sets (packet-level split).
+      * host_grouped: train and test split by IP address, host, or separate network capture.
+      * temporal: test data collected strictly AFTER training data in time.
+      * cross_dataset: model trained on one dataset and tested on a completely different dataset.
+      * not_applicable: no model trained and tested.
+    - Definition: ALL train/test split protocols used across the paper's experiments.
+
+12. main_split
+    - Allowed values: One value from the split_protocols list.
+    - Definition: The split protocol behind the headline result (abstract / main evaluation table).
+
+13. easy_vs_hard_reported
+    - Allowed values: yes | no | not_applicable
+    - Definition: 
+      * yes: The SAME model is evaluated on both a random split AND a harder split 
+        (host_grouped, temporal, or cross_dataset) and results are compared.
+      * no: Only evaluated on random, or only on hard.
+      * not_applicable: No model trained.
+
+14. shortcut_check
+    - Allowed values (semicolon list): none | identifier_removal | ablation | probe | other
+    - Definition: Experiments designed to verify the model avoids spurious shortcuts:
+      * identifier_removal: IP addresses, port numbers, or TTL removed from inputs.
+      * ablation: removing feature groups to see if classification signal survives.
+      * probe: dataset-of-origin classification probe.
+      * other: SHAP or feature attribution showing non-shortcut features dominate.
+      * none: no shortcut checks performed.
+
+15. metrics
+    - Allowed values: List of metrics (e.g., "accuracy, precision, recall, f1, fpr, roc-auc").
+    - Definition: All quantitative evaluation metrics reported for the authors' proposed model.
+
+--------------------------------------------------------------------------------
+GROUP D: DEPLOYMENT AND REPRODUCIBILITY
+--------------------------------------------------------------------------------
+16. granularity
+    - Allowed values: packet | flow | session | host
+    - Definition: The classification unit. (If one ClientHello per connection is classified, 
+      code either packet or flow, and note which in the note column).
+
+17. first_n_packets
+    - Allowed values: N + unit (e.g. "5 packets", "10 records", "first 3 bursts") | whole flow
+    - Definition: If the detector classifies early from the start of a flow, state N and unit. 
+      If it requires the entire flow before classifying, write "whole flow".
+
+18. cost_reported
+    - Allowed values: none | inference_only | end_to_end
+    - Definition:
+      * none: no computational execution runtime, latency, or throughput measured.
+      * inference_only: measures model classification time/throughput only.
+      * end_to_end: measures feature extraction time + classification time.
+
+19. hardware
+    - Allowed values: Hardware specifications | none
+    - Definition: Hardware used specifically to MEASURE execution time/latency (e.g., 
+      "Intel Xeon E5-2630 CPU, 32GB RAM", "NVIDIA RTX 3090"). 
+      RULE: If cost_reported is "none", hardware MUST be "none" (even if training hardware 
+      is mentioned).
+
+20. code_released
+    - Allowed values: yes | no
+    - Definition:
+      * yes: The paper provides a working URL to the authors' OWN implementation/code.
+      * no: No code link provided, or link is to third-party software (Wireshark, PyTorch, Joy).
+      * Note: "Available upon request" or "will be released" = "no". Check footnotes, availability 
+        statements, and references ("code available at [n]").
+
+21. data_released
+    - Allowed values: yes | no
+    - Definition:
+      * yes: The authors published NEW data THEY created (pcaps, labels, or feature csv) with 
+        a URL or DOI.
+      * no: Authors only used existing public benchmark datasets without releasing their own data.
+
+
+================================================================================
+5. WALKTHROUGH OF THE EXAMPLE ROW
+================================================================================
+Look at row 2 of second_coder_14_papers.xlsx:
+- sample_id: EXAMPLE
+- paper_id: (format only)
+- field: feature_groups
+- allowed_values: G1|G2|G3|G4|G5 (list)
+- your_value: G2; G4
+- page: p7
+- quote: For the first experiment, we train classifiers on sequences of TLS records sizes, directions and types.
+- note: certificate size is inferred from record length, not parsed directly
+
+This demonstrates:
+1. your_value follows allowed_values exactly.
+2. page points directly to page 7 of the PDF.
+3. quote is a single contiguous sentence copied verbatim without paraphrasing or ellipsis.
+4. note clarifies why G4 was coded (inferred certificate size).
+
+
+Thank you very much for your contribution to this research!
+================================================================================

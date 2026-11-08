@@ -1,0 +1,10 @@
+﻿index,name,public_claimed,tls_claimed,your_public,your_tls,source_url,ok_or_fix,note
+33,DoH-Tunnel-Traffic-HKD,yes,DoH (HTTPS),,,,,
+34,VNAT (MIT LL VPN/non-VPN),yes,"VPN and non-VPN, mixed",,,,,
+35,CIC-Bell-DNS-EXF-2021,yes,"DNS, not TLS",,,,,
+36,HTTP CSIC 2010,yes,"HTTP requests, not TLS",,,,,
+37,SWaT / WADI (iTrust),on_request,"ICS process data, not TLS",,,,,
+38,NDSec-1,yes,mixed,,,,,
+39,X-IIoTID,yes,"IIoT, mixed",,,,,
+40,ISCX IDS 2012,yes,mostly non-TLS,,,,,
+41,"Blocklist / threat feed (label source, not a traffic dataset)",n/a,label or fingerprint source,,,,,

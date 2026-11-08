@@ -1,0 +1,103 @@
+CODING RULEBOOK - full-text data extraction
+SoK: Machine-learning detection of malicious TLS traffic
+Version 1, 28 Oct 2026. Same definitions as the LLM extraction (scripts/extract_v2.py) and plan.md §4.
+Change only by adding a dated rule in section 6, and tell Claude so the LLM definitions change too.
+
+=====================================================================
+1. GENERAL RULES
+=====================================================================
+G1 Code what the paper states about ITS OWN method and experiments. Ignore related work and other papers'
+   baselines, even when the paper re-runs them.
+G2 Code the MAIN method: the one behind the paper's headline result (abstract / main results table).
+   If the paper tries several feature sets or configurations, code the final one it recommends.
+   Side experiments (sensitivity, robustness, ablation) do not change the main answers; they count only
+   for split_protocols, easy_vs_hard_reported and shortcut_check, which look at all experiments.
+G3 Every answer needs evidence: the page and ONE verbatim passage (max ~40 words), copied, not paraphrased.
+   Table or figure: copy the caption or row. No passage = the paper does not say it.
+G4 Unproven = not stated. Do not use your own knowledge of a dataset or tool to fill a field
+   (e.g. do not write TLS 1.3 because you know a dataset contains it).
+G5 If the paper does not say: unclear / none / not_applicable / not_stated, as each field allows.
+G6 Code the published version we cite, not a preprint.
+
+=====================================================================
+2. DATA AND LABELS
+=====================================================================
+datasets_evaluated  Every dataset used to train or test the paper's own method (not ones only cited).
+                    Name the data SOURCE as the paper describes it ("CIC-IDS2017", "traffic from a
+                    commercial sandbox", "campus network"), not internal split names ("Train01",
+                    "Benign02"). For each: role = train / test / train_and_test, and a quote.
+label_source        The signal that decides malicious vs benign (NOT where traffic came from). List all:
+                      sandbox           every flow of a sandbox run labelled malicious
+                      blocklist_cert    certificate blocklist (e.g. SSLBL certificates)
+                      blocklist_ja3     JA3 blocklist
+                      ids_alerts        IDS/IPS alerts
+                      dataset_provided  labels shipped with a public dataset (incl. labels in file names)
+                      manual            human inspection
+                      generated         attack traffic the authors generated, labelled by construction
+                      other             e.g. VirusTotal / AVClass family labels (say which in the note)
+label_feature_overlap  yes if a classifier input uses the same signal as the labels (certificate features
+                    + certificate-blocklist labels; JA3 features + JA3-blocklist labels); no; unclear;
+                    not_applicable if no classifier is trained.
+
+=====================================================================
+3. FEATURES AND TLS VISIBILITY
+=====================================================================
+features_used       The classifier's inputs as short phrases in the paper's words. Fields used only to
+                    filter, label or group flows do NOT count.
+feature_groups      G1 whole-flow statistics (duration, byte/packet totals, rates)
+                    G2 sequences of packet/record sizes, directions or timing
+                    G3 ClientHello/ServerHello fields (SNI, ALPN, cipher suites, extensions, versions)
+                    G4 certificate fields, incl. certificate size
+                    G5 JA3/JA4-style fingerprints
+cert_fields_read    yes = reads Certificate message fields in cleartext (issuer, subject, validity, SAN,
+                    self-signed, chain length); no = certificate info only INFERRED from encrypted record
+                    sizes, or not used; not_applicable = no certificate information at all.
+fingerprints_used   none / JA3 / JA3S / JA4 / JA4S / other (e.g. Mercury NPF). Only as classifier input,
+                    not fingerprints used for labelling.
+tls_versions_stated TLS versions the paper STATES are in its evaluation data; not_stated otherwise.
+ech_considered      yes if ECH is evaluated, simulated or explicitly assumed in the design or threat
+                    model; no if only background or future work.
+(visibility_tier is computed: cert_fields_read=yes -> tls12; else any G3/G5/fingerprint -> tls13;
+ else -> tls13_ech. You do not code it.)
+
+=====================================================================
+4. EVALUATION PROTOCOL
+=====================================================================
+model_family        Model types of the paper's own method, short (e.g. "random forest", "CNN-LSTM",
+                    "HDBSCAN clustering"); none if no learned model.
+split_protocols     ALL ways train/test are split in the paper's own experiments:
+                      random            incl. k-fold cross-validation
+                      stratified_random
+                      per_packet        packets of one flow can be in train and test
+                      host_grouped      no host / IP / capture file / trace in both
+                      temporal          test data collected strictly AFTER training data (a TLS-version
+                                        transfer alone is not temporal)
+                      cross_dataset     train on one dataset, test on another
+                      not_applicable    no model trained and tested
+main_split          The protocol behind the headline result (same values).
+easy_vs_hard_reported  yes if the SAME method is reported under a random split AND a harder one
+                    (host_grouped, temporal or cross_dataset); no; not_applicable if no trained model.
+shortcut_check      Checks that the model does not learn shortcuts: identifier_removal (IP/port/TTL or
+                    testbed identifiers removed), ablation (feature groups removed, effect reported),
+                    probe (dataset-of-origin / environment test), other (say which), none.
+metrics             Metrics reported for the paper's own method.
+
+=====================================================================
+5. DEPLOYMENT AND REPRODUCIBILITY
+=====================================================================
+granularity         Unit classified: packet / flow / session / host. One ClientHello per connection may
+                    be coded packet or flow (note which).
+first_n_packets     N and unit if the method decides from only the first N packets/records
+                    ("20 records"); otherwise "whole flow".
+cost_reported       none / inference_only (model time only) / end_to_end (feature extraction +
+                    inference).
+hardware            Only hardware used to MEASURE runtime; none if no timing results.
+code_released       yes only if the paper gives a working link to the AUTHORS' OWN code, now. Check
+                    footnotes, availability statements AND the reference list ("available at [47]").
+                    "Will be released" or "on request" = no (note it).
+data_released       Same rule for data the authors created (captures, labels, features). Using a public
+                    dataset is not releasing data.
+
+=====================================================================
+6. ADDED RULES (date, rule, why)
+=====================================================================
