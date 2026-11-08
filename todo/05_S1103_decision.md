@@ -19,4 +19,5 @@
 
 **Your decision:** write it here, or just tell Claude "S1103: include / exclude / maybe".
 
-Decision: ______  Note: ______________________
+Decision: exclude
+Note: non_tls; evaluates only on ISCX VPN-nonVPN 2016 which lacks malicious TLS traffic (per screening rulebook section 3, criterion C3 / code non_tls)
