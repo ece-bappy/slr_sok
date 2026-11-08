@@ -1,0 +1,131 @@
+"""Build BibTeX for the 67 core papers from Crossref (by DOI), falling back to the search record.
+
+Keys are the review ids (e.g. S2338), so every citation in the manuscript traces back to the coding.
+Output: paper/core_refs.bib and paper/core_refs_report.csv (source used per paper, missing fields).
+Crossref is queried politely: one request per DOI, a generic User-Agent, a short pause between calls.
+"""
+import csv
+import html
+import json
+import re
+import time
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+PAPERS = ROOT / "review" / "synthesis" / "papers.csv"
+RECORDS = ROOT / "review" / "search" / "records.csv"
+OUT = ROOT / "paper" / "core_refs.bib"
+REPORT = ROOT / "paper" / "core_refs_report.csv"
+UA = "tls-sok-bibliography/1.0 (academic literature review; python urllib)"
+
+TEX = {"&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#", "_": r"\_"}
+
+
+def tex(s):
+    s = html.unescape(re.sub(r"<[^>]+>", "", s or ""))  # strip JATS/HTML tags, decode entities
+    s = s.replace("‐", "-").replace("–", "--").replace("—", "---")
+    return "".join(TEX.get(c, c) for c in s).strip()
+
+
+def protect(title):
+    # keep acronyms and mixed-case words capitalised under the bibliography style
+    return " ".join("{" + w + "}" if re.search(r"[A-Z].*[A-Z]|\d", w) else w for w in title.split())
+
+
+def crossref(doi):
+    req = urllib.request.Request("https://api.crossref.org/works/" + urllib.request.quote(doi),
+                                 headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)["message"]
+
+
+def entry_from_crossref(key, m):
+    typ = m.get("type", "")
+    authors = " and ".join(
+        tex(f"{a.get('family', '')}, {a.get('given', '')}".strip(", ")) for a in m.get("author", []))
+    year = (m.get("issued", {}).get("date-parts") or [[None]])[0][0]
+    f = {"author": authors, "title": "{" + protect(tex((m.get("title") or [""])[0])) + "}", "year": str(year or "")}
+    cont = tex((m.get("container-title") or [""])[0])
+    if typ == "journal-article":
+        kind = "article"
+        f["journal"] = cont
+        for a, b in (("volume", "volume"), ("issue", "number")):
+            if m.get(a):
+                f[b] = tex(m[a])
+        if m.get("page"):
+            f["pages"] = tex(m["page"]).replace("-", "--")
+        elif m.get("article-number"):
+            f["pages"] = tex(m["article-number"])
+    elif typ in ("proceedings-article", "book-chapter"):
+        kind = "inproceedings"
+        f["booktitle"] = cont
+        if m.get("page"):
+            f["pages"] = tex(m["page"]).replace("-", "--")
+        if m.get("publisher"):
+            f["publisher"] = tex(m["publisher"])
+    else:
+        kind = "misc"
+        if cont:
+            f["howpublished"] = cont
+    f["doi"] = m.get("DOI", "")
+    return kind, f
+
+
+def entry_from_record(rec):
+    authors = " and ".join(tex(a.strip()) for a in rec["authors"].split(";") if a.strip())
+    f = {"author": authors, "title": "{" + protect(tex(rec["title"])) + "}", "year": rec["year"]}
+    if rec.get("arxiv_id"):
+        f["eprint"] = rec["arxiv_id"]
+        f["archiveprefix"] = "arXiv"
+        f["howpublished"] = "arXiv:" + rec["arxiv_id"]
+        return "misc", f
+    venue = tex(rec.get("venue", ""))
+    if rec.get("type_norm", "").startswith("journal") or rec.get("type") == "journal-article":
+        f["journal"] = venue
+        kind = "article"
+    else:
+        f["booktitle"] = venue
+        kind = "inproceedings"
+    if rec.get("doi"):
+        f["doi"] = rec["doi"]
+    return kind, f
+
+
+def main():
+    with open(PAPERS, encoding="utf-8-sig") as fh:
+        ids = [r["paper_id"] for r in csv.DictReader(fh)]
+    with open(RECORDS, encoding="utf-8-sig") as fh:
+        recs = {r["id"]: r for r in csv.DictReader(fh)}
+    out, report = [], []
+    for pid in ids:
+        rec = recs[pid]
+        doi = re.sub(r"^https?://(dx\.)?doi\.org/", "", rec.get("doi", "") or "").strip()
+        src = "record"
+        kind, f = entry_from_record(rec)
+        if doi:
+            try:
+                kind, f = entry_from_crossref(pid, crossref(doi))
+                src = "crossref"
+            except Exception as e:  # keep the record-based entry
+                src = f"record (crossref failed: {type(e).__name__})"
+            time.sleep(0.3)
+        missing = [k for k in ("author", "title", "year") if not f.get(k)]
+        if kind == "article":
+            missing += [k for k in ("journal", "volume", "pages") if not f.get(k)]
+        if kind == "inproceedings":
+            missing += [k for k in ("booktitle", "pages") if not f.get(k)]
+        body = ",\n".join(f"  {k:<12} = {{{v}}}" for k, v in f.items() if v)
+        out.append(f"@{kind}{{{pid},\n{body}\n}}\n")
+        report.append({"paper_id": pid, "type": kind, "source": src, "missing": ";".join(missing)})
+        print(pid, kind, src, missing)
+    OUT.write_text("% Core-set references (67), generated by scripts/core_bib.py; keys are review ids.\n\n"
+                   + "\n".join(out), encoding="utf-8")
+    with open(REPORT, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(report[0]))
+        w.writeheader()
+        w.writerows(report)
+
+
+if __name__ == "__main__":
+    main()
