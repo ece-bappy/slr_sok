@@ -605,8 +605,76 @@ def family_of(title: str):
     return hits.pop() if len(hits) == 1 else ("ambiguous" if hits else "unknown")
 
 
-def item_family(a):
-    out = BENCH / "b6_family"
+def item_family_models(a):
+    """7b: leave-one-family-out for LightGBM and RF (same labels, held-out families and splits as item 7)."""
+    item_family(a, models=("lgbm", "rf"), out_name="b6_family_models")
+
+
+def item_tls13(a):
+    """9: is MTA E3 detection on TLS 1.3 flows near chance whatever the features? (a) per-version ROC/PR/prevalence
+    for every reported feature set; (b) TLS 1.3 share by split, class and year; (c) train on one TLS version only,
+    test on it; (d) per-post / per-family breakdown within each version; (e) TLS 1.2 as the contrast."""
+    out = BENCH / "b6_tls13"
+    out.mkdir(parents=True, exist_ok=True)
+    t = table("mta")
+    fam = pd.Series({p: family_of(Path(p).name) for p in t["k_pcap"].unique()})
+    # (b) shares, on the `all`-deduplicated table that E3 uses
+    d_all = dd("mta", set_columns(t, "all"))
+    ver = d_all["k_tls_version"].astype(str)
+    period = np.where(d_all["k_year"].astype(str) <= "2022", "train (<=2022)", "test (2023-26)")
+    share = (pd.crosstab([period, d_all["k_year"], d_all["label"]], ver, normalize="index").round(4)
+             .join(pd.crosstab([period, d_all["k_year"], d_all["label"]], ver).sum(axis=1).rename("n")))
+    share.to_csv(out / "tls_share_by_year_class.csv")
+    pd.crosstab([period, d_all["label"]], ver, normalize="index").round(4).to_csv(out / "tls_share_by_split_class.csv")
+    rows, brk = [], []
+    for fs in ("all", "loo_g5", "g1g2", "g1g2_notime", "g1g2g3"):
+        cols = set_columns(t, fs)
+        d = dd("mta", cols)
+        v = d["k_tls_version"].astype(str).to_numpy()
+        for train_on in ("all versions", "1.3 only", "1.2 only"):
+            for seed in range(a.seeds):
+                tr, va, te = split(d, "E3", "mta", seed)
+                if train_on != "all versions":
+                    keep = train_on.split()[0]
+                    tr, va = tr[v[tr] == keep], va[v[va] == keep]
+                    lab = d["label"].to_numpy()
+                    if min(len(np.unique(lab[tr])), len(np.unique(lab[va]))) < 2:
+                        print("skip", fs, train_on, "(one class in train or validation)", flush=True)
+                        break
+                test = d.iloc[te].reset_index(drop=True)
+                _, s_te, thr = fit_eval(d, test, tr, va, cols, seed, a.jobs, boot=0)
+                y, tv = test["label"].to_numpy(), test["k_tls_version"].astype(str).to_numpy()
+                for sub in ("1.2", "1.3", "all"):
+                    i = np.ones(len(y), bool) if sub == "all" else tv == sub
+                    if train_on != "all versions" and sub not in (train_on.split()[0], "all"):
+                        continue
+                    m = metrics(y[i], s_te[i], *thr)
+                    rows.append({"feature_set": fs, "train_on": train_on, "test_subset": sub, "seed": seed,
+                                 "prevalence": y[i].mean(), **m})
+                if train_on == "all versions" and fs in ("all", "loo_g5") and seed == 0:
+                    tt = test.assign(score=s_te, family=test["k_pcap"].map(fam).fillna("unknown"))
+                    for sub in ("1.2", "1.3"):
+                        part = tt[tv == sub]
+                        for key in ("k_post", "family"):
+                            for g, p in part.groupby(key):
+                                rest = part[part[key] != g]
+                                brk.append({"feature_set": fs, "tls_version": sub, "group_by": key, "group": g,
+                                            "n": len(p), "n_malicious": int(p.label.sum()),
+                                            "roc_within": roc_auc_score(p.label, p.score) if p.label.nunique() == 2 else np.nan,
+                                            "roc_subset": roc_auc_score(part.label, part.score),
+                                            "roc_subset_without_group": roc_auc_score(rest.label, rest.score)
+                                            if rest.label.nunique() == 2 else np.nan})
+                print(fs, train_on, seed, flush=True)
+        summarise(rows, out, ["feature_set", "train_on", "test_subset"],
+                  ("roc_auc", "pr_auc", "prevalence", "macro_f1", "recall_malicious", "recall_benign", "n", "n_pos"))
+    b = pd.DataFrame(brk)
+    b["influence"] = b["roc_subset_without_group"] - b["roc_subset"]
+    b.sort_values(["feature_set", "tls_version", "group_by", "influence"]).to_csv(out / "breakdown.csv", index=False)
+    print(pd.read_csv(out / "summary.csv").to_string())
+
+
+def item_family(a, models=("xgb",), out_name="b6_family"):
+    out = BENCH / out_name
     out.mkdir(parents=True, exist_ok=True)
     t = table("mta")
     # one label per pcap (a post folder can hold several infections); titles naming 2+ families are ambiguous
@@ -637,17 +705,19 @@ def item_family(a):
             if len(test) == 0 or test["label"].nunique() < 2 or rest["label"].nunique() < 2:
                 print("skip", f_out, "(one class only)", flush=True)
                 continue
-            for seed in range(a.seeds):
-                tr, va = train_test_split(np.arange(len(rest)), test_size=0.15, stratify=rest["label"], random_state=seed)
-                r, s_te, thr = fit_eval(rest, test, tr, va, cols, seed, a.jobs, boot=100)
-                rows.append({"feature_set": fs, "family": fam_name, "n_posts": int(counts[fam_name]), "seed": seed, **r})
-                print(fs, fam_name, seed, round(r["recall_malicious"], 3), flush=True)
+            for model in models:
+                for seed in range(a.seeds):
+                    tr, va = train_test_split(np.arange(len(rest)), test_size=0.15, stratify=rest["label"], random_state=seed)
+                    r, s_te, thr = fit_eval(rest, test, tr, va, cols, seed, a.jobs, model, boot=100)
+                    rows.append({"model": model, "feature_set": fs, "family": fam_name, "n_posts": int(counts[fam_name]),
+                                 "seed": seed, **r})
+                    print(model, fs, fam_name, seed, round(r["recall_malicious"], 3), flush=True)
             pd.DataFrame(rows).to_csv(out / "results_per_seed.csv", index=False)
     if not rows:
         return
     res = pd.DataFrame(rows)
     keys = ["recall_malicious", "recall_benign", "tpr_at_val_fpr1e-3", "test_fpr_at_that_threshold", "pr_auc", "roc_auc", "n", "n_pos"]
-    summ = res.groupby(["feature_set", "family"], sort=False)[keys].agg(["mean", "std"])
+    summ = res.groupby(["model", "feature_set", "family"], sort=False)[keys].agg(["mean", "std"])
     summ.columns = [f"{k}_{s}" for k, s in summ.columns]
     summ.reset_index().to_csv(out / "summary.csv", index=False)
     print(summ.to_string())
@@ -708,7 +778,7 @@ def item_evasion(a):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion",
-                                     "rolling_models", "rolling_enc", "post2026"])
+                                     "rolling_models", "rolling_enc", "post2026", "tls13", "family_models"])
     ap.add_argument("--seeds", type=int, default=None)
     ap.add_argument("--jobs", type=int, default=24)
     ap.add_argument("--min-posts", type=int, default=5)
@@ -716,4 +786,5 @@ if __name__ == "__main__":
     a.seeds = a.seeds or {"seeds": 20, "baserate": 20, "encoding": 20}.get(a.item, 5)
     {"seeds": item_seeds, "baserate": item_baserate, "rolling": item_rolling, "encoding": item_encoding,
      "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion,
-     "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026}[a.item](a)
+     "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026,
+     "tls13": item_tls13, "family_models": item_family_models}[a.item](a)

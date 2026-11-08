@@ -50,6 +50,24 @@ Setup: XGBoost on G1–G5, trained on all past years, test 2026 (2,235 flows); s
 - **Not a few posts.** Leaving out any single post, or any single family, keeps ROC below 0.5 (at most 0.43). The inversion is spread across the year.
 - **Mechanism.** 79% of benign and 91% of malicious 2026 flows have a client JA3/JA4 never seen in 2019–2025 training. Among those unseen flows, benign traffic scores *higher* than malicious (mean 0.48 vs 0.41), while seen-hash flows score about the same (0.23 vs 0.25–0.26; `unseen_by_class.csv`). The fingerprint model's treatment of new hashes is what inverts the ranking. Item 3c (the seen-in-training flag in the rolling setup) tests this directly.
 
+## 3c: the same curve with the item-4 fingerprint encodings (`b6_rolling_enc/`, XGBoost, 5 seeds)
+
+Same rows for every encoding (dedup on G1–G5). PR-AUC with all past years; ROC in brackets for the late years:
+
+| Test year | (a) hash categorical | (b) training frequency | (c) seen-in-training flag | (e) no fingerprints |
+|---|---|---|---|---|
+| 2020 | 0.906 | 0.887 | 0.876 | 0.877 |
+| 2021 | 0.986 | 0.996 | 0.996 | 0.995 |
+| 2022 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 2023 | 0.922 | 0.988 | 0.993 | 0.992 |
+| 2024 | 0.804 (0.80) | 0.923 (0.91) | 0.938 (0.94) | 0.935 (0.94) |
+| 2025 | 0.395 (0.80) | 0.583 (0.80) | 0.681 (0.90) | 0.672 (0.90) |
+| 2026 | **0.606 (0.41)** | 0.836 (0.81) | **0.970 (0.96)** | **0.970 (0.96)** |
+
+- **The seen-in-training flag tracks the no-fingerprint curve within 0.01 in every year**, with all past years or the last 2 years (`summary.csv`). Knowing whether a hash is new adds nothing; the drift comes from using the *hash value itself* as a feature.
+- Frequency encoding lies in between and also degrades with time (2026: 0.836). It still encodes hash identity, through its training count.
+- This supports the item-4 wording for the paper: *raw hashes as features age badly*, rather than "fingerprints hurt".
+
 ## Caveats
 - 2024 and 2025 have small test sets (1.2–1.4k flows). Their SDs (up to 0.07) cover seed variation only, not test-set sampling. Bootstrap CIs are in `results_per_seed.csv`.
 - For 2020, all windows are identical (only 2019 precedes it). For 2021, the 2-year and expanding windows are identical.
