@@ -1,0 +1,38 @@
+CHECKLIST CODING RULEBOOK - two extra fields for the 67 core papers
+SoK: Machine-learning detection of malicious TLS traffic. Version 1, 8 Nov 2026.
+These fields score checklist items C2 and C6 (paper section 8.2). General rules G1-G6 of
+coding_rulebook.txt apply: code the paper's OWN main method (G2), quote verbatim evidence (G3),
+unproven = not stated (G4).
+
+---------------------------------------------------------------------
+F1 tuning_data   (checklist C2: decisions made without the test set)
+---------------------------------------------------------------------
+Which data the paper uses to make tuning decisions for its headline result: decision threshold or
+operating point, hyperparameters, model/epoch selection, early stopping, feature selection.
+  validation   the paper states a validation set, validation fold, inner cross-validation or a
+               held-out part of the TRAINING data is used for these decisions, separate from the
+               data the headline result is reported on
+  test         the paper tunes, selects or early-stops on the data it reports the headline result
+               on, or reports the best result over several test runs/epochs/thresholds
+  not_stated   the paper does not say how tuning decisions were made (including papers that only
+               say "we tuned the hyperparameters" or give final values without saying on what data)
+Notes:
+- k-fold cross-validation with fixed default hyperparameters and no stated tuning = not_stated.
+- A plain default threshold (0.5 / argmax) with no other tuning stated = not_stated.
+- A paper that says it split train / validation / test and used the validation part = validation,
+  even if it does not repeat it for every decision.
+
+---------------------------------------------------------------------
+F2 per_tls_version   (checklist C6: results by TLS version)
+---------------------------------------------------------------------
+  yes   the paper reports detection results SEPARATELY for different TLS versions (e.g. a TLS 1.2
+        row and a TLS 1.3 row, or a TLS 1.3-only subset next to the full data), OR its whole
+        evaluation is explicitly restricted to TLS 1.3 traffic and says so
+  no    results are reported only over all traffic, with no breakdown by TLS version
+Notes:
+- Stating which TLS versions the data contains is NOT enough; there must be separate results.
+- A breakdown by protocol (TLS vs QUIC vs DoH) is not a TLS-version breakdown.
+
+---------------------------------------------------------------------
+Output for each paper: value + ONE verbatim passage (max ~40 words) copied from the paper text that
+supports it. Use "" as evidence only for not_stated or no.
