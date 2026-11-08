@@ -1,27 +1,27 @@
 ﻿dataset,papers,public,tls_content,in_registry,paper_ids
 own / private capture,21,no,as described by the paper,True,S0669 S0905 S0932 S1163 S1337 S1500 S1502 S1682 S1783 S1926 S1940 S2138 S2338 S2395 S2576 S2626 S2672 S3059 S3214 S3215 S3347
-CIC-IDS2017,14,yes,mixed; little TLS attack traffic,True,S0097 S0217 S0664 S0905 S1042 S1449 S1461 S1940 S2326 S2338 S2360 S2524 S2800 S2982
-CIRA-CIC-DoHBrw-2020,13,yes,"yes (DoH over HTTPS, benign + malicious tunnels)",True,S0095 S0907 S0932 S1155 S1342 S1682 S1717 S1926 S2338 S2611 S2760 S3005 S3208
-ISCX VPN-nonVPN 2016,13,yes,partly; no malicious class,True,S0639 S0669 S0905 S0926 S0939 S0952 S1132 S1243 S1449 S1460 S2344 S2360 S2363
+CIC-IDS2017,14,on_request,mixed; little TLS attack traffic,True,S0097 S0217 S0664 S0905 S1042 S1449 S1461 S1940 S2326 S2338 S2360 S2524 S2800 S2982
+CIRA-CIC-DoHBrw-2020,13,on_request,"yes (DoH over HTTPS, benign + malicious tunnels)",True,S0095 S0907 S0932 S1155 S1342 S1682 S1717 S1926 S2338 S2611 S2760 S3005 S3208
+ISCX VPN-nonVPN 2016,13,on_request,partly; no malicious class,True,S0639 S0669 S0905 S0926 S0939 S0952 S1132 S1243 S1449 S1460 S2344 S2360 S2363
 USTC-TFC2016,11,yes,mixed (malware + benign apps; partly encrypted),True,S0097 S0664 S0669 S0696 S0907 S0926 S0952 S1132 S1228 S1243 S1449
 Stratosphere MCFP / CTU-Malware-Capture,9,yes,mixed; many HTTPS captures,True,S0217 S0639 S0696 S1042 S1132 S1449 S2338 S2576 S3417
 CTU-13,7,yes,mixed; mostly non-TLS (2011 botnet captures),True,S0639 S1342 S2576 S2626 S2958 S3046 S3417
 IoT-23,5,yes,mixed,True,S0066 S0639 S0928 S1132 S2008
 Malware-Traffic-Analysis.net (MTA),4,yes,"yes (real malware pcaps, 2013-)",True,S1449 S1926 S2576 S2958
 DoH-Tunnel-Traffic-HKD,4,yes,DoH (HTTPS),True,S0095 S1682 S1717 S2760
-CIC-DDoS2019,4,yes,mostly non-TLS,True,S0097 S1528 S1940 S2800
-CSE-CIC-IDS2018,4,yes,mixed,True,S0932 S1342 S2326 S2524
+CIC-DDoS2019,4,on_request,mostly non-TLS,True,S0097 S1528 S1940 S2800
+CSE-CIC-IDS2018,4,on_request,mixed,True,S0932 S1342 S2326 S2524
 ToN_IoT,4,yes,mixed,True,S0066 S0639 S0928 S1132
 Not a dataset (no traffic source),3,n/a,"not a traffic dataset (literature citation, payload strings, or missing value)",True,S1854 S2138 S3046
 Tranco browsing captures (Barradas et al.),3,yes,"yes (benign, TLS 1.2 and 1.3)",True,S1886 S1926 S1938
 "Blocklist / threat feed (label source, not a traffic dataset)",3,n/a,label or fingerprint source,True,S0971 S1886 S1938
 VNAT (MIT LL VPN/non-VPN),3,yes,"VPN and non-VPN, mixed",True,S0217 S0639 S1132
-CICIoT2023,3,yes,mixed,True,S0952 S1243 S1461
-CIC-AndMal2017,2,yes,mixed (Android malware traffic),True,S0995 S2326
+CICIoT2023,3,on_request,mixed,True,S0952 S1243 S1461
+CIC-AndMal2017,2,on_request,mixed (Android malware traffic),True,S0995 S2326
 MAWI,2,yes,"mixed backbone (anonymised, no payload)",True,S0905 S1940
 DataCon2020 encrypted malicious traffic,2,on_request,yes (encrypted malicious + benign),True,S0217 S0995
-ISCX Botnet 2014,2,yes,mixed,True,S0639 S1132
-ISCX Tor-nonTor 2016,2,yes,Tor; no malicious class,True,S0926 S1460
+ISCX Botnet 2014,2,on_request,mixed,True,S0639 S1132
+ISCX Tor-nonTor 2016,2,on_request,Tor; no malicious class,True,S0926 S1460
 CSTNET-TLS1.3,2,yes,"yes (TLS 1.3, benign services)",True,S0926 S1460
 H23Q,2,yes,"yes (HTTP/3 over QUIC, HTTP/2 over TLS)",True,S0097 S1528
 Bot-IoT,2,yes,mostly non-TLS,True,S0348 S0928
@@ -45,4 +45,4 @@ MedBIoT,1,yes,mixed,True,S0066
 NDSec-1,1,yes,mixed,True,S0217
 IEU-C2D,1,yes,"yes (C2 traffic over HTTPS, TCP, DNS, ICMP)",True,S0217
 IEEE P2668-MLIDD,1,yes,mostly non-TLS (IoT attack traffic with simulated TLS/DTLS/VPN overhead),True,S0348
-CIC-IoT2022,1,yes,mixed,True,S0926
+CIC-IoT2022,1,on_request,mixed,True,S0926

@@ -104,8 +104,13 @@ def main() -> None:
             canon.setdefault(g["name"], g)
         p["datasets_canonical"] = sorted(canon)
         p["_registry"] = canon
-        p["any_public_dataset"] = "yes" if any(g["public"] == "yes" for g in canon.values()) else "no"
-        p["only_own_or_private"] = "yes" if canon and all(g["public"] != "yes" for g in canon.values()) else "no"
+        # any_public_dataset: openly downloadable (public = yes). any_obtainable_dataset: also counts
+        # on_request (registration form / agreement, e.g. all CIC/UNB datasets). only_own_or_private:
+        # every traffic dataset is private (public = no); "not a dataset" entries (n/a) are ignored.
+        traffic = [g for g in canon.values() if g["public"] != "n/a"]
+        p["any_public_dataset"] = "yes" if any(g["public"] == "yes" for g in traffic) else "no"
+        p["any_obtainable_dataset"] = "yes" if any(g["public"] in ("yes", "on_request") for g in traffic) else "no"
+        p["only_own_or_private"] = "yes" if traffic and all(g["public"] == "no" for g in traffic) else "no"
         p["visibility_tier"] = visibility(p)
         p["metrics"] = sorted({metric(x) for x in p["metrics"] if x.lower() not in EMPTY}) or ["none"]
         p["accuracy_only"] = "yes" if p["metrics"] == ["accuracy"] else "no"
@@ -114,7 +119,7 @@ def main() -> None:
         p["main_split"] = ["unclear" if p["main_split"][0] == "not_stated" else p["main_split"][0]]
 
     OUT.mkdir(parents=True, exist_ok=True)
-    order = ["paper_id", "year", "kind", "venue", "title", "datasets_canonical", "any_public_dataset", "only_own_or_private",
+    order = ["paper_id", "year", "kind", "venue", "title", "datasets_canonical", "any_public_dataset", "any_obtainable_dataset", "only_own_or_private",
              "label_source", "label_feature_overlap", "feature_groups", "cert_fields_read", "fingerprints_used",
              "tls_versions_stated", "ech_considered", "visibility_tier", "model_family", "split_protocols", "main_split",
              "easy_vs_hard_reported", "shortcut_check", "metrics", "accuracy_only", "reports_fpr_or_pr_auc", "granularity",
@@ -154,7 +159,7 @@ def main() -> None:
         return [f"| {k} | {pct(v, n)} |" for k, v in c.most_common(15)]
 
     sections = [
-        ("Datasets (RQ1)", [("any_public_dataset", False), ("only_own_or_private", False)]),
+        ("Datasets (RQ1)", [("any_public_dataset", False), ("any_obtainable_dataset", False), ("only_own_or_private", False)]),
         ("Labels (RQ1/RQ2)", [("label_source", True), ("label_feature_overlap", False)]),
         ("Evaluation protocol (RQ1)", [("main_split", False), ("split_protocols", True), ("easy_vs_hard_reported", False),
                                        ("shortcut_check", True)]),

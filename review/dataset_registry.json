@@ -1,5 +1,5 @@
 {
-  "_note": "Canonical datasets for the review (plan.md §4). aliases are case-insensitive regexes matched against the dataset name as the paper writes it. public: yes = downloadable without request; on_request = form/agreement; no = private. tls: what the dataset contains (from its own documentation, not from papers). Drafted by Claude on 28 Oct 2026 from the datasets' documentation as remembered; status 'verify' entries must be checked by the human before use in the paper. 8 Nov 2026: the 9 Claude-added entries were checked by the human (todo/04a) and 26 unmapped names were mapped or added (todo/04b); anchored ^name$ aliases come from that check.",
+  "_note": "Canonical datasets for the review (plan.md §4). aliases are case-insensitive regexes matched against the dataset name as the paper writes it. public: yes = downloadable without request; on_request = form/agreement; no = private. tls: what the dataset contains (from its own documentation, not from papers). Drafted by Claude on 28 Oct 2026 from the datasets' documentation as remembered; status 'verify' entries must be checked by the human before use in the paper. 8 Nov 2026: the 9 Claude-added entries were checked by the human (todo/04a) and 26 unmapped names were mapped or added (todo/04b); anchored ^name$ aliases come from that check. 8 Nov 2026: all CIC/UNB datasets set to on_request (registration form), by user ruling.",
   "datasets": [
     {
       "name": "CTU-13",
@@ -43,9 +43,10 @@
         "cira[- ]?cic[- ]?doh",
         "dohbrw"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "yes (DoH over HTTPS, benign + malicious tunnels)",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "HIKARI-2021",
@@ -101,9 +102,10 @@
         "ids[- ]?2017",
         "cicids[- ]?2017"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mixed; little TLS attack traffic",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "CSE-CIC-IDS2018",
@@ -112,18 +114,20 @@
         "cic[- ]?ids[- ]?2018",
         "ids[- ]?2018"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mixed",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC); note: also mirrored in a public AWS bucket without registration"
     },
     {
       "name": "CIC-DDoS2019",
       "aliases": [
         "cic[- ]?ddos[- ]?2019"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mostly non-TLS",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "UNSW-NB15",
@@ -187,18 +191,20 @@
         "ciciot",
         "^CIC\\ IoT$"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mixed",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "CIC-IoT2022",
       "aliases": [
         "cic[- ]?iot[- ]?2022"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mixed",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "Edge-IIoTset",
@@ -225,9 +231,10 @@
         "iscx[- ]?vpn",
         "vpn[- ]?non[- ]?vpn"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "partly; no malicious class",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "ISCX Tor-nonTor 2016",
@@ -235,9 +242,10 @@
         "iscx[- ]?tor",
         "tor[- ]?non[- ]?tor"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "Tor; no malicious class",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "ISCX Botnet 2014",
@@ -245,9 +253,10 @@
         "iscx[- ]?bot",
         "iscx[- ]?2014"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mixed",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "CIC-AndMal2017",
@@ -255,9 +264,10 @@
         "cic[- ]?and[- ]?mal",
         "andmal"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mixed (Android malware traffic)",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "CIC-Darknet2020",
@@ -265,9 +275,10 @@
         "darknet[- ]?2020",
         "cic[- ]?darknet"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "VPN/Tor; no malicious class",
-      "status": "ok"
+      "status": "ok",
+      "checked": "human 8 Nov 2026: CIC/UNB datasets need the registration form, so on_request (user ruling, applied to all CIC)"
     },
     {
       "name": "DataCon2020 encrypted malicious traffic",
