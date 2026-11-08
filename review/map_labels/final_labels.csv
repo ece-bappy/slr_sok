@@ -1,0 +1,292 @@
+id,year,title,task,task_source,study_type,study_type_source,model_class,model_class_source
+S0041,2026,"A deployment-efficient CNN-LSTM framework for real-time malicious traffic detection across heterogeneous, imbalanced, and encrypted network traffic",multi_attack,human_spot_check,detection,human_spot_check,deep_learning,human_spot_check
+S0044,2026,A Framework for Automation of Signatures Using Encrypted Traffic Analysis and Machine Learning,other,human_disputed,detection,judges_agreed,transformer,judges_agreed
+S0066,2026,A Multi-Modal AI Framework for Intrusion Detection in Healthcare IoT,multi_attack,judges_agreed,detection,judges_agreed,classical_ml,human_disputed
+S0074,2026,A Protocol-Language Model for Network Intrusion (Without Deep Packet Inspection),anomaly,human_disputed,detection,judges_agreed,deep_learning,human_disputed
+S0090,2026,A two-stage deep learning approach for multiclass DGA-based malware communication detection and classification in DoH network traffic,doh_tunnel,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S0095,2026,AdaDoHTool: A test-time adaptive framework for identifying DoH tunneling tools with unknown resolvers,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0097,2026,Adaptive encrypted malicious traffic detection with dual-drift awareness in dynamic networks,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S0098,2026,Adaptive Feature Clustering Algorithm and Real-Time Intrusion Detection Model for Encrypted Malicious Traffic,malware,judges_agreed,detection,judges_agreed,hybrid,human_disputed
+S0106,2026,Adversarial Defense and Detection Framework for Encrypted Network Traffic Classification,multi_attack,human_disputed,detection,human_disputed,deep_learning,judges_agreed
+S0113,2026,AEGIS: Adversarial Entropy-Guided Immune System -- Thermodynamic State Space Models for Zero-Day Network Evasion Detection,c2_botnet,human_disputed,detection,human_disputed,deep_learning,judges_agreed
+S0216,2026,C2Detect: A Deep Learning Based Real-Time Detection of Stealthy Command and Control (C2) Activities from HTTPS Traffic,c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0217,2026,C2Detector: Interaction-enhanced semantic-aware detection method for C2 channels,c2_botnet,human_spot_check,detection,human_spot_check,deep_learning,human_spot_check
+S0235,2026,Cognitive-Adaptive Multilayer AI Firewall Architecture (C-AMLAFA) for Encrypted Traffic Analysis in Enterprise Networks,other,judges_agreed,system,human_disputed,unclear,human_disputed
+S0267,2026,"CPFI: Training on TLS 1.2, Detecting over TLS 1.3 for Malicious Traffic Identification",c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0270,2026,Cross-Domain Encrypted Traffic Attack Detection with Feature Alignment Under Few-Shot Settings,multi_attack,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S0328,2026,Detecting Data Exfiltration through I2P Anonymity Networks: A Two-Phase Machine Learning Approach,other,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S0329,2026,Detecting Malware in Encrypted Network Traffic Using Machine Learning and TLS Fingerprints,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S0348,2026,Distributed Denial-of-Service Attack Vector Identification in IoT Networks Using Wavelet Transform and Hybrid Deep Learning,dos,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0366,2026,Early Detection of Malicious Traffic Based on Graph Modeling and Spatio-Temporal Attention Approach,malware,judges_agreed,detection,judges_agreed,graph,judges_agreed
+S0374,2026,Effective Analysis of Encrypted Traffic for Mining Detection,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0382,2026,Encrypted but Detectable: Malware Detection in TLS Traffic Using JA4/JA4S Fingerprints and Machine Learning,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S0397,2026,Enhancing intrusion detection in encrypted DoH traffic through a robust ensemble learning framework,doh_tunnel,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S0425,2026,Evaluating White-Box Adversarial Attacks on Encrypted DGA and DNS Tunneling Detection,doh_tunnel,human_disputed,evasion,judges_agreed,deep_learning,judges_agreed
+S0427,2026,Evidential K-NN: Interpretable Early Traffic Classification with Dempster-Shafer Theory,other,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S0437,2026,Explainable artificial intelligence techniques for hierarchical classification of diversified darknet traffic flows,other,human_disputed,detection,judges_agreed,transformer,judges_agreed
+S0472,2026,GBFF: A Graph‐Based Feature Fusion Framework for Malware Detection in Encrypted Network Flows,malware,judges_agreed,detection,judges_agreed,classical_ml,human_disputed
+S0567,2026,IID-DAKD: An Incremental Intrusion Detection Method for Encrypted Traffic Based on Dual Augmentation and Fusion Knowledge Distillation,multi_attack,human_disputed,detection,judges_agreed,unclear,human_disputed
+S0568,2026,Impact of Data Processing Techniques on AI Models for Attack-Based Imbalanced and Encrypted Traffic within IoT Environments,multi_attack,judges_agreed,evaluation,judges_agreed,hybrid,judges_agreed
+S0639,2026,LotBoNC: Novel Botnet Traffic Classification under Long-tailed Distributions,c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0659,2026,MAESTRO: A Multi-Scale Ensemble Framework with GAN-Based Data Refinement for Robust Malicious Tor Traffic Detection,malware,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S0660,2026,Make It Easy: Enhanced Detection of DNS Tunneling Tools over DoH Using Standard Flow Features,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S0664,2026,Malicious encrypted traffic identification model based on flow space-time features,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0669,2026,Mean FlowSpectrum: Enhancing Encrypted Traffic Classification via Mean-Based Similarity Correction,malware,human_disputed,detection,judges_agreed,deep_learning,human_disputed
+S0679,2026,MFETD: Multimodal Feature Fusion for Encrypted Traffic Detection Based on Transformer,malware,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S0680,2026,MFS-DoH: efficient malicious DNS-over-HTTPS traffic detection using multi-stage feature selection,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S0696,2026,MTDecipher: robust encrypted malicious traffic detection via multi-task graph neural networks,malware,judges_agreed,detection,judges_agreed,graph,judges_agreed
+S0700,2026,Multi-View Fusion for Encrypted C2 Detection: A Leakage-Controlled Measurement Study of Evaluation Pitfalls,c2_botnet,judges_agreed,evaluation,judges_agreed,classical_ml,human_disputed
+S0720,2026,On the Security Implications of PQC in TLS: Handshake Exhaustion and IDS Degradation,dos,judges_agreed,evaluation,judges_agreed,deep_learning,judges_agreed
+S0725,2026,Optimizing Machine Learning-based Intrusion Detection Systems: A Comparative Study on KDD99 and BKIDS2025 Datasets,multi_attack,judges_agreed,evaluation,human_disputed,classical_ml,judges_agreed
+S0747,2026,PMCF-GNN:A Parallel Multi-Channel Fusion Graph Neural Network for Encrypted IoT Traffic Classification,malware,human_spot_check,detection,human_spot_check,graph,human_spot_check
+S0802,2026,Real-Time Detection of Encrypted DGA and DNS Tunneling Using DPDK on SmartNICs,doh_tunnel,human_spot_check,system,human_spot_check,deep_learning,human_spot_check
+S0887,2026,Statistical Analysis and Machine Learning Approach for Detecting Malicious DNS over HTTPS Traffic,doh_tunnel,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S0905,2026,TARL: Multi-task adaptive representation learning for secure encrypted traffic analysis,multi_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S0907,2026,TCBI: A Three-Channel Behavioral Image-Based Method for encrypted malicious traffic detection,malware,judges_agreed,detection,judges_agreed,transformer,human_disputed
+S0909,2026,Temporal Association-Aware Dual-Sequence Modeling for Robust DoH Tunnel Detection,doh_tunnel,judges_agreed,detection,judges_agreed,transformer,human_disputed
+S0911,2026,TGM: A fine-grained classification method for DoH tunneling tools based on Transformer-GRU-MLP,doh_tunnel,judges_agreed,detection,judges_agreed,transformer,human_disputed
+S0926,2026,Time Will Tell: Criss-Cross Transformer for Encrypted Traffic Analysis,malware,human_disputed,detection,judges_agreed,transformer,judges_agreed
+S0928,2026,TLS-Aware Anomaly Detection for Encrypted IoT Traffic Using a β-Variational Autoencoder with ANOVA–Mutual Information Feature Selection,anomaly,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S0932,2026,Toward Robust Detection of Malicious Encrypted Traffic Using Only Low-Quality Training Data,malware,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S0939,2026,TrafficCross: Cross-view multimodal information fusion for encrypted traffic classification,multi_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S0944,2026,Transformer-Based Detection Method for Temporal Dynamics in Malicious Encrypted Traffic,malware,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S0952,2026,Two Heads Are Better Than One: Models-to-Model Learning for Encrypted Traffic Analysis,malware,human_disputed,detection,judges_agreed,llm,judges_agreed
+S0955,2026,"Unknown Attack Detection in IoT Networks using Large Language Models: A Robust, Data-efficient Approach",multi_attack,human_disputed,detection,judges_agreed,transformer,judges_agreed
+S0971,2026,When Handshakes Tell the Truth: Detecting Web Bad Bots via TLS Fingerprints,web_attack,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S0995,2025,A Detection Method for Malware Communication Traffic via Encrypted Traffic Analysis,malware,human_spot_check,detection,human_spot_check,transformer,human_spot_check
+S1017,2025,A Novel TLS-Based Fingerprinting Approach That Combines Feature Expansion and Similarity Mapping,malicious_server,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S1025,2025,A Study on Time-Resilient Features for Detecting TLS Encrypted Malware Traffic,c2_botnet,human_disputed,detection,judges_agreed,unclear,judges_agreed
+S1042,2025,Adaptive detection of encrypted malware traffic via fully convolutional masked autoencoders,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1067,2025,AI-Driven Anomaly Detection in Encrypted Network Traffic Without Decryption,anomaly,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S1076,2025,An Adaptive Optimization Algorithm for Features Selection to Enhance the Detection of Intrusion Attacks Over Networks,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1087,2025,An Explainable Detection Model for Malicious DoH Traffic Based on Hybrid Attention,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1100,2025,Anomaly-based detection of DDoS attacks in encrypted network traffic using autoencoder neural networks,dos,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1132,2025,BoNC: Discovering and Classifying Novel Encrypted Botnet Traffic,c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S1142,2025,Certificate-Based Transport Layer Security Encrypted Malicious Traffic Detection in Real-Time Network Environments,malware,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S1155,2025,CO-DEFEND: Continuous decentralized federated learning for secure DoH-based threat detection,doh_tunnel,judges_agreed,system,judges_agreed,classical_ml,judges_agreed
+S1163,2025,Comparative Detection of DDoS Attacks on Software-Defined 5G Network Data Using Deep Neural Networks and Machine Learning Methods,dos,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1211,2025,Detecting encrypted malicious traffic with HEAT: a header-focused deep learning approach,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1217,2025,Detection and Categorization of DNS over HTTPS Traffic Using Lightweight Feature Selection Methods and Ensemble Classification Model,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1228,2025,Detection of Unknown Attacks Through Encrypted Traffic: A Gaussian Prototype-Aided Variational Autoencoder Framework,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1243,2025,DLET-Classifier: A Dynamic and Lightweight Method for Encrypted Traffic Classification,malware,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S1244,2025,DNS over HTTPS Tunneling Detection System Based on Selected Features via Ant Colony Optimization,doh_tunnel,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S1251,2025,Early Classification and Improved Performance: A Multi-Model Serial Encrypted Traffic Classification Framework,other,human_disputed,detection,judges_agreed,unclear,judges_agreed
+S1254,2025,Echoes From the Void: Detecting DNS Tunneling With Blackhole Features in Encrypted Scenarios With High Accuracy,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1266,2025,Encrypted Malware Traffic Detection via Multi-view Learning,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1274,2025,Enhanced Feature-Based Approach to Identify and Classify Android Encrypted Malware Traffic,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1283,2025,Enhancing DNS-over-HTTPS Traffic Classification in Heterogeneous Networks Through Latent Space Analysis with a Tabular-Variational Autoencoder and Self-Attention Classifier Model,doh_tunnel,judges_agreed,detection,judges_agreed,transformer,human_disputed
+S1302,2025,Evasion-Resilient Detection of DNS-over-HTTPS Data Exfiltration: A Practical Evaluation and Toolkit,doh_tunnel,judges_agreed,evaluation,judges_agreed,classical_ml,judges_agreed
+S1336,2025,Flow-Based Detection of Botnets Through Bio-inspired Optimisation of Machine Learning,c2_botnet,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1337,2025,FlowMiner: A Powerful Model Based on Flow Correlation Mining for Encrypted Traffic Classification,malware,human_disputed,detection,judges_agreed,graph,judges_agreed
+S1342,2025,Frequency-Domain Anomaly Detection for Encrypted Traffic in Industrial Control Systems,anomaly,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1354,2025,GSC-SAGE: A Generative Subgraph Contrastive Framework for Encrypted Traffic Detection,malware,judges_agreed,detection,judges_agreed,graph,judges_agreed
+S1357,2025,GVTMC: A Novel Cryptocurrency Mining Traffic Classification Method,malware,judges_agreed,detection,judges_agreed,graph,human_disputed
+S1383,2025,Implementing a hybrid deep learning technique for detecting malicious DNS over HTTPS (DoH) traffic,doh_tunnel,judges_agreed,detection,judges_agreed,graph,human_disputed
+S1396,2025,Interpretable Detection of Encrypted Traffic Using SHAP-Based Feature Attribution,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1416,2025,Language of Network: A Generative Pre-trained Model for Encrypted Traffic Comprehension,malware,human_disputed,detection,judges_agreed,transformer,judges_agreed
+S1448,2025,Malicious DoH Tunnel Traffic Identification Framework Based on DiffFlow-CNN,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1449,2025,Malicious encrypted traffic detection method based on multi-granularity representation under data imbalance conditions,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1459,2025,MEMO: Detecting Unknown Malicious Encrypted Traffic via Metric Learning and Order-Aware Pre-training,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1460,2025,MET-LLM: Enhancing large language models for malicious encrypted traffic detection,malware,judges_agreed,detection,judges_agreed,llm,judges_agreed
+S1461,2025,META: Multi-classified encrypted traffic anomaly detection with fine-grained flow and interaction analysis,multi_attack,human_spot_check,detection,human_spot_check,graph,human_spot_check
+S1465,2025,Methodology for Creating and Managing an ARM-based Cluster and Integrating AI-based HTTPS Firewall,malware,judges_agreed,system,judges_agreed,unclear,judges_agreed
+S1466,2025,MFD: Multidimensional Feature Fusion and Masked Autoencoder for Encrypted Malicious Traffic Detection,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1482,2025,ModernBERT-DoS: Transformer-Based Multi-Class Network Traffic Classifier for DDoS Detection,dos,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S1488,2025,MPTM: A Multiple Perturbation Training Method to Generate Adversarial Traffic in Byte Space,malware,judges_agreed,evasion,judges_agreed,deep_learning,judges_agreed
+S1489,2025,MTL-DoHTA: Multi-Task Learning-Based DNS over HTTPS Traffic Analysis for Enhanced Network Security,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1492,2025,Multi-Task Detection and Classification of Encrypted Traffic Sequences via Session2Token Embedding,multi_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S1494,2025,Network Encryption Traffic Anomaly Detection Based on Integrated Machine Learning,anomaly,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S1498,2025,Network-based anomaly detection in encrypted data streams : A cryptanalysis perspective,c2_botnet,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S1500,2025,Neuromorphic quantum adversarial learning (NQAL): a bio-inspired paradigm for DNS over HTTPS threat detection,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S1502,2025,Next-generation AI for advanced threat detection and security enhancement in DNS over HTTPS,doh_tunnel,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S1504,2025,NTC-CIL: Characterizing and Classifying Encrypted Network Traffic using Class-Incremental Learning,malware,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S1505,2025,Obfuscated malicious traffic detection based on data enhancement,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S1508,2025,Offloading Encrypted C2 Traffic Mitigation to SmartNICs,c2_botnet,judges_agreed,system,judges_agreed,classical_ml,judges_agreed
+S1515,2025,OnionGraph: A Graph Neural Network Framework for Tor-based Malware Traffic Detection and Classification,malware,judges_agreed,detection,judges_agreed,graph,judges_agreed
+S1521,2025,Optimizing feature selection and deep learning techniques for precise detection of low-rate distributed denial of service (LDDoS) attack,dos,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1528,2025,Overcoming emergency HTTP/3 DDoS attack detection: A domain adaptation solution with graph neural network,dos,judges_agreed,detection,judges_agreed,graph,judges_agreed
+S1556,2025,PRIME: Plasticity-Robust Incremental Model for Encrypted Traffic Classification in Dynamic Network Environments,malware,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S1567,2025,PureFlow: An Unsupervised Autoencoder-Based Dataset Purification Framework for Malicious Traffic Detection,malware,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S1576,2025,RD-KNN: Detecting Malicious Encrypted Traffic as Processing Natural Language,malware,judges_agreed,detection,judges_agreed,transformer,human_disputed
+S1580,2025,Real-Time Detection of Command-and-Control Communications Using Deep Learning Models,c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1622,2025,Securing Video Conferencing Applications: Phishing Detection Via OPNET Traffic Analysis,web_attack,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S1657,2025,Striking Back at Cobalt: Using Network Traffic Metadata to Detect Cobalt Strike Masquerading Command and Control Channels,c2_botnet,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S1676,2025,TLS-Driven Reverse Shell Detection via Anomaly-Based Methods in Enterprise Network Traffic,c2_botnet,judges_agreed,detection,judges_agreed,classical_ml,human_disputed
+S1679,2025,Toward Fingerprinting Encrypted C2 Traffic in the Data Plane,c2_botnet,judges_agreed,system,judges_agreed,unclear,judges_agreed
+S1681,2025,Towards Automatic Rule Extraction for Intrusion Detection with Explainable AI,multi_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S1682,2025,Towards effective black-box attacks on DoH tunnel detection systems,doh_tunnel,judges_agreed,evasion,judges_agreed,deep_learning,human_disputed
+S1687,2025,Towards Reliable Detection of Malicious DNS-over-HTTPS (DoH) Tunneling Traffic Under Low-Quality Training Data,doh_tunnel,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S1717,2025,WEDoHTool: Word embedding based early identification of DoH tunnel tool traffic in dynamic network environments,doh_tunnel,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S1734,2024,A Knowledge Distillation-Driven Lightweight CNN Model for Detecting Malicious Encrypted Network Traffic,malware,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S1746,2024,A Relevant Feature Identification Approach to Detect APTs in HTTPS Traffic,c2_botnet,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S1761,2024,Adversarial Attacks on Pre-trained Deep Learning Models for Encrypted Traffic Analysis,malware,human_spot_check,evasion,human_spot_check,transformer,human_spot_check
+S1764,2024,AFF_CGE: Combined Attention-Aware Feature Fusion and Communication Graph Embedding Learning for Detecting Encrypted Malicious Traffic,malware,judges_agreed,detection,judges_agreed,graph,human_disputed
+S1766,2024,AI-Based Malicious Encrypted Traffic Detection in 5G Data Collection and Secure Sharing,malware,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S1774,2024,An ensemble learning approach for detecting phishing URLs in encrypted TLS traffic,web_attack,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S1778,2024,Analysis of Plaintext Features in DoH Traffic for DGA Domains Detection,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S1783,2024,Anomaly Detection in the Key-Management Interoperability Protocol Using Metadata,anomaly,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1818,2024,Can We Create a TLS Lie Detector?,c2_botnet,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S1849,2024,Deep Learning-Based Anomaly Detection in TLS Encrypted Traffic,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1854,2024,Design of an AI-driven Network Digital Twin for advanced 5G-6G network management,dos,judges_agreed,system,judges_agreed,unclear,judges_agreed
+S1879,2024,DoH Detection Method Based on Self-Attention BiLSTM,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1886,2024,EFACTLS: Effective Active TLS Fingerprinting for Large-Scale Server Deployment Characterization,c2_botnet,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S1887,2024,Effective Encrypted Traffic Analysis,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1897,2024,Encrypted Mining Traffic Detection Mechanism Based on TLS Handshake Message and Machine Learning,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1901,2024,Enhanced detection of obfuscated HTTPS tunnel traffic using heterogeneous information network,multi_attack,human_disputed,detection,judges_agreed,graph,judges_agreed
+S1902,2024,Enhanced Malicious Traffic Detection in Encrypted Communication Using TLS Features and a Multi-class Classifier Ensemble,multi_attack,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S1911,2024,ENS-RFMC: An Encrypted Network Traffic Sampling Method Based on Rule-Based Feature Extraction and Multi-hierarchical Clustering for Intrusion Detection,malware,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S1914,2024,Evading Botnet Detection,c2_botnet,judges_agreed,evasion,judges_agreed,classical_ml,judges_agreed
+S1920,2024,Experience Report: Using JA4+ Fingerprints for Malware Detection in Encrypted Traffic,malware,judges_agreed,evaluation,judges_agreed,classical_ml,judges_agreed
+S1926,2024,Extending C2 Traffic Detection Methodologies: From TLS 1.2 to TLS 1.3-enabled Malware,c2_botnet,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S1934,2024,Few-shot Encrypted Malicious Traffic Classification via Hierarchical Semantics and Adaptive Prototype Learning,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1936,2024,Fighting TLS Attacks: An Autoencoder-Based Model for Heartbleed Attack Detection,anomaly,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S1938,2024,Fingerprinting the Shadows: Unmasking Malicious Servers with Machine Learning-Powered TLS Analysis,malicious_server,judges_agreed,detection,judges_agreed,classical_ml,human_disputed
+S1940,2024,Flow Interaction Graph Analysis: Unknown Encrypted Malicious Traffic Detection,malware,human_disputed,detection,judges_agreed,graph,judges_agreed
+S1945,2024,From Scarcity to Clarity: Few-Shot Learning for DoH Tunnel Detection Through Prototypical Network,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1954,2024,HMMED: A Multimodal Model with Separate Head and Payload Processing for Malicious Encrypted Traffic Detection,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1972,2024,Improvising Encrypted Traffic Analysis Using Stacking Ensemble Model,malware,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S1974,2024,Intelligent model for the detection and classification of encrypted network traffic in cloud infrastructure,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S1990,2024,Lightweight Malicious Encrypted Traffic Detection Method Based on KL Image Compression,malware,human_spot_check,detection,human_spot_check,deep_learning,human_spot_check
+S1991,2024,Lightweight Real-Time C&C Detection using Deep Learning for Zombie DNS Queries,c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S1999,2024,Machine Learning for QUIC Traffic Flood Detection,dos,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2008,2024,MADESANT: malware detection and severity analysis in industrial environments,malware,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S2015,2024,MFFLR-DDoS: An encrypted LR-DDoS attack detection method based on multi-granularity feature fusions in SDN,dos,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2022,2024,Multi-granularity Feature Fusion Detection for Encrypted Slow DDoS Attack in SDN,dos,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2024,2024,Multi-Task Scenario Encrypted Traffic Classification and Parameter Analysis,malware,human_disputed,detection,judges_agreed,deep_learning,human_disputed
+S2026,2024,Multiple Kernel Transfer Learning for Enhancing Network Intrusion Detection in Encrypted and Heterogeneous Network Environments,multi_attack,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2027,2024,MVDet: Encrypted malware traffic detection via multi-view analysis,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2036,2024,Network Traffic Classification Based on Multilevel Spatiotemporal Feature Fusion Enhancement,malware,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S2037,2024,Network Traffic Risk Identification Based on Deep Learning Model,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2043,2024,On Detecting Anomalous TLS Connections with Artificial Intelligence Models,web_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S2057,2024,Pixel Power: Harnessing Image Processing for Optimizing Few-Shot Malicious Traffic Detection,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2075,2024,QUICwand: A Machine Learning Optimization-Based Hybrid Defense Approach Against QUIC Flooding Attacks,dos,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2077,2024,Real-Time Analysis of Encrypted DNS Traffic for Threat Detection,doh_tunnel,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S2129,2024,TAM-CNN: An Enhanced Malicious Encrypted Traffic Detection Method with Feature-Threshold Images,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2138,2024,TLS fingerprint for encrypted malicious traffic detection with attributed graph kernel,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2153,2024,UAD-DPL: An Unknown Encrypted Attack Detection Method Based on Deep Prototype Learning,multi_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S2162,2024,Using LLM Embeddings with Similarity Search for Botnet TLS Certificate Detection,c2_botnet,judges_agreed,detection,judges_agreed,llm,human_disputed
+S2179,2023,A Few-Shot Malicious Encrypted Traffic Detection Approach Based on Model-Agnostic Meta-Learning,malware,human_spot_check,detection,human_spot_check,deep_learning,human_spot_check
+S2182,2023,A Machine Learning Based Approach to Detect Stealthy Cobalt Strike C &C Activities from Encrypted Network Traffic,c2_botnet,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2183,2023,A Machine Learning-Based Framework for Detecting Malicious HTTPS Traffic,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2200,2023,ACG: Attack Classification on Encrypted Network Traffic using Graph Convolution Attention Networks,multi_attack,human_spot_check,detection,human_spot_check,graph,human_spot_check
+S2260,2023,Classifying DNS over HTTPS Malicious/Benign Traffic Using Deep Learning Models,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2286,2023,Detecting DoH-Based Data Exfiltration: FluBot Malware Case Study,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2287,2023,Detecting Stealthy Cobalt Strike C&C Activities via Multi-Flow based Machine Learning,c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2291,2023,Detection of DGA-based Malware Communications from DoH Traffic Using Machine Learning Analysis,doh_tunnel,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S2292,2023,Detection of DoH Traffic Tunnels Using Deep Learning for Encrypted Traffic Classification,doh_tunnel,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S2297,2023,"Detection, characterization, and profiling DoH Malicious traffic using statistical pattern recognition",doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2325,2023,Ensemble Learning for Encrypted Malware Detection and Classification,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2326,2023,ERNN: Error-Resilient RNN for Encrypted Traffic Detection towards Network-Induced Phenomena,multi_attack,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2338,2023,Feature mining for encrypted malicious traffic detection with deep learning and other machine learning algorithms,malware,human_spot_check,detection,human_spot_check,hybrid,human_spot_check
+S2344,2023,"Flow-MAE: Leveraging Masked AutoEncoder for Accurate, Efficient and Robust Malicious Traffic Classification",malware,human_disputed,detection,judges_agreed,transformer,human_disputed
+S2357,2023,Hunting for Hidden RDP-MITM: Analyzing and Detecting RDP MITM Tools Based on Network Features,c2_botnet,human_disputed,detection,judges_agreed,unclear,human_disputed
+S2360,2023,I $^{2}$ RNN: An Incremental and Interpretable Recurrent Neural Network for Encrypted Traffic Classification,malware,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S2363,2023,Identification of Malicious Encrypted Traffic Through Feature Fusion,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2366,2023,Identifying DoH Tunnel Traffic Using Core Feathers and Machine Learning Method,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2395,2023,Machine learning models for phishing detection from TLS traffic,web_attack,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S2399,2023,Machine Learning-Based Malware Detection and Classification in Encrypted TLS Traffic,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2400,2023,Machine Learning-Based Technique for Phishing URLs Detection from TLS 1.2 and TLS 1.3 Traffic Without Decryption,web_attack,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2405,2023,Mal-lightDet: A light method to detect malicious encrypted traffic based on machine learning,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2406,2023,Malicious Encrypted Network Traffic Detection Using Deep Auto-Encoder with a Custom Reconstruction Loss,multi_attack,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2408,2023,Malicious Network Traffic Detection for DNS over HTTPS using Machine Learning Algorithms,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2420,2023,Meta-TFEN: A Multi-Modal Deep Learning Approach for Encrypted Malicious Traffic Detection,malware,human_spot_check,detection,human_spot_check,deep_learning,human_spot_check
+S2421,2023,MF-Net: Encrypted Malicious Traffic Detection Based on Multi-flow Temporal Features,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2422,2023,Mining classification algorithms to identify flooding attacks through the HTTP/3 protocol,dos,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2427,2023,Monitoring and Analysis of Encrypted Attack Traffic Based on Machine Learning,malware,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S2467,2023,Pump Up the JARM: Studying the Evolution of Botnets Using Active TLS Fingerprinting,malicious_server,judges_agreed,evaluation,judges_agreed,classical_ml,judges_agreed
+S2471,2023,Real time malware detection in encrypted network traffic using machine learning with time based features,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2505,2023,Security is Readily to Interpret: Quantitative Feature Analysis for Botnet Encrypted Malicious Traffic,c2_botnet,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S2524,2023,TGPrint: Attack fingerprint classification on encrypted network traffic based graph convolution attention networks,multi_attack,judges_agreed,detection,judges_agreed,graph,judges_agreed
+S2548,2023,Unsupervised Detection and Clustering of Malicious TLS Flows,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2549,2023,Unveiling DoH tunnel: Toward generating a balanced DoH encrypted traffic dataset and profiling malicious behavior using inherently interpretable machine learning,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2576,2022,A novel approach based on adaptive online analysis of encrypted traffic for identifying Malware in IIoT,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2578,2022,A Novel Framework For Malicious Encrypted Traffic Classification At Host Level And Flow Level,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2594,2022,Active TLS Stack Fingerprinting: Characterizing TLS Server Deployments at Scale,malicious_server,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S2604,2022,AKER: An open-source security platform integrating IDS and SIEM functions with encrypted traffic analytic capability,malware,judges_agreed,system,judges_agreed,classical_ml,judges_agreed
+S2606,2022,AMDetector: Detecting Large-Scale and Novel Android Malware Traffic with Meta-learning,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2611,2022,An Explainable AI-Based Intrusion Detection System for DNS Over HTTPS (DoH) Attacks,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2615,2022,Android Botnet Detection Based on Network Analysis Using Machine Learning Algorithm,c2_botnet,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2623,2022,AS‐DMF: A Lightweight Malware Encrypted Traffic Detection Method Based on Active Learning and Feature Selection,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2626,2022,Automatic Detection of DGA-Enabled Malware Using SDN and Traffic Behavioral Modeling,c2_botnet,judges_agreed,detection,human_disputed,classical_ml,judges_agreed
+S2637,2022,Can We Detect Malicious Behaviours in Encrypted DNS Tunnels Using Network Flow Entropy?,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2659,2022,Deep-Forest-Based Encrypted Malicious Traffic Detection,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2668,2022,Detecting Ambiguous Phishing Certificates using Machine Learning,web_attack,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2672,2022,Detecting DNS over HTTPS based data exfiltration,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S2676,2022,Detecting Malicious Use of DoH Tunnels Using Statistical Traffic Analysis,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2680,2022,Detection of DoH Tunneling using Semi-supervised Learning method,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S2681,2022,Detection of DoH Tunnels with Dual-Tier Classifier,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S2685,2022,DEV-ETA: An Interpretable Detection Framework for Encrypted Malicious Traffic,malware,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S2690,2022,DoH Tunneling Detection System for Enterprise Network Using Deep Learning Technique,doh_tunnel,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S2695,2022,Effectiveness Evaluation of Evasion Attack on Encrypted Malicious Traffic Detection,malware,judges_agreed,evaluation,judges_agreed,classical_ml,judges_agreed
+S2706,2022,Evading Encrypted Traffic Classifiers by Transferable Adversarial Traffic,multi_attack,human_disputed,evasion,judges_agreed,classical_ml,judges_agreed
+S2712,2022,Few-Shot Open-Set Traffic Classification Based on Self-Supervised Learning,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2731,2022,Hybrid Malicious Encrypted Network Traffic Flow Detection Model,malware,human_spot_check,detection,human_spot_check,hybrid,human_spot_check
+S2758,2022,MalDIST: From Encrypted Traffic Classification to Malware Traffic Detection and Classification,malware,human_spot_check,detection,human_spot_check,deep_learning,human_spot_check
+S2760,2022,Malicious DNS Tunnel Tool Recognition Using Persistent DoH Traffic Analysis,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2761,2022,Malicious encrypted traffic features extraction model based on unsupervised feature adaptive learning,malware,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S2762,2022,Malicious traffic Detection of DNS over HTTPS using Ensemble Machine Learning,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2768,2022,MEMTD: Encrypted Malware Traffic Detection Using Multimodal Deep Learning,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2770,2022,MTBD: HTTPS Tunnel Detection Based on Multi-dimension Traffic Behaviors Decision,malware,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S2780,2022,One-Shot Detection of Malicious TLS Traffic,malware,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S2800,2022,R1DIT: Privacy-Preserving Malware Traffic Classification With Attention-Based Neural Networks,malware,judges_agreed,detection,judges_agreed,transformer,judges_agreed
+S2806,2022,Research on Malicious TLS Traffic Detection Based on Spatiotemporal Feature Fusion,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2812,2022,Revisiting TLS-Encrypted Traffic Fingerprinting Methods for Malware Family Classification,malware,judges_agreed,evaluation,human_disputed,hybrid,human_disputed
+S2852,2022,Tweaking Metasploit to Evade Encrypted C2 Traffic Detection,c2_botnet,judges_agreed,evasion,judges_agreed,unclear,judges_agreed
+S2873,2021,A deep‐learning‐ and reinforcement‐learning‐based system for encrypted network malicious traffic detection,malware,judges_agreed,detection,judges_agreed,deep_learning,human_disputed
+S2881,2021,A Method for TLS Malicious Traffic Identification Based on Machine Learning,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2887,2021,A Novel Malware Encrypted Traffic Detection Framework Based On Ensemble Learning,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2894,2021,A stacking-based classification approach to android malware using host-level encrypted traffic,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2916,2021,An Outlook on using Packet Sampling in Flow-based C2 TLS Malware Traffic Detection,c2_botnet,judges_agreed,evaluation,judges_agreed,deep_learning,judges_agreed
+S2920,2021,Analyzing Learning-based Encrypted Malware Traffic Classification with AutoML,malware,judges_agreed,evaluation,judges_agreed,classical_ml,judges_agreed
+S2926,2021,Anomaly Detection Using XGBoost Ensemble of Deep Neural Network Models,multi_attack,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S2949,2021,Classifying DNS Tunneling Tools For Malicious DoH Traffic,doh_tunnel,judges_agreed,detection,human_disputed,classical_ml,judges_agreed
+S2950,2021,Cloud Computing for Malicious Encrypted Traffic Analysis and Collaboration,malicious_server,judges_agreed,system,judges_agreed,classical_ml,judges_agreed
+S2958,2021,Deep Learning Approach for Detecting Malicious Activities Over Encrypted Secure Channels,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2966,2021,Detecting Cryptojacking Traffic Based on Network Behavior Features,c2_botnet,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S2968,2021,Detecting Malicious DNS over HTTPs (DoH) Connections via Machine Learning Techniques,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S2969,2021,Detecting Malicious DNS Queries Over Encrypted Tunnels Using Statistical Analysis and Bi-Directional Recurrent Neural Networks,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2977,2021,Detection of HTTPS Brute-Force Attacks with Packet-Level Feature Set,web_attack,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S2982,2021,Dual Generative Adversarial Networks Based Unknown Encryption Ransomware Attack Detection,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2984,2021,Efficient Acceleration of Decision Tree Algorithms for Encrypted Network Traffic Analysis,web_attack,judges_agreed,system,judges_agreed,classical_ml,judges_agreed
+S2991,2021,Encrypt DNS Traffic: Automated Feature Learning Method for Detecting DNS Tunnels,doh_tunnel,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S2992,2021,Encrypted Network Traffic Identification Based on 2D-CNN Model,malware,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S3001,2021,Evaluation and Optimization of learning-based DNS over HTTPS Traffic Classification,doh_tunnel,judges_agreed,evaluation,judges_agreed,hybrid,judges_agreed
+S3002,2021,Experimental Evaluation of Malware Family Classification Methods from Sequential Information of TLS-Encrypted Traffic,malware,judges_agreed,evaluation,judges_agreed,hybrid,judges_agreed
+S3005,2021,Feature Engineering and Machine Learning Model Comparison for Malicious Activity Detection in the DNS-Over-HTTPS Protocol,doh_tunnel,human_spot_check,evaluation,human_spot_check,classical_ml,human_spot_check
+S3028,2021,Identifying Malicious DNS Tunnel Tools from DoH Traffic Using Hierarchical Machine Learning Classification,doh_tunnel,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S3046,2021,Machine learning based malicious payload identification in software-defined networking,multi_attack,human_disputed,detection,human_disputed,classical_ml,judges_agreed
+S3051,2021,Machine Learning-Based Malicious X.509 Certificates’ Detection,malicious_server,judges_agreed,detection,judges_agreed,hybrid,human_disputed
+S3053,2021,Malicious Encrypted Traffic Identification Based on Four-Tuple Feature and Deep Learning,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S3054,2021,Malicious Encryption Traffic Detection Based on NLP,malware,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S3059,2021,ME-Box: A reliable method to detect malicious encrypted traffic,malware,judges_agreed,detection,judges_agreed,graph,judges_agreed
+S3064,2021,Near-real-time Anomaly Detection in Encrypted Traffic using Machine Learning Techniques,c2_botnet,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S3065,2021,Network Flow Entropy for Identifying Malicious Behaviours in DNS Tunnels,doh_tunnel,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S3111,2021,TLSmell: Direct Identification on Malicious HTTPs Encryption Traffic with Simple Connection-Specific Indicators,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S3119,2021,Using Features of Encrypted Network Traffic to Detect Malware,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S3138,2020,A Fingerprint Enhancement and Second-Order Markov Chain Based Malicious Encrypted Traffic Identification Scheme,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S3139,2020,A Framework for Detecting Botnet Command and Control Communication over an Encrypted Channel,c2_botnet,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S3142,2020,A Mining Policy based Malicious Encrypted Traffic Detection Scheme,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S3150,2020,ACETA: Accelerating Encrypted Traffic Analytics on Network Edge,malware,human_spot_check,system,human_spot_check,unclear,human_spot_check
+S3184,2020,Cross-Layer Profiling of Encrypted Network Data for Anomaly Detection,c2_botnet,human_disputed,detection,human_disputed,classical_ml,judges_agreed
+S3188,2020,Deep Q learning-based mitigation of man in the middle attack over secure sockets layer websites,web_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S3194,2020,Detecting Malicious DNS over HTTPS Traffic in Domain Name System using Machine Learning Classifiers,doh_tunnel,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S3199,2020,Detecting Ransomware in Encrypted Web Traffic,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S3208,2020,Detection of DoH Tunnels using Time-series Classification of Encrypted Traffic,doh_tunnel,human_spot_check,detection,human_spot_check,unclear,human_spot_check
+S3214,2020,Distributed real-time SlowDoS attacks detection over encrypted traffic using Artificial Intelligence,dos,judges_agreed,system,human_disputed,hybrid,judges_agreed
+S3215,2020,DoH Insight,other,human_disputed,evaluation,human_disputed,classical_ml,judges_agreed
+S3253,2020,Lightweight Convolutional Neural Network Based Intrusion Detection System,multi_attack,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S3258,2020,Machine Learning Based Malware Detection on Encrypted Traffic: A Comprehensive Performance Study,malware,human_spot_check,evaluation,human_spot_check,hybrid,human_spot_check
+S3290,2020,Poster Abstract: Encrypted Malware Traffic Detection Using Incremental Learning,malware,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S3320,2020,THS-IDPC: A three-stage hierarchical sampling method based on improved density peaks clustering algorithm for encrypted malicious traffic detection,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S3326,2020,Two-layer detection framework with a high accuracy and efficiency for a malware family over the TLS protocol,malware,judges_agreed,detection,judges_agreed,unclear,human_disputed
+S3347,2019,A Heuristic Statistical Testing Based Approach for Encrypted Network Traffic Identification,other,human_disputed,detection,judges_agreed,classical_ml,judges_agreed
+S3360,2019,An Encrypted Malicious Traffic Detection System Based on Neural Network,malware,judges_agreed,detection,judges_agreed,deep_learning,judges_agreed
+S3368,2019,Artificial Intelligence Hybrid Learning Architecture for Malware Families Classification,malware,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S3403,2019,Detection of Encrypted Malicious Network Traffic using Machine Learning,malware,judges_agreed,detection,judges_agreed,hybrid,judges_agreed
+S3417,2019,Feature analysis of encrypted malicious traffic,malware,judges_agreed,evaluation,human_disputed,unclear,human_disputed
+S3445,2019,MalDetect: A Structure of Encrypted Malware Traffic Detection,malware,human_spot_check,detection,human_spot_check,classical_ml,human_spot_check
+S3448,2019,MDiET: Malware Detection in Encrypted Traffic,malware,judges_agreed,detection,judges_agreed,unclear,judges_agreed
+S3475,2019,SSL Malicious Traffic Detection Based On Multi-view Features,malware,judges_agreed,detection,judges_agreed,classical_ml,judges_agreed
+S3479,2019,TEST: an End-to-End Network Traffic Classification System With Spatio-Temporal Features Extraction,multi_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S3480,2019,TEST: an End-to-End Network Traffic Examination and Identification Framework Based on Spatio-Temporal Features Extraction,multi_attack,human_disputed,detection,judges_agreed,deep_learning,judges_agreed
+S3496,2019,Using side channel TCP features for real-time detection of malware connections,malware,judges_agreed,detection,judges_agreed,unclear,judges_agreed

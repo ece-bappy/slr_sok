@@ -2,14 +2,14 @@
 
 **Format:** a Q1 journal article combining a systematic review with an empirical benchmark. There is no hard page limit like a conference SoK has, so the conference appendices (review protocol, reproduction, dataset audit) move into the body, and the review covers the full 291-paper map as well as the 67-paper core set.
 
-**Budget:** about 14,000–16,000 words without references, 10–12 figures, 10–12 tables, about 120 references. Supplementary material holds the per-paper coding table, the per-seed CSVs and the rulebooks.
+**Budget:** about 14,000â€“16,000 words without references, 10â€“12 figures, 10â€“12 tables, about 120 references. Supplementary material holds the per-paper coding table, the per-seed CSVs and the rulebooks.
 
 **Candidate journals.** Choose before drafting, because length and style differ.
 
 | Journal | Fit | Length / style notes |
 |---|---|---|
 | ACM Computing Surveys | A systematic review plus a benchmark is a natural fit; high impact | About 35 pages in the acmsmall format; expects a broad survey, so the 291-paper map gets more weight |
-| IEEE TDSC / IEEE TIFS | Security-flagship journals; strong for the benchmark findings | About 14–16 two-column pages before overlength charges; would need tighter Sections 3 and 7 |
+| IEEE TDSC / IEEE TIFS | Security-flagship journals; strong for the benchmark findings | About 14â€“16 two-column pages before overlength charges; would need tighter Sections 3 and 7 |
 | Computers & Security (Elsevier) | Takes long empirical-plus-review papers; quick turnaround | No strict limit; single-column review format; structured abstract and highlights required |
 | IEEE TNSM / Computer Networks | Network-measurement audience | Weaker fit for the review part |
 
@@ -19,7 +19,7 @@ The word budgets below suit Computing Surveys or Computers & Security. For TDSC 
 - `review/benchmark/RESULTS.md` (benchmark) and the `SUMMARY_*.md` files it links.
 - `review/synthesis/SUMMARY.md` (67-paper core set).
 - `review/coding/kappa_report.md`, `review/coding/validation_report.md`, `review/final_screening/SPOT_CHECK.md`.
-- `plan.md` §1.1 (prior work) and §4 (protocol).
+- `plan.md` Â§1.1 (prior work) and Â§4 (protocol).
 
 Never type a number into the draft without its source file.
 
@@ -33,8 +33,8 @@ Never type a number into the draft without its source file.
 
 ## Abstract (about 250 words; structured if the journal asks: Context / Objective / Method / Results / Conclusions)
 
-1. **Problem:** the literature reports 95–99.9% accuracy, but under protocols a deployed detector never meets.
-2. **What we did:** a PRISMA review of 3,503 records down to 291 eligible studies (2019–2026); human-verified coding of a 67-paper core set (κ reported); a controlled benchmark on four public sources; a reproduction of RAID 2024.
+1. **Problem:** the literature reports 95â€“99.9% accuracy, but under protocols a deployed detector never meets.
+2. **What we did:** a PRISMA review of 3,503 records down to 291 eligible studies (2019â€“2026); human-verified coding of a 67-paper core set (Îº reported); a controlled benchmark on four public sources; a reproduction of RAID 2024.
 3. **Headline findings, with numbers:**
    - About 71% of core-set main results use random or stratified random splits; 4% are temporal; 22% report an FPR or PR-AUC.
    - Temporal and cross-dataset drops; no source-validated threshold survives a dataset change.
@@ -42,20 +42,20 @@ Never type a number into the draft without its source file.
    - Under ECH, size/timing models trained on TLS 1.2 malware fail on TLS 1.3 malware (ROC 0.54), and 256-byte padding defeats them even with TLS 1.3 training.
 4. **Recommendations, the checklist and the artefact release.**
 
-**Highlights** (Elsevier, 3–5 bullets of ≤ 85 characters each): written last.
+**Highlights** (Elsevier, 3â€“5 bullets of â‰¤ 85 characters each): written last.
 
 ---
 
 ## 1. Introduction (about 1,300 words)
 
 - **The gap:** high reported accuracy, against what deployment needs: a new network, a later time, a real-time decision, and less visibility under TLS 1.3/ECH.
-- **Why now:** TLS 1.3 is the majority, ECH is being rolled out, and fingerprinting moved from JA3 to JA4. The field is growing fast: 35 of the 67 core papers are from 2025–26.
+- **Why now:** TLS 1.3 is the majority, ECH is being rolled out, and fingerprinting moved from JA3 to JA4. The field is growing fast: 35 of the 67 core papers are from 2025â€“26.
 - **Why a review alone and a benchmark alone are not enough:** the review shows what the field does; the benchmark shows what that costs.
-- **RQ1–RQ5:** stated in full, as a table (plan.md §2).
+- **RQ1â€“RQ5:** stated in full, as a table (plan.md Â§2).
 - **Contributions:**
   1. A systematic review: a PRISMA flow, a 291-paper map, a taxonomy and gap statistics from human-verified coding.
-  2. A unified, visibility-tagged feature pipeline from raw pcaps (G1–G5, plus a Zeek-free variant).
-  3. A controlled benchmark answering RQ1–RQ5:
+  2. A unified, visibility-tagged feature pipeline from raw pcaps (G1â€“G5, plus a Zeek-free variant).
+  3. A controlled benchmark answering RQ1â€“RQ5:
      - an origin probe;
      - a label-circularity audit;
      - rolling-origin drift;
@@ -72,9 +72,9 @@ Never type a number into the draft without its source file.
   - TLS 1.2: certificate in clear.
   - TLS 1.3: certificate encrypted, ClientHello visible.
   - TLS 1.3 + ECH: outer ClientHello only, plus the padding guidance in draft-ietf-tls-esni.
-  - **Table 1:** feature groups G1–G5 × visibility tier.
+  - **Table 1:** feature groups G1â€“G5 Ã— visibility tier.
 - **2.2 Fingerprinting:** JA3/JA3S, JA4/JA4S; GREASE and extension randomization; JARM in brief.
-- **2.3 How malicious TLS is detected:** an ML pipeline sketch (**Figure 1**: capture → flow assembly → features → model → threshold → alert), including where labels come from.
+- **2.3 How malicious TLS is detected:** an ML pipeline sketch (**Figure 1**: capture â†’ flow assembly â†’ features â†’ model â†’ threshold â†’ alert), including where labels come from.
 - **2.4 Threat and deployment model:**
   - The defender is a passive edge monitor with no decryption and a real-time budget.
   - The attacker is a non-adaptive malware operator, with simple padding and jitter as the evasion bound.
@@ -97,16 +97,16 @@ Never type a number into the draft without its source file.
   - same-prompt agreement check: 13 of 15 records;
   - spot-check: 0/120 wrong exclusions, 95% upper bound about 2.5%;
   - **Figure 2:** PRISMA flow. **TODO:** regenerate the final counts.
-- **3.3 Core set:** the rule fixed before coding (CORE A*/A, Scimago Q1 CS, top-10% cited); 92 candidates → 67 papers.
+- **3.3 Core set:** the rule fixed before coding (CORE A*/A, Scimago Q1 CS, top-10% cited); 92 candidates â†’ 67 papers.
 - **3.4 Extraction:**
-  - the form and the RQ each field serves (**Table 2**, plan.md §4);
+  - the form and the RQ each field serves (**Table 2**, plan.md Â§4);
   - input rules (deterministic artefact links, verbatim evidence);
   - a two-model ensemble with human verification of every core paper.
 - **3.5 Reliability:**
   - blind validation on 4 held-out papers: agreed answers 42/44 correct; free text 13/20 and 15/20 correct; 0 invented;
-  - second coder on 14 papers: single-choice agreement 82%, median κ 0.56; list fields pooled κ 0.77;
+  - second coder on 14 papers: single-choice agreement 82%, median Îº 0.56; list fields pooled Îº 0.77;
   - adjudication changed 17 verified values;
-  - rulebook change R1, reported with κ both ways.
+  - rulebook change R1, reported with Îº both ways.
 - **3.6 Dataset registry:**
   - one check per dataset;
   - the "public" levels (open / registration / private);
@@ -118,10 +118,10 @@ Never type a number into the draft without its source file.
   - papers per year (growth);
   - venue types;
   - task (C2/botnet, DoH tunnelling, web attacks/brute force, generic malware, anomaly);
-  - model families over time (classical → DL → transformers/LLMs).
-  - **Figure 3.** **TODO:** a task label for all 291 papers (open item 6).
+  - model families over time (classical â†’ DL â†’ transformers/LLMs).
+  - **Figure 3** (`review/map_labels/fig_map.pdf`): done 8 Nov. Two-LLM blind labels, human-decided disputes; agreement κ 0.78 / 0.82 / 0.74; spot check 1/90 agreed labels wrong.
 - **4.2 Taxonomy (Figure 4 / Table 3):** three axes.
-  - what is observed: G1–G5 and the visibility tier;
+  - what is observed: G1â€“G5 and the visibility tier;
   - how it is learned: model family, granularity, first-N;
   - how it is evaluated: split, labels, metrics, cost.
   - Place the 67 core papers on these axes, citing representative papers per cell.
@@ -131,7 +131,7 @@ Never type a number into the draft without its source file.
     - temporal 4%, host-grouped 6%, cross-dataset 4% of main results;
     - easy-vs-hard reported in 16%.
   - **Metrics:** FPR or PR-AUC in 22%; accuracy only in 4%.
-  - **Labels (RQ2):** dataset_provided 81%; label–feature overlap in 2 papers.
+  - **Labels (RQ2):** dataset_provided 81%; labelâ€“feature overlap in 2 papers.
   - **Shortcut checks:** none 34%; most "checks" are ablations; no paper runs an origin probe.
   - **Visibility (RQ5):**
     - 67% use only ECH-surviving features;
@@ -148,15 +148,15 @@ Never type a number into the draft without its source file.
   - Usage counts: CIC-IDS2017 14, DoHBrw 13, ISCX VPN 13, USTC-TFC 11, MCFP 9.
   - Access level, TLS content and known quality issues per dataset.
   - Our HIKARI finding: benign traffic is header-only, and the label tables mismatch the pcaps.
-- **4.5 Takeaways:** the hypotheses that Sections 5–6 test.
+- **4.5 Takeaways:** the hypotheses that Sections 5â€“6 test.
 
 ## 5. Benchmark methodology (about 2,000 words)
 
 - **5.1 Datasets (Table 6, the full audit):**
-  - MTA 2019–2026, labelled from IOC/sandbox metadata and not from certificates or JA3;
+  - MTA 2019â€“2026, labelled from IOC/sandbox metadata and not from certificates or JA3;
   - Stratosphere MCFP;
   - RAID 2024;
-  - HIKARI (clean-label subset, ‡ 2-attacker caveat);
+  - HIKARI (clean-label subset, â€¡ 2-attacker caveat);
   - DoHBrw: **pending** (open item 3).
   - Per dataset: flows, dedup counts, TLS versions, class balance, capture environment.
 - **5.2 Pipeline:**
@@ -166,7 +166,7 @@ Never type a number into the draft without its source file.
   - the Zeek-free variant.
   - **Figure 5:** pipeline diagram.
 - **5.3 Experiment matrix (Table 7):**
-  - E1–E9;
+  - E1â€“E9;
   - batch 6: rolling origin, leave-one-family-out and leave-one-dataset-out, encodings, padding and evasion, base rate, host level, training-set sensitivity.
 - **5.4 Models:**
   - XGBoost as the main model; LightGBM, RF, LR, 1D-CNN and BiLSTM;
@@ -184,10 +184,10 @@ Never type a number into the draft without its source file.
 
 ### 6.1 RQ1: Beyond random splits
 - **Figure 6** (`fig_a_collapse`):
-  - MTA: 1.000 → 0.996 → 0.901 from E1 to E3.
-  - MCFP→MTA: 0.585.
+  - MTA: 1.000 â†’ 0.996 â†’ 0.901 from E1 to E3.
+  - MCFPâ†’MTA: 0.585.
   - No source threshold survives a dataset change.
-- **Figure 7** (`fig_f_rolling`): the hash model falls to ROC 0.41 by 2026; models without hashes stay ≥ 0.95, except in 2025; retraining rescues the hash model.
+- **Figure 7** (`fig_f_rolling`): the hash model falls to ROC 0.41 by 2026; models without hashes stay â‰¥ 0.95, except in 2025; retraining rescues the hash model.
 - **Robustness across choices:**
   - six families, tuned and untuned;
   - the RAID 2024 classifiers;
@@ -214,8 +214,8 @@ Never type a number into the draft without its source file.
 
 ### 6.4 RQ4: Cost
 - **Table 9:**
-  - extraction 1.7–2.7 ms per flow (full) vs 0.9–1.2 ms (Zeek-free);
-  - inference ≤ 0.06 ms batched;
+  - extraction 1.7â€“2.7 ms per flow (full) vs 0.9â€“1.2 ms (Zeek-free);
+  - inference â‰¤ 0.06 ms batched;
   - batch=1 overhead;
   - model size and memory.
 - **Message:** extraction is the cost. The Zeek-free set is also the more accurate one under drift (0.971).
@@ -223,7 +223,7 @@ Never type a number into the draft without its source file.
 
 ### 6.5 RQ5: Visibility tiers and fingerprint drift
 - **Figure 10** (`fig_b_tiers`):
-  - Losing the certificate costs ≤ 0.008.
+  - Losing the certificate costs â‰¤ 0.008.
   - On TLS 1.3 malware, the ECH tier scores ROC 0.54, or 0.89 with TLS 1.3 training; handshake-visible models score 0.94.
 - **Padding:**
   - +256 B per data packet takes the ECH tier to about 0.59;
@@ -246,7 +246,7 @@ Never type a number into the draft without its source file.
 
 ## 8. Discussion (about 2,000 words)
 
-- **8.1 Literature vs benchmark:** which published claims are at risk. Combine 71% random splits with the E1→E3/E4 drops, and the 67% ECH-tier papers with the TLS 1.3/padding result.
+- **8.1 Literature vs benchmark:** which published claims are at risk. Combine 71% random splits with the E1â†’E3/E4 drops, and the 67% ECH-tier papers with the TLS 1.3/padding result.
 - **8.2 Evaluation checklist (Table 11):**
   - temporal or cross-dataset splits;
   - validation-only thresholds;
@@ -289,7 +289,7 @@ Never type a number into the draft without its source file.
 
 ## 10. Conclusion (about 400 words)
 
-The answers to RQ1–RQ5 in one paragraph, the artefact link, and future work (campus validation in Dhaka, a real edge device, adaptive attackers, real ECH captures).
+The answers to RQ1â€“RQ5 in one paragraph, the artefact link, and future work (campus validation in Dhaka, a real edge device, adaptive attackers, real ECH captures).
 
 ## Declarations
 
@@ -311,6 +311,6 @@ Data and code availability (Zenodo DOI); ethics (public data only, no human subj
 3. **DoHBrw:** add it as a fifth source, or state it is excluded.
 4. **Own 2026 lab capture (contribution 3 in plan.md):** not done; dropped unless captured.
 5. **UCNet RF gap:** fill in the cause after the scikit-learn 1.3.2 rerun.
-6. **Task labels for the 291-paper map and Table 3:** not coded. Derive them by a written rule from titles and abstracts (LLM suggestion plus human check), or code them by hand.
+6. **Task labels for the 291-paper map:** DONE 8 Nov (`review/map_labels/`, rulebook `review/coding/map_label_rulebook.txt`).
 7. **Checklist scores for Figure 12:** computable from the existing coded fields; check which items need new coding.
 8. **Related work:** re-run the search, including earlier surveys of encrypted malicious traffic detection.
