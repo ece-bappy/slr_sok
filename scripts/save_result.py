@@ -23,7 +23,7 @@ ALLOWED_VALUES = {
                      "dataset_provided", "manual", "generated", "other", "unclear"},
     "label_feature_overlap": {"yes", "no", "unclear", "not_applicable"},
     "feature_groups": {"G1", "G2", "G3", "G4", "G5"},
-    "cert_fields_read": {"yes", "no", "not_applicable"},
+    "cert_fields_read": {"yes", "no"},  # not_applicable merged into no (rulebook R1, 8 Nov 2026)
     "fingerprints_used": {"none", "JA3", "JA3S", "JA4", "JA4S", "other"},
     "tls_versions_stated": {"1.0", "1.1", "1.2", "1.3", "not_stated"},
     "ech_considered": {"yes", "no"},

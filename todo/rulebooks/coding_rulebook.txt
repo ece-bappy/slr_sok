@@ -51,7 +51,7 @@ feature_groups      G1 whole-flow statistics (duration, byte/packet totals, rate
                     G5 JA3/JA4-style fingerprints
 cert_fields_read    yes = reads Certificate message fields in cleartext (issuer, subject, validity, SAN,
                     self-signed, chain length); no = certificate info only INFERRED from encrypted record
-                    sizes, or not used; not_applicable = no certificate information at all.
+                    sizes, or not used at all. (not_applicable removed 8 Nov 2026: see rule R1 in section 6.)
 fingerprints_used   none / JA3 / JA3S / JA4 / JA4S / other (e.g. Mercury NPF). Only as classifier input,
                     not fingerprints used for labelling.
 tls_versions_stated TLS versions the paper STATES are in its evaluation data; not_stated otherwise.
@@ -101,3 +101,9 @@ data_released       Same rule for data the authors created (captures, labels, fe
 =====================================================================
 6. ADDED RULES (date, rule, why)
 =====================================================================
+R1 8 Nov 2026. cert_fields_read has only yes / no. Code "no" when certificate information is inferred
+   from record sizes OR not used at all; not_applicable no longer exists, and all earlier
+   not_applicable values were recoded to no.
+   Why: the old definitions overlapped ("no = ... or not used" vs "not_applicable = no certificate
+   information at all"). The second coder and coder 1 read them differently on 7 of 14 papers
+   (kappa 0.11; 14/14 once merged). Both values gave the same visibility tier, so no result changes.

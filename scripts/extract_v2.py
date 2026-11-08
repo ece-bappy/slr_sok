@@ -62,8 +62,8 @@ FIELDS = {  # name: (definition, value schema)
     "cert_fields_read": (
         "yes if the classifier reads fields from the server Certificate message in cleartext (issuer, subject, "
         "validity, SAN, self-signed, chain length); no if certificate information is only INFERRED from "
-        "encrypted record sizes or not used; not_applicable if no certificate information is used",
-        {"type": "STRING", "enum": ["yes", "no", "not_applicable"]}),
+        "encrypted record sizes or not used at all",
+        {"type": "STRING", "enum": ["yes", "no"]}),  # not_applicable merged into no (rulebook R1, 8 Nov 2026)
     "fingerprints_used": (
         "TLS fingerprints the classifier uses as input; none if no fingerprint",
         {"type": "ARRAY", "items": {"type": "STRING", "enum": ["none", "JA3", "JA3S", "JA4", "JA4S", "other"]}}),

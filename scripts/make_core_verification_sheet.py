@@ -34,7 +34,7 @@ FIELDS_ORDER = [
     ("label_feature_overlap", "yes|no|unclear|not_applicable"),
     ("features_used", "short phrases (list)"),
     ("feature_groups", "G1|G2|G3|G4|G5 (list)"),
-    ("cert_fields_read", "yes|no|not_applicable"),
+    ("cert_fields_read", "yes|no"),
     ("fingerprints_used", "none|JA3|JA3S|JA4|JA4S|other (list)"),
     ("tls_versions_stated", "1.0|1.1|1.2|1.3|not_stated (list)"),
     ("ech_considered", "yes|no"),

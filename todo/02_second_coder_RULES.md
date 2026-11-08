@@ -25,6 +25,10 @@ Rules:
 1. Decide from the paper and `rulebooks/coding_rulebook.txt`, not from who usually knows best. Where `coder1` was wrong, the verified coding gets corrected.
 2. Free text: `both` if the two answers describe the same set (different wording or detail level is fine). Only real content differences count.
 3. Keep κ as computed. κ is reported **before** adjudication; adjudication only fixes the final dataset.
-4. Rulebook decision needed from you: should `cert_fields_read` keep `not_applicable`? Recommendation: drop it (merge into `no`), add a dated rule in section 6 of the rulebook, and report the field's κ both ways.
+4. `cert_fields_read` is settled: you chose on 8 Nov to merge `not_applicable` into `no`.
+   - Rule R1 is added to section 6 of the rulebook.
+   - The 27 verified values and the LLM definitions are recoded.
+   - The 7 rows in the sheet are pre-filled ("both").
+   - The paper reports the field's κ both ways: 0.11 as coded, 1.00 merged.
 
-About 2–3 hours. Then tell Claude "adjudication done". Claude applies the corrections to the verified coding and records the rulebook change.
+That leaves 99 rows to adjudicate, about 2–3 hours. Then tell Claude "adjudication done". Claude applies the corrections to the verified coding and records the rulebook change.
