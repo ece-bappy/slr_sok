@@ -52,9 +52,18 @@ def version_guess(df: pd.DataFrame) -> pd.Series:
     return g
 
 
+def _safe_infer(row, i):
+    """The authors' function raises ValueError (max() of an empty list) when cutting at the Finished record
+    leaves no records; treat that as a failed inference (-2, counted separately; downstream it is like -1)."""
+    try:
+        return cert_size_inference_simple_diagram(row, i)
+    except ValueError:
+        return -2
+
+
 def _infer(chunk: pd.DataFrame) -> np.ndarray:
     with contextlib.redirect_stdout(io.StringIO()):
-        return np.array([cert_size_inference_simple_diagram(chunk.iloc[i], i) for i in range(len(chunk))], float)
+        return np.array([_safe_infer(chunk.iloc[i], i) for i in range(len(chunk))], float)
 
 
 def _behav(chunk: pd.DataFrame) -> np.ndarray:
@@ -101,6 +110,8 @@ def main() -> None:
     ok = ((t13["s_psk"] == -1) & (t13["hello_retry_req"] == 0)).to_numpy()
     cols = BS + DS + [f"tls_tp_{i}" for i in range(20)]
     cert[ok] = parallel(_infer, t13.loc[ok, cols].reset_index(drop=True), a.jobs)
+    n["tls13_cert_inference_raised_valueerror"] = int((cert == -2).sum())
+    cert[cert == -2] = -1
     n.update({"tls13_psk": int((t13["s_psk"] != -1).sum()), "tls13_hrr": int((t13["hello_retry_req"] != 0).sum()),
               "tls13_cert_inferred": int((cert > -1).sum()), "tls13_cert_inference_failed": int((ok & (cert == -1)).sum())})
     d13 = tls_12_appdata_filtering(t13).astype(int)
