@@ -1,27 +1,27 @@
-﻿name_as_coded,papers,maps_to_registry_name,or_new_dataset_name,public,tls,source_url,note
-H23Q,4,,,,,,
-CTU,2,,,,,,
-Github Payloads,2,,,,,,
-Virusshare malware,2,,,,,,
-Alexa Top 500 sites,2,,,,,,
-Lastline Inc,2,,,,,,
-MET2020,2,,,,,,
-HTPA,2,,,,,,
-HTPA-RD,2,,,,,,
-HTPA-TS-n,2,,,,,,
-Ren et al. [40] traffic,2,,,,,,
-Digital forensic analyzing websites traffic,2,,,,,,
-Malicious TLS,2,,,,,,
-GraphTunnel,2,,,,,,
-APP-53 2023,2,,,,,,
-doh_real_world_2022,2,,,,,,
-large-scale benign DoH data,2,,,,,,
-IEU-C2D,2,,,,,,
-IEEE P2668-MLIDD,2,,,,,,
-JDWP,2,,,,,,
-CIC IoT,2,,,,,,
-Mozilla Firefox 73.01 Lin.,1,,,,,,
-Google Chrome 81.0.4044.129 Win.,1,,,,,,
-Cloudfared 2020.2.0 Lin.,1,,,,,,
-nan,1,,,,,,
-Mininet-WiFi-based SDN topology / SD5GJA4 dataset,1,,,,,,
+name_as_coded,papers,maps_to_registry_name,or_new_dataset_name,public,tls,source_url,note
+H23Q,4,,H23Q,yes,"yes (HTTP/3 over QUIC, HTTP/2 over TLS)",https://github.com/efchatz/H23Q,public HTTP/2 and HTTP/3 QUIC dataset (Chatzoglou et al.)
+CTU,2,CTU-13,,,,,maps to canonical CTU-13 / Stratosphere entry
+Github Payloads,2,,not_a_dataset,,,,"URL and payload text strings from GitHub repo (faizann24), not a network traffic dataset"
+Virusshare malware,2,,own_capture,no,yes (Windows malware TLS traffic),,malware samples from VirusShare executed in authors' VM to generate private traffic
+Alexa Top 500 sites,2,,own_capture,no,yes (benign HTTPS traffic),,authors' private web crawl of Alexa Top 500 websites
+Lastline Inc,2,,own_capture,no,yes (commercial sandbox capture),,commercial sandbox capture (named in rulebook as own_capture)
+MET2020,2,,MET2020,yes,"yes (SSL/TLS encrypted traffic, malware + benign)",https://github.com/cauc-se/MET2020,open-sourced malicious encrypted traffic dataset created by authors (S2363)
+HTPA,2,,HTPA,yes,yes (HTTPS tunnel traffic and normal HTTPS),https://github.com/yungshenglu/HTPA,HTTPS Tunneling Predictive Analysis dataset (S1901)
+HTPA-RD,2,HTPA,,,,,random division subset of HTPA (same dataset per rulebook)
+HTPA-TS-n,2,HTPA,,,,,test split subsets of HTPA (same dataset per rulebook)
+Ren et al. [40] traffic,2,,not_a_dataset,,,,cited traffic from literature without public dataset release/source (named in rulebook)
+Digital forensic analyzing websites traffic,2,,own_capture,no,yes (malware traffic from online forensic sandboxes),,private traffic captured from online analysis websites (S2138)
+Malicious TLS,2,,Malicious TLS (gcx-Yuan),yes,yes (24 categories of encrypted malicious TLS traffic),https://github.com/gcx-Yuan/Malicious-TLS,public GitHub repository of 24 malicious TLS attack categories (S1228)
+GraphTunnel,2,,GraphTunnel (Gao et al.),yes,"DNS, not TLS (DNS tunneling transactions)",https://github.com/Gao-pro/DNS-Tunnel-Dataset,DNS tunneling dataset by Gao et al. (S1254)
+APP-53 2023,2,,APP-53 (Chalmers 2023),yes,"yes (TLS 1.3, QUIC, mobile application traffic)",https://ieee-dataport.org/documents/5g-mobile-app-traffic-traces-chalmers-2023,5G mobile app traffic traces (Chalmers University of Technology) on IEEE DataPort (S1460)
+doh_real_world_2022,2,,own_capture,no,yes (DoH over HTTPS),,authors' private real-world DoH capture with synthetic attack pattern enrichment (S1502)
+large-scale benign DoH data,2,,own_capture,no,yes (benign DoH traffic),,private crawl of benign DoH traffic (named in rulebook as own_capture)
+IEU-C2D,2,,IEU-C2D,yes,"yes (C2 traffic over HTTPS, TCP, DNS, ICMP)",https://github.com/AmyDylen/IEU-C2D,public C2 Threat Traffic Collection dataset (S0217)
+IEEE P2668-MLIDD,2,,IEEE P2668-MLIDD,yes,mostly non-TLS (IoT attack traffic with simulated TLS/DTLS/VPN overhead),https://doi.org/10.21227/j0f2-8h67,public IoT-DDoS dataset on IEEE DataPort (S0348)
+JDWP,2,,own_capture,no,yes (TLS 1.3 web traffic from 50 pages),,authors' private capture from 50 pages across web platforms (S0905)
+CIC IoT,2,CICIoT2023,,,,,maps to CICIoT2023 (cited by S0952 in bibliography [58])
+Mozilla Firefox 73.01 Lin.,1,,own_capture,no,yes (DoH traffic from Firefox),,browser-version capture row from S3215 (own_capture per rulebook)
+Google Chrome 81.0.4044.129 Win.,1,,own_capture,no,yes (DoH traffic from Chrome),,browser-version capture row from S3215 (own_capture per rulebook)
+Cloudfared 2020.2.0 Lin.,1,,own_capture,no,yes (DoH traffic from cloudflared),,browser-version capture row from S3215 (own_capture per rulebook)
+nan,1,,not_a_dataset,,,,missing/unspecified value in S1854 (named in rulebook as not_a_dataset)
+Mininet-WiFi-based SDN topology / SD5GJA4 dataset,1,,own_capture,no,yes (TLS with JA4 fingerprints in 5G SDN testbed),,private testbed capture on Mininet-WiFi without public repository link (S1163)

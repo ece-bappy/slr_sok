@@ -1,10 +1,10 @@
-﻿index,name,public_claimed,tls_claimed,your_public,your_tls,source_url,ok_or_fix,note
-33,DoH-Tunnel-Traffic-HKD,yes,DoH (HTTPS),,,,,
-34,VNAT (MIT LL VPN/non-VPN),yes,"VPN and non-VPN, mixed",,,,,
-35,CIC-Bell-DNS-EXF-2021,yes,"DNS, not TLS",,,,,
-36,HTTP CSIC 2010,yes,"HTTP requests, not TLS",,,,,
-37,SWaT / WADI (iTrust),on_request,"ICS process data, not TLS",,,,,
-38,NDSec-1,yes,mixed,,,,,
-39,X-IIoTID,yes,"IIoT, mixed",,,,,
-40,ISCX IDS 2012,yes,mostly non-TLS,,,,,
-41,"Blocklist / threat feed (label source, not a traffic dataset)",n/a,label or fingerprint source,,,,,
+index,name,public_claimed,tls_claimed,your_public,your_tls,source_url,ok_or_fix,note
+33,DoH-Tunnel-Traffic-HKD,yes,DoH (HTTPS),yes,DoH (HTTPS),https://github.com/doh-traffic-dataset/DoH-Tunnel-Traffic-HKD,ok,public GitHub repository by Hokkaido University researchers (Mitsuhashi et al.)
+34,VNAT (MIT LL VPN/non-VPN),yes,"VPN and non-VPN, mixed",yes,"VPN and non-VPN, mixed",https://www.ll.mit.edu/r-d/datasets/vnat-dataset,ok,public MIT Lincoln Laboratory R&D dataset portal; OpenVPN vs native application traffic
+35,CIC-Bell-DNS-EXF-2021,yes,"DNS, not TLS",on_request,"DNS, not TLS",https://www.unb.ca/cic/datasets/dns-exf-2021.html,fix,requires UNB CIC registration form to download (counts as on_request per rulebook)
+36,HTTP CSIC 2010,yes,"HTTP requests, not TLS",yes,"HTTP requests, not TLS",https://www.isi.csic.es/dataset/,ok,unencrypted HTTP requests targeting simulated e-commerce application
+37,SWaT / WADI (iTrust),on_request,"ICS process data, not TLS",on_request,"ICS process data, not TLS",https://itrust.sutd.edu.sg/itrust-labs_datasets/dataset_info/,ok,requires signing iTrust SUTD request form and agreement; ICS/SCADA physical and network logs
+38,NDSec-1,yes,mixed,yes,mixed,http://www2.hs-fulda.de/NDSec/NDSec-1/,ok,Hochschule Fulda attack composition dataset with network PCAPs and log data
+39,X-IIoTID,yes,"IIoT, mixed",yes,"IIoT, mixed",https://github.com/MunaAlhawawreh/X-IIoTID-dataset,ok,"public IIoT dataset covering MQTT, CoAP, WebSocket, and HTTP/HTTPS traffic"
+40,ISCX IDS 2012,yes,mostly non-TLS,on_request,mostly non-TLS,https://www.unb.ca/cic/datasets/ids.html,fix,requires UNB CIC registration form to download (counts as on_request per rulebook)
+41,"Blocklist / threat feed (label source, not a traffic dataset)",n/a,label or fingerprint source,n/a,label or fingerprint source,https://sslbl.abuse.ch/,ok,"threat feed / blocklist (SSLBL, Feodo Tracker, JA4DB) used for labeling or fingerprinting, not a traffic capture"
