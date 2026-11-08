@@ -35,6 +35,6 @@ Benign recall is unchanged by construction (0.97 / 0.99 / 0.91).
 3. **Robustness and visibility pull in opposite directions.** The feature set most robust to padding (G1–G4) needs handshake visibility, which ECH removes; the ECH-tier model is the most padding-sensitive. A C2 author who pads records and uses ECH would defeat the size/timing view.
 
 ## Caveats
-- A white-box-free, uniform perturbation; no adaptive attacker or optimisation.
+- A fixed, uniform perturbation; no adaptive attacker or optimisation against the model.
 - Applied to features, not to packets: real padding changes TLS record sizes, and packet sizes follow only roughly (segmentation).
 - MTA E3 only, XGBoost only.
