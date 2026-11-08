@@ -1,11 +1,12 @@
 {
-  "_note": "Canonical datasets for the review (plan.md §4). aliases are case-insensitive regexes matched against the dataset name as the paper writes it. public: yes = downloadable without request; on_request = form/agreement; no = private. tls: what the dataset contains (from its own documentation, not from papers). Drafted by Claude on 28 Oct 2026 from the datasets' documentation as remembered; status 'verify' entries must be checked by the human before use in the paper.",
+  "_note": "Canonical datasets for the review (plan.md §4). aliases are case-insensitive regexes matched against the dataset name as the paper writes it. public: yes = downloadable without request; on_request = form/agreement; no = private. tls: what the dataset contains (from its own documentation, not from papers). Drafted by Claude on 28 Oct 2026 from the datasets' documentation as remembered; status 'verify' entries must be checked by the human before use in the paper. 8 Nov 2026: the 9 Claude-added entries were checked by the human (todo/04a) and 26 unmapped names were mapped or added (todo/04b); anchored ^name$ aliases come from that check.",
   "datasets": [
     {
       "name": "CTU-13",
       "aliases": [
         "ctu[- ]?13",
-        "ctu[- ]?botnet"
+        "ctu[- ]?botnet",
+        "^CTU$"
       ],
       "public": "yes",
       "tls": "mixed; mostly non-TLS (2011 botnet captures)",
@@ -183,7 +184,8 @@
       "name": "CICIoT2023",
       "aliases": [
         "cic[- ]?iot[- ]?2023",
-        "ciciot"
+        "ciciot",
+        "^CIC\\ IoT$"
       ],
       "public": "yes",
       "tls": "mixed",
@@ -329,7 +331,9 @@
       ],
       "public": "yes",
       "tls": "DoH (HTTPS)",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://github.com/doh-traffic-dataset/DoH-Tunnel-Traffic-HKD",
+      "checked": "human 8 Nov 2026 (ok): public GitHub repository by Hokkaido University researchers (Mitsuhashi et al.)"
     },
     {
       "name": "VNAT (MIT LL VPN/non-VPN)",
@@ -338,16 +342,20 @@
       ],
       "public": "yes",
       "tls": "VPN and non-VPN, mixed",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://www.ll.mit.edu/r-d/datasets/vnat-dataset",
+      "checked": "human 8 Nov 2026 (ok): public MIT Lincoln Laboratory R&D dataset portal; OpenVPN vs native application traffic"
     },
     {
       "name": "CIC-Bell-DNS-EXF-2021",
       "aliases": [
         "cic[- ]?bell[- ]?dns"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "DNS, not TLS",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://www.unb.ca/cic/datasets/dns-exf-2021.html",
+      "checked": "human 8 Nov 2026 (fix): requires UNB CIC registration form to download (counts as on_request per rulebook)"
     },
     {
       "name": "HTTP CSIC 2010",
@@ -356,7 +364,9 @@
       ],
       "public": "yes",
       "tls": "HTTP requests, not TLS",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://www.isi.csic.es/dataset/",
+      "checked": "human 8 Nov 2026 (ok): unencrypted HTTP requests targeting simulated e-commerce application"
     },
     {
       "name": "SWaT / WADI (iTrust)",
@@ -366,7 +376,9 @@
       ],
       "public": "on_request",
       "tls": "ICS process data, not TLS",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://itrust.sutd.edu.sg/itrust-labs_datasets/dataset_info/",
+      "checked": "human 8 Nov 2026 (ok): requires signing iTrust SUTD request form and agreement; ICS/SCADA physical and network logs"
     },
     {
       "name": "NDSec-1",
@@ -375,7 +387,9 @@
       ],
       "public": "yes",
       "tls": "mixed",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "http://www2.hs-fulda.de/NDSec/NDSec-1/",
+      "checked": "human 8 Nov 2026 (ok): Hochschule Fulda attack composition dataset with network PCAPs and log data"
     },
     {
       "name": "X-IIoTID",
@@ -384,7 +398,9 @@
       ],
       "public": "yes",
       "tls": "IIoT, mixed",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://github.com/MunaAlhawawreh/X-IIoTID-dataset",
+      "checked": "human 8 Nov 2026 (ok): public IIoT dataset covering MQTT, CoAP, WebSocket, and HTTP/HTTPS traffic"
     },
     {
       "name": "ISCX IDS 2012",
@@ -392,9 +408,11 @@
         "cic[- ]?ids[- ]?2012",
         "iscx[- ]?ids[- ]?2012"
       ],
-      "public": "yes",
+      "public": "on_request",
       "tls": "mostly non-TLS",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://www.unb.ca/cic/datasets/ids.html",
+      "checked": "human 8 Nov 2026 (fix): requires UNB CIC registration form to download (counts as on_request per rulebook)"
     },
     {
       "name": "Blocklist / threat feed (label source, not a traffic dataset)",
@@ -406,7 +424,110 @@
       ],
       "public": "n/a",
       "tls": "label or fingerprint source",
-      "status": "added_by_claude_unverified"
+      "status": "ok",
+      "source_url": "https://sslbl.abuse.ch/",
+      "checked": "human 8 Nov 2026 (ok): threat feed / blocklist (SSLBL, Feodo Tracker, JA4DB) used for labeling or fingerprinting, not a traffic capture"
+    },
+    {
+      "name": "H23Q",
+      "aliases": [
+        "^H23Q$"
+      ],
+      "public": "yes",
+      "tls": "yes (HTTP/3 over QUIC, HTTP/2 over TLS)",
+      "source_url": "https://github.com/efchatz/H23Q",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: public HTTP/2 and HTTP/3 QUIC dataset (Chatzoglou et al.)"
+    },
+    {
+      "name": "Not a dataset (no traffic source)",
+      "aliases": [
+        "^Github\\ Payloads$",
+        "^Ren\\ et\\ al\\.\\ \\[40\\]\\ traffic$",
+        "^nan$"
+      ],
+      "public": "n/a",
+      "tls": "not a traffic dataset (literature citation, payload strings, or missing value)",
+      "status": "ok"
+    },
+    {
+      "name": "MET2020",
+      "aliases": [
+        "^MET2020$"
+      ],
+      "public": "yes",
+      "tls": "yes (SSL/TLS encrypted traffic, malware + benign)",
+      "source_url": "https://github.com/cauc-se/MET2020",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: open-sourced malicious encrypted traffic dataset created by authors (S2363)"
+    },
+    {
+      "name": "HTPA",
+      "aliases": [
+        "^HTPA$",
+        "^HTPA\\-RD$",
+        "^HTPA\\-TS\\-n$"
+      ],
+      "public": "yes",
+      "tls": "yes (HTTPS tunnel traffic and normal HTTPS)",
+      "source_url": "https://github.com/yungshenglu/HTPA",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: HTTPS Tunneling Predictive Analysis dataset (S1901)"
+    },
+    {
+      "name": "Malicious TLS (gcx-Yuan)",
+      "aliases": [
+        "^Malicious\\ TLS$"
+      ],
+      "public": "yes",
+      "tls": "yes (24 categories of encrypted malicious TLS traffic)",
+      "source_url": "https://github.com/gcx-Yuan/Malicious-TLS",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: public GitHub repository of 24 malicious TLS attack categories (S1228)"
+    },
+    {
+      "name": "GraphTunnel (Gao et al.)",
+      "aliases": [
+        "^GraphTunnel$"
+      ],
+      "public": "yes",
+      "tls": "DNS, not TLS (DNS tunneling transactions)",
+      "source_url": "https://github.com/Gao-pro/DNS-Tunnel-Dataset",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: DNS tunneling dataset by Gao et al. (S1254)"
+    },
+    {
+      "name": "APP-53 (Chalmers 2023)",
+      "aliases": [
+        "^APP\\-53\\ 2023$"
+      ],
+      "public": "yes",
+      "tls": "yes (TLS 1.3, QUIC, mobile application traffic)",
+      "source_url": "https://ieee-dataport.org/documents/5g-mobile-app-traffic-traces-chalmers-2023",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: 5G mobile app traffic traces (Chalmers University of Technology) on IEEE DataPort (S1460)"
+    },
+    {
+      "name": "IEU-C2D",
+      "aliases": [
+        "^IEU\\-C2D$"
+      ],
+      "public": "yes",
+      "tls": "yes (C2 traffic over HTTPS, TCP, DNS, ICMP)",
+      "source_url": "https://github.com/AmyDylen/IEU-C2D",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: public C2 Threat Traffic Collection dataset (S0217)"
+    },
+    {
+      "name": "IEEE P2668-MLIDD",
+      "aliases": [
+        "^IEEE\\ P2668\\-MLIDD$"
+      ],
+      "public": "yes",
+      "tls": "mostly non-TLS (IoT attack traffic with simulated TLS/DTLS/VPN overhead)",
+      "source_url": "https://doi.org/10.21227/j0f2-8h67",
+      "status": "ok",
+      "checked": "human 8 Nov 2026: public IoT-DDoS dataset on IEEE DataPort (S0348)"
     },
     {
       "name": "own / private capture",
@@ -429,7 +550,18 @@
         "testbed",
         "\\bgenerated\\b",
         "benign-capture",
-        "mixture capture"
+        "mixture capture",
+        "^Virusshare\\ malware$",
+        "^Alexa\\ Top\\ 500\\ sites$",
+        "^Lastline\\ Inc$",
+        "^Digital\\ forensic\\ analyzing\\ websites\\ traffic$",
+        "^doh_real_world_2022$",
+        "^large\\-scale\\ benign\\ DoH\\ data$",
+        "^JDWP$",
+        "^Mozilla\\ Firefox\\ 73\\.01\\ Lin\\.$",
+        "^Google\\ Chrome\\ 81\\.0\\.4044\\.129\\ Win\\.$",
+        "^Cloudfared\\ 2020\\.2\\.0\\ Lin\\.$",
+        "^Mininet\\-WiFi\\-based\\ SDN\\ topology\\ /\\ SD5GJA4\\ dataset$"
       ],
       "public": "no",
       "tls": "as described by the paper",

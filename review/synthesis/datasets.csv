@@ -1,65 +1,48 @@
 ﻿dataset,papers,public,tls_content,in_registry,paper_ids
-own / private capture,16,no,as described by the paper,True,S0669 S0932 S1337 S1500 S1682 S1783 S1926 S1940 S2138 S2338 S2395 S2626 S2672 S3214 S3215 S3347
+own / private capture,21,no,as described by the paper,True,S0669 S0905 S0932 S1163 S1337 S1500 S1502 S1682 S1783 S1926 S1940 S2138 S2338 S2395 S2576 S2626 S2672 S3059 S3214 S3215 S3347
 CIC-IDS2017,14,yes,mixed; little TLS attack traffic,True,S0097 S0217 S0664 S0905 S1042 S1449 S1461 S1940 S2326 S2338 S2360 S2524 S2800 S2982
 CIRA-CIC-DoHBrw-2020,13,yes,"yes (DoH over HTTPS, benign + malicious tunnels)",True,S0095 S0907 S0932 S1155 S1342 S1682 S1717 S1926 S2338 S2611 S2760 S3005 S3208
 ISCX VPN-nonVPN 2016,13,yes,partly; no malicious class,True,S0639 S0669 S0905 S0926 S0939 S0952 S1132 S1243 S1449 S1460 S2344 S2360 S2363
 USTC-TFC2016,11,yes,mixed (malware + benign apps; partly encrypted),True,S0097 S0664 S0669 S0696 S0907 S0926 S0952 S1132 S1228 S1243 S1449
 Stratosphere MCFP / CTU-Malware-Capture,9,yes,mixed; many HTTPS captures,True,S0217 S0639 S0696 S1042 S1132 S1449 S2338 S2576 S3417
-CTU-13,6,yes,mixed; mostly non-TLS (2011 botnet captures),True,S0639 S1342 S2576 S2626 S3046 S3417
+CTU-13,7,yes,mixed; mostly non-TLS (2011 botnet captures),True,S0639 S1342 S2576 S2626 S2958 S3046 S3417
 IoT-23,5,yes,mixed,True,S0066 S0639 S0928 S1132 S2008
 Malware-Traffic-Analysis.net (MTA),4,yes,"yes (real malware pcaps, 2013-)",True,S1449 S1926 S2576 S2958
 DoH-Tunnel-Traffic-HKD,4,yes,DoH (HTTPS),True,S0095 S1682 S1717 S2760
 CIC-DDoS2019,4,yes,mostly non-TLS,True,S0097 S1528 S1940 S2800
 CSE-CIC-IDS2018,4,yes,mixed,True,S0932 S1342 S2326 S2524
 ToN_IoT,4,yes,mixed,True,S0066 S0639 S0928 S1132
+Not a dataset (no traffic source),3,n/a,"not a traffic dataset (literature citation, payload strings, or missing value)",True,S1854 S2138 S3046
 Tranco browsing captures (Barradas et al.),3,yes,"yes (benign, TLS 1.2 and 1.3)",True,S1886 S1926 S1938
 "Blocklist / threat feed (label source, not a traffic dataset)",3,n/a,label or fingerprint source,True,S0971 S1886 S1938
 VNAT (MIT LL VPN/non-VPN),3,yes,"VPN and non-VPN, mixed",True,S0217 S0639 S1132
+CICIoT2023,3,yes,mixed,True,S0952 S1243 S1461
 CIC-AndMal2017,2,yes,mixed (Android malware traffic),True,S0995 S2326
 MAWI,2,yes,"mixed backbone (anonymised, no payload)",True,S0905 S1940
 DataCon2020 encrypted malicious traffic,2,on_request,yes (encrypted malicious + benign),True,S0217 S0995
 ISCX Botnet 2014,2,yes,mixed,True,S0639 S1132
-CICIoT2023,2,yes,mixed,True,S1243 S1461
 ISCX Tor-nonTor 2016,2,yes,Tor; no malicious class,True,S0926 S1460
 CSTNET-TLS1.3,2,yes,"yes (TLS 1.3, benign services)",True,S0926 S1460
-H23Q,2,unknown,,False,S0097 S1528
+H23Q,2,yes,"yes (HTTP/3 over QUIC, HTTP/2 over TLS)",True,S0097 S1528
 Bot-IoT,2,yes,mostly non-TLS,True,S0348 S0928
-Mozilla Firefox 73.01 Lin.,1,unknown,,False,S3215
-Google Chrome 81.0.4044.129 Win.,1,unknown,,False,S3215
-Cloudfared 2020.2.0 Lin.,1,unknown,,False,S3215
-CTU,1,unknown,,False,S2958
 KDD Cup 99,1,yes,no (feature records),True,S2982
 SWaT / WADI (iTrust),1,on_request,"ICS process data, not TLS",True,S2982
-Github Payloads,1,unknown,,False,S3046
 HTTP CSIC 2010,1,yes,"HTTP requests, not TLS",True,S3046
-Virusshare malware,1,unknown,,False,S3059
-Alexa Top 500 sites,1,unknown,,False,S3059
-Lastline Inc,1,unknown,,False,S2576
 NetML (NetML Challenge 2020),1,yes,mixed,True,S2800
-ISCX IDS 2012,1,yes,mostly non-TLS,True,S2338
-MET2020,1,unknown,,False,S2363
+ISCX IDS 2012,1,on_request,mostly non-TLS,True,S2338
+MET2020,1,yes,"yes (SSL/TLS encrypted traffic, malware + benign)",True,S2363
 HIKARI-2021,1,yes,yes (HTTPS attacks; benign header-only),True,S2524
-nan,1,unknown,,False,S1854
-HTPA,1,unknown,,False,S1901
-HTPA-RD,1,unknown,,False,S1901
-HTPA-TS-n,1,unknown,,False,S1901
+HTPA,1,yes,yes (HTTPS tunnel traffic and normal HTTPS),True,S1901
 RAID 2024 Metasploit C2 (Barradas et al.),1,yes,yes (TLS 1.2 and 1.3 C2),True,S1926
 Kitsune,1,yes,mixed,True,S1940
 UNSW-NB15,1,yes,mostly non-TLS,True,S2008
 X-IIoTID,1,yes,"IIoT, mixed",True,S2008
-Ren et al. [40] traffic,1,unknown,,False,S2138
-Digital forensic analyzing websites traffic,1,unknown,,False,S2138
-Mininet-WiFi-based SDN topology / SD5GJA4 dataset,1,unknown,,False,S1163
-Malicious TLS,1,unknown,,False,S1228
-GraphTunnel,1,unknown,,False,S1254
-CIC-Bell-DNS-EXF-2021,1,yes,"DNS, not TLS",True,S1254
-APP-53 2023,1,unknown,,False,S1460
-doh_real_world_2022,1,unknown,,False,S1502
-large-scale benign DoH data,1,unknown,,False,S1682
+Malicious TLS (gcx-Yuan),1,yes,yes (24 categories of encrypted malicious TLS traffic),True,S1228
+GraphTunnel (Gao et al.),1,yes,"DNS, not TLS (DNS tunneling transactions)",True,S1254
+CIC-Bell-DNS-EXF-2021,1,on_request,"DNS, not TLS",True,S1254
+APP-53 (Chalmers 2023),1,yes,"yes (TLS 1.3, QUIC, mobile application traffic)",True,S1460
 MedBIoT,1,yes,mixed,True,S0066
 NDSec-1,1,yes,mixed,True,S0217
-IEU-C2D,1,unknown,,False,S0217
-IEEE P2668-MLIDD,1,unknown,,False,S0348
-JDWP,1,unknown,,False,S0905
+IEU-C2D,1,yes,"yes (C2 traffic over HTTPS, TCP, DNS, ICMP)",True,S0217
+IEEE P2668-MLIDD,1,yes,mostly non-TLS (IoT attack traffic with simulated TLS/DTLS/VPN overhead),True,S0348
 CIC-IoT2022,1,yes,mixed,True,S0926
-CIC IoT,1,unknown,,False,S0952
