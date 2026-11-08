@@ -1,5 +1,7 @@
 # Batch 6 item 8: simple evasion sensitivity on MTA E3 (8 Nov 2026)
 
+> **Superseded, do not cite (8 Nov).** The padding rule below added k bytes to *every* packet, including pure ACKs (54/60/66-B frames, 55% of G2 packets), which real record padding never changes. It overstates the attack. A rerun with the corrected rule (data-carrying packets > 66 B only, capped at 1,514 B; G1 bytes += k per PSH packet) is queued as `b6_evasion_v2` in `launch_batch6d.sh`; this file will be replaced by its results.
+
 `run_b6.py evasion`, launched in `launch_batch6.sh` (A2, 8 Nov 14:24–14:28 WITA; exit 0). XGBoost, 5 seeds. CSVs are in `b6_evasion/`.
 
 **Setup:**
