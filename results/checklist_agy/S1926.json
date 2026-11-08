@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "The training/validation set was further split using SGKF into 10 folds, on which we perform cross-validation (CV) for parameter tuning."
+  },
+  "per_tls_version": {
+    "value": "yes",
+    "evidence": "Testing against TLS 1.3 traffic – Tranco, MS and DoHBrw – one can observe that it is almost entirely classified as benign."
+  }
+}

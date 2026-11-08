@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "We train the model with 5-fold cross-validation and select the model that achieves the highest F1-score on the validation set at a threshold of 0.5 for testing."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

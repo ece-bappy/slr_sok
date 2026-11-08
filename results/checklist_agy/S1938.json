@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "The results indicate that XGBoost is the optimal classification configuration, achieving an average F1 score of 0.973 over the validation set."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

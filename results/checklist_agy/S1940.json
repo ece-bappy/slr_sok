@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "Each subset is used once as a validation set to tune the hyper-parameters via the empirical study and the remaining three subsets are used as testing sets."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

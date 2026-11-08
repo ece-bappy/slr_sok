@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "stop once validation is met."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

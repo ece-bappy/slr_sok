@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "test",
+    "evidence": "we chose the best model (n = 32, b = 256, and m = 64) and checked how it had performed on each validation set during the overall cross-validation process."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

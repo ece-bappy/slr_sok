@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "In order to find the end condition of adversarial training in the TGAN, the threshold of detection accuracy of normal sample on validation set is set to 99.50%, 99.25%, 99.00%, 89.75% and 89.50% respectively."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "All classifiers were trained using five-fold cross-validation on the training set and evaluated on the held-out test set."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

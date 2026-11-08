@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "Ultimately, the configuration that achieves the highest validation accuracy is selected as optimal."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

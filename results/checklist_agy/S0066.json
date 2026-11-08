@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "All hyperparameters are tuned on the validation set only."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

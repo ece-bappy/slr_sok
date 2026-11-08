@@ -13,6 +13,7 @@
 
 - **DISPUTED rows:** open the paper (`pdf` column, relative to `D:\new papers`), check both models' evidence, and write the correct value in `your_value`. Add a reason in `your_note` if it isn't obvious.
 - **Agreed rows:** leave `your_value` empty to accept the agreed value. Write a value there only if you notice an agreed answer is wrong.
+- `False` in `quotes_verified` also appears when a model gave no quote, which is allowed for `not_stated` / `no`.
 - `quotes_verified` shows whether each model's quote was found in the paper text (Flash Lite / Gemini 3.8). An answer whose quote wasn't found deserves a closer look.
 
 Rules: decide from the paper and the rulebook. The key points:

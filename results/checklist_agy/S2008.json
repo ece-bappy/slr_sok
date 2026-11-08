@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "MADESANT is validated to identify new samples and prevent overfitting and underfitting based on validation accuracy."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

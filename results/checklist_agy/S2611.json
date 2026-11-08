@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "Each model is tested after training and the search was done with 10- fold cross-validation so that the selected parameters are less susceptible to outliers."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "theseweightsareselectedonvalidationstreamsbyjointlyconsidering replacementaccuracyandlatency."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

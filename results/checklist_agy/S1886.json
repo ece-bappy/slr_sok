@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "test",
+    "evidence": "Training and evaluation sets were the combined data over each measurement. Based on this analysis, we selected a 40% threshold for the detection over time."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

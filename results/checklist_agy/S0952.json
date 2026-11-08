@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "All reported results are evaluated using the model checkpoint that achieves the best performance on the validation set."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

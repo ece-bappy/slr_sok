@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "wetestpretrainedmodelssavedatvariousstages(10kto 300kiterations)usingavalidationsetcontaining200kbenignand 200kmaliciousflows."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

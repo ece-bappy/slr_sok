@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "We leave at least 1 sample for the validation set and use the rest for the training if the target class contains fewer samples than T."
+  },
+  "per_tls_version": {
+    "value": "yes",
+    "evidence": "The generalization of this model has been proven using the TLS 1.3 traffic obtained from CICDDoS2019 dataset with the detection rate 0.9897 using meta-learning."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "its number of neurons was estimated using grid search with cross-validation."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

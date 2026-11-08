@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "All datasets are divided according to training, testing, and validation sets with a ratio of 8:1:1."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

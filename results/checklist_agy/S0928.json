@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "test",
+    "evidence": "The final proposed model uses β = 2, selected after a sensitivity analysis over β ∈{1, 2, 4, 6}. Although β = 1 produced slightly higher mean ROC-AUC and mean F1-score across datasets, β = 2 was retained because it substantially reduced the false-positive rate under cross-dataset evaluation"
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "The classifier parameters were tuned, and the parameter set that performed best on the validation set was used for final testing."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

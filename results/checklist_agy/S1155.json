@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "performance has been thoroughly monitored through cross-validation, with no significant increase in performance beyond 22 components, in most cases."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

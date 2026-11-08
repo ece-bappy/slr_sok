@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "The best checkpoint was selected by minimum validation loss; no separate early-stopping termination criterion was used."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

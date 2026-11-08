@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "test",
+    "evidence": "Ultimately, window_size = 8 achieved the best classification accuracy on the test set, as shown in Figure 10."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

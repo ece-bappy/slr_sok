@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "Here, the threshold is set to ensure that 95% of the samples in the validation set are classified into known classes."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

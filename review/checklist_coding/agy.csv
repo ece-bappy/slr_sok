@@ -1,0 +1,68 @@
+paper_id,judge,tuning_data,tuning_data_evidence,tuning_data_quote_found,per_tls_version,per_tls_version_evidence,per_tls_version_quote_found
+S3347,agy,not_stated,,False,no,,False
+S0066,agy,validation,All hyperparameters are tuned on the validation set only.,True,no,,False
+S0095,agy,not_stated,,False,no,,False
+S0097,agy,validation,theseweightsareselectedonvalidationstreamsbyjointlyconsidering replacementaccuracyandlatency.,True,no,,False
+S0217,agy,not_stated,,False,no,,False
+S0348,agy,validation,"Ultimately, the configuration that achieves the highest validation accuracy is selected as optimal.",True,no,,False
+S0639,agy,not_stated,,False,no,,False
+S0664,agy,not_stated,,False,no,,False
+S0669,agy,validation,The best checkpoint was selected by minimum validation loss; no separate early-stopping termination criterion was used.,True,no,,False
+S0696,agy,not_stated,,False,no,,False
+S0905,agy,validation,wetestpretrainedmodelssavedatvariousstages(10kto 300kiterations)usingavalidationsetcontaining200kbenignand 200kmaliciousflows.,True,no,,False
+S0907,agy,test,"Ultimately, window_size = 8 achieved the best classification accuracy on the test set, as shown in Figure 10.",True,no,,False
+S0926,agy,not_stated,,False,no,,False
+S0928,agy,test,"The final proposed model uses β = 2, selected after a sensitivity analysis over β ∈{1, 2, 4, 6}. Although β = 1 produced slightly higher mean ROC-AUC and mean F1-score across datasets, β = 2 was retained because it substantially reduced the false-positive rate under cross-dataset evaluation",True,no,,False
+S0932,agy,not_stated,,False,no,,False
+S0939,agy,not_stated,,False,no,,False
+S0952,agy,validation,All reported results are evaluated using the model checkpoint that achieves the best performance on the validation set.,True,no,,False
+S0971,agy,not_stated,,False,no,,False
+S0995,agy,not_stated,,False,no,,False
+S1042,agy,not_stated,,False,no,,False
+S1132,agy,not_stated,,False,no,,False
+S1155,agy,validation,"performance has been thoroughly monitored through cross-validation, with no significant increase in performance beyond 22 components, in most cases.",True,no,,False
+S1163,agy,not_stated,,False,no,,False
+S1228,agy,validation,"Here, the threshold is set to ensure that 95% of the samples in the validation set are classified into known classes.",True,no,,False
+S1243,agy,not_stated,,False,no,,False
+S1254,agy,validation,All classifiers were trained using five-fold cross-validation on the training set and evaluated on the held-out test set.,True,no,,False
+S1337,agy,validation,"All datasets are divided according to training, testing, and validation sets with a ratio of 8:1:1.",True,no,,False
+S1342,agy,not_stated,,False,no,,False
+S1449,agy,not_stated,,False,no,,False
+S1460,agy,validation,stop once validation is met.,False,no,,False
+S1461,agy,not_stated,,False,no,,False
+S1500,agy,not_stated,,False,no,,False
+S1502,agy,validation,"Validation accuracy≥99%, adversarial F1-score ≥97.5%",False,no,,False
+S1528,agy,validation,"The classifier parameters were tuned, and the parameter set that performed best on the validation set was used for final testing.",False,no,,False
+S1682,agy,not_stated,,False,no,,False
+S1717,agy,not_stated,,False,no,,False
+S1783,agy,not_stated,,False,no,,False
+S1854,agy,not_stated,,False,no,,False
+S1886,agy,test,"Training and evaluation sets were the combined data over each measurement. Based on this analysis, we selected a 40% threshold for the detection over time.",True,no,,False
+S1901,agy,not_stated,,False,no,,False
+S1926,agy,validation,"The training/validation set was further split using SGKF into 10 folds, on which we perform cross-validation (CV) for parameter tuning.",True,yes,"Testing against TLS 1.3 traffic – Tranco, MS and DoHBrw – one can observe that it is almost entirely classified as benign.",True
+S1938,agy,validation,"The results indicate that XGBoost is the optimal classification configuration, achieving an average F1 score of 0.973 over the validation set.",True,no,,False
+S1940,agy,validation,Each subset is used once as a validation set to tune the hyper-parameters via the empirical study and the remaining three subsets are used as testing sets.,True,no,,False
+S2008,agy,validation,MADESANT is validated to identify new samples and prevent overfitting and underfitting based on validation accuracy.,True,no,,False
+S2138,agy,not_stated,,False,no,,False
+S2326,agy,not_stated,,False,no,,False
+S2338,agy,not_stated,,False,no,,False
+S2344,agy,not_stated,,False,no,,False
+S2360,agy,not_stated,,False,no,,False
+S2363,agy,not_stated,,False,no,,False
+S2395,agy,not_stated,,False,no,,False
+S2524,agy,not_stated,,False,no,,False
+S2576,agy,not_stated,,False,no,,False
+S2611,agy,validation,Each model is tested after training and the search was done with 10- fold cross-validation so that the selected parameters are less susceptible to outliers.,True,no,,False
+S2626,agy,not_stated,,False,no,,False
+S2672,agy,validation,We train the model with 5-fold cross-validation and select the model that achieves the highest F1-score on the validation set at a threshold of 0.5 for testing.,True,no,,False
+S2760,agy,validation,"Next, we validate the trained models on the validation data, which is 10% of the training data, i.e., the remainder of the sub-training data.",True,no,,False
+S2800,agy,validation,We leave at least 1 sample for the validation set and use the rest for the training if the target class contains fewer samples than T.,True,yes,The generalization of this model has been proven using the TLS 1.3 traffic obtained from CICDDoS2019 dataset with the detection rate 0.9897 using meta-learning.,True
+S2958,agy,test,"we chose the best model (n = 32, b = 256, and m = 64) and checked how it had performed on each validation set during the overall cross-validation process.",True,no,,False
+S2982,agy,validation,"In order to find the end condition of adversarial training in the TGAN, the threshold of detection accuracy of normal sample on validation set is set to 99.50%, 99.25%, 99.00%, 89.75% and 89.50% respectively.",True,no,,False
+S3005,agy,not_stated,,False,no,,False
+S3046,agy,not_stated,,False,no,,False
+S3059,agy,not_stated,,False,no,,False
+S3208,agy,not_stated,,False,no,,False
+S3214,agy,validation,its number of neurons was estimated using grid search with cross-validation.,True,no,,False
+S3215,agy,not_stated,,False,no,,False
+S3417,agy,test,"However, to ensure optimal results, and since there is little additional training cost associated with a larger number of estimators, we use 500 estimators for all random forest experiments presented in this section.",True,no,,False

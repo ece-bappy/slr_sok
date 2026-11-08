@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "Validation accuracy≥99%, adversarial F1-score ≥97.5%"
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}

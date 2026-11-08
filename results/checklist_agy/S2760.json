@@ -1,0 +1,10 @@
+{
+  "tuning_data": {
+    "value": "validation",
+    "evidence": "Next, we validate the trained models on the validation data, which is 10% of the training data, i.e., the remainder of the sub-training data."
+  },
+  "per_tls_version": {
+    "value": "no",
+    "evidence": ""
+  }
+}
