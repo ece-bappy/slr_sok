@@ -29,7 +29,7 @@ So E8's "full 0.848 vs ECH 0.683" TLS 1.3 PR-AUCs mean ROC 0.83 vs 0.54. The ECH
 | Test 2023–26 (all years) | 22.8% | **31.3%** |
 | 2023 / 2024 / 2025 / 2026 | 11% / 30% / 27% / 67% | 13% / 28% / 46% / **84%** |
 
-Malicious TLS 1.3 is almost absent from training before 2022: 2,232 of 39,566 malicious training flows, nearly all from 2022. By 2026, 84% of malicious flows are TLS 1.3.
+Malicious TLS 1.3 is almost absent from training before 2022: 4,418 of 39,566 malicious training flows (11.2%), nearly all from 2022. By 2026, 84% of malicious flows are TLS 1.3.
 
 ## (c) Training on one TLS version only (tested on the same version)
 
@@ -41,7 +41,7 @@ Malicious TLS 1.3 is almost absent from training before 2022: 2,232 of 39,566 ma
 | Zeek-free | 0.938 | 0.822 | 0.987 | 0.988 |
 | G1–G5 | 0.828 | 0.856 | 0.877 | 0.877 |
 
-- **Size/timing patterns are version-specific.** What G1+G2 learns on TLS 1.2 flows, 89% of malicious training data, does not apply to TLS 1.3 flows. Trained on the few TLS 1.3 flows instead, the same view reaches ROC 0.89.
+- **Size/timing patterns are version-specific.** What G1+G2 learns on TLS 1.2 flows, 87% of malicious training data, does not apply to TLS 1.3 flows. Trained on the few TLS 1.3 flows instead, the same view reaches ROC 0.89.
 - **Handshake-based models are the opposite.** They generalise across versions and lose when restricted to the small TLS 1.3 training set (0.94 → 0.83).
 
 ## (d) Concentration (`breakdown.csv`; seed 0; G1–G5 and no-G5 models)
