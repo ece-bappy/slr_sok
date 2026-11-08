@@ -16,7 +16,7 @@ b.CONTRASTS = [("mta_e3", "all", "loo_g5", "xgb"), ("e9:mcfp>mta_new", "fp_ja3",
 items = sys.argv[1:] or ["seeds", "baserate", "family", "ech", "evasion", "encoding", "rolling", "training"]
 for it in items:
     t0 = time.time()
-    a = Namespace(seeds=2 if it in ("seeds", "baserate") else 1, jobs=24, min_posts=10_000 if it == "family" else 8)
+    a = Namespace(seeds=2 if it in ("seeds", "baserate") else 1, jobs=8, min_posts=10_000 if it == "family" else 8)
     if it == "rolling":
         orig = b.item_rolling.__code__
     getattr(b, f"item_{it}")(a)

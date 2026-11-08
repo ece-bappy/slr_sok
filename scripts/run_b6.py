@@ -728,20 +728,27 @@ def perturb(kind, k, seed):
     def f(df):
         df = df.copy()
         mal = df["label"].to_numpy() == 1
-        if kind == "pad":  # uniform per-packet padding on malicious flows
+        if kind == "pad":
+            # record padding on malicious flows: only data-carrying packets grow (G2 frame size > 66 B; 54/60/66 B
+            # are pure ACKs), capped at a full 1,514-B frame. G1: bytes += k per PSH packet (~ data segments) per
+            # direction, max size += k (capped), mean size recomputed; min size (an ACK) unchanged.
+            kk = np.rint(np.broadcast_to(np.asarray(k, float), (len(df),)))
             for i in range(20):
                 c = f"g2_ps_{i:02d}"
                 if c in df:
                     v = df[c].to_numpy(float)
-                    df[c] = np.where(mal & (v > 0), v + k, v)
+                    df[c] = np.where(mal & (v > 66), np.minimum(v + kk, 1514), v)
             for side in ("bidirectional", "src2dst", "dst2src"):
-                if f"g1_{side}_bytes" in df:
-                    df[f"g1_{side}_bytes"] = np.where(mal, df[f"g1_{side}_bytes"] + k * df[f"g1_{side}_packets"],
-                                                      df[f"g1_{side}_bytes"])
-                for s in ("min_ps", "mean_ps", "max_ps"):
-                    c = f"g1_{side}_{s}"
-                    if c in df:
-                        df[c] = np.where(mal, df[c] + k, df[c])
+                b, p, h = f"g1_{side}_bytes", f"g1_{side}_packets", f"g1_{side}_psh_packets"
+                if b in df and h in df:
+                    nb = df[b].to_numpy(float) + kk * df[h].to_numpy(float)
+                    df[b] = np.where(mal, nb, df[b])
+                    if f"g1_{side}_mean_ps" in df:
+                        df[f"g1_{side}_mean_ps"] = np.where(mal, nb / np.maximum(df[p].to_numpy(float), 1),
+                                                            df[f"g1_{side}_mean_ps"])
+                if f"g1_{side}_max_ps" in df:
+                    c = f"g1_{side}_max_ps"
+                    df[c] = np.where(mal, np.minimum(df[c].to_numpy(float) + kk, 1514), df[c])
         else:  # IAT jitter: every timing feature of a malicious flow scaled by one factor in [0.5, 2] (log-uniform)
             rng = np.random.default_rng(seed)
             fac = np.exp(rng.uniform(np.log(0.5), np.log(2.0), len(df)))
@@ -749,6 +756,54 @@ def perturb(kind, k, seed):
                 df[c] = np.where(mal, df[c] * fac, df[c])
         return df
     return f
+
+
+def item_padech(a):
+    """10: padding against the ECH tier (G1+G2, with / without timing) on the MTA E3 TLS 1.3 test subset.
+    Models trained on all versions or on TLS 1.3 only; plain training vs padding augmentation (each malicious
+    training flow padded by a random 0-256 B per packet, same rule as item 8); tested clean and with every
+    malicious test packet padded by 32 or 256 B. Thresholds from the clean validation set."""
+    out = BENCH / "b6_padech"
+    out.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for fs in ("g1g2", "g1g2_notime"):
+        cols = set_columns(table("mta"), fs)
+        d = dd("mta", cols)
+        v = d["k_tls_version"].astype(str).to_numpy()
+        lab = d["label"].to_numpy()
+        for train_on in ("all versions", "1.3 only"):
+            for aug in ("none", "pad 0-256 B"):
+                for seed in range(a.seeds):
+                    tr, va, te = split(d, "E3", "mta", seed)
+                    if train_on == "1.3 only":
+                        tr, va = tr[v[tr] == "1.3"], va[v[va] == "1.3"]
+                    train = d
+                    if aug != "none":  # pad the malicious training rows only, a random amount per flow
+                        rng = np.random.default_rng(1000 + seed)
+                        rows_m = tr[lab[tr] == 1]
+                        ks = rng.uniform(0, 256, len(rows_m))  # perturb() broadcasts a per-row padding array
+                        part = perturb("pad", ks, seed)(d.iloc[rows_m])
+                        train = d.copy()
+                        for c in cols:
+                            if pd.api.types.is_numeric_dtype(train[c]):
+                                train[c] = train[c].astype(float)
+                            train.loc[train.index[rows_m], c] = part[c].to_numpy()
+                    trs = sample(tr, lab, seed)
+                    test13 = d.iloc[te][v[te] == "1.3"].reset_index(drop=True)
+                    tests = {k: (test13 if k == 0 else perturb("pad", k, seed)(test13)) for k in (0, 32, 256)}
+                    xf = lambda df: feature_frame(df, cols)
+                    x_tr, others = to_model_matrix(xf(train.iloc[trs]), [xf(train.iloc[va])] + [xf(t) for t in tests.values()])
+                    s_va, s_te, _, _ = fit_predict("xgb", x_tr, lab[trs], others[0], lab[va], others[1:], seed, a.jobs)
+                    thr = thresholds(lab[va], s_va)
+                    y13 = test13["label"].to_numpy()
+                    for (k, _), s in zip(tests.items(), s_te):
+                        m = metrics(y13, s, *thr)
+                        rows.append({"feature_set": fs, "train_on": train_on, "train_augmentation": aug,
+                                     "test_padding_B": k, "seed": seed, "prevalence": y13.mean(), **m})
+                    print(fs, train_on, aug, seed, [round(r["roc_auc"], 3) for r in rows[-3:]], flush=True)
+        summarise(rows, out, ["feature_set", "train_on", "train_augmentation", "test_padding_B"],
+                  ("roc_auc", "pr_auc", "prevalence", "macro_f1", "recall_malicious", "recall_benign", "n", "n_pos"))
+    print(pd.read_csv(out / "summary.csv").to_string())
 
 
 def item_evasion(a):
@@ -778,7 +833,7 @@ def item_evasion(a):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion",
-                                     "rolling_models", "rolling_enc", "post2026", "tls13", "family_models"])
+                                     "rolling_models", "rolling_enc", "post2026", "tls13", "family_models", "padech"])
     ap.add_argument("--seeds", type=int, default=None)
     ap.add_argument("--jobs", type=int, default=24)
     ap.add_argument("--min-posts", type=int, default=5)
@@ -787,4 +842,4 @@ if __name__ == "__main__":
     {"seeds": item_seeds, "baserate": item_baserate, "rolling": item_rolling, "encoding": item_encoding,
      "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion,
      "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026,
-     "tls13": item_tls13, "family_models": item_family_models}[a.item](a)
+     "tls13": item_tls13, "family_models": item_family_models, "padech": item_padech}[a.item](a)
