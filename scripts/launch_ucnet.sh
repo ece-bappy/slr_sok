@@ -20,10 +20,12 @@ step() {
   [ $rc -eq 0 ] && touch "$L/$name.done"
   return $rc
 }
+fail() { echo "$(date +%F' '%T) BATCH ucnet FAILED $1"; exit 1; }
 while ! grep -q QUEUE_FINISHED /data/tls-sok/dl/ucnet.log; do sleep 60; done
-verify() { cd /data/tls-sok/raw && md5sum -c /data/tls-sok/dl/ucnet.md5 && sha256sum -c /data/tls-sok/dl/ucnet.sha256; }
-step ucnet_verify verify || { echo "checksum mismatch: stopping"; exit 1; }
-step ucnet_prep $PY scripts/r24_ucnet_prep.py --jobs 24 || exit 1
-step r24_repro_ucnet $PY scripts/r24_reproduce.py
-step r24_repro_grid_ucnet $PY scripts/r24_reproduce.py --grid
-echo "$(date +%F' '%T) UCNET_FINISHED"
+# subshell: the cd must not change the launcher's own directory (relative .venv path; exit 127 on 4 Nov)
+verify() ( cd /data/tls-sok/raw && md5sum -c /data/tls-sok/dl/ucnet.md5 && sha256sum -c /data/tls-sok/dl/ucnet.sha256 )
+step ucnet_verify verify || fail ucnet_verify
+step ucnet_prep $PY scripts/r24_ucnet_prep.py --jobs 24 || fail ucnet_prep
+step r24_repro_ucnet $PY scripts/r24_reproduce.py || fail r24_repro_ucnet
+step r24_repro_grid_ucnet $PY scripts/r24_reproduce.py --grid || fail r24_repro_grid_ucnet
+echo "$(date +%F' '%T) BATCH ucnet DONE"
