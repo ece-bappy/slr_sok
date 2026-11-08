@@ -811,6 +811,118 @@ def item_padech(a):
     print(pd.read_csv(out / "summary.csv").to_string())
 
 
+LODO_KEY = {"raid": "k_pcap", "hikari": "k_client_ip", "mta": "k_post", "mcfp": "k_capture"}
+
+
+def item_lodo(a):
+    """11: leave-one-dataset-out. Train on the other sources pooled (balanced per source: up to 50k flows per
+    class per source, so no source dominates), validate on a 15% stratified sample of the pool, test on the
+    held-out dataset. HIKARI has G1/G2 only, so it is in the pool / held out for g1g2_notime only. Also an
+    origin probe on each pool: XGBoost predicting the source dataset of the pool's *benign* flows,
+    with a split grouped by capture/post/host."""
+    from sklearn.metrics import balanced_accuracy_score
+    from sklearn.model_selection import StratifiedGroupKFold
+    import xgboost as xgb
+    out = BENCH / "b6_lodo"
+    out.mkdir(parents=True, exist_ok=True)
+    rows, probe = [], []
+    for fs in ("g1g2_notime", "loo_g5", "all"):
+        names = ["mta", "mcfp", "raid", "hikari"] if fs == "g1g2_notime" else ["mta", "mcfp", "raid"]
+        cols = cols_for(names, fs)
+        d = {n: dedup(table(n), cols)[0].assign(_src=n) for n in names}
+        for held in names:
+            pool_names = [n for n in names if n != held]
+            for seed in range(a.seeds):
+                rng = np.random.default_rng(seed)
+                parts = []
+                for n in pool_names:
+                    t = d[n]
+                    for lab_ in (0, 1):
+                        idx = np.where(t["label"].to_numpy() == lab_)[0]
+                        parts.append(t.iloc[rng.choice(idx, min(len(idx), 50_000), replace=False)])
+                pool = pd.concat(parts, ignore_index=True)
+                tr, va = train_test_split(np.arange(len(pool)), test_size=0.15, stratify=pool["label"], random_state=seed)
+                test = d[held].reset_index(drop=True)
+                r, _, _ = fit_eval(pool, test, tr, va, cols, seed, a.jobs, boot=50)
+                rows.append({"feature_set": fs, "held_out": held, "pool": "+".join(pool_names), "seed": seed,
+                             "n_pool": len(pool), **r})
+                print(fs, held, seed, round(r["pr_auc"], 4), round(r["test_fpr_at_that_threshold"], 4), flush=True)
+                if seed == 0:  # origin probe on the pool's benign flows
+                    ben = pool[pool["label"] == 0].reset_index(drop=True)
+                    pcols = cols_for(pool_names, "g1g2_notime")
+                    x = to_model_matrix(feature_frame(ben, pcols), [])[0]
+                    y = pd.Categorical(ben["_src"]).codes
+                    groups = ben["_src"] + "|" + ben.apply(lambda r_: str(r_[LODO_KEY[r_["_src"]]]), axis=1)
+                    tr_i, te_i = next(StratifiedGroupKFold(n_splits=4, shuffle=True, random_state=0).split(x, y, groups))
+                    m = xgb.XGBClassifier(n_estimators=300, max_depth=8, learning_rate=0.1, tree_method="hist",
+                                          n_jobs=a.jobs, random_state=0).fit(x.iloc[tr_i], y[tr_i])
+                    probe.append({"feature_set_of_detector": fs, "held_out": held, "pool": "+".join(pool_names),
+                                  "probe_features": "g1g2_notime", "n_sources": len(pool_names),
+                                  "balanced_accuracy": balanced_accuracy_score(y[te_i], m.predict(x.iloc[te_i])),
+                                  "chance": 1 / len(pool_names)})
+            summarise(rows, out, ["feature_set", "held_out"],
+                      ("pr_auc", "roc_auc", "macro_f1", "recall_malicious", "recall_benign", "tpr_at_val_fpr1e-3",
+                       "test_fpr_at_that_threshold", "n", "n_pos"))
+            pd.DataFrame(probe).to_csv(out / "origin_probe_pooled.csv", index=False)
+    print(pd.read_csv(out / "summary.csv").to_string())
+    print(pd.DataFrame(probe).to_string())
+
+
+def item_hosts(a):
+    """12: host-level alerting on MTA E3. Flow scores (E3 model, 5 seeds) aggregated per source host
+    (k_pcap, k_client_ip) per 1-hour window and per pcap, with max and top-3 mean. A unit is positive if it holds a
+    malicious flow. Alerts at the flow-level val-FPR-1e-3 threshold (and the val max-F1 one). Reports unit
+    detection, false-alarm rate on negative units, and false alarms per benign host-day (negative 1-h windows)."""
+    out = BENCH / "b6_hosts"
+    out.mkdir(parents=True, exist_ok=True)
+    rows, census = [], None
+    for fs in ("all", "loo_g5", "g1g2"):
+        cols = set_columns(table("mta"), fs)
+        d = dd("mta", cols)
+        for seed in range(a.seeds):
+            tr, va, te = split(d, "E3", "mta", seed)
+            test = d.iloc[te].reset_index(drop=True)
+            _, s, (t_f1, t_fpr) = fit_eval(d, test, tr, va, cols, seed, a.jobs, boot=0)
+            test = test.assign(score=s, host=test["k_pcap"] + "|" + test["k_client_ip"],
+                               hour=(test["k_first_seen_ms"] // 3_600_000).astype("int64"))
+            if census is None:
+                h = test.groupby("host")["label"].agg(["max", "size"])
+                w = test.groupby(["host", "hour"])["label"].max()
+                census = {"test_flows": len(test), "pcaps": int(test["k_pcap"].nunique()), "hosts": len(h),
+                          "hosts_with_malicious": int(h["max"].sum()), "benign_only_hosts": int((h["max"] == 0).sum()),
+                          "host_hours": len(w), "host_hours_with_malicious": int(w.sum()),
+                          "benign_host_hours": int((w == 0).sum()),
+                          "benign_flows_on_infected_hosts": int(test[test["host"].isin(h.index[h["max"] == 1]) & (test.label == 0)].shape[0])}
+                (out / "census.json").write_text(json.dumps(census, indent=2))
+                print(census, flush=True)
+            for unit, keys in (("host x 1 h", ["host", "hour"]), ("host x pcap", ["host"])):
+                g = test.groupby(keys)
+                agg = pd.DataFrame({"pos": g["label"].max(), "max": g["score"].max(),
+                                    "top3": g["score"].apply(lambda v: np.sort(v.to_numpy())[-3:].mean()),
+                                    "n_flows": g.size()})
+                n_neg_hours = int((agg["pos"] == 0).sum()) if unit == "host x 1 h" else None
+                for how in ("max", "top3"):
+                    for tname, thr in (("val FPR 1e-3", t_fpr), ("val max-F1", t_f1)):
+                        alert = agg[how] >= thr
+                        pos, neg = agg["pos"] == 1, agg["pos"] == 0
+                        rows.append({"feature_set": fs, "seed": seed, "unit": unit, "aggregate": how, "threshold": tname,
+                                     "n_pos_units": int(pos.sum()), "n_neg_units": int(neg.sum()),
+                                     "unit_detection_rate": float(alert[pos].mean()) if pos.any() else np.nan,
+                                     "unit_false_alarm_rate": float(alert[neg].mean()) if neg.any() else np.nan,
+                                     "false_alarms_per_benign_host_day": float(alert[neg].sum() / n_neg_hours * 24)
+                                     if n_neg_hours else np.nan,
+                                     "flow_level_fpr": float((test.loc[test.label == 0, "score"] >= thr).mean())})
+            print(fs, seed, flush=True)
+    res = pd.DataFrame(rows)
+    res.to_csv(out / "results_per_seed.csv", index=False)
+    keys = ["unit_detection_rate", "unit_false_alarm_rate", "false_alarms_per_benign_host_day", "flow_level_fpr",
+            "n_pos_units", "n_neg_units"]
+    s = res.groupby(["feature_set", "unit", "aggregate", "threshold"], sort=False)[keys].agg(["mean", "std"])
+    s.columns = [f"{k}_{t}" for k, t in s.columns]
+    s.reset_index().to_csv(out / "summary.csv", index=False)
+    print(s.to_string())
+
+
 def item_evasion(a):
     out = BENCH / "b6_evasion"
     out.mkdir(parents=True, exist_ok=True)
@@ -838,7 +950,8 @@ def item_evasion(a):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion",
-                                     "rolling_models", "rolling_enc", "post2026", "tls13", "family_models", "padech"])
+                                     "rolling_models", "rolling_enc", "post2026", "tls13", "family_models", "padech",
+                                     "lodo", "hosts"])
     ap.add_argument("--seeds", type=int, default=None)
     ap.add_argument("--jobs", type=int, default=24)
     ap.add_argument("--min-posts", type=int, default=5)
@@ -847,4 +960,5 @@ if __name__ == "__main__":
     {"seeds": item_seeds, "baserate": item_baserate, "rolling": item_rolling, "encoding": item_encoding,
      "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion,
      "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026,
-     "tls13": item_tls13, "family_models": item_family_models, "padech": item_padech}[a.item](a)
+     "tls13": item_tls13, "family_models": item_family_models, "padech": item_padech,
+     "lodo": item_lodo, "hosts": item_hosts}[a.item](a)
