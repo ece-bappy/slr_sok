@@ -14,7 +14,7 @@ Barradas, Novo et al., *Extending C2 Traffic Detection Methodologies: From TLS 1
 | C-Behav RF | Tables 3–4 | 0.97 pp | 0.97 pp (e.g. MTA TNR 90.61 vs 91.58; TPR 98.14 vs 97.59) |
 
 - **Why the C-Behav DT gap closes on the grid pass.** The final C-Behav tree is built without `random_state`, so its tie-breaking depends on the global random state. Running the grid cells first, as the authors did, evidently leaves that state as it was in their run.
-- **Remaining C-Behav RF gap (≤ 0.97 pp).** Likely the scikit-learn version (1.9.1 here vs 1.3.2 in the paper) changing RF internals at a fixed seed.
+- **Remaining C-Behav RF gap (≤ 0.97 pp): the scikit-learn version.** Here it is 1.9.1; the paper used 1.3.2. A rerun in a 1.3.2 venv (8 Nov, see UCNet below) gives 0.00 pp on every row.
 - **Grid searches** (rerun on A2) select the parameters the notebooks hard-code:
   - C-Cert DT: identical choice and CV score (0.98386).
   - C-Cert RF: same depth 5 and 40 trees at the same CV score, but gini instead of entropy (a tie, with one feature).
@@ -42,20 +42,23 @@ Barradas, Novo et al., *Extending C2 Traffic Detection Methodologies: From TLS 1
   - **Running it in 30 GB.** The full-table rerun was OOM-killed (exit 137) three times, the last on an otherwise idle A2: the notebooks load the 11M-flow table next to their own data. The notebooks were left unedited. Instead, `r24_ucnet_prep.py --slim` drops the input columns that no UCNet cell reads (inter-arrival times, SNI, source file, ports). It streams the CSV text, so every kept field is byte-identical and pandas infers the same types. `all.csv` keeps 68 of 97 columns; the derived files keep 50–51 of 57–58. Each notebook also runs in its own process. Run 8 Nov 15:42–17:19 (`launch_ucnet.sh`, log `/data/tls-sok/out/ucnet_1342.log`), all steps exit 0.
   - **UCNet results** (true-negative rate on UCNet, which the authors treat as benign; `r24_repro_ucnet/<notebook>/compare.csv`, and `04-C-BEHAV_grid/` for the grid pass). Where the notebook stores no output for the cell, the reference is the paper's text.
 
-    | Classifier, UCNet subset (input file) | Paper DT / RF | Reproduced DT / RF | Gap |
-    |---|---|---|---|
-    | C-Basic, TLS 1.2 (`all.csv`, released) | 99.92 / 99.93 | 99.92 / 99.93 | **0.00 pp** |
-    | C-Basic, TLS 1.3 (`all.csv`, released) | 99.88 / 99.93 | 99.88 / 99.93 | **0.00 pp** |
-    | C-Cert, TLS 1.2 (`all.csv`, released) | 99.89 / 99.89 | 99.89 / 99.89 | **0.00 pp** |
-    | C-Cert, TLS 1.3 via inferred size (`all_data13`, rebuilt) | 99.07 / 99.13 | 98.89 / 98.95 | 0.18 pp |
-    | C-Behav, TLS 1.2 (`all_data12`, rebuilt), grid pass | 90.39 / 95.69 | 91.59 / 95.92 | 1.20 / 0.23 pp |
-    | C-Behav, TLS 1.3 filtered (`all_data13`, rebuilt), grid pass | 87.83 / 99.999 | 87.84 / 99.9999 | **0.01 / 0.00 pp** |
-    | C-Behav, TLS 1.3 behaviour (`all_behav13_new`, rebuilt), grid pass | 92.28 / 96.35 | 92.28 / 93.92 | **0.00** / 2.43 pp |
+    | Classifier, UCNet subset (input file) | Paper DT / RF | Ours, sklearn 1.9.1 | Ours, sklearn 1.3.2 | Cause of remaining gap |
+    |---|---|---|---|---|
+    | C-Basic, TLS 1.2 (`all.csv`, released) | 99.92 / 99.93 | 99.92 / 99.93 | not rerun | none |
+    | C-Basic, TLS 1.3 (`all.csv`, released) | 99.88 / 99.93 | 99.88 / 99.93 | not rerun | none |
+    | C-Cert, TLS 1.2 (`all.csv`, released) | 99.89 / 99.89 | 99.89 / 99.89 | 99.89 / 99.89 | none |
+    | C-Cert, TLS 1.3 via inferred size (`all_data13`, rebuilt) | 99.07 / 99.13 | 98.89 / 98.95 | 98.89 / 98.95 | **input** (0.18 pp) |
+    | C-Behav, TLS 1.2 (`all_data12`, rebuilt), grid pass | 90.39 / 95.69 | 91.59 / 95.92 | 91.59 / 96.47 | **input** (DT +1.20; RF +0.78) |
+    | C-Behav, TLS 1.3 filtered (`all_data13`, rebuilt), grid pass | 87.83 / 99.999 | 87.84 / 99.9999 | 87.84 / 99.9999 | none |
+    | C-Behav, TLS 1.3 behaviour (`all_behav13_new`, rebuilt), grid pass | 92.28 / 96.35 | 92.28 / 93.92 | **92.28 / 96.35** | none: the 1.9.1 RF gap (−2.43 pp) was the **version** |
 
-    - Every row computed from the released table reproduces exactly. The rows that need our rebuilt files are within 0.2 pp, except three C-Behav cells.
-    - **C-Behav TLS 1.2 (+1.20 / +0.23 pp):** our rebuilt `all_data12` holds about 1M more TLS 1.2 flows than the paper counts (stage counts above), so it is not the authors' test set.
-    - **C-Behav RF on TLS 1.3 behaviour (−2.43 pp):** the DT on the same file matches to 0.00 pp, which points at the RF rather than the file. The C-Behav RF also differs by up to 0.97 pp on the non-UCNet rows (scikit-learn 1.9.1 vs 1.3.2, above). The two causes cannot be separated here.
-    - As on the other datasets, the C-Behav DT matches only on the grid pass (without it: 93.39 / 85.05 / 93.18 for the three subsets, in table order, gaps up to 3.0 pp). The RF is the same in both passes.
+    - Every row computed from the released table reproduces exactly.
+    - **scikit-learn 1.3.2 rerun** (8 Nov 17:26–19:10, `launch_sk132.sh`, log `/data/tls-sok/out/sk132_1726.log`, results in `r24_repro_ucnet/sk132/`). It reuses the same unedited notebooks 03 and 04 (grid pass), the same rebuilt UCNet files, seeds and `n_jobs`, and only the library version changes. It separates the two causes:
+      - **Version.** The C-Behav RF on TLS 1.3 behaviour lands exactly on the paper (96.35). So do all the non-UCNet C-Behav RF rows that differed by up to 0.97 pp under 1.9.1, so §1 above is now exact for every classifier. Under 1.3.2 the RF grid search also picks the hard-coded depth 20 with 70 trees (CV F1 0.9335), and the C-Cert RF grid picks entropy, both as the authors did.
+      - **Input.** C-Cert on TLS 1.3 is unchanged across versions, as is the C-Behav DT on TLS 1.2. The C-Behav RF on TLS 1.2 moves to +0.78 pp but does not land on the paper. These rows read our rebuilt `all_data12` / `all_data13`. The rebuilt TLS 1.2 file holds about 1M more flows than the paper counts (stage counts above), so it is not the authors' test set.
+      - The rebuilt behaviour file is confirmed: under 1.3.2, both DT and RF match the paper to 0.00 pp on it.
+    - **Caveat on the 1.3.2 venv:** pandas 3.1.0 needs numpy ≥ 2, which scikit-learn 1.3.2 cannot use. So that run also has pandas 2.2.3 instead of 3.1.0, and the version change is scikit-learn plus its stack. Because the result lands on the paper exactly, this does not affect the verdict.
+    - As on the other datasets, the C-Behav DT matches only on the grid pass (without it: 93.39 / 85.05 / 93.18 for the three subsets, in table order, gaps up to 3.0 pp).
 - **Deviations** (logged per cell in `cells.csv`):
   - `display()` is silenced.
   - `multiprocess` → `multiprocessing`; `tqdm.notebook` → `tqdm`.
@@ -65,7 +68,7 @@ Barradas, Novo et al., *Extending C2 Traffic Detection Methodologies: From TLS 1
   - Like Jupyter, the runner echoes a cell's final bare expression; some UCNet cells return their result as a tuple instead of printing it.
   - UCNet only: unread input columns removed (byte-identical kept fields) and one process per notebook, to fit 30 GB RAM.
 
-**Verdict:** the released code reproduces the published C-Basic, C-Cert and C-Behav numbers, exactly or within 1 pp. On UCNet, every row computed from the released table matches exactly. Rows that need our rebuilt input files are within 0.2 pp, except three C-Behav cells (1.20, 0.23 and 2.43 pp).
+**Verdict:** the released code reproduces the published C-Basic, C-Cert and C-Behav numbers, exactly or within 1 pp. With the paper's scikit-learn 1.3.2, every row on the authors' own datasets matches exactly, and C-Behav RF's ≤ 0.97 pp gap was the library version. On UCNet, every row computed from the released table matches exactly, as does the behaviour-file row. What remains (C-Cert TLS 1.3, 0.18 pp; C-Behav TLS 1.2, +1.20 / +0.78 pp) comes from our rebuilt input files, not the code.
 
 ## 2. Under our protocol (`r24_protocol/`)
 

@@ -1,0 +1,60 @@
+notebook,cell,status,seconds,stdout
+04-C-BEHAV.ipynb,0,ok,0.6,
+04-C-BEHAV.ipynb,1,ok,0.0,
+04-C-BEHAV.ipynb,2,ok,0.0,
+04-C-BEHAV.ipynb,3,ok,0.0,
+04-C-BEHAV.ipynb,4,ok,1.5,
+04-C-BEHAV.ipynb,5,ok,0.0,
+04-C-BEHAV.ipynb,6,ok,1.7,
+04-C-BEHAV.ipynb,7,ok,0.0,
+04-C-BEHAV.ipynb,8,ok,0.2,
+04-C-BEHAV.ipynb,9,ok,0.2,
+04-C-BEHAV.ipynb,10,ok,0.2,
+04-C-BEHAV.ipynb,11,ok,0.0,
+04-C-BEHAV.ipynb,12,ok,0.4,
+04-C-BEHAV.ipynb,13,ok,0.1,
+04-C-BEHAV.ipynb,14,ok,0.1,
+04-C-BEHAV.ipynb,15,ok,0.5,
+04-C-BEHAV.ipynb,16,ok,0.8,
+04-C-BEHAV.ipynb,17,ok,0.0,
+04-C-BEHAV.ipynb,18,ok,0.1,
+04-C-BEHAV.ipynb,19,ok,0.1,
+04-C-BEHAV.ipynb,21,ok,0.0,
+04-C-BEHAV.ipynb,22,ok,0.0,
+04-C-BEHAV.ipynb,23,ok,241.7,"0.921566016739578 {'class_weight': None, 'criterion': 'entropy', 'max_depth': 16, 'splitter': 'best'}
+"
+04-C-BEHAV.ipynb,24,ok,2.8,
+04-C-BEHAV.ipynb,25,ok,0.9,"DecisionTreeClassifier(criterion='entropy', max_depth=16)
+"
+04-C-BEHAV.ipynb,26,ok,0.1,"93.90 & 95.64 & 99.93 & 98.97 & 98.85
+"
+04-C-BEHAV.ipynb,27,ok,0.1,"93.90 & 95.64 & 99.93 & 98.97 & 98.85
+"
+04-C-BEHAV.ipynb,28,ok,0.1,"89.90 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,29,ok,0.1,"98.64 & 93.93 & 93.54 & 97.27
+"
+04-C-BEHAV.ipynb,30,ok,0.0,"99.30 & 93.50
+"
+04-C-BEHAV.ipynb,32,ok,0.0,
+04-C-BEHAV.ipynb,33,ok,5615.4,"0.9334827339968618 {'class_weight': 'balanced', 'max_depth': 20, 'max_features': 'sqrt', 'n_estimators': 70}
+"
+04-C-BEHAV.ipynb,34,ok,8.1,
+04-C-BEHAV.ipynb,35,ok,0.0,
+04-C-BEHAV.ipynb,36,ok,13.6,"RandomForestClassifier(class_weight='balanced', max_depth=20, n_estimators=70,
+                       random_state=42)
+"
+04-C-BEHAV.ipynb,37,ok,1.5,"91.58 & 97.59 & 99.85 & 99.16 & 99.03
+"
+04-C-BEHAV.ipynb,38,ok,1.4,"100.00 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,39,ok,2.5,"99.78 & 93.87 & 93.21 & 99.42
+"
+04-C-BEHAV.ipynb,40,ok,0.1,"99.83 & 93.50
+"
+04-C-BEHAV.ipynb,42,ok,25.3,
+04-C-BEHAV.ipynb,43,ok,14.0,
+04-C-BEHAV.ipynb,44,ok,81.0,"0.9158958392680862 0.9647242894670599
+0.8783954230844726 0.9999989596027624
+0.9227508826253117 0.9634957027443942
+"

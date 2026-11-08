@@ -94,7 +94,7 @@ All result folders are under `review/benchmark/`, copied from `/data/tls-sok/ben
 | Unsupervised baselines | `launch_batch5.sh` step `unsup` (`run_unsup.py`, torch venv) | 11 min | `unsup/` → `SUMMARY_unsup.md` |
 | RAID 2024 reproduction | `launch_batch5_r24.sh` steps `r24_repro` (`r24_reproduce.py`) and `r24_repro_grid` (`--grid`) | 3 min; 1 h 52 min | `r24_repro/`, `r24_repro_grid/` (`compare.csv`) → `SUMMARY_r24.md` |
 | RAID 2024 under our protocol | `launch_batch5_r24.sh` step `r24_protocol` (`r24_benchmark.py`) | 53 min | `r24_protocol/` (joined tables of about 1 GB stay on the host) → `SUMMARY_r24.md` |
-| RAID 2024 UCNet cells | `launch_ucnet.sh`: checksum check, `r24_ucnet_prep.py` (rebuilds the notebooks' three derived UCNet files with the authors' functions), then `--slim` (drops unread columns), then `r24_reproduce.py --only <notebook>` per notebook and `--grid` for 04 | Prep 10 min; slim 2 min; notebooks 5 min; 04 grid pass 1.5 h. Run on an otherwise idle host | `r24_repro_ucnet/ucnet_prep.json`, `r24_repro_ucnet/{02-C-ALL,03-C-CERT,04-C-BEHAV,04-C-BEHAV_grid}/compare.csv` → `SUMMARY_r24.md` |
+| RAID 2024 UCNet cells | `launch_ucnet.sh`: checksum check, `r24_ucnet_prep.py` (rebuilds the notebooks' three derived UCNet files with the authors' functions), then `--slim` (drops unread columns), then `r24_reproduce.py --only <notebook>` per notebook and `--grid` for 04 | Prep 10 min; slim 2 min; notebooks 5 min; 04 grid pass 1.5 h. Run on an otherwise idle host. `launch_sk132.sh` reruns 03 and the 04 grid pass under scikit-learn 1.3.2: venv 1 min, 03 3 min, 04 1 h 40 min; output in `r24_repro_ucnet/sk132/` | `r24_repro_ucnet/ucnet_prep.json`, `r24_repro_ucnet/{02-C-ALL,03-C-CERT,04-C-BEHAV,04-C-BEHAV_grid}/compare.csv` → `SUMMARY_r24.md` |
 
 **Batch 6 robustness checks** (`scripts/run_b6.py <item>`, 8 Nov). Launchers `launch_batch6.sh` (two lanes) and `launch_batch6b–e.sh`. Every launcher log ends with `BATCH <name> DONE|FAILED <steps>`.
 
@@ -129,7 +129,7 @@ This writes `figures/fig_{a_collapse,b_tiers,c_fingerprints,d_early,e_origin_pro
 
 - **Deep models on GPU:** third-decimal variation between reruns. The BiLSTM seed SD (up to 0.15) dominates anyway.
 - **RAID 2024 reproduction:**
-  - C-Behav RF differs by ≤ 0.97 pp, likely from scikit-learn 1.9.1 vs 1.3.2.
+  - C-Behav RF differs by ≤ 0.97 pp under scikit-learn 1.9.1. It matches exactly under the paper's 1.3.2. That rerun used a separate venv `/data/tls-sok/venv-sk132`, pre-built wheels only, with scikit-learn 1.3.2, numpy 1.26.4, scipy 1.11.4, pandas 2.2.3, joblib 1.6.0 and tqdm 4.70.1. Pandas is 2.2.3 because pandas 3.1.0 needs numpy ≥ 2. The full freeze is in `r24_repro_ucnet/sk132/sk132_freeze.txt`.
   - matplotlib is not installed on the host, so a no-op stub replaces it (plots only).
   - UCNet: the three derived input files are our reconstruction with the authors' functions (their preparation notebook is not released). On 20 TLS 1.3 flows (0.0003%) their certificate-size inference raises ValueError; those are counted as failed inferences.
   - UCNet: with the full table, the notebooks exceed 30 GB RAM (OOM-killed three times). Input columns no UCNet cell reads are removed, with every kept field byte-identical, and each notebook runs in its own process. The notebooks themselves are unedited.
