@@ -724,10 +724,11 @@ def item_family(a, models=("xgb",), out_name="b6_family"):
 
 
 # ------------------------------------------------------------------ item 8: evasion
-def perturb(kind, k, seed):
+def perturb(kind, k, seed, classes="malicious"):
+    """Test-time (or training-augmentation) perturbation of malicious flows, or of every flow if classes='both'."""
     def f(df):
         df = df.copy()
-        mal = df["label"].to_numpy() == 1
+        mal = np.ones(len(df), bool) if classes == "both" else df["label"].to_numpy() == 1
         if kind == "pad":
             # record padding on malicious flows: only data-carrying packets grow (G2 frame size > 66 B; 54/60/66 B
             # are pure ACKs), capped at a full 1,514-B frame. G1: bytes += k per PSH packet (~ data segments) per
@@ -760,9 +761,10 @@ def perturb(kind, k, seed):
 
 def item_padech(a):
     """10: padding against the ECH tier (G1+G2, with / without timing) on the MTA E3 TLS 1.3 test subset.
-    Models trained on all versions or on TLS 1.3 only; plain training vs padding augmentation (each malicious
-    training flow padded by a random 0-256 B per packet, same rule as item 8); tested clean and with every
-    malicious test packet padded by 32 or 256 B. Thresholds from the clean validation set."""
+    Models trained on all versions or on TLS 1.3 only; plain training vs padding augmentation (training flows
+    padded by a random 0-256 B per data packet, same rule as item 8): both classes (the defender result) or
+    malicious only (a contrast that teaches "large = malicious"). Tested clean and with every malicious test
+    data packet padded by 32 or 256 B. Thresholds from the clean validation set."""
     out = BENCH / "b6_padech"
     out.mkdir(parents=True, exist_ok=True)
     rows = []
@@ -772,17 +774,20 @@ def item_padech(a):
         v = d["k_tls_version"].astype(str).to_numpy()
         lab = d["label"].to_numpy()
         for train_on in ("all versions", "1.3 only"):
-            for aug in ("none", "pad 0-256 B"):
+            # defender result: both classes padded with the same random 0-256 B distribution, so size inflation
+            # carries no class information; malicious-only is kept as a contrast (it teaches "large = malicious")
+            for aug in ("none", "pad 0-256 B both classes", "pad 0-256 B malicious only (contrast)"):
                 for seed in range(a.seeds):
                     tr, va, te = split(d, "E3", "mta", seed)
                     if train_on == "1.3 only":
                         tr, va = tr[v[tr] == "1.3"], va[v[va] == "1.3"]
                     train = d
-                    if aug != "none":  # pad the malicious training rows only, a random amount per flow
+                    if aug != "none":  # pad training rows, a random amount per flow
                         rng = np.random.default_rng(1000 + seed)
-                        rows_m = tr[lab[tr] == 1]
+                        both = aug.endswith("both classes")
+                        rows_m = tr if both else tr[lab[tr] == 1]
                         ks = rng.uniform(0, 256, len(rows_m))  # perturb() broadcasts a per-row padding array
-                        part = perturb("pad", ks, seed)(d.iloc[rows_m])
+                        part = perturb("pad", ks, seed, "both" if both else "malicious")(d.iloc[rows_m])
                         train = d.copy()
                         for c in cols:
                             if pd.api.types.is_numeric_dtype(train[c]):
