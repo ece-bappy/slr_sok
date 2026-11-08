@@ -32,7 +32,7 @@
 2. **The 2026 failure.** The model trained on everything up to 2025 ranks 2026 traffic *worse than chance* with fingerprints (ROC-AUC 0.41, PR-AUC 0.61 against a 0.63 prevalence). Without fingerprints it scores 0.97.
 3. **Retraining cadence matters mostly for the fingerprint model.**
    - Training on only the last 2 years recovers the G5 model in 2026 (0.606 → 0.988) and helps a little elsewhere (+0.004 to +0.05).
-   - The no-G5 model gains less from recency (+0.00 to +0.08) and is already near its best with all past years.
+   - The no-G5 model gains less from recency (−0.01 to +0.08; the 1-year window is slightly worse in 2023) and is already near its best with all past years.
    - Fingerprint models need frequent retraining; flow-statistics and handshake models age more slowly.
 4. **2025 is hard for everyone** (PR-AUC 0.40–0.75 against a 0.16 prevalence; ROC 0.74–0.90). Its test set is small (230 malicious flows), with a different family mix (`b6_family` will show which). It is not a pipeline error: ROC stays at 0.8–0.9.
 
