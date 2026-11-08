@@ -306,11 +306,11 @@ Data and code availability (Zenodo DOI); ethics (public data only, no human subj
 
 ## Open items before drafting can finish
 
-1. **Journal:** choose it; this sets the format, length and abstract style.
-2. **PRISMA counts:** produce the final flow from `review/screening_llm/` and `review/final_screening/`.
+1. **Journal:** DONE: Computers & Security (Elsevier class, manuscript in `D:\new papers\manuscript`).
+2. **PRISMA counts:** DONE 8 Nov: `review/PRISMA.md` from `scripts/prisma_counts.py` (5,894 identified; 3,503 screened; 325 assessed by a human; 291 included; 67 core).
 3. **DoHBrw:** add it as a fifth source, or state it is excluded.
 4. **Own 2026 lab capture (contribution 3 in plan.md):** not done; dropped unless captured.
-5. **UCNet RF gap:** fill in the cause after the scikit-learn 1.3.2 rerun.
+5. **UCNet RF gap:** DONE: the scikit-learn version (1.3.2 reproduces it exactly); the remaining ≤ 1.2 pp UCNet gaps come from our rebuilt input files (`SUMMARY_r24.md`, 89b85a0).
 6. **Task labels for the 291-paper map:** DONE 8 Nov (`review/map_labels/`, rulebook `review/coding/map_label_rulebook.txt`).
-7. **Checklist scores for Figure 12:** computable from the existing coded fields; check which items need new coding.
-8. **Related work:** re-run the search, including earlier surveys of encrypted malicious traffic detection.
+7. **Checklist scores for Figure 12:** PARTLY DONE 8 Nov: `review/synthesis/checklist.md` from `scripts/checklist_scores.py`. Six of eight items scored from the coding. C2 (validation-only thresholds) and C6 (per-TLS-version results) are not in the coding scheme: either code them for the 67 papers or drop them from the figure. C5 rests on label_feature_overlap, whose κ was −0.17 before adjudication; say so.
+8. **Related work:** DONE in the paper session (Wang et al. 2022 positioning, b832e2d; batch 7 tests their protocol, a7e8164).
