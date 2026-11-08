@@ -18,6 +18,7 @@ Every result line printed as "a & b & c" (the paper's LaTeX table rows) is compa
 stored output in the notebook, which matches the paper's Tables 2-4; the gaps are in compare.csv.
 """
 import argparse
+import ast
 import contextlib
 import io
 import json
@@ -67,7 +68,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--grid", action="store_true", help="also run the authors' grid-search cells")
     ap.add_argument("--out", default="/data/tls-sok/benchmark/r24_repro")
+    ap.add_argument("--only", default=None, help="comma-separated notebook names (one process per notebook saves RAM)")
     a = ap.parse_args()
+    nbs = a.only.split(",") if a.only else NOTEBOOKS
     out = Path(a.out + ("_grid" if a.grid else ""))
     out.mkdir(parents=True, exist_ok=True)
     (out / "errors.log").unlink(missing_ok=True)
@@ -87,7 +90,7 @@ def main() -> None:
     os.chdir(WORK)
     sys.path.insert(0, str(WORK))
     cells, compare = [], []
-    for nb_name in NOTEBOOKS:
+    for nb_name in nbs:
         nb = json.loads((REPO / nb_name).read_text())
         ns = {"display": lambda *x, **k: None, "__name__": "__main__"}
         for i, c in enumerate(nb["cells"]):
@@ -101,7 +104,14 @@ def main() -> None:
             buf, t0 = io.StringIO(), time.time()
             try:
                 with contextlib.redirect_stdout(buf):
-                    exec(compile(src, f"{nb_name}:cell{i}", "exec"), ns)
+                    # like Jupyter, echo the value of a cell's final bare expression (some UCNet results are tuples)
+                    tree = ast.parse(src)
+                    last = tree.body.pop() if tree.body and isinstance(tree.body[-1], ast.Expr) else None
+                    exec(compile(tree, f"{nb_name}:cell{i}", "exec"), ns)
+                    if last is not None:
+                        val = eval(compile(ast.Expression(last.value), f"{nb_name}:cell{i}", "eval"), ns)
+                        if val is not None and not hasattr(val, "shape"):  # skip DataFrame/array displays
+                            print(repr(val))
                 status = "ok"
             except Exception as exc:
                 status = f"error: {type(exc).__name__}: {str(exc)[:200]}"

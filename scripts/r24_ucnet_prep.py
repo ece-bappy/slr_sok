@@ -82,10 +82,43 @@ def parallel(fn, df: pd.DataFrame, jobs: int):
     return np.concatenate(res) if res else np.array([])
 
 
+SLIM_KEEP = (["c_tls_version", "s_tls_version", "c_supported_versions", "s_supported_versions", "s_psk",
+              "hello_retry_req", "s_cert_lengths", "first_hs_tp", "tls_version_guess", "cert_size_guess_simple"]
+             + BS + DS + [f"tls_tp_{i}" for i in range(20)])
+
+
+def slim() -> None:
+    """Drop the columns the notebooks' UCNet cells never read (inter-arrival times, SNI, source file, ports),
+    so that the 11M-flow table fits in A2's 30 GB next to the notebooks' own data. Streams the CSV text with the
+    csv module, so every kept field is byte-identical (the notebooks' type inference is unchanged). The full
+    files are kept as *.full.csv; all.csv becomes a slim copy of processed_all.csv instead of a symlink."""
+    import csv
+    csv.field_size_limit(1 << 30)
+    for name in ("all.csv", "all_data12.csv", "all_data13.csv", "all_behav13_new.csv"):
+        src = SRC if name == "all.csv" else DST / name.replace(".csv", ".full.csv")
+        if name != "all.csv" and not src.exists():
+            (DST / name).rename(src)
+        if (DST / name).is_symlink():
+            (DST / name).unlink()
+        with open(src, newline="") as fi, open(DST / f"{name}.tmp", "w", newline="") as fo:
+            r, w = csv.reader(fi), csv.writer(fo, lineterminator="\n")
+            head = next(r)
+            keep = [i for i, c in enumerate(head) if c in SLIM_KEEP or (i == 0 and c == "")]  # keep the index column
+            w.writerow([head[i] for i in keep])
+            for row in r:
+                w.writerow([row[i] for i in keep])
+        (DST / f"{name}.tmp").rename(DST / name)
+        print(name, "kept", len(keep), "of", len(head), "columns", flush=True)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--jobs", type=int, default=24)
+    ap.add_argument("--slim", action="store_true", help="only rewrite data/ucnet/*.csv without unused columns")
     a = ap.parse_args()
+    if a.slim:
+        slim()
+        return
     DST.mkdir(parents=True, exist_ok=True)
     OUT.mkdir(parents=True, exist_ok=True)
     if not (DST / "all.csv").exists():

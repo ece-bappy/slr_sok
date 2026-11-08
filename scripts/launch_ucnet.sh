@@ -26,6 +26,13 @@ while ! grep -q QUEUE_FINISHED /data/tls-sok/dl/ucnet.log; do sleep 60; done
 verify() ( cd /data/tls-sok/raw && md5sum -c /data/tls-sok/dl/ucnet.md5 && sha256sum -c /data/tls-sok/dl/ucnet.sha256 )
 step ucnet_verify verify || fail ucnet_verify
 step ucnet_prep $PY scripts/r24_ucnet_prep.py --jobs 24 || fail ucnet_prep
-step r24_repro_ucnet $PY scripts/r24_reproduce.py || fail r24_repro_ucnet
-step r24_repro_grid_ucnet $PY scripts/r24_reproduce.py --grid || fail r24_repro_grid_ucnet
+# the notebooks OOM-killed A2 (30 GB) twice with the full 11M-flow table: drop unread columns, one process
+# per notebook (8 Nov). Notebook 04 also gets a grid pass, which the C-Behav DT (no random_state) needs.
+step ucnet_slim $PY scripts/r24_ucnet_prep.py --slim || fail ucnet_slim
+R=/data/tls-sok/benchmark/r24_repro_ucnet
+for nb in 02-C-ALL 03-C-CERT 04-C-BEHAV; do
+  step "ucnet_nb_$nb" $PY scripts/r24_reproduce.py --only "$nb.ipynb" --out "$R/$nb" || fail "ucnet_nb_$nb"
+done
+step ucnet_nb_04-C-BEHAV_grid $PY scripts/r24_reproduce.py --only 04-C-BEHAV.ipynb --grid --out "$R/04-C-BEHAV" \
+  || fail ucnet_nb_04-C-BEHAV_grid
 echo "$(date +%F' '%T) BATCH ucnet DONE"
