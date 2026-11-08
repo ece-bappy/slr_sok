@@ -55,7 +55,8 @@ def main():
     for k, (name, keys) in enumerate(TASK_GROUPS):
         c = Counter(int(r["year"]) for r in rows if r["task"] in keys)
         v = np.array([c[y] for y in years])
-        a.bar(x, v, 0.72, bottom=bottom, color=OI[k], hatch=HATCH[k], edgecolor="white", lw=0.5,
+        nz = v > 0  # zero-height hatched bars leave hatch artefacts in some PDF viewers
+        a.bar(x[nz], v[nz], 0.72, bottom=bottom[nz], color=OI[k], hatch=HATCH[k], edgecolor="white", lw=0.5,
               label=f"{name} ({v.sum()})")
         bottom += v
     for xi, t in zip(x, bottom):
@@ -73,8 +74,9 @@ def main():
         c = Counter(int(r["year"]) for r in rows if r["model_class"] in keys)
         v = np.array([100 * c[y] / tot[y] for y in years])
         n = sum(c.values())
-        b.bar(x, v, 0.72, bottom=bottom, color=OI[MODEL_COL[k]], hatch=HATCH[k], edgecolor="white", lw=0.5,
-              label=f"{name} ({n})")
+        nz = v > 0
+        b.bar(x[nz], v[nz], 0.72, bottom=bottom[nz], color=OI[MODEL_COL[k]], hatch=HATCH[k], edgecolor="white",
+              lw=0.5, label=f"{name} ({n})")
         bottom += v
     b.set_ylabel("Share of papers (%)")
     b.set_ylim(0, 100)
