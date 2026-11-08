@@ -1,0 +1,9 @@
+fp,class,share_unseen,mean_score_seen,mean_score_unseen
+g5_ja3,benign,0.787,0.226,0.479
+g5_ja3,malicious,0.911,0.257,0.409
+g5_ja3s,benign,0.016,0.422,0.596
+g5_ja3s,malicious,0.071,0.411,0.193
+g5_ja4,benign,0.787,0.226,0.479
+g5_ja4,malicious,0.913,0.248,0.409
+g5_ja4s,benign,0.016,0.422,0.596
+g5_ja4s,malicious,0.071,0.411,0.193
