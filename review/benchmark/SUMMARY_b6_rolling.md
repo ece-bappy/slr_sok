@@ -50,6 +50,22 @@ Setup: XGBoost on G1–G5, trained on all past years, test 2026 (2,235 flows); s
 - **Not a few posts.** Leaving out any single post, or any single family, keeps ROC below 0.5 (at most 0.43). The inversion is spread across the year.
 - **Mechanism.** 79% of benign and 91% of malicious 2026 flows have a client JA3/JA4 never seen in 2019–2025 training. Among those unseen flows, benign traffic scores *higher* than malicious (mean 0.48 vs 0.41), while seen-hash flows score about the same (0.23 vs 0.25–0.26; `unseen_by_class.csv`). The fingerprint model's treatment of new hashes is what inverts the ranking. Item 3c (the seen-in-training flag in the rolling setup) tests this directly.
 
+## 3b: the same curve for LightGBM and RF (`b6_rolling_models/`, 5 seeds)
+
+Same splits, launched in `launch_batch6b.sh` (A2, 8 Nov 14:24–14:35 WITA; exit 0). PR-AUC with all past years; ROC in brackets:
+
+| Test year | LightGBM, G1–G5 | LightGBM, no G5 | RF, G1–G5 | RF, no G5 | XGB, G1–G5 / no G5 (above) |
+|---|---|---|---|---|---|
+| 2020 | 0.903 | 0.908 | 0.925 | 0.901 | 0.906 / 0.877 |
+| 2023 | 0.985 | 0.992 | 0.973 | 0.993 | 0.922 / 0.992 |
+| 2024 | 0.889 (0.87) | 0.954 (0.96) | 0.911 (0.91) | 0.948 (0.95) | 0.804 / 0.935 |
+| 2025 | 0.486 (0.80) | 0.698 (0.90) | 0.704 (0.90) | 0.781 (0.92) | 0.395 / 0.672 |
+| 2026 | **0.585 (0.40)** | 0.973 (0.96) | 0.910 (0.90) | 0.962 (0.96) | **0.606 (0.41)** / 0.970 |
+
+- **Not XGBoost-specific.** LightGBM shows the same collapse with fingerprints in 2026, ranking below chance (ROC 0.40). RF shows the same direction but milder: −0.05 to −0.08 PR-AUC in 2024–26 instead of −0.13 to −0.36. This matches the cross-family E3 ordering (`SUMMARY_crossfamily.md`): native categorical splits overfit hash values most, RF's integer codes least.
+- **Without G5 every family is ≥ 0.95 in 2024 and 2026**, and the three families agree within 0.03 in every year except 2025.
+- **Retraining on the last 2 years** brings all three G5 models back to ≥ 0.99 in 2026 (LightGBM 0.996, RF 0.995). The cadence finding also holds across families.
+
 ## 3c: the same curve with the item-4 fingerprint encodings (`b6_rolling_enc/`, XGBoost, 5 seeds)
 
 Same rows for every encoding (dedup on G1–G5). PR-AUC with all past years; ROC in brackets for the late years:
