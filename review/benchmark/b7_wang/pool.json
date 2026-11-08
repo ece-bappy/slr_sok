@@ -1,0 +1,55 @@
+{
+  "g1g2_notime": {
+    "sources": [
+      "mta",
+      "mcfp",
+      "raid",
+      "hikari"
+    ],
+    "dedup_counts": {
+      "mta": {
+        "0": 15693,
+        "1": 15215
+      },
+      "mcfp": {
+        "0": 63722,
+        "1": 33427
+      },
+      "raid": {
+        "0": 381784,
+        "1": 221205
+      },
+      "hikari": {
+        "0": 55743,
+        "1": 2895
+      }
+    },
+    "flows_per_class_per_source": 2895,
+    "pool_size": 23160,
+    "n_features": 82
+  },
+  "loo_g5": {
+    "sources": [
+      "mta",
+      "mcfp",
+      "raid"
+    ],
+    "dedup_counts": {
+      "mta": {
+        "1": 45752,
+        "0": 16572
+      },
+      "mcfp": {
+        "1": 833965,
+        "0": 74651
+      },
+      "raid": {
+        "1": 593023,
+        "0": 501445
+      }
+    },
+    "flows_per_class_per_source": 16572,
+    "pool_size": 99432,
+    "n_features": 170
+  }
+}

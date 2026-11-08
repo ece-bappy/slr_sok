@@ -115,7 +115,9 @@ All result folders are under `review/benchmark/`, copied from `/data/tls-sok/ben
 
 `scripts/smoke_b6.py <item> …` runs any item on a reduced scope into `/data/tls-sok/smoke6` (not results).
 
-Batch logs: `/data/tls-sok/out/batch2.log`, `batch3_1509.log`, `batch4_1937.log`, `batch5_1256.log`, `batch5r24_1340.log`, `batch6_1136.log`, `batch6b_1213.log`, `batch6c_1228.log`, `batch6d_1237.log`, `batch6e_1453.log`, `ucnet_*.log`. Each step's own log is `/data/tls-sok/logs/<step>.log`.
+**Batch 7, Wang et al. (C&S 2022) protocol** (8 Nov). Launcher `launch_batch7.sh`, step `b7_wang` (`scripts/run_b7.py --seeds 5 --jobs 24`), 16 min. It runs pooled random 5-fold CV and grouped 5-fold CV on the same source-balanced pool. Output: `b7_wang/` (`summary.csv`, `oof_per_seed.csv`, `results_per_fold.csv`, `pool.json`) → `SUMMARY_b7_wang.md`. The held-out column there is copied from `b6_lodo/`, not rerun. For a reduced-scope check: `run_b7.py --seeds 1 --cap 2000 --out /data/tls-sok/smoke7/b7_wang`.
+
+Batch logs: `/data/tls-sok/out/batch2.log`, `batch3_1509.log`, `batch4_1937.log`, `batch5_1256.log`, `batch5r24_1340.log`, `batch6_1136.log`, `batch6b_1213.log`, `batch6c_1228.log`, `batch6d_1237.log`, `batch6e_1453.log`, `ucnet_*.log`, `sk132_1726.log`, `batch7_1951.log`. Each step's own log is `/data/tls-sok/logs/<step>.log`.
 
 **Figures and captions** (any PC, from the committed CSVs only, in a few seconds):
 ```bash
