@@ -1,0 +1,16 @@
+{
+  "flows": 11090891,
+  "tls12": 5314990,
+  "tls13": 5775901,
+  "tls12_no_appdata_removed": 245978,
+  "all_data12_rows": 5069012,
+  "tls13_cert_inference_raised_valueerror": 20,
+  "tls13_psk": 1413538,
+  "tls13_hrr": 993642,
+  "tls13_cert_inferred": 3224058,
+  "tls13_cert_inference_failed": 144656,
+  "tls13_no_appdata_removed": 8873,
+  "all_data13_rows": 5767028,
+  "tls13_behav_empty_removed": 258745,
+  "all_behav13_rows": 5508283
+}

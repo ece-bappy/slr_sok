@@ -1,0 +1,35 @@
+--- 02-C-ALL.ipynb cell 19
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 110, in main
+    exec(compile(tree, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell19", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+
+--- 02-C-ALL.ipynb cell 20
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 110, in main
+    exec(compile(tree, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell20", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+
+--- 02-C-ALL.ipynb cell 32
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 110, in main
+    exec(compile(tree, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell32", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+
+--- 02-C-ALL.ipynb cell 33
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 110, in main
+    exec(compile(tree, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell33", line 4, in <module>
+NameError: name 'feature_importances_rf' is not defined
+
+--- 02-C-ALL.ipynb cell 34
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 110, in main
+    exec(compile(tree, f"{nb_name}:cell{i}", "exec"), ns)
+  File "02-C-ALL.ipynb:cell34", line 3, in <module>
+AttributeError: 'GridSearchCV' object has no attribute 'best_estimator_'
+

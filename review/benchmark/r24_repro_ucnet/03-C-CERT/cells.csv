@@ -1,0 +1,67 @@
+notebook,cell,status,seconds,stdout
+03-C-CERT.ipynb,0,ok,0.9,
+03-C-CERT.ipynb,2,ok,22.2,
+03-C-CERT.ipynb,3,ok,0.0,
+03-C-CERT.ipynb,4,ok,0.4,
+03-C-CERT.ipynb,5,ok,0.0,
+03-C-CERT.ipynb,6,ok,0.0,
+03-C-CERT.ipynb,7,ok,0.0,"258478
+"
+03-C-CERT.ipynb,8,ok,0.0,
+03-C-CERT.ipynb,9,ok,0.0,
+03-C-CERT.ipynb,10,ok,0.2,
+03-C-CERT.ipynb,11,ok,0.0,
+03-C-CERT.ipynb,12,ok,0.7,
+03-C-CERT.ipynb,13,ok,1.0,
+03-C-CERT.ipynb,14,ok,0.1,
+03-C-CERT.ipynb,15,"error: ImportError: matplotlib is required for plotting when the default backend ""matplotlib"" is selected.",0.0,
+03-C-CERT.ipynb,16,ok,0.0,
+03-C-CERT.ipynb,17,ok,0.0,
+03-C-CERT.ipynb,18,ok,3.2,
+03-C-CERT.ipynb,19,ok,0.0,
+03-C-CERT.ipynb,20,ok,0.0,
+03-C-CERT.ipynb,22,ok,0.0,
+03-C-CERT.ipynb,23,ok,0.0,
+03-C-CERT.ipynb,24,ok,0.0,"-22
+-467
+"
+03-C-CERT.ipynb,25,ok,1.1,
+03-C-CERT.ipynb,26,ok,0.0,
+03-C-CERT.ipynb,27,skipped (grid search; hard-coded best parameters used),,
+03-C-CERT.ipynb,28,ok,0.1,"DecisionTreeClassifier(class_weight='balanced', max_depth=1, random_state=42)
+"
+03-C-CERT.ipynb,29,ok,0.1,"56.61 & 98.89 & 99.73 & 94.91 & 100.00 & 0.00 & 100.00 & 0.00 & 99.61
+"
+03-C-CERT.ipynb,30,ok,0.1,"56.61 & 98.89 & 99.73 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,31,ok,0.1,"94.91 & 100.00 & 0.00 & 99.61
+"
+03-C-CERT.ipynb,32,ok,0.1,"99.80 & 94.89 & 100.00 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,33,skipped (grid search; hard-coded best parameters used),,
+03-C-CERT.ipynb,34,ok,1.2,"RandomForestClassifier(class_weight='balanced', criterion='entropy',
+                       max_depth=5, n_estimators=40, n_jobs=-1,
+                       random_state=42)
+"
+03-C-CERT.ipynb,35,ok,0.5,"76.69 & 99.77 & 99.74 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,36,ok,0.3,"99.91 & 100.00 & 0.00 & 99.48
+"
+03-C-CERT.ipynb,37,ok,0.2,"99.78 & 99.94 & 100.00 & 100.00 & 0.00
+"
+03-C-CERT.ipynb,38,ok,0.2,"99.86 & 75.00
+"
+03-C-CERT.ipynb,40,ok,6.3,
+03-C-CERT.ipynb,41,ok,1.0,
+03-C-CERT.ipynb,42,ok,0.0,
+03-C-CERT.ipynb,43,ok,1.5,"98.88960055085738 98.9489665996188
+"
+03-C-CERT.ipynb,44,ok,0.0,
+03-C-CERT.ipynb,45,ok,5.5,
+03-C-CERT.ipynb,46,ok,18.0,
+03-C-CERT.ipynb,47,ok,1.5,
+03-C-CERT.ipynb,48,ok,7.4,
+03-C-CERT.ipynb,49,ok,1.6,
+03-C-CERT.ipynb,50,ok,1.7,"(np.float64(99.89207899752661), np.float64(99.88703621205372))
+"
+03-C-CERT.ipynb,51,ok,1.1,

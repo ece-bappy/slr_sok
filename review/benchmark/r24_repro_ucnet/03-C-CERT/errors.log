@@ -1,0 +1,15 @@
+--- 03-C-CERT.ipynb cell 15
+Traceback (most recent call last):
+  File "/home/labuser/tls-sok/scripts/r24_reproduce.py", line 110, in main
+    exec(compile(tree, f"{nb_name}:cell{i}", "exec"), ns)
+  File "03-C-CERT.ipynb:cell15", line 2, in <module>
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/plotting/_core.py", line 261, in hist_frame
+    plot_backend = _get_plot_backend(backend)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/plotting/_core.py", line 2546, in _get_plot_backend
+    module = _load_backend(backend_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/labuser/tls-sok/.venv/lib/python3.12/site-packages/pandas/plotting/_core.py", line 2478, in _load_backend
+    raise ImportError(
+ImportError: matplotlib is required for plotting when the default backend "matplotlib" is selected.
+

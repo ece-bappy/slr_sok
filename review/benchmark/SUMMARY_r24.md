@@ -39,14 +39,33 @@ Barradas, Novo et al., *Extending C2 Traffic Detection Methodologies: From TLS 1
 
     The TLS 1.3 side matches; the released table holds about 1M more TLS 1.2 flows than the paper counts (`r24_repro_ucnet/ucnet_prep.json`).
   - **Deviation from the authors' (unreleased) preparation.** On **20 TLS 1.3 flows (0.0003% of 5.78M)**, their `cert_size_inference_simple_diagram` raises ValueError (`max()` of an empty list, when the cut at the Finished record leaves no records). These are counted as failed inferences (−1), the function's own outcome for its other failure cases.
-  - **Status.** The notebook rerun was OOM-killed on A2 (exit 137) while batch 6 used the memory: the notebooks load the 11M-flow table next to their own data. It is queued to run when batch 6 finishes (`launch_after_batch6.sh`). The UCNet comparison will be added here.
+  - **Running it in 30 GB.** The full-table rerun was OOM-killed (exit 137) three times, the last on an otherwise idle A2: the notebooks load the 11M-flow table next to their own data. The notebooks were left unedited. Instead, `r24_ucnet_prep.py --slim` drops the input columns that no UCNet cell reads (inter-arrival times, SNI, source file, ports). It streams the CSV text, so every kept field is byte-identical and pandas infers the same types. `all.csv` keeps 68 of 97 columns; the derived files keep 50–51 of 57–58. Each notebook also runs in its own process. Run 8 Nov 15:42–17:19 (`launch_ucnet.sh`, log `/data/tls-sok/out/ucnet_1342.log`), all steps exit 0.
+  - **UCNet results** (true-negative rate on UCNet, which the authors treat as benign; `r24_repro_ucnet/<notebook>/compare.csv`, and `04-C-BEHAV_grid/` for the grid pass). Where the notebook stores no output for the cell, the reference is the paper's text.
+
+    | Classifier, UCNet subset (input file) | Paper DT / RF | Reproduced DT / RF | Gap |
+    |---|---|---|---|
+    | C-Basic, TLS 1.2 (`all.csv`, released) | 99.92 / 99.93 | 99.92 / 99.93 | **0.00 pp** |
+    | C-Basic, TLS 1.3 (`all.csv`, released) | 99.88 / 99.93 | 99.88 / 99.93 | **0.00 pp** |
+    | C-Cert, TLS 1.2 (`all.csv`, released) | 99.89 / 99.89 | 99.89 / 99.89 | **0.00 pp** |
+    | C-Cert, TLS 1.3 via inferred size (`all_data13`, rebuilt) | 99.07 / 99.13 | 98.89 / 98.95 | 0.18 pp |
+    | C-Behav, TLS 1.2 (`all_data12`, rebuilt), grid pass | 90.39 / 95.69 | 91.59 / 95.92 | 1.20 / 0.23 pp |
+    | C-Behav, TLS 1.3 filtered (`all_data13`, rebuilt), grid pass | 87.83 / 99.999 | 87.84 / 99.9999 | **0.01 / 0.00 pp** |
+    | C-Behav, TLS 1.3 behaviour (`all_behav13_new`, rebuilt), grid pass | 92.28 / 96.35 | 92.28 / 93.92 | **0.00** / 2.43 pp |
+
+    - Every row computed from the released table reproduces exactly. The rows that need our rebuilt files are within 0.2 pp, except three C-Behav cells.
+    - **C-Behav TLS 1.2 (+1.20 / +0.23 pp):** our rebuilt `all_data12` holds about 1M more TLS 1.2 flows than the paper counts (stage counts above), so it is not the authors' test set.
+    - **C-Behav RF on TLS 1.3 behaviour (−2.43 pp):** the DT on the same file matches to 0.00 pp, which points at the RF rather than the file. The C-Behav RF also differs by up to 0.97 pp on the non-UCNet rows (scikit-learn 1.9.1 vs 1.3.2, above). The two causes cannot be separated here.
+    - As on the other datasets, the C-Behav DT matches only on the grid pass (without it: 93.39 / 85.05 / 93.18 for the three subsets, in table order, gaps up to 3.0 pp). The RF is the same in both passes.
 - **Deviations** (logged per cell in `cells.csv`):
   - `display()` is silenced.
   - `multiprocess` → `multiprocessing`; `tqdm.notebook` → `tqdm`.
   - matplotlib is not installed on A2, so it is replaced by a no-op stub. This affects plots only.
   - A few `02-C-ALL` cells only display grid-search objects whose fitting the authors commented out; they error and do not affect any number.
+  - `03-C-CERT` cell 15 (a pandas histogram) errors without matplotlib; it is a plot only.
+  - Like Jupyter, the runner echoes a cell's final bare expression; some UCNet cells return their result as a tuple instead of printing it.
+  - UCNet only: unread input columns removed (byte-identical kept fields) and one process per notebook, to fit 30 GB RAM.
 
-**Verdict:** the released code reproduces the published C-Basic, C-Cert and C-Behav numbers, exactly or within 1 pp.
+**Verdict:** the released code reproduces the published C-Basic, C-Cert and C-Behav numbers, exactly or within 1 pp. On UCNet, every row computed from the released table matches exactly. Rows that need our rebuilt input files are within 0.2 pp, except three C-Behav cells (1.20, 0.23 and 2.43 pp).
 
 ## 2. Under our protocol (`r24_protocol/`)
 

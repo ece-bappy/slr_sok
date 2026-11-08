@@ -1,0 +1,58 @@
+notebook,cell,status,seconds,stdout
+04-C-BEHAV.ipynb,0,ok,1.9,
+04-C-BEHAV.ipynb,1,ok,0.0,
+04-C-BEHAV.ipynb,2,ok,0.0,
+04-C-BEHAV.ipynb,3,ok,0.0,
+04-C-BEHAV.ipynb,4,ok,1.2,
+04-C-BEHAV.ipynb,5,ok,0.0,
+04-C-BEHAV.ipynb,6,ok,1.1,
+04-C-BEHAV.ipynb,7,ok,0.0,
+04-C-BEHAV.ipynb,8,ok,0.2,
+04-C-BEHAV.ipynb,9,ok,0.1,
+04-C-BEHAV.ipynb,10,ok,0.3,
+04-C-BEHAV.ipynb,11,ok,0.0,
+04-C-BEHAV.ipynb,12,ok,0.5,
+04-C-BEHAV.ipynb,13,ok,0.1,
+04-C-BEHAV.ipynb,14,ok,0.1,
+04-C-BEHAV.ipynb,15,ok,0.3,
+04-C-BEHAV.ipynb,16,ok,0.8,
+04-C-BEHAV.ipynb,17,ok,0.0,
+04-C-BEHAV.ipynb,18,ok,0.1,
+04-C-BEHAV.ipynb,19,ok,0.1,
+04-C-BEHAV.ipynb,21,ok,0.0,
+04-C-BEHAV.ipynb,22,ok,0.0,
+04-C-BEHAV.ipynb,23,skipped (grid search; hard-coded best parameters used),,
+04-C-BEHAV.ipynb,24,skipped (grid search; hard-coded best parameters used),,
+04-C-BEHAV.ipynb,25,ok,0.8,"DecisionTreeClassifier(criterion='entropy', max_depth=16)
+"
+04-C-BEHAV.ipynb,26,ok,0.0,"93.95 & 95.48 & 99.93 & 98.98 & 98.85
+"
+04-C-BEHAV.ipynb,27,ok,0.0,"93.95 & 95.48 & 99.93 & 98.98 & 98.85
+"
+04-C-BEHAV.ipynb,28,ok,0.0,"88.48 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,29,ok,0.1,"98.55 & 94.66 & 94.37 & 97.43
+"
+04-C-BEHAV.ipynb,30,ok,0.0,"99.25 & 94.50
+"
+04-C-BEHAV.ipynb,32,skipped (grid search; hard-coded best parameters used),,
+04-C-BEHAV.ipynb,33,skipped (grid search; hard-coded best parameters used),,
+04-C-BEHAV.ipynb,34,skipped (grid search; hard-coded best parameters used),,
+04-C-BEHAV.ipynb,35,skipped (grid search; hard-coded best parameters used),,
+04-C-BEHAV.ipynb,36,ok,13.1,"RandomForestClassifier(class_weight='balanced', max_depth=20, n_estimators=70,
+                       random_state=42)
+"
+04-C-BEHAV.ipynb,37,ok,1.0,"90.61 & 98.14 & 99.82 & 99.20 & 99.10
+"
+04-C-BEHAV.ipynb,38,ok,0.7,"100.00 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,39,ok,1.6,"99.73 & 93.93 & 93.23 & 99.21
+"
+04-C-BEHAV.ipynb,40,ok,0.1,"99.80 & 93.50
+"
+04-C-BEHAV.ipynb,42,ok,11.8,
+04-C-BEHAV.ipynb,43,ok,7.3,
+04-C-BEHAV.ipynb,44,ok,61.3,"0.9339188780772268 0.9591677825974766
+0.8504827789981252 0.9999989596027624
+0.931773476417243 0.9392284310737121
+"

@@ -94,7 +94,7 @@ All result folders are under `review/benchmark/`, copied from `/data/tls-sok/ben
 | Unsupervised baselines | `launch_batch5.sh` step `unsup` (`run_unsup.py`, torch venv) | 11 min | `unsup/` → `SUMMARY_unsup.md` |
 | RAID 2024 reproduction | `launch_batch5_r24.sh` steps `r24_repro` (`r24_reproduce.py`) and `r24_repro_grid` (`--grid`) | 3 min; 1 h 52 min | `r24_repro/`, `r24_repro_grid/` (`compare.csv`) → `SUMMARY_r24.md` |
 | RAID 2024 under our protocol | `launch_batch5_r24.sh` step `r24_protocol` (`r24_benchmark.py`) | 53 min | `r24_protocol/` (joined tables of about 1 GB stay on the host) → `SUMMARY_r24.md` |
-| RAID 2024 UCNet cells | `launch_ucnet.sh`: checksum check, `r24_ucnet_prep.py` (rebuilds the notebooks' three derived UCNet files with the authors' functions), then `r24_reproduce.py` and `--grid` | Prep 10 min; notebooks need most of the 30 GB RAM, so run them alone (OOM-killed next to batch 6) | `r24_repro_ucnet/ucnet_prep.json`, `r24_repro*/compare.csv` → `SUMMARY_r24.md` |
+| RAID 2024 UCNet cells | `launch_ucnet.sh`: checksum check, `r24_ucnet_prep.py` (rebuilds the notebooks' three derived UCNet files with the authors' functions), then `--slim` (drops unread columns), then `r24_reproduce.py --only <notebook>` per notebook and `--grid` for 04 | Prep 10 min; slim 2 min; notebooks 5 min; 04 grid pass 1.5 h. Run on an otherwise idle host | `r24_repro_ucnet/ucnet_prep.json`, `r24_repro_ucnet/{02-C-ALL,03-C-CERT,04-C-BEHAV,04-C-BEHAV_grid}/compare.csv` → `SUMMARY_r24.md` |
 
 **Batch 6 robustness checks** (`scripts/run_b6.py <item>`, 8 Nov). Launchers `launch_batch6.sh` (two lanes) and `launch_batch6b–e.sh`. Every launcher log ends with `BATCH <name> DONE|FAILED <steps>`.
 
@@ -132,6 +132,8 @@ This writes `figures/fig_{a_collapse,b_tiers,c_fingerprints,d_early,e_origin_pro
   - C-Behav RF differs by ≤ 0.97 pp, likely from scikit-learn 1.9.1 vs 1.3.2.
   - matplotlib is not installed on the host, so a no-op stub replaces it (plots only).
   - UCNet: the three derived input files are our reconstruction with the authors' functions (their preparation notebook is not released). On 20 TLS 1.3 flows (0.0003%) their certificate-size inference raises ValueError; those are counted as failed inferences.
+  - UCNet: with the full table, the notebooks exceed 30 GB RAM (OOM-killed three times). Input columns no UCNet cell reads are removed, with every kept field byte-identical, and each notebook runs in its own process. The notebooks themselves are unedited.
+  - The runner echoes each cell's final bare expression, as Jupyter does (some UCNet results are returned as tuples, not printed).
 - **Batch 6 base rates:** precision is pooled over seeds (ratio of mean TP to mean FP), not averaged per seed (`SUMMARY_b6_baserate.md`).
 - **Batch 6 padding rule:** only data-carrying packets (G2 frame > 66 B) are padded, capped at 1,514 B. The first item 8 run padded ACKs too and was superseded.
 - **The SSLBL snapshot date matters.** Later snapshots contain more entries and will change the E5b hit counts.

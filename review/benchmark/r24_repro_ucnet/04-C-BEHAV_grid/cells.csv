@@ -1,0 +1,60 @@
+notebook,cell,status,seconds,stdout
+04-C-BEHAV.ipynb,0,ok,0.6,
+04-C-BEHAV.ipynb,1,ok,0.0,
+04-C-BEHAV.ipynb,2,ok,0.0,
+04-C-BEHAV.ipynb,3,ok,0.0,
+04-C-BEHAV.ipynb,4,ok,0.9,
+04-C-BEHAV.ipynb,5,ok,0.0,
+04-C-BEHAV.ipynb,6,ok,0.7,
+04-C-BEHAV.ipynb,7,ok,0.0,
+04-C-BEHAV.ipynb,8,ok,0.1,
+04-C-BEHAV.ipynb,9,ok,0.1,
+04-C-BEHAV.ipynb,10,ok,0.2,
+04-C-BEHAV.ipynb,11,ok,0.0,
+04-C-BEHAV.ipynb,12,ok,0.3,
+04-C-BEHAV.ipynb,13,ok,0.1,
+04-C-BEHAV.ipynb,14,ok,0.0,
+04-C-BEHAV.ipynb,15,ok,0.3,
+04-C-BEHAV.ipynb,16,ok,0.7,
+04-C-BEHAV.ipynb,17,ok,0.0,
+04-C-BEHAV.ipynb,18,ok,0.1,
+04-C-BEHAV.ipynb,19,ok,0.1,
+04-C-BEHAV.ipynb,21,ok,0.0,
+04-C-BEHAV.ipynb,22,ok,0.0,
+04-C-BEHAV.ipynb,23,ok,240.8,"0.9216196297854076 {'class_weight': None, 'criterion': 'entropy', 'max_depth': 16, 'splitter': 'best'}
+"
+04-C-BEHAV.ipynb,24,ok,2.6,
+04-C-BEHAV.ipynb,25,ok,0.9,"DecisionTreeClassifier(criterion='entropy', max_depth=16)
+"
+04-C-BEHAV.ipynb,26,ok,0.0,"93.90 & 95.64 & 99.93 & 98.97 & 98.85
+"
+04-C-BEHAV.ipynb,27,ok,0.0,"93.90 & 95.64 & 99.93 & 98.97 & 98.85
+"
+04-C-BEHAV.ipynb,28,ok,0.1,"89.90 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,29,ok,0.1,"98.64 & 93.93 & 93.54 & 97.27
+"
+04-C-BEHAV.ipynb,30,ok,0.0,"99.30 & 93.50
+"
+04-C-BEHAV.ipynb,32,ok,0.0,
+04-C-BEHAV.ipynb,33,ok,5046.2,"0.9314494643362377 {'class_weight': 'balanced', 'max_depth': 25, 'max_features': 'sqrt', 'n_estimators': 40}
+"
+04-C-BEHAV.ipynb,34,ok,4.8,
+04-C-BEHAV.ipynb,35,ok,0.1,
+04-C-BEHAV.ipynb,36,ok,13.8,"RandomForestClassifier(class_weight='balanced', max_depth=20, n_estimators=70,
+                       random_state=42)
+"
+04-C-BEHAV.ipynb,37,ok,1.0,"90.61 & 98.14 & 99.82 & 99.20 & 99.10
+"
+04-C-BEHAV.ipynb,38,ok,0.8,"100.00 & 0.00 & 0.00
+"
+04-C-BEHAV.ipynb,39,ok,1.6,"99.73 & 93.93 & 93.23 & 99.21
+"
+04-C-BEHAV.ipynb,40,ok,0.1,"99.80 & 93.50
+"
+04-C-BEHAV.ipynb,42,ok,11.0,
+04-C-BEHAV.ipynb,43,ok,7.3,
+04-C-BEHAV.ipynb,44,ok,59.6,"0.9158958392680862 0.9591677825974766
+0.8783954230844726 0.9999989596027624
+0.9227508826253117 0.9392284310737121
+"
