@@ -1,0 +1,11 @@
+feature_set_of_detector,held_out,pool,probe_features,n_sources,balanced_accuracy,chance
+g1g2_notime,mta,mcfp+raid+hikari,g1g2_notime,3,0.9831776354224931,0.3333333333333333
+g1g2_notime,mcfp,mta+raid+hikari,g1g2_notime,3,0.9959953929308886,0.3333333333333333
+g1g2_notime,raid,mta+mcfp+hikari,g1g2_notime,3,0.9875618110901074,0.3333333333333333
+g1g2_notime,hikari,mta+mcfp+raid,g1g2_notime,3,0.9817340917534105,0.3333333333333333
+loo_g5,mta,mcfp+raid,g1g2_notime,2,0.977221978021978,0.5
+loo_g5,mcfp,mta+raid,g1g2_notime,2,0.9998393145063964,0.5
+loo_g5,raid,mta+mcfp,g1g2_notime,2,0.9954343795267875,0.5
+all,mta,mcfp+raid,g1g2_notime,2,0.977221978021978,0.5
+all,mcfp,mta+raid,g1g2_notime,2,0.9998393145063964,0.5
+all,raid,mta+mcfp,g1g2_notime,2,0.9954343795267875,0.5
