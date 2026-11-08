@@ -1,0 +1,68 @@
+paper_id,judge,tuning_data,tuning_data_evidence,tuning_data_quote_found,per_tls_version,per_tls_version_evidence,per_tls_version_quote_found
+S0066,gemini,validation,"Datasets are partitioned into training, validation, and test sets using stratified sampling to preserve class imbalance. All hyperparameters are tuned on the validation set only. Performance is reported on held-out test data.",True,no,,False
+S0095,gemini,not_stated,"Hyperparameters are selected from predefined candidate ranges through multiple experiments, as summarized in Table 2.",False,no,,False
+S0097,gemini,validation,Wethen evaluatetheperformanceoftheincrementallytrainedmodelona reservedindependentvalidationsetthatcontainssamplescovering boththehistoricalandthelatestdatadistributions.,True,no,,False
+S0217,gemini,validation,"Foreachexperimentalgroup,thedataweredividedintotraining,validation,andtestsetswitharatioof7:1:2.",True,no,,False
+S0348,gemini,validation,a stratified sampling approach is used to construct the tuning set: 1000 samples per class are selected for training and 200 per class for validation... Early stopping with a patience of 50 epochs is also applied as an additional measure against overfitting.,False,yes,"A comparative evaluation across heterogeneous network configurations reveals that classification accuracy follows a descending trend in the order Base (97.98%), DTLS (97.89%), TLS (97.31%), and VPN (94.12%)",True
+S0639,gemini,not_stated,,False,no,,False
+S0664,gemini,not_stated,,False,no,,False
+S0669,gemini,validation,"Seed 5 was reserved exclusively for selecting the weighting factor α and is excluded from all final test-set averages and significance tests. In the seed-5 split, the 18% validation partition was used for checkpoint selection and the separate 10% holdout was designated as the α-development set.",True,no,,False
+S0696,gemini,validation,"We partition all edges E into a training set Etrain , a validation set Eval , and a test set Etest .",True,no,,False
+S0905,gemini,validation,"Each flow, identified by its 5-tuple (sourceIP, destinationIP, sourceport, destinationport, protocol), is assigned exclusively to either the training (70%), validation (15%), or test (15%) partition.",False,no,,False
+S0907,gemini,test,"Considering both accuracy and efficiency, the optimal balance is achieved when N= 64, with the model reaching the highest test accuracy of 0.9988. Hence, this setting is adopted in our final configuration.",True,no,,False
+S0926,gemini,validation,"For ISCX-VPN2016, ISCX-Tor2016, USTC-TFC2016, and CIC-IoT2022, we follow a unified pipeline consisting of 3 main steps: (3) train-test-validation set split with a 70:20:10 ratio. To prevent overfitting, early stopping with a patience of 20 epochs is applied.",False,no,,False
+S0928,gemini,validation,"Hyperparameters were selected through a combination of grid search, empirical tuning on the BoT-IoT validation split, and the dedicated β sensitivity analysis reported in Section 5.6.",True,no,,False
+S0932,gemini,not_stated,,False,no,,False
+S0939,gemini,not_stated,,False,no,,False
+S0952,gemini,validation,All reported results are evaluated using the model checkpoint that achieves the best performance on the validation set.,True,no,,False
+S0971,gemini,not_stated,,False,no,,False
+S0995,gemini,not_stated,,False,no,,False
+S1042,gemini,not_stated,,False,no,,False
+S1132,gemini,not_stated,,False,no,,False
+S1155,gemini,validation,"Each candidate tree T ∈ Tcand is evaluated on node i’s dedicated local validation set (which is distinct from its training data and the global validation set used for overall system evaluation), using prediction accuracy as the measure.",True,no,,False
+S1163,gemini,not_stated,,False,no,,False
+S1228,gemini,validation,"Here, the threshold is set to ensure that 95% of the samples in the validation set are classified into known classes.",True,no,,False
+S1243,gemini,not_stated,,False,no,,False
+S1254,gemini,validation,All classifiers were trained using five-fold cross-validation on the training set and evaluated on the held-out test set.,True,no,,False
+S1337,gemini,not_stated,,False,no,,False
+S1342,gemini,not_stated,"For hyperparameter selection, we employed a manual tuning approach to optimize critical parameters, including the learning rate, dropout rate, and batch size, which allowed us to systematically identify the most effective settings for FreAD’s performance.",True,no,,False
+S1449,gemini,not_stated,,False,no,,False
+S1460,gemini,validation,"Each dataset is divided into training (70 %), validation (15 %), and testing (15 %) sets using stratified sampling to maintain a consistent distribution.",False,no,,False
+S1461,gemini,not_stated,,False,no,,False
+S1500,gemini,not_stated,,False,no,,False
+S1502,gemini,test,"To validate the architectural sensitivity of our Capsule Network module, we conducted a controlled ablation study in which we varied capsule sizes, routing iterations, and hierarchical depths. Empirical observation showed that the selected configuration",False,no,,False
+S1528,gemini,validation,"The classifier parameters were tuned, and the parameterset that performed best on the validation set was used for final testing.",False,no,,False
+S1682,gemini,test,"We randomly select 30,000 DoH tunnel samples from the test set to generate adversarial samples. ... When the ε is set to 0.25, the ASR reaches its peak ... Based on this observation, we choose to fix the ε at 0.25",False,no,,False
+S1717,gemini,not_stated,,False,no,,False
+S1783,gemini,validation,"The dataset is split for training and validation. We instantiate and train our model on 2686 samples, and validate our model on 142 samples, where the number of epochs and batch size are 256 and 64, respectively.",True,no,,False
+S1854,gemini,not_stated,,False,no,,False
+S1886,gemini,test,Both metrics were evaluated according to the definition in Section III-C on our whole dataset to indicate a fitting threshold.,True,no,,False
+S1901,gemini,not_stated,,False,no,,False
+S1926,gemini,validation,"The training/validation set was further split using SGKF into 10 folds, on which we perform cross-validation (CV) for parameter tuning. After determining the best parameters, classifiers are trained on the whole training/validation set, and evaluated on the test set.",True,yes,"Table 2 demonstrates the results obtained by these classifiers. ... Testing against TLS 1.3 traffic – Tranco, MS and DoHBrw – one can observe that it is almost entirely classified as benign.",False
+S1938,gemini,validation,The chosen pipeline includes data division into 80%/20% proportions for training-validation and testing (also known as hold-out).,True,no,,False
+S1940,gemini,validation,"We conduct four-fold cross validation to avoid overfitting and hyper-parameter bias. Specifically, the datasets are equally partitioned into four subsets. Each subset is used once as a validation set to tune the hyper-parameters",True,no,,False
+S2008,gemini,validation,MADESANT is validated to identify new samples and prevent overfitting and underfitting based on validation accuracy.,True,no,,False
+S2138,gemini,not_stated,,False,no,,False
+S2326,gemini,not_stated,,False,no,,False
+S2338,gemini,not_stated,,False,no,,False
+S2344,gemini,not_stated,,False,no,,False
+S2360,gemini,not_stated,,False,no,,False
+S2363,gemini,not_stated,,False,no,,False
+S2395,gemini,not_stated,,False,no,,False
+S2524,gemini,test,"We first confirm the optimal solutions two parameters, batch size and time window ratio τ on HIKARI2021, which has the same setup and network configurations as CICIDS.",False,no,,False
+S2576,gemini,not_stated,,False,no,,False
+S2611,gemini,validation,The training sets were further split into 10 folds to allow 10 fold cross-validation.,True,no,,False
+S2626,gemini,validation,We split the malicious data of each protocol-specific model into 60% (for training and validation) and 40% (for testing only).,True,no,,False
+S2672,gemini,validation,We train the model with 5-fold cross-validation and select the model that achieves the highest F1-score on the validation set at a threshold of 0.5 for testing.,True,no,,False
+S2760,gemini,validation,"First, we prepare parameter-tuned models and train them on the sub-training data, which is 90% of the training data. Next, we validate the trained models on the validation data, which is 10% of the training data",True,no,,False
+S2800,gemini,not_stated,,False,yes,The generalization of this model has been proven using the TLS 1.3 traffic obtained from CICDDoS2019 dataset with the detection rate 0.9897 using meta-learning.,True
+S2958,gemini,test,"We measured the performance within the first 100 epochs, applying three different values per each of the parameters n, b, and m, as shown in Figure 9.",True,no,,False
+S2982,gemini,validation,The validation dataset of TGAN has normal and unknown malicious samples. Generator and discriminator of TGAN play game until the detection accuracy of normal sample is less than a certain threshold or the overall accuracy continues to decline.,True,no,,False
+S3005,gemini,not_stated,,False,no,,False
+S3046,gemini,not_stated,,False,no,,False
+S3059,gemini,not_stated,,False,no,,False
+S3208,gemini,not_stated,,False,no,,False
+S3214,gemini,test,"For this purpose, a 10-fold validation was performed using the 25% of randomly chosen test data",True,no,,False
+S3215,gemini,test,The input parameters (also called hyperparameters) of each algorithm were set experimentally by evaluating each parameter separately and observing the precision of results.,True,no,,False
+S3347,gemini,not_stated,,False,no,,False
+S3417,gemini,test,"to ensure optimal results, and since there is little additional training cost associated with a larger number of estimators, we use 500 estimators for all random forest experiments presented in this section.",True,no,,False
