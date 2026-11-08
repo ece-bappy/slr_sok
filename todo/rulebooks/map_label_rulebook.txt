@@ -1,0 +1,63 @@
+MAP LABEL RULEBOOK - title/abstract labels for the 291 included papers (Figure 3, section 4.1)
+Version 1, 8 Nov 2026. Same text as the prompt in scripts/label_map.py.
+Change only by adding a dated rule at the end, and tell Claude so the prompt changes too.
+
+Label from the TITLE and ABSTRACT only. Do not use outside knowledge of the paper or its authors.
+Code the paper's MAIN contribution (what the title and the abstract's headline result are about).
+
+---------------------------------------------------------------------
+1. task  (one value: the threat the method detects)
+---------------------------------------------------------------------
+c2_botnet        command-and-control, botnet, RAT, beaconing, or a named C2 framework (Cobalt Strike, Metasploit...)
+doh_tunnel       malicious DNS-over-HTTPS: DoH tunnelling, DNS exfiltration over DoH, malicious DoH tools
+web_attack       attacks carried in HTTPS requests: phishing sites/URLs, web attacks, SQLi/XSS, brute force,
+                 credential stuffing, malicious websites seen by a client
+dos              DDoS or flooding attacks (incl. QUIC/TLS floods)
+malicious_server malicious servers or infrastructure found by (active) TLS fingerprinting or scanning
+malware          encrypted malware traffic in general, malware family classification, ransomware, Android/IoT
+                 malware traffic, when no narrower class above is the main target
+multi_attack     intrusion detection over several attack types at once (typically IDS benchmarks), with no
+                 single dominant threat
+anomaly          unsupervised / one-class anomaly or novelty detection with no named threat class
+other            none of the above (say what in the reason)
+
+Tie-breaks:
+T1 Name the narrowest class the abstract makes the main target. "Malware C2 traffic" -> c2_botnet;
+   "malicious encrypted traffic" with no further detail -> malware.
+T2 An anomaly-detection method evaluated on a named threat class gets that class, not anomaly.
+T3 A paper whose datasets cover several attack types (e.g. CIC-IDS2017) and that reports per-attack
+   results without a dominant one -> multi_attack.
+T4 evasion, evaluation and system papers get the task of the detectors they attack, evaluate or build
+   (e.g. evading "malicious encrypted traffic classifiers" -> malware). Use other only if no threat is named.
+
+---------------------------------------------------------------------
+2. study_type  (one value)
+---------------------------------------------------------------------
+detection        proposes or improves a detector (the default)
+evasion          attacks a detector: adversarial examples, traffic morphing, evasion; may also propose a defence
+                 if the attack is the headline
+evaluation       evaluates or compares existing detectors, datasets or features (benchmark, measurement study,
+                 robustness or drift study) without a new detector as the main contribution
+system           engineering of a detection system: hardware/data-plane/edge acceleration, deployment, privacy-
+                 preserving or federated training, where the systems aspect is the headline
+
+---------------------------------------------------------------------
+3. model_class  (one value: the paper's own main model)
+---------------------------------------------------------------------
+classical_ml     tree ensembles, SVM, kNN, naive Bayes, logistic regression, clustering, HMM/Markov, other
+                 non-neural learned models
+deep_learning    CNN, RNN/LSTM/GRU, autoencoder, MLP, GAN, capsule, other neural nets without attention as the core
+transformer      transformer / attention-based / BERT-style pre-trained traffic models
+llm              large language models (prompting, fine-tuning, LLM agents)
+graph            graph neural networks or graph-based learning as the core
+hybrid           a main model combining classical ML and neural parts with neither dominant
+unclear          the abstract does not say
+
+Tie-breaks:
+M1 A CNN/LSTM with an added attention layer stays deep_learning; a transformer encoder is transformer.
+M2 A GNN that uses attention (GAT) is graph.
+M3 Fingerprint or Markov-chain models count as classical_ml when learned from data.
+M4 For evasion and evaluation papers, code the paper's own learned model (e.g. the attack's generator);
+   if it has none, code the detectors it attacks or evaluates; if several classes, hybrid.
+
+Every label gets a reason of at most 20 words quoting or paraphrasing the abstract.

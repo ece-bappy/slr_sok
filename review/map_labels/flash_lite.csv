@@ -1,0 +1,292 @@
+id,task,study_type,model_class,reason,judge
+S0041,multi_attack,detection,deep_learning,Uses a hybrid CNN-LSTM model for intrusion detection on heterogeneous multi-attack datasets.,gemini/gemini-3.1-flash-lite
+S0044,malware,detection,transformer,Proposes a BERT-LSTM framework for encrypted traffic signature identification and real-time threat detection.,gemini/gemini-3.1-flash-lite
+S0066,multi_attack,detection,hybrid,Proposes a multi-modal ensemble meta-learning intrusion detection framework evaluated on heterogeneous IoT and botnet traffic.,gemini/gemini-3.1-flash-lite
+S0074,multi_attack,detection,transformer,Proposes a protocol-language model (RWKV) for network intrusion detection by treating flows as a language.,gemini/gemini-3.1-flash-lite
+S0090,c2_botnet,detection,deep_learning,"Proposes a deep learning framework (Autoencoder, GRU, LSTM) to detect DGA-based malware in DoH traffic.",gemini/gemini-3.1-flash-lite
+S0095,doh_tunnel,detection,deep_learning,Proposes a meta-learning based adaptive framework for identifying malicious DoH tunneling tools.,gemini/gemini-3.1-flash-lite
+S0097,malware,detection,classical_ml,Proposes an adaptive encrypted malicious traffic detection framework using dual-drift awareness for dynamic networks.,gemini/gemini-3.1-flash-lite
+S0098,malware,detection,classical_ml,Proposes an adaptive feature clustering algorithm and a classification model to identify encrypted malicious traffic.,gemini/gemini-3.1-flash-lite
+S0106,malware,evasion,deep_learning,Proposes an adversarial defense and detection framework for encrypted traffic using autoencoders and multisignal detection.,gemini/gemini-3.1-flash-lite
+S0113,malware,evasion,deep_learning,"Proposes AEGIS, a thermodynamic state space model for detecting adversarial evasion in encrypted network traffic.",gemini/gemini-3.1-flash-lite
+S0216,c2_botnet,detection,deep_learning,Proposes an RNN-based deep learning framework to detect stealthy C2 activities from encrypted HTTPS traffic.,gemini/gemini-3.1-flash-lite
+S0217,c2_botnet,detection,deep_learning,Proposes a spatio-temporal neural network for interaction-enhanced semantic-aware detection of C2 channels.,gemini/gemini-3.1-flash-lite
+S0235,other,detection,hybrid,Proposes a cognitive-adaptive multilayer AI firewall architecture for encrypted traffic analysis and quantum threat detection.,gemini/gemini-3.1-flash-lite
+S0267,c2_botnet,detection,deep_learning,"Proposes CPFI, a neural architecture search-based framework to detect malicious C2 traffic over TLS 1.3.",gemini/gemini-3.1-flash-lite
+S0270,multi_attack,detection,transformer,Proposes a cross-domain encrypted traffic attack detection framework using ET-BERT with feature alignment.,gemini/gemini-3.1-flash-lite
+S0328,other,detection,classical_ml,"Proposes two-stage ML model (Random Forest, XGBoost) to classify I2P traffic as exfiltration or legitimate.",gemini/gemini-3.1-flash-lite
+S0329,malware,detection,classical_ml,Compares flow-feature-based models and JA4+ TLS fingerprinting for malware detection in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S0348,dos,detection,deep_learning,"Proposes a deep learning framework (CNN, BiLSTM, attention) for DDoS attack-vector identification.",gemini/gemini-3.1-flash-lite
+S0366,malware,detection,graph,Proposes an approach using Dynamic Interaction Flow Graphs and GNNs for early malicious traffic detection.,gemini/gemini-3.1-flash-lite
+S0374,malware,detection,deep_learning,Evaluates CNN and autoencoder models for cryptojacking detection in encrypted TLS/VPN traffic.,gemini/gemini-3.1-flash-lite
+S0382,malware,detection,classical_ml,Proposes a malware detection framework using JA4/JA4S fingerprints and classical machine learning classifiers.,gemini/gemini-3.1-flash-lite
+S0397,doh_tunnel,detection,hybrid,"Proposes a stacked ensemble (neural base learners, XGBoost meta-learner) for intrusion detection in encrypted DoH.",gemini/gemini-3.1-flash-lite
+S0425,multi_attack,evasion,deep_learning,Evaluates adversarial attacks on neural and classical detectors for encrypted DNS abuse (DGA/tunneling).,gemini/gemini-3.1-flash-lite
+S0427,anomaly,detection,classical_ml,Proposes an interpretable Evidential k-NN classifier for network traffic classification and anomaly detection.,gemini/gemini-3.1-flash-lite
+S0437,malware,detection,transformer,Proposes a resilient framework for darknet traffic detection using TabPFN and transformer-based architectures.,gemini/gemini-3.1-flash-lite
+S0472,malware,detection,hybrid,Proposes a hybrid Graph-based feature fusion and XGBoost framework for malware detection.,gemini/gemini-3.1-flash-lite
+S0567,anomaly,detection,unclear,Proposes an incremental learning method for encrypted traffic intrusion detection using knowledge distillation.,gemini/gemini-3.1-flash-lite
+S0568,multi_attack,evaluation,hybrid,Evaluates data sampling for ensemble and deep learning models on IoT attack detection datasets.,gemini/gemini-3.1-flash-lite
+S0639,c2_botnet,detection,deep_learning,Proposes a framework for botnet traffic classification using self-supervised pre-training.,gemini/gemini-3.1-flash-lite
+S0659,malware,detection,hybrid,"Proposes an ensemble framework (autoencoder, GANs, anomaly detectors) for robust malicious Tor traffic detection.",gemini/gemini-3.1-flash-lite
+S0660,doh_tunnel,detection,classical_ml,Machine learning-based DoH traffic detection mechanism using standard flow features compatible with common monitoring tools.,gemini/gemini-3.1-flash-lite
+S0664,malware,detection,deep_learning,"Deep learning framework using 1D-CNN, BiLSTM, and self-attention mechanism for encrypted traffic identification.",gemini/gemini-3.1-flash-lite
+S0669,malware,detection,classical_ml,Proposed Mean FlowSpectrum extension to the FlowSpectrum similarity rule for encrypted traffic classification.,gemini/gemini-3.1-flash-lite
+S0679,malware,detection,transformer,Transformer-based framework integrating raw byte sequences and statistical features for encrypted traffic detection.,gemini/gemini-3.1-flash-lite
+S0680,doh_tunnel,detection,classical_ml,Detection pipeline using LightGBM-based feature selection and a voting ensemble for malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S0696,malware,detection,graph,Robust encrypted traffic detection using a multi-task Graph Neural Network with bidirectional attentive sequence encoders.,gemini/gemini-3.1-flash-lite
+S0700,c2_botnet,evaluation,hybrid,Measurement study evaluating fusion of TLS metadata for C2 detection and identifying evaluation pitfalls.,gemini/gemini-3.1-flash-lite
+S0720,dos,evaluation,deep_learning,Evaluates impact of PQC on existing deep learning-based intrusion detection systems under DDoS conditions.,gemini/gemini-3.1-flash-lite
+S0725,multi_attack,detection,classical_ml,Comparative study and optimization of various classical machine learning ensemble methods for intrusion detection.,gemini/gemini-3.1-flash-lite
+S0747,malware,detection,graph,Parallel multi-channel fusion graph neural network for end-to-end encrypted IoT traffic classification.,gemini/gemini-3.1-flash-lite
+S0802,doh_tunnel,system,deep_learning,SmartNIC-based real-time detection framework using Multilayer Perceptron for encrypted DGA and DNS tunneling.,gemini/gemini-3.1-flash-lite
+S0887,doh_tunnel,detection,hybrid,"Comparative analysis of four machine learning models, including Random Forest and ANN, for malicious DoH detection.",gemini/gemini-3.1-flash-lite
+S0905,multi_attack,detection,deep_learning,Deep neural network framework using multi-task learning for secure encrypted traffic analysis.,gemini/gemini-3.1-flash-lite
+S0907,malware,detection,hybrid,Hybrid model combining Swin Transformer and Bi-LSTM for multi-channel behavioral image-based malicious traffic detection.,gemini/gemini-3.1-flash-lite
+S0909,doh_tunnel,detection,hybrid,Deep detection framework using 1D convolutional branches and Transformer encoders for robust DoH tunnel detection.,gemini/gemini-3.1-flash-lite
+S0911,doh_tunnel,detection,hybrid,"Proposes a hybrid model combining transformer, GRU, and MLP to classify DoH tunneling tools.",gemini/gemini-3.1-flash-lite
+S0926,malware,detection,transformer,"Uses a criss-cross transformer for encrypted traffic classification, fingerprinting, and malware detection.",gemini/gemini-3.1-flash-lite
+S0928,anomaly,detection,deep_learning,Uses a β-variational autoencoder for anomaly detection in encrypted IoT traffic using flow statistics.,gemini/gemini-3.1-flash-lite
+S0932,malware,detection,unclear,Aims to detect malicious traffic from evolving malware; abstract does not specify the machine learning model.,gemini/gemini-3.1-flash-lite
+S0939,multi_attack,detection,deep_learning,TrafficCross uses multimodal fusion for encrypted traffic classification across diverse tasks like tunneling and malware.,gemini/gemini-3.1-flash-lite
+S0944,malware,detection,transformer,Uses a model integrating heterogeneous graphs with Transformer architecture to detect malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S0952,malware,detection,llm,Proposes Models-to-Model Learning using a large language model for label-free encrypted traffic analysis.,gemini/gemini-3.1-flash-lite
+S0955,anomaly,detection,transformer,"Uses SiamXBERT, a transformer-based meta-learning framework, for detecting unknown attacks in IoT networks.",gemini/gemini-3.1-flash-lite
+S0971,web_attack,detection,classical_ml,Uses gradient-boosted tree models on JA4 TLS fingerprints to detect web bad bots.,gemini/gemini-3.1-flash-lite
+S0995,malware,detection,transformer,Uses a Session-Transformer and deep neural networks to detect and classify encrypted malware traffic.,gemini/gemini-3.1-flash-lite
+S1017,malware,detection,classical_ml,Uses TLS fingerprinting with MinHash and Locality-Sensitive Hashing to detect malicious domains and malware.,gemini/gemini-3.1-flash-lite
+S1025,malware,detection,unclear,Focuses on feature extraction for malware detection; abstract does not specify the machine learning model used.,gemini/gemini-3.1-flash-lite
+S1042,malware,detection,deep_learning,Uses a masked autoencoder framework with ConvNeXt encoders to detect encrypted malware traffic.,gemini/gemini-3.1-flash-lite
+S1067,anomaly,detection,deep_learning,Employs machine learning and deep neural networks to detect anomalies in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1076,doh_tunnel,detection,classical_ml,Uses Random Forest and Naive Bayes to detect intrusion attacks in encrypted DNS traffic.,gemini/gemini-3.1-flash-lite
+S1087,doh_tunnel,detection,deep_learning,Proposes a residual network (HAResNet) with hybrid attention mechanisms to detect malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S1100,dos,detection,deep_learning,Proposes an autoencoder-based detection method to identify DDoS attacks in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1132,c2_botnet,detection,unclear,"Proposes a framework (BoNC) for classifying encrypted botnet traffic, but does not specify the underlying model architecture.",gemini/gemini-3.1-flash-lite
+S1142,malware,detection,unclear,Proposes using certificate information for malicious traffic detection without specifying the underlying machine learning model.,gemini/gemini-3.1-flash-lite
+S1155,doh_tunnel,system,classical_ml,"Proposes a decentralized federated learning framework adapting classical machine learning algorithms (SVM, RF, etc.) for DoH threat detection.",gemini/gemini-3.1-flash-lite
+S1163,dos,detection,deep_learning,Proposes a hybrid CNN-LSTM model using JA4 fingerprints to detect DDoS attacks in 5G SDN environments.,gemini/gemini-3.1-flash-lite
+S1211,malware,detection,deep_learning,"Proposes HEAT, using hierarchical attention and Kolmogorov-Arnold Networks to detect encrypted malicious traffic.",gemini/gemini-3.1-flash-lite
+S1217,doh_tunnel,detection,classical_ml,"Proposes detecting and categorizing DoH traffic using ensemble classifiers like Random Forest, CatBoost, and XGBoost.",gemini/gemini-3.1-flash-lite
+S1228,malware,detection,deep_learning,Proposes a framework using variational autoencoders and Gaussian prototypes to detect unknown malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1243,malware,detection,deep_learning,Proposes DLET-Classifier using depthwise separable convolutional neural networks and channel attention for encrypted traffic classification.,gemini/gemini-3.1-flash-lite
+S1244,doh_tunnel,detection,hybrid,"Proposes a DoH tunneling detection system using feature selection with both classical ML (XGBoost, RF) and CNNs.",gemini/gemini-3.1-flash-lite
+S1251,malware,detection,unclear,"Proposes a multi-model serial framework for encrypted traffic classification, without specifying the underlying classification models.",gemini/gemini-3.1-flash-lite
+S1254,doh_tunnel,detection,classical_ml,Uses a Random Forest classifier combined with blackhole features to detect DNS tunneling in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1266,malware,detection,deep_learning,Proposes a multi-view neural network approach to integrate feature views for detecting TLS encrypted malware traffic.,gemini/gemini-3.1-flash-lite
+S1274,malware,detection,classical_ml,Employs an ensemble learning strategy with a voting classifier of base models to identify Android encrypted malware.,gemini/gemini-3.1-flash-lite
+S1283,doh_tunnel,detection,hybrid,Proposes a Tab-VAE and self-attention model to detect DNS data exfiltration over DoH traffic.,gemini/gemini-3.1-flash-lite
+S1302,doh_tunnel,evaluation,classical_ml,"Evaluates Random Forest, Gradient Boosting, and Logistic Regression models for detecting evasive DoH exfiltration.",gemini/gemini-3.1-flash-lite
+S1336,c2_botnet,detection,classical_ml,Proposes a Random Forest model optimized with Genetic Algorithms to detect botnet activity.,gemini/gemini-3.1-flash-lite
+S1337,malware,detection,graph,Uses Graph Neural Networks to mine flow correlations for classifying malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1342,anomaly,detection,deep_learning,Proposes a frequency-domain anomaly detection framework for encrypted flows in Industrial Control Systems.,gemini/gemini-3.1-flash-lite
+S1354,malware,detection,graph,Proposes a graph-based framework using GraphSAGE for encrypted traffic detection.,gemini/gemini-3.1-flash-lite
+S1357,malware,detection,hybrid,"Proposes a hybrid architecture combining time-series, vision transformer, and graph neural networks for cryptomining traffic detection.",gemini/gemini-3.1-flash-lite
+S1383,doh_tunnel,detection,hybrid,Proposes a hybrid model combining graph neural networks and capsule networks for malicious DoH traffic detection.,gemini/gemini-3.1-flash-lite
+S1396,malware,detection,classical_ml,Proposes an interpretable framework using Random Forest and SHAP for detecting malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1416,malware,detection,transformer,Proposes a generative pre-trained transformer model for encrypted traffic classification and detection.,gemini/gemini-3.1-flash-lite
+S1448,doh_tunnel,detection,deep_learning,Proposes a CNN-based framework with a diffusion model for identifying malicious DoH tunnel traffic.,gemini/gemini-3.1-flash-lite
+S1449,malware,detection,classical_ml,Proposes an ensemble learning framework with multi-granularity representation to detect malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1459,malware,detection,deep_learning,Proposes a metric learning and order-aware pre-training approach for detecting unknown malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1460,malware,detection,llm,Proposes an LLM-based framework to detect malicious encrypted traffic patterns.,gemini/gemini-3.1-flash-lite
+S1461,multi_attack,detection,graph,Proposes a graph-based multi-classifier framework to detect various traffic anomalies like C2 and exfiltration.,gemini/gemini-3.1-flash-lite
+S1465,malware,system,unclear,Proposes an ARM-based cluster and integrates a machine learning-based firewall to detect malicious HTTPS traffic.,gemini/gemini-3.1-flash-lite
+S1466,malware,detection,deep_learning,Proposes a Masked Autoencoder framework using multidimensional feature fusion to detect malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1482,dos,detection,transformer,"Introduces a transformer-based classifier, ModernBERT-DoS, specifically for detecting and classifying DDoS attacks.",gemini/gemini-3.1-flash-lite
+S1488,malware,evasion,deep_learning,Proposes an adversarial traffic generation method to evade and evaluate state-of-the-art deep learning detection models.,gemini/gemini-3.1-flash-lite
+S1489,doh_tunnel,detection,deep_learning,Uses a multi-task learning-based 2D-CNN framework to detect malicious DoH traffic and DNS tunneling tools.,gemini/gemini-3.1-flash-lite
+S1492,malware,detection,deep_learning,Proposes a multi-task detection model using Session2Token embedding for classifying encrypted traffic sequences.,gemini/gemini-3.1-flash-lite
+S1494,anomaly,detection,hybrid,Uses a hybrid of neural networks and random forest to detect anomalies in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1498,anomaly,detection,classical_ml,Combines cryptanalysis and a hybrid ML pipeline (decision trees and SVM/Random-Forest) for anomaly detection.,gemini/gemini-3.1-flash-lite
+S1500,doh_tunnel,detection,deep_learning,Uses a bio-inspired neuromorphic architecture (SNN/GAN) to immunize and detect DoH-based threats.,gemini/gemini-3.1-flash-lite
+S1502,doh_tunnel,detection,transformer,Presents a transformer-based framework with adversarial training to detect and explain malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S1504,malware,detection,classical_ml,Uses a random forest classifier with class-incremental learning to classify evolving encrypted network traffic.,gemini/gemini-3.1-flash-lite
+S1505,malware,detection,unclear,"Proposes RobustDetector, which uses data enhancement and dropout to detect obfuscated malicious encrypted traffic.",gemini/gemini-3.1-flash-lite
+S1508,c2_botnet,system,classical_ml,Offloads an ML-based random forest classifier for encrypted C2 traffic detection onto SmartNIC hardware.,gemini/gemini-3.1-flash-lite
+S1515,malware,detection,graph,"Uses a graph neural network framework, OnionGraph, to detect and classify Tor-based malware traffic.",gemini/gemini-3.1-flash-lite
+S1521,dos,detection,deep_learning,Optimizes feature selection and deep learning to detect low-rate distributed denial of service attacks.,gemini/gemini-3.1-flash-lite
+S1528,dos,detection,graph,Proposes a GNN-based domain adaptation solution for HTTP/3 DDoS attack detection.,gemini/gemini-3.1-flash-lite
+S1556,malware,detection,deep_learning,"Proposes PRIME, an incremental learning framework using deep learning for encrypted traffic classification.",gemini/gemini-3.1-flash-lite
+S1567,malware,detection,deep_learning,"Proposes PureFlow, an autoencoder-based framework to purify datasets for malicious traffic detection.",gemini/gemini-3.1-flash-lite
+S1576,malware,detection,transformer,Proposes RD-KNN using RoBERTa and KNN to detect encrypted malicious traffic.,gemini/gemini-3.1-flash-lite
+S1580,c2_botnet,detection,deep_learning,Proposes an MLP-based framework for real-time detection of C2 traffic.,gemini/gemini-3.1-flash-lite
+S1622,web_attack,detection,classical_ml,Proposes a phishing detection system for video conferencing applications using ML.,gemini/gemini-3.1-flash-lite
+S1657,c2_botnet,detection,classical_ml,Proposes a machine learning-based method using metadata to detect Cobalt Strike C2 traffic.,gemini/gemini-3.1-flash-lite
+S1676,c2_botnet,detection,classical_ml,"Evaluates models, including XGBoost, for detecting reverse shell exploits in TLS traffic.",gemini/gemini-3.1-flash-lite
+S1679,c2_botnet,system,unclear,Implements a distributed ML model on hardware accelerators to detect encrypted C2 traffic.,gemini/gemini-3.1-flash-lite
+S1681,malware,detection,deep_learning,Proposes an XAI-based method for automatic rule extraction from deep learning intrusion detection models.,gemini/gemini-3.1-flash-lite
+S1682,doh_tunnel,evasion,deep_learning,Proposes a black-box adversarial attack framework to evade DoH tunnel detection systems.,gemini/gemini-3.1-flash-lite
+S1687,doh_tunnel,detection,hybrid,"Proposes CASE, a contrastive autoencoder and gradient boosting framework, to detect malicious DoH tunneling.",gemini/gemini-3.1-flash-lite
+S1717,doh_tunnel,detection,transformer,"Proposes WEDoHTool using word embedding, TextCNN, and Transformer encoder to detect DoH tunnel traffic.",gemini/gemini-3.1-flash-lite
+S1734,malware,detection,deep_learning,Proposes a lightweight CNN model using knowledge distillation to detect malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1746,c2_botnet,detection,classical_ml,Proposes a feature identification approach using machine learning to detect APT C&C behavior.,gemini/gemini-3.1-flash-lite
+S1761,malware,evasion,transformer,Evaluates pre-trained ETA models' security by conducting adversarial attacks on ET-BERT.,gemini/gemini-3.1-flash-lite
+S1764,malware,detection,hybrid,Proposes a framework (AFF_CGE) combining attention mechanisms and graph neural networks for detecting malicious traffic.,gemini/gemini-3.1-flash-lite
+S1766,malware,detection,hybrid,Proposes an adversarial hybrid neural network using GANs with CNN variants (ResNet/ResNeXt/DenseNet) to detect malicious traffic.,gemini/gemini-3.1-flash-lite
+S1774,web_attack,detection,hybrid,"Proposes an ensemble of deep neural networks, LSTM, and Random Forest classifiers to detect phishing.",gemini/gemini-3.1-flash-lite
+S1778,doh_tunnel,detection,classical_ml,Utilizes statistical features and various machine learning algorithms to detect DoH tunnels and DGA domains.,gemini/gemini-3.1-flash-lite
+S1783,anomaly,detection,deep_learning,Proposes a deep learning framework using LSTM auto-encoders to detect anomalous enterprise KMIP traffic.,gemini/gemini-3.1-flash-lite
+S1818,c2_botnet,detection,classical_ml,"Uses novelty detection and entropy-based features to detect FakeTLS, a stealthy C2 communication technique.",gemini/gemini-3.1-flash-lite
+S1849,malware,detection,deep_learning,Proposes an autoencoder-based anomaly detection framework to detect malware in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1854,dos,system,unclear,Describes a network digital twin system for testing and validating DoS detection under controlled environments.,gemini/gemini-3.1-flash-lite
+S1879,doh_tunnel,detection,deep_learning,Proposes a self-attention BiLSTM model to improve the detection of DoH covert tunnels.,gemini/gemini-3.1-flash-lite
+S1886,c2_botnet,detection,classical_ml,Uses active TLS fingerprinting methodology to identify servers and detect C2 infrastructure.,gemini/gemini-3.1-flash-lite
+S1887,malware,detection,classical_ml,Uses flow-based features and SVM optimized by PSO to detect malware in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1897,malware,detection,classical_ml,Uses TLS handshake features and machine learning to detect encrypted cryptocurrency mining traffic.,gemini/gemini-3.1-flash-lite
+S1901,multi_attack,detection,graph,Uses a heterogeneous information network and graph neural network to detect obfuscated HTTPS tunnel traffic from multiple threats.,gemini/gemini-3.1-flash-lite
+S1902,multi_attack,detection,hybrid,"Proposes an ensemble of ML, DL, and attention-based models to detect phishing and malware.",gemini/gemini-3.1-flash-lite
+S1911,malware,detection,classical_ml,"Proposes a traffic sampling method and uses classifiers (RF, XGBoost, SVM) to detect malware in encrypted traffic.",gemini/gemini-3.1-flash-lite
+S1914,c2_botnet,evasion,classical_ml,"Evaluates evasion attacks (Hop Skip Jump, Fast Gradient Sign) against RF and SVM-based botnet traffic detectors.",gemini/gemini-3.1-flash-lite
+S1920,malware,evaluation,classical_ml,Evaluates the effectiveness of JA4+ fingerprints to distinguish between malicious and benign applications in encrypted communications.,gemini/gemini-3.1-flash-lite
+S1926,c2_botnet,detection,unclear,Proposes feature engineering methods to adapt existing TLS 1.2 C2 traffic classifiers for TLS 1.3 flows.,gemini/gemini-3.1-flash-lite
+S1934,malware,detection,deep_learning,"Proposes HANet, a prototypical network-based few-shot classification method for encrypted malicious traffic.",gemini/gemini-3.1-flash-lite
+S1936,anomaly,detection,deep_learning,Proposes an unsupervised autoencoder-based model to detect Heartbleed TLS anomalies.,gemini/gemini-3.1-flash-lite
+S1938,malicious_server,detection,classical_ml,Extends a machine learning pipeline for TLS-based server classification to detect malicious servers and botnets.,gemini/gemini-3.1-flash-lite
+S1940,anomaly,detection,graph,Proposes an unsupervised graph-based learning method to detect unknown encrypted malicious traffic by analyzing flow interactions.,gemini/gemini-3.1-flash-lite
+S1945,doh_tunnel,detection,deep_learning,"Proposes ProtoDoH, a prototypical network-based few-shot learning framework for DoH tunnel detection.",gemini/gemini-3.1-flash-lite
+S1954,malware,detection,deep_learning,"Proposes HMMED, a hierarchical multimodal deep learning model for malicious encrypted traffic detection.",gemini/gemini-3.1-flash-lite
+S1972,malware,detection,classical_ml,Proposes a stacking ensemble machine learning model to detect malware in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S1974,doh_tunnel,detection,classical_ml,"Uses AdaBoost, SVC, and QDA models to classify and detect malicious DoH traffic.",gemini/gemini-3.1-flash-lite
+S1990,malware,detection,deep_learning,Proposes a lightweight CNN-based model for malicious encrypted traffic detection using KL image compression.,gemini/gemini-3.1-flash-lite
+S1991,c2_botnet,detection,deep_learning,Proposes a real-time deep learning-based system to detect C&C communication in DNS queries.,gemini/gemini-3.1-flash-lite
+S1999,dos,detection,classical_ml,"Uses supervised algorithms (SVM, Logistic Regression, RF, KNN) to detect QUIC traffic floods (DDoS).",gemini/gemini-3.1-flash-lite
+S2008,malware,detection,hybrid,Combines deep learning and J48 decision trees for malware detection and severity analysis.,gemini/gemini-3.1-flash-lite
+S2015,dos,detection,deep_learning,Proposes a deep learning-based method for detecting encrypted low-rate DDoS attacks.,gemini/gemini-3.1-flash-lite
+S2022,dos,detection,deep_learning,Proposes a deep learning-based method for detecting encrypted slow DDoS attacks.,gemini/gemini-3.1-flash-lite
+S2024,malware,detection,transformer,Uses parameter-efficient fine-tuning on pre-trained models for encrypted malicious traffic classification.,gemini/gemini-3.1-flash-lite
+S2026,multi_attack,detection,classical_ml,Proposes multiple kernel transfer learning algorithms to detect various cyber attacks in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S2027,malware,detection,classical_ml,Uses multi-view machine learning to mine behavioral features for malware detection.,gemini/gemini-3.1-flash-lite
+S2036,malware,detection,deep_learning,Proposes a deep learning-based multitask classification model for malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S2037,malware,detection,deep_learning,Proposes a deep learning approach combining raw bytes and statistical features to identify malware.,gemini/gemini-3.1-flash-lite
+S2043,web_attack,detection,deep_learning,Uses an autoencoder neural network to detect TLS connections containing Heartbleed attack variants.,gemini/gemini-3.1-flash-lite
+S2057,malware,detection,deep_learning,Uses meta-learning and convolutional neural networks to classify malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S2075,dos,detection,classical_ml,Proposes a defense against QUIC flooding using Bayesian optimization and Bloom filters.,gemini/gemini-3.1-flash-lite
+S2077,doh_tunnel,detection,classical_ml,Proposes a real-time system using machine learning to detect malicious DoH tunnels.,gemini/gemini-3.1-flash-lite
+S2129,malware,detection,deep_learning,Proposes a CNN model with a threshold attention mechanism to detect malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S2138,malware,detection,classical_ml,Uses attributed graph kernels and SVMs to detect malicious encrypted TLS traffic.,gemini/gemini-3.1-flash-lite
+S2153,anomaly,detection,deep_learning,Proposes deep prototype learning for detecting unknown encrypted attacks.,gemini/gemini-3.1-flash-lite
+S2162,c2_botnet,detection,llm,Uses LLM text embeddings for identifying malicious botnet TLS certificates.,gemini/gemini-3.1-flash-lite
+S2179,malware,detection,deep_learning,Proposes few-shot detection of encrypted malicious traffic using a 2D-CNN-based meta-learning approach.,gemini/gemini-3.1-flash-lite
+S2182,c2_botnet,detection,classical_ml,Uses random forest to detect Cobalt Strike C&C traffic in encrypted network flows.,gemini/gemini-3.1-flash-lite
+S2183,malware,detection,classical_ml,Proposes a feature selection framework for machine learning-based detection of malicious HTTPS/malware traffic.,gemini/gemini-3.1-flash-lite
+S2200,multi_attack,detection,graph,Uses Graph Neural Networks to mine behavior patterns from attack graphs for encrypted traffic classification.,gemini/gemini-3.1-flash-lite
+S2260,doh_tunnel,detection,deep_learning,"Compares LSTM, BiLSTM, and GRU deep learning models for classifying malicious/benign DoH traffic.",gemini/gemini-3.1-flash-lite
+S2286,doh_tunnel,detection,classical_ml,Two-layer mechanism detecting DoH connections and using DGA detection to identify FluBot malware.,gemini/gemini-3.1-flash-lite
+S2287,c2_botnet,detection,deep_learning,Uses multi-flow features and neural networks to detect stealthy Cobalt Strike C&C activities.,gemini/gemini-3.1-flash-lite
+S2291,doh_tunnel,detection,classical_ml,Uses GBDT and tree-ensemble models to detect DGA-based malware communications within DoH traffic.,gemini/gemini-3.1-flash-lite
+S2292,doh_tunnel,detection,hybrid,Compares multiple classical ML algorithms and LSTM deep learning models to detect DoH traffic tunnels.,gemini/gemini-3.1-flash-lite
+S2297,doh_tunnel,detection,classical_ml,Uses logistic and linear regression statistical models to profile and detect malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S2325,malware,detection,classical_ml,Uses XGBoost and Random Forest ensemble models to detect and classify encrypted malware traffic.,gemini/gemini-3.1-flash-lite
+S2326,multi_attack,detection,deep_learning,"Proposes ERNN, an error-resilient RNN model designed for robust encrypted intrusion and malware traffic detection.",gemini/gemini-3.1-flash-lite
+S2338,malware,detection,hybrid,Proposes a two-layer detection framework utilizing both deep learning (ResNet) and traditional machine learning algorithms.,gemini/gemini-3.1-flash-lite
+S2344,multi_attack,detection,transformer,Uses a Masked AutoEncoder pre-training model for accurate and efficient malicious network traffic classification.,gemini/gemini-3.1-flash-lite
+S2357,c2_botnet,detection,classical_ml,Proposes a machine learning classifier to detect RDP MITM tools using network features.,gemini/gemini-3.1-flash-lite
+S2360,malware,detection,deep_learning,Proposes an incremental and interpretable RNN model for general encrypted traffic classification.,gemini/gemini-3.1-flash-lite
+S2363,malware,detection,deep_learning,Proposes a deep learning-based malware-oriented identification scheme for encrypted traffic using feature fusion.,gemini/gemini-3.1-flash-lite
+S2366,doh_tunnel,detection,classical_ml,Proposes a method using core features and machine learning to detect DoH covert tunnel traffic.,gemini/gemini-3.1-flash-lite
+S2395,web_attack,detection,classical_ml,"Proposes machine learning models (RF, XGB, Light GBM) for detecting phishing URLs in encrypted traffic.",gemini/gemini-3.1-flash-lite
+S2399,malware,detection,classical_ml,Proposes an ensemble machine learning-based technique for malware detection and family classification in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S2400,web_attack,detection,classical_ml,Proposes a machine learning-based technique for detecting phishing URLs from encrypted traffic.,gemini/gemini-3.1-flash-lite
+S2405,malware,detection,classical_ml,"Proposes Mal-lightDet, a voting-based machine learning framework for detecting malicious encrypted traffic.",gemini/gemini-3.1-flash-lite
+S2406,multi_attack,detection,deep_learning,Proposes a fully-supervised auto-encoder architecture to identify malicious encrypted network traffic instances.,gemini/gemini-3.1-flash-lite
+S2408,doh_tunnel,detection,deep_learning,Proposes a two-layer deep learning approach to classify and characterize malicious DNS over HTTPS traffic.,gemini/gemini-3.1-flash-lite
+S2420,malware,detection,deep_learning,Proposes a multi-modal deep learning approach (Meta-TFEN) for detecting encrypted malicious traffic.,gemini/gemini-3.1-flash-lite
+S2421,malware,detection,deep_learning,"Proposes MF-Net, a Siamese Neural Network-based classifier, for identifying encrypted malicious traffic.",gemini/gemini-3.1-flash-lite
+S2422,dos,detection,classical_ml,"Uses machine learning algorithms (KNN, logistic regression) to identify flooding attacks in HTTP/3 traffic.",gemini/gemini-3.1-flash-lite
+S2427,malware,detection,classical_ml,Proposes a C4.5 decision tree-based model for classifying and monitoring encrypted attack traffic.,gemini/gemini-3.1-flash-lite
+S2467,malicious_server,evaluation,classical_ml,Analyzes botnet evolution using active TLS fingerprinting to study detection and re-identification of suspicious servers.,gemini/gemini-3.1-flash-lite
+S2471,malware,detection,classical_ml,Proposes a machine learning-based model for real-time malware detection in encrypted traffic without decryption.,gemini/gemini-3.1-flash-lite
+S2505,c2_botnet,detection,classical_ml,"Uses XGBoost, SVM, RF, and Logistic Regression to detect botnet encrypted traffic and perform feature importance analysis.",gemini/gemini-3.1-flash-lite
+S2524,multi_attack,detection,graph,"Proposes TGPrint, a Graph Convolution Attention Network framework, to classify different types of malicious attacks in encrypted traffic.",gemini/gemini-3.1-flash-lite
+S2548,malware,detection,classical_ml,Proposes an unsupervised approach to detect and cluster malicious TLS flows using 90 features.,gemini/gemini-3.1-flash-lite
+S2549,doh_tunnel,detection,classical_ml,Proposes a behavioral profiling model for malicious DoH traffic using decision trees and random forest.,gemini/gemini-3.1-flash-lite
+S2576,malware,detection,classical_ml,Proposes an adaptive online analysis approach based on Improved Adaptive Random Forests to classify malware families.,gemini/gemini-3.1-flash-lite
+S2578,malware,detection,deep_learning,Uses Word2Vec neural embeddings to detect malicious encrypted traffic at host and flow levels.,gemini/gemini-3.1-flash-lite
+S2594,malicious_server,detection,classical_ml,Proposes active TLS stack fingerprinting to classify and identify cybercriminal infrastructures and servers.,gemini/gemini-3.1-flash-lite
+S2604,malware,system,classical_ml,"Proposes Aker, an open-source security platform using decision-tree models to classify malware in encrypted traffic.",gemini/gemini-3.1-flash-lite
+S2606,malware,detection,deep_learning,"Proposes AMDetector, an image-based meta-learning method to classify large-scale and novel Android malware traffic.",gemini/gemini-3.1-flash-lite
+S2611,doh_tunnel,detection,classical_ml,Implements a stacked Random Forest framework to detect and classify DNS-over-HTTPS attacks.,gemini/gemini-3.1-flash-lite
+S2615,c2_botnet,detection,deep_learning,Proposes an Android botnet detection technique using network analysis and an Artificial Neural Network.,gemini/gemini-3.1-flash-lite
+S2623,malware,detection,classical_ml,Proposes a lightweight detection framework using active learning to detect malware in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S2626,c2_botnet,detection,classical_ml,Proposes an SDN-based system using one-class classifier models to detect DGA-enabled malware communicating with C2 servers.,gemini/gemini-3.1-flash-lite
+S2637,doh_tunnel,detection,classical_ml,Explores using flow entropy and Random Forest to detect malicious behaviours in encrypted DNS tunnels.,gemini/gemini-3.1-flash-lite
+S2659,malware,detection,classical_ml,Proposes a deep forest (tree-based) detection method for SSL/TLS encrypted malicious traffic.,gemini/gemini-3.1-flash-lite
+S2668,web_attack,detection,classical_ml,Uses a machine learning classifier to detect phishing certificates in HTTPS traffic.,gemini/gemini-3.1-flash-lite
+S2672,doh_tunnel,detection,unclear,Proposes a machine learning approach to detect DoH-based data exfiltration.,gemini/gemini-3.1-flash-lite
+S2676,doh_tunnel,detection,classical_ml,Uses statistical traffic analysis to identify malicious DoH tunnel traffic.,gemini/gemini-3.1-flash-lite
+S2680,doh_tunnel,detection,unclear,Proposes a semi-supervised machine learning classifier for detecting malicious DoH tunneling.,gemini/gemini-3.1-flash-lite
+S2681,doh_tunnel,detection,unclear,Proposes a behavior-based model with a dual-tier classifier for DoH tunneling detection.,gemini/gemini-3.1-flash-lite
+S2685,malware,detection,unclear,Proposes an interpretable framework for encrypted malicious traffic detection using post hoc interpretation.,gemini/gemini-3.1-flash-lite
+S2690,doh_tunnel,detection,transformer,Proposes a Transformer-based detection system for malicious DoH tunneling.,gemini/gemini-3.1-flash-lite
+S2695,malware,evaluation,classical_ml,Evaluates the robustness of classical machine learning detectors against evasion attacks.,gemini/gemini-3.1-flash-lite
+S2706,malware,evasion,classical_ml,Proposes a black-box adversarial attack framework (FAT) using proxy classifiers to evade traffic classifiers.,gemini/gemini-3.1-flash-lite
+S2712,malware,detection,deep_learning,Proposes a few-shot open-set encrypted traffic classification framework using self-supervised deep learning.,gemini/gemini-3.1-flash-lite
+S2731,malware,detection,hybrid,Proposes a hybrid model combining deep convolutional neural networks with SVMs for traffic detection.,gemini/gemini-3.1-flash-lite
+S2758,malware,detection,deep_learning,Proposes a deep learning model (MalDIST) for malware traffic detection and classification.,gemini/gemini-3.1-flash-lite
+S2760,doh_tunnel,detection,classical_ml,Proposes a hierarchical machine learning system to recognize malicious DoH tunnel tools.,gemini/gemini-3.1-flash-lite
+S2761,malware,detection,classical_ml,Proposes an unsupervised feature adaptive learning method to detect malicious SSL/TLS traffic.,gemini/gemini-3.1-flash-lite
+S2762,doh_tunnel,detection,classical_ml,Proposed ensemble of classical machine learning algorithms to detect malicious DNS-over-HTTPS traffic.,gemini/gemini-3.1-flash-lite
+S2768,malware,detection,deep_learning,Proposed multimodal deep learning approach for detecting encrypted malware traffic using multiple traffic modalities.,gemini/gemini-3.1-flash-lite
+S2770,malware,detection,classical_ml,Proposed multi-stage detection method using machine learning voting to detect malicious HTTPS tunnels.,gemini/gemini-3.1-flash-lite
+S2780,malware,detection,hybrid,Proposed one-shot detection method using a hybrid ResNet and SVM model for malicious TLS traffic.,gemini/gemini-3.1-flash-lite
+S2800,malware,detection,transformer,Proposed R1DIT transformer-based model for malware traffic classification without explicit feature extraction.,gemini/gemini-3.1-flash-lite
+S2806,malware,detection,deep_learning,Proposed deep learning model combining CNN and LSTM for malicious TLS traffic detection.,gemini/gemini-3.1-flash-lite
+S2812,malware,evaluation,hybrid,Evaluated Markov chain and various ML classifiers for classifying encrypted malware traffic into families.,gemini/gemini-3.1-flash-lite
+S2852,c2_botnet,evasion,unclear,Investigated evasion of C2 traffic detection by modifying Metasploit traffic generation patterns.,gemini/gemini-3.1-flash-lite
+S2873,malware,detection,hybrid,Proposed encrypted malicious traffic detection using a hybrid deep learning and reinforcement learning model.,gemini/gemini-3.1-flash-lite
+S2881,malware,detection,classical_ml,Proposed feature extraction and Random Forest classifier for identifying TLS malicious traffic.,gemini/gemini-3.1-flash-lite
+S2887,malware,detection,classical_ml,Proposed malicious traffic detection framework using ensemble learning on heterogeneous traffic features.,gemini/gemini-3.1-flash-lite
+S2894,malware,detection,classical_ml,Proposed stacking-based ensemble model using SVM and Random Forest for Android malware detection.,gemini/gemini-3.1-flash-lite
+S2916,c2_botnet,evaluation,deep_learning,Evaluated the impact of packet sampling on deep learning-based C2 TLS malware traffic detection.,gemini/gemini-3.1-flash-lite
+S2920,malware,evaluation,classical_ml,Analyzed learning-based encrypted malware traffic classification using an AutoML ensemble approach.,gemini/gemini-3.1-flash-lite
+S2926,multi_attack,detection,hybrid,Proposed hybrid ensemble of deep neural networks and XGBoost for intrusion detection.,gemini/gemini-3.1-flash-lite
+S2949,doh_tunnel,detection,classical_ml,Classifies DNS tunneling types on DoH traffic using common machine learning models.,gemini/gemini-3.1-flash-lite
+S2950,malicious_server,system,classical_ml,Proposes a serverless architecture identifying malicious SSL/TLS fingerprints using weighted algorithms.,gemini/gemini-3.1-flash-lite
+S2958,malware,detection,deep_learning,Proposes detecting malicious SSL traffic using LSTM autoencoders and CNN-based classification.,gemini/gemini-3.1-flash-lite
+S2966,c2_botnet,detection,classical_ml,Detects cryptojacking botnet traffic using a random forest classifier based on network behavior features.,gemini/gemini-3.1-flash-lite
+S2968,doh_tunnel,detection,classical_ml,Uses supervised machine learning techniques and feature selection to detect malicious DoH protocol activities.,gemini/gemini-3.1-flash-lite
+S2969,doh_tunnel,detection,deep_learning,Proposes an intrusion detection model using statistical analysis and bi-directional recurrent neural networks.,gemini/gemini-3.1-flash-lite
+S2977,web_attack,detection,classical_ml,Presents a machine learning approach using packet-level features to detect HTTPS brute-force web attacks.,gemini/gemini-3.1-flash-lite
+S2982,malware,detection,deep_learning,"Presents TGAN-IDS, an anomaly detector using dual GANs and CNNs to detect unknown ransomware.",gemini/gemini-3.1-flash-lite
+S2984,web_attack,system,classical_ml,Proposes hardware-accelerated decision tree architectures for efficient encrypted traffic analysis.,gemini/gemini-3.1-flash-lite
+S2991,doh_tunnel,detection,deep_learning,Uses variational autoencoders and bidirectional GRUs to automatically learn features and detect DNS tunnels.,gemini/gemini-3.1-flash-lite
+S2992,malware,detection,deep_learning,"Proposes a 2D-CNN model for identifying network traffic, achieving high accuracy for malicious traffic.",gemini/gemini-3.1-flash-lite
+S3001,doh_tunnel,evaluation,hybrid,Evaluates and optimizes various machine and deep learning models for classifying malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S3002,malware,evaluation,hybrid,Systematically evaluates existing malware family classification methods for TLS-encrypted traffic.,gemini/gemini-3.1-flash-lite
+S3005,doh_tunnel,evaluation,classical_ml,Compares machine learning classifiers to determine effective methods for detecting malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S3028,doh_tunnel,detection,classical_ml,Proposes a hierarchical machine learning system to identify malicious DNS tunnel tools in DoH traffic.,gemini/gemini-3.1-flash-lite
+S3046,malware,detection,classical_ml,Uses logistic regression and decision trees for malicious payload detection in encrypted traffic.,gemini/gemini-3.1-flash-lite
+S3051,malicious_server,detection,classical_ml,Identifies malicious X.509 certificates using ensemble and SVM classical machine learning models.,gemini/gemini-3.1-flash-lite
+S3053,malware,detection,deep_learning,Proposes encrypted malicious traffic identification using various deep learning models on CTU Malware dataset.,gemini/gemini-3.1-flash-lite
+S3054,malware,detection,hybrid,"Combines NLP, classical ML classifiers, and CNN deep learning for encrypted traffic detection.",gemini/gemini-3.1-flash-lite
+S3059,malware,detection,graph,Uses graph neural networks (GNNs) with autoencoders to detect malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S3064,c2_botnet,detection,classical_ml,Detects C2 malware communications using machine learning and statistical approaches.,gemini/gemini-3.1-flash-lite
+S3065,doh_tunnel,detection,classical_ml,Identifies malicious DNS-over-HTTPS (DoH) tunnel behaviors using entropy and classical machine learning classifiers.,gemini/gemini-3.1-flash-lite
+S3111,malware,detection,classical_ml,Detects malicious encrypted HTTPS traffic using connection-specific indicators and online training classifiers.,gemini/gemini-3.1-flash-lite
+S3119,malware,detection,classical_ml,Uses machine learning on connection and TLS metadata to detect encrypted malware traffic.,gemini/gemini-3.1-flash-lite
+S3138,malware,detection,classical_ml,Uses fingerprint enhancement and second-order Markov chains to identify malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S3139,c2_botnet,detection,classical_ml,Proposes a framework using machine learning to detect encrypted botnet C2 communication.,gemini/gemini-3.1-flash-lite
+S3142,malware,detection,classical_ml,Employs a rule-based feature mining strategy and LightGBM to detect malicious encrypted traffic.,gemini/gemini-3.1-flash-lite
+S3150,malware,system,unclear,Proposes an accelerated system for encrypted traffic analytics using machine learning.,gemini/gemini-3.1-flash-lite
+S3184,c2_botnet,evaluation,classical_ml,"Evaluates cross-layer profiling of encrypted traffic using Random Forests, targeting botnet detection.",gemini/gemini-3.1-flash-lite
+S3188,web_attack,detection,deep_learning,Uses Deep Q learning to detect and mitigate Man-in-the-Middle (MITM) attacks on SSL/TLS websites.,gemini/gemini-3.1-flash-lite
+S3194,doh_tunnel,detection,classical_ml,Proposes a two-layer machine learning approach to detect and distinguish between benign and malicious DoH traffic.,gemini/gemini-3.1-flash-lite
+S3199,malware,detection,classical_ml,"Proposes an approach using random forest, SVM, and logistic regression to detect ransomware in encrypted web traffic.",gemini/gemini-3.1-flash-lite
+S3208,doh_tunnel,detection,unclear,Proposes a two-layered approach to detect and characterize DoH tunneling activities using time-series classification.,gemini/gemini-3.1-flash-lite
+S3214,dos,detection,hybrid,Proposes an AI-based system using clustering and deep learning for real-time detection of SlowDoS attacks.,gemini/gemini-3.1-flash-lite
+S3215,doh_tunnel,detection,classical_ml,Evaluates five popular machine learning methods to accurately recognize and classify DoH traffic.,gemini/gemini-3.1-flash-lite
+S3253,multi_attack,detection,deep_learning,Proposes a lightweight intrusion detection system using a Convolutional Neural Network to detect encrypted traffic.,gemini/gemini-3.1-flash-lite
+S3258,malware,evaluation,hybrid,Conducts a comprehensive performance study on both machine learning and deep learning algorithms for detecting encrypted malware.,gemini/gemini-3.1-flash-lite
+S3290,malware,detection,classical_ml,Proposes an incremental machine learning method using SVM with SGD for detecting encrypted malware traffic.,gemini/gemini-3.1-flash-lite
+S3320,malware,detection,classical_ml,Proposes a sampling approach based on density peaks clustering for detecting encrypted malicious traffic families.,gemini/gemini-3.1-flash-lite
+S3326,malware,detection,classical_ml,Proposes a two-layer detection framework with a filtering model and a multiclassifier for malware family classification.,gemini/gemini-3.1-flash-lite
+S3347,malware,detection,classical_ml,Proposes a heuristic statistical testing approach combined with machine learning to identify encrypted malicious traffic.,gemini/gemini-3.1-flash-lite
+S3360,malware,detection,deep_learning,Proposes an encrypted malicious traffic detection system based on a multi-autoencoder neural network.,gemini/gemini-3.1-flash-lite
+S3368,malware,detection,hybrid,Proposes a hybrid learning architecture using both machine learning and deep learning for malware family classification.,gemini/gemini-3.1-flash-lite
+S3403,malware,detection,hybrid,Proposes a malicious communication detection mechanism using both SVM and Convolutional Neural Networks.,gemini/gemini-3.1-flash-lite
+S3417,malware,detection,unclear,Applies three machine learning techniques to distinguish malicious encrypted HTTP traffic from benign traffic.,gemini/gemini-3.1-flash-lite
+S3445,malware,detection,classical_ml,Proposes MalDetect using Online Random Forest to detect encrypted malware traffic from early packet features.,gemini/gemini-3.1-flash-lite
+S3448,malware,detection,unclear,"Proposes a machine learning method for detecting malware in encrypted traffic, but model specifics are missing.",gemini/gemini-3.1-flash-lite
+S3475,malware,detection,classical_ml,Proposes an SSL malicious traffic detection method using classical ML models like SVM and Random Forest.,gemini/gemini-3.1-flash-lite
+S3479,multi_attack,detection,deep_learning,Proposes a deep learning (CNN and LSTM) framework for encrypted traffic classification and intrusion detection tasks.,gemini/gemini-3.1-flash-lite
+S3480,multi_attack,detection,deep_learning,Proposes a deep learning (CNN and LSTM) framework for encrypted traffic classification and intrusion detection tasks.,gemini/gemini-3.1-flash-lite
+S3496,malware,detection,unclear,Proposes a real-time monitoring system using machine learning for detecting malware connections via TCP side-channel features.,gemini/gemini-3.1-flash-lite
