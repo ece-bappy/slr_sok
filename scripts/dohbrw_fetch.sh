@@ -9,7 +9,9 @@
 set -u
 DEST=/data/tls-sok/raw/dohbrw
 BASE='https://cicresearch.ca/CICDataset/DoHBrw-2020/download.php?file=PCAPs%2F'
-PAR=${PAR:-3} MIN_BPS=${MIN_BPS:-51200} STALL_S=${STALL_S:-45} MAX_TRIES=${MAX_TRIES:-300}
+# PAR=1: CIC's download.php serves one request per login session at a time (PHP session lock); parallel requests,
+# and requests dropped by the stall guard, queue on the server and block every later request (seen 9 Nov 2026).
+PAR=${PAR:-1} MIN_BPS=${MIN_BPS:-51200} STALL_S=${STALL_S:-300} MAX_TRIES=${MAX_TRIES:-50}
 [ -s "$HOME/.cic_cookie" ] || { echo "missing ~/.cic_cookie (see header)"; echo "BATCH dohbrw_dl FAILED cookie"; exit 1; }
 mkdir -p "$DEST"
 CFG=$(mktemp); chmod 600 "$CFG"; trap 'rm -f "$CFG"' EXIT

@@ -21,7 +21,7 @@ if [ "${DOHBRW_STAGE:-}" != run ]; then
     echo "saved to ~/.cic_cookie (mode 600)"
   fi
   cd "$HOME/tls-sok" || exit 1
-  LOG=/data/tls-sok/out/dohbrw_$(date +%H%M).log
+  LOG=/data/tls-sok/out/dohbrw_$(date +%H%M%S).log  # seconds: a second start must not truncate a running log
   DOHBRW_STAGE=run bash scripts/detach.sh "$LOG" env DOHBRW_STAGE=run bash scripts/dohbrw_get.sh "$SET"
   echo "running detached; follow with:  tail -f $LOG"
   exit 0
