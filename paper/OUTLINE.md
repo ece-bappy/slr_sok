@@ -23,14 +23,14 @@ Never type a number into the draft without its source file.
 | – | Title | Chosen: *Do Malicious TLS Traffic Classifiers Survive Deployment? A Systematic Review and Benchmark* | – | – | – |
 | – | Abstract, highlights, keywords | Keywords done; abstract and highlights not written | – | – | write last |
 | 1 | Introduction | **Drafted** | 1,210 | Table 1 (RQs) | citation for the share of malware C2 over TLS; artefact DOI |
-| 2 | Background | **Drafted** | 1,310 | Table 2 (feature groups × tiers), Fig. 1 (pipeline) | – |
-| 3 | Review method | **Drafted** | 1,700 | Fig. 2 (PRISMA), Table 3 (extraction form) | κ for checklist items C2/C6; align the AI-use paragraph with the declarations |
-| 4 | Systematic map and taxonomy | **Drafted** | 1,640 | Fig. 3 (map), Table 4 (taxonomy, all 67 cited), Table 5 (gap statistics), Table 6 (datasets used) | – |
-| 5 | Benchmark methodology | **Drafted** | 1,810 | Table 7 (datasets), Table 8 (experiment matrix) | DoHBrw: add or state excluded |
-| 6 | Results | **Drafted** | 3,820 | Figs. 4–9, Table 9 (pooled protocol), Table 10 (encodings), Table 11 (cost) | – |
-| 7 | Reproducing RAID 2024 | **Drafted** | 1,020 | Table 12 (reproduction) | – |
-| 8 | Discussion | **Not drafted** (notes only) | – | planned: checklist table + Fig. 10 (compliance) | checklist C2/C6 pending |
-| 9 | Related work | **Drafted** | 1,650 | Table 13 (closest works) | discuss the benign-QUIC temporal contrast in §8 |
+| 2 | Related work (moved here 9 Nov; file `01b_related_work.tex`) | **Drafted** | 1,350 | Table 2 (closest works) | – (result numbers replaced by forward references to §7) |
+| 3 | Background | **Drafted** | 1,270 | Table 3 (feature groups × tiers), Fig. 1 (pipeline) | – |
+| 4 | Review method | **Drafted** | 1,700 | Fig. 2 (PRISMA), Table 4 (extraction form) | κ for checklist items C2/C6; align the AI-use paragraph with the declarations |
+| 5 | Systematic map and taxonomy | **Drafted** | 1,640 | Fig. 3 (map), Table 5 (taxonomy, all 67 cited), Table 6 (gap statistics), Table 7 (datasets used) | – |
+| 6 | Benchmark methodology | **Drafted** | 1,810 | Table 8 (datasets), Table 9 (experiment matrix) | DoHBrw: add or state excluded |
+| 7 | Results | **Drafted** | 3,850 | Figs. 4–9, Table 10 (pooled protocol; batch-7 caveats now in a footnote here), Table 11 (encodings), Table 12 (cost) | – |
+| 8 | Reproducing RAID 2024 | **Drafted** | 1,020 | Table 13 (reproduction) | – |
+| 9 | Discussion | **Not drafted** (notes only) | – | planned: checklist table + Fig. 10 (compliance) | checklist C2/C6 pending; the benign-QUIC temporal contrast |
 | 10 | Conclusion | **Not drafted** | – | – | – |
 | – | Declarations | Skeleton | – | – | authors, CRediT, funding, competing interests, AI declaration, DOI |
 
@@ -49,14 +49,20 @@ Never type a number into the draft without its source file.
   - benchmark: 1.000→0.901; pooled 0.999 vs held-out 0.559; hash 0.983→0.901 and below chance by 2026; ECH tier 0.54 on TLS 1.3 and ~0.59 with padding; extraction cost; 17% precision at a 0.1% base rate.
 - **Five contributions, with the narrowed novelty claim:** not the first benchmark, but the first systematic review paired with a benchmark of deployment conditions.
 
-### 2. Background
+### 2. Related work (moved after the introduction on 9 Nov 2026)
+- **Done:** four strands (surveys; ML-for-security pitfalls; protocol critiques of encrypted-traffic classification; malicious TLS under drift and visibility), plus positioning.
+- **Closest works checked against full texts:** Wang 2022, RAID 2024, Ji 2024, Oh 2022, Abu-Adaiq 2026 and Wickramasinghe 2025.
+- **Wang et al.'s pooled protocol** is tested on our data (batch 7, with a footnote of caveats).
+- **Table 13:** no prior work has more than three of the six properties fully.
+
+### 3. Background
 - **2.1 Visibility:** what an observer sees under TLS 1.2, TLS 1.3 and ECH (RFC 8446, RFC 9849), and how the benchmark simulates the tiers.
 - **2.2 Fingerprinting:** JA3/JA4, Chrome permutation, malware parameter drift, shared JA4+.
 - **2.3 The detection pipeline (Fig. 1):** label sources, label–feature circularity, the capture-environment shortcut.
 - **2.4 Threat model:** passive edge defender; non-adaptive attacker with padding and jitter; base rates 1%–0.01%.
 - **2.5 Evaluation terms:** splits, operating point, PR-AUC vs ROC, pooled precision (Eq. 1). A short pointer to prior surveys.
 
-### 3. Review method
+### 4. Review method
 - **Search:** 26 Oct 2026; OpenAlex, Semantic Scholar, arXiv; 5,894 records → 3,503 after de-duplication.
 - **Screening:**
   - two LLM passes only *suggest* exclusions: lenient 1,856, strict 1,147 (with reasons), plus 175 under the venue rule;
@@ -73,7 +79,7 @@ Never type a number into the draft without its source file.
 - **Map labels:** κ 0.78 / 0.82 / 0.74; 119 disputes decided by a human; spot-check 1/90 wrong.
 - **Checklist items C2/C6:** coded afterwards. **κ pending.**
 
-### 4. Systematic map and taxonomy
+### 5. Systematic map and taxonomy
 - **4.1 Map (Fig. 3):**
   - growth 11 → 64 studies per year;
   - threats: malware 127, DoH 58 (driven by DoHBrw), C2 34, multi-attack 27, DoS 14, other 31;
@@ -83,30 +89,30 @@ Never type a number into the draft without its source file.
 - **4.4 Datasets relied on (Table 6):** little malicious TLS in the most-used datasets (ISCX VPN has no malicious class); registration-gated access; mixed environments; HIKARI and MCFP problems.
 - **4.5 Hypotheses H1–H5:** the benchmark supports four and refines H3.
 
-### 5. Benchmark methodology
+### 6. Benchmark methodology
 - **5.1 Datasets (Table 7):** MTA, MCFP, RAID, HIKARI, each with its limits. Why not CESNET, DoHBrw (placeholder) or the RAID campus traces.
 - **5.2 Pipeline:** Zeek + TLS parser + NFStream; flow-match and JA3/JA4 checks; feature counts; visibility tags; runs without timing; the Zeek-free variant.
 - **5.3 Experiments (Table 8):** E1–E4 definitions (70/15/15; grouped 5-fold; ≤2022 vs 2023–26; three cross-dataset pairs), batches 6 and 7, the probe, the blocklist audit, the padding rules.
 - **5.4 Models:** XGBoost settings; LightGBM, RF, LR, CNN, BiLSTM; Isolation Forest and an autoencoder; RAID 2024 classifiers; Optuna tuning.
 - **5.5 Protocol:** dedup, 1:1 training balance, validation thresholds, metrics, 5/20 seeds, bootstrap, Wilcoxon, environment, release policy.
 
-### 6. Results (five boxed answers)
-- **6.1 RQ1:**
+### 7. Results (five boxed answers)
+- **7.1 RQ1:**
   - collapse (Fig. 4) and rolling origin (Fig. 5);
   - robustness: families, tuning, RAID 2024, unsupervised, training choices;
   - pooled protocol vs held out (Table 9);
   - base rates and host level.
-- **6.2 RQ2:** origin probe (Fig. 6), SSLBL circularity, MCFP shortcuts, ablation, encodings (Table 10), cross-family, leave-one-family-out.
-- **6.3 RQ3:** early detection (Fig. 7).
-- **6.4 RQ4:** cost (Table 11).
-- **6.5 RQ5:** tiers (Fig. 8), TLS 1.3 diagnostic, ClientHello and record padding, evasion, fingerprint drift (Fig. 9).
+- **7.2 RQ2:** origin probe (Fig. 6), SSLBL circularity, MCFP shortcuts, ablation, encodings (Table 10), cross-family, leave-one-family-out.
+- **7.3 RQ3:** early detection (Fig. 7).
+- **7.4 RQ4:** cost (Table 11).
+- **7.5 RQ5:** tiers (Fig. 8), TLS 1.3 diagnostic, ClientHello and record padding, evasion, fingerprint drift (Fig. 9).
 
-### 7. Reproducing RAID 2024
+### 8. Reproducing RAID 2024
 - **Reproduction:** exact under scikit-learn 1.3.2; the C-Behav DT is exact on the grid pass.
 - **UCNet:** rebuild with stage counts; released-table rows exact; the rebuilt-input rows' ≤ 1.2 pp gap is independent of version.
 - **Under our protocol:** four findings, including coverage (C-Cert scores 28% of malicious MTA flows). Table 12.
 
-### 8. Discussion (to draft next)
+### 9. Discussion (to draft next)
 - **8.1 Literature vs benchmark:** which published claims are at risk. Combine the 71% random splits with the E1→E3/E4 drops and the pooled-protocol result; the 67% ECH-tier studies with the TLS 1.3 and padding results; the 45% no-cost with the extraction cost.
 - **8.2 Evaluation checklist** (table + Fig. 10, compliance of the 67 studies). Scores from `review/synthesis/checklist.md`:
   - C1 temporal or cross-dataset 25%;
@@ -128,12 +134,6 @@ Never type a number into the draft without its source file.
     - ECH simulated by masking; non-adaptive attacker; edge proxy;
     - no ET-BERT/YaTC, CESNET or own lab capture;
     - batch 7 caveats: four sources, not Wang's five; held-out rows from b6 LODO with 50k caps; HIKARI is a two-attacker transfer test.
-
-### 9. Related work
-- **Done:** four strands (surveys; ML-for-security pitfalls; protocol critiques of encrypted-traffic classification; malicious TLS under drift and visibility), plus positioning.
-- **Closest works checked against full texts:** Wang 2022, RAID 2024, Ji 2024, Oh 2022, Abu-Adaiq 2026 and Wickramasinghe 2025.
-- **Wang et al.'s pooled protocol** is tested on our data (batch 7, with a footnote of caveats).
-- **Table 13:** no prior work has more than three of the six properties fully.
 
 ### 10. Conclusion (about 400 words, to draft)
 The five answers in one paragraph; the artefact link; future work (campus validation in Dhaka, a real edge device, adaptive attackers, real ECH captures).
