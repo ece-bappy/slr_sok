@@ -30,7 +30,7 @@ Never type a number into the draft without its source file.
 | 6 | Benchmark methodology | **Drafted** | 1,810 | Table 8 (datasets), Table 9 (experiment matrix) | DoHBrw: add or state excluded |
 | 7 | Results | **Drafted** | 3,850 | Figs. 4–9, Table 10 (pooled protocol; batch-7 caveats now in a footnote here), Table 11 (encodings), Table 12 (cost) | – |
 | 8 | Reproducing RAID 2024 | **Drafted** | 1,020 | Table 13 (reproduction) | – |
-| 9 | Discussion | **Not drafted** (notes only) | – | planned: checklist table + Fig. 10 (compliance) | checklist C2/C6 pending; the benign-QUIC temporal contrast |
+| 9 | Discussion | **Drafted 9 Nov** | 1,700 | Table 14 (checklist), Fig. 13 (compliance, from `figures/src/fig_checklist.py`), Table 15 (recommendations), Table 16 (threats) | checklist C2/C6 pending |
 | 10 | Conclusion | **Not drafted** | – | – | – |
 | – | Declarations | Skeleton | – | – | authors, CRediT, funding, competing interests, AI declaration, DOI |
 
