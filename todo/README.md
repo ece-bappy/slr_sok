@@ -10,7 +10,7 @@ Work through the tasks in order. When one is done, tell Claude the phrase in the
 | 3 | **DONE 8 Nov** (confirmed, not redone; `review/final_screening/SPOT_CHECK.md`). Confirm or redo the PRISMA spot-check | `03_prisma_spot_check_RULES.md` (+ `rulebooks/screening_rulebook.txt`) | `review/final_screening/spot_check_120.csv` | 2 min, or 2–3 h if redone | "spot-check confirmed" |
 | 4 | **DONE 8 Nov** (`scripts/merge_registry_check.py`; 0 unmapped names). Verify 9 registry entries; map 26 dataset names | `04_dataset_registry_RULES.md` | `04a_registry_check.csv`, `04b_unmapped_datasets.csv` | 60–90 min | "registry done" |
 | 5 | **DONE 8 Nov** (exclude, non_tls; matches the strict pass, not in the core set). Decide S1103 | `05_S1103_decision.md` | the same file | 2 min | "S1103: include / exclude / maybe" |
-| 8 | Decide 14 disputed checklist codes (C2 tuning data, C6 per-TLS-version) | `08_checklist_RULES.md` (+ `rulebooks/checklist_rulebook.txt`) | `08_checklist_review.csv` | 20–30 min | "checklist done" |
+| 8 | **DONE 9 Nov** (`review/synthesis/checklist_extra.csv`). Decide 14 disputed checklist codes (C2 tuning data, C6 per-TLS-version) | `08_checklist_RULES.md` (+ `rulebooks/checklist_rulebook.txt`) | `08_checklist_review.csv` | 20–30 min | "checklist done" |
 | 6 | Optional and housekeeping | `06_optional.md` | none | 5 min | as listed there |
 
 None of the tasks needs another person now. The second coder was confirmed as a colleague on 8 Nov.
