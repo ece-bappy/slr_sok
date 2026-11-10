@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One command for the whole CIRA-CIC-DoHBrw-2020 fetch, run by the user on A2:
-#   bash ~/tls-sok/scripts/dohbrw_get.sh [start|benign|all]
+#   bash ~/tls-sok/scripts/dohbrw_get.sh [start|benign|all|extract]   (extract: only check/extract the zips present)
 # 1. If ~/.cic_cookie is missing, asks for the CIC Cookie header value (hidden input) and saves it (chmod 600).
 #    The cookie is the only manual step: the site needs the user's own registration.
 # 2. Starts, detached on A2, download -> check -> extract:
@@ -35,8 +35,12 @@ D=/data/tls-sok/raw/dohbrw
 fail() { echo "$(date +%F' '%T) BATCH dohbrw FAILED $1"; exit 1; }
 echo "$(date +%F' '%T) START download ($SET)"
 mkdir -p "$D/x"
-bash scripts/dohbrw_fetch.sh "$SET" | tee "$D/.fetch_last.log"
-grep -q "BATCH dohbrw_dl DONE" "$D/.fetch_last.log" || fail download
+if [ "$SET" = extract ]; then
+  echo "$(date +%F' '%T) extract only: zips already downloaded"
+else
+  bash scripts/dohbrw_fetch.sh "$SET" | tee "$D/.fetch_last.log"
+  grep -q "BATCH dohbrw_dl DONE" "$D/.fetch_last.log" || fail download
+fi
 for z in "$D"/*.zip; do
   n=$(basename "$z" .zip)
   [ -e "$D/x/$n.done" ] && { echo "$(date +%F' '%T) SKIP extract $n"; continue; }
