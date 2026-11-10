@@ -991,6 +991,25 @@ def item_browser(a):
     print(imp.head(25).to_string())
 
 
+LINK_HDR = {"dohbrw_malicious": 16}  # linux-sll; every other source is Ethernet (14 B), out/linktype_audit.tsv
+
+
+def ip_normalise(df: pd.DataFrame) -> pd.DataFrame:
+    """NFStream (accounting_mode 0) sizes are frame lengths. Subtract the link-layer header per packet so sizes
+    are IP lengths: per-packet sizes (g2_ps_*, *_min/max/mean_ps) by the header, byte totals by header x packets."""
+    df = df.copy()
+    h = df["k_source"].map(LINK_HDR).fillna(14).to_numpy()
+    for c in [c for c in df.columns if c.startswith("g2_ps_")]:
+        v = df[c].to_numpy()
+        df[c] = np.where(v >= 0, v - h, v)
+    for d_ in ("bidirectional", "src2dst", "dst2src"):
+        n = df[f"g1_{d_}_packets"].to_numpy()
+        df[f"g1_{d_}_bytes"] = df[f"g1_{d_}_bytes"] - h * n
+        for s in ("min_ps", "max_ps", "mean_ps"):
+            df[f"g1_{d_}_{s}"] = np.where(n > 0, df[f"g1_{d_}_{s}"] - h, df[f"g1_{d_}_{s}"])
+    return df
+
+
 def item_synsize(a):
     """DoHBrw malicious DoH vs benign DoH: (1) a decision stump on g2_ps_00 (first-packet = SYN size) only;
     (2) XGBoost on all G1/G2 (no timing) vs the same without g2_ps_00. Out-of-fold predictions from a
@@ -1002,17 +1021,19 @@ def item_synsize(a):
     import xgboost as xgb
     out = BENCH / "b6_dohbrw"
     out.mkdir(parents=True, exist_ok=True)
-    d = table("dohbrw")
-    d = d[d["k_category"] != "non-DoH"]
+    raw = table("dohbrw")
+    raw = raw[raw["k_category"] != "non-DoH"]
     full = cols_for(["dohbrw"], "g1g2_notime")
-    d = dedup(d, full)[0].reset_index(drop=True)
-    y = d["label"].to_numpy()
-    folds = list(StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=0).split(d, y, d["k_pcap"]))
-    tools = d["k_category"].str.extract(r"\((\w+)\)", expand=False)
     variants = {"stump: g2_ps_00 only": ["g2_ps_00"], "xgb: all G1/G2": full,
                 "xgb: G1/G2 without g2_ps_00": [c for c in full if c != "g2_ps_00"]}
     rows = []
-    for name, cols in variants.items():
+    for sizes in ("frame", "ip"):
+      d = raw if sizes == "frame" else ip_normalise(raw)
+      d = dedup(d, full)[0].reset_index(drop=True)
+      y = d["label"].to_numpy()
+      folds = list(StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=0).split(d, y, d["k_pcap"]))
+      tools = d["k_category"].str.extract(r"\((\w+)\)", expand=False)
+      for name, cols in variants.items():
         x = to_model_matrix(feature_frame(d, cols), [])[0]
         p = np.zeros(len(d), dtype=int)
         thr = []
@@ -1026,7 +1047,7 @@ def item_synsize(a):
                                       n_jobs=a.jobs, random_state=0).fit(x.iloc[tr], y[tr], sample_weight=w)
             p[te] = m.predict(x.iloc[te])
         spec = float((p[y == 0] == 0).mean())
-        r = {"model": name, "n_features": len(cols), "n_benign_doh": int((y == 0).sum()),
+        r = {"sizes": sizes, "model": name, "n_features": len(cols), "n_benign_doh": int((y == 0).sum()),
              "n_malicious_doh": int((y == 1).sum()), "benign_specificity": spec,
              "balanced_accuracy": balanced_accuracy_score(y, p),
              "stump_thresholds": ";".join(f"{t:g}" for t in thr)}
@@ -1037,7 +1058,7 @@ def item_synsize(a):
         rows.append(r)
         print(r, flush=True)
     res = pd.DataFrame(rows)
-    res.to_csv(out / "synsize_test.csv", index=False)
+    res.to_csv(out / "synsize_test_frame_vs_ip.csv", index=False)
     print(res.T.to_string())
 
 
