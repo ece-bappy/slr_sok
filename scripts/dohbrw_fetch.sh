@@ -11,12 +11,13 @@ DEST=/data/tls-sok/raw/dohbrw
 BASE='https://cicresearch.ca/CICDataset/DoHBrw-2020/download.php?file=PCAPs%2F'
 # PAR=1: CIC's download.php serves one request per login session at a time (PHP session lock); parallel requests,
 # and requests dropped by the stall guard, queue on the server and block every later request (seen 9 Nov 2026).
-PAR=${PAR:-1} MIN_BPS=${MIN_BPS:-51200} STALL_S=${STALL_S:-300} MAX_TRIES=${MAX_TRIES:-50}
+# RESUME=0 (default): CIC refuses byte ranges (curl rc 33 on every resume, 10 Nov 2026), so each try starts from 0.
+PAR=${PAR:-1} MIN_BPS=${MIN_BPS:-51200} STALL_S=${STALL_S:-300} MAX_TRIES=${MAX_TRIES:-20} RESUME=${RESUME:-0}
 [ -s "$HOME/.cic_cookie" ] || { echo "missing ~/.cic_cookie (see header)"; echo "BATCH dohbrw_dl FAILED cookie"; exit 1; }
 mkdir -p "$DEST"
 CFG=$(mktemp); chmod 600 "$CFG"; trap 'rm -f "$CFG"' EXIT
 printf 'header = "Cookie: %s"\n' "$(tr -d '\r\n' < "$HOME/.cic_cookie")" > "$CFG"
-export DEST BASE MIN_BPS STALL_S MAX_TRIES CFG
+export DEST BASE MIN_BPS STALL_S MAX_TRIES CFG RESUME
 
 B=DoHBenign-NonDoH M=DoHMalicious
 START="$B/BenignDoH_NonDoH-Chrome-Cloudflare.zip $B/BenignDoH_NonDoH-Firefox-CloudFlare.zip
@@ -25,6 +26,7 @@ REST="$B/BenignDoH_NonDoH-Chrome-AdGuard.zip $B/BenignDoH_NonDoH-Chrome-Google.z
 $B/BenignDoH_NonDoH-Firefox-AdGuard.zip $B/BenignDoH_NonDoH-Firefox-Google.zip $B/BenignDoH_NonDoH-Firefox-Quad9.zip"
 case "${1:-start}" in
   start) LIST=$START ;;
+  firefox) LIST="$B/BenignDoH_NonDoH-Firefox-CloudFlare.zip" ;;
   benign) LIST="$(echo "$START" | grep -o "$B/[^ ]*") $REST" ;;
   all) LIST="$START $REST" ;;
   *) echo "unknown set $1"; exit 1 ;;
@@ -36,8 +38,11 @@ one() {
   url="$BASE$(echo "$rel" | sed 's|/|%2F|g')"
   echo "$(date +%F' '%T) START $name"
   for ((t = 1; t <= MAX_TRIES; t++)); do
-    curl -sS -L --fail -K "$CFG" -C - --speed-time "$STALL_S" --speed-limit "$MIN_BPS" -o "$out.part" "$url" 2>/dev/null
+    if [ "$RESUME" = 1 ]; then C="-C -"; else C=""; rm -f "$out.part"; fi
+    t0=$(date +%s)
+    curl -sS -L --fail -K "$CFG" $C --speed-time "$STALL_S" --speed-limit "$MIN_BPS" -o "$out.part" "$url" 2>/dev/null
     rc=$?
+    [ $rc -ne 0 ] && echo "$(date +%F' '%T) $name: try $t rc=$rc, $(stat -c %s "$out.part" 2>/dev/null || echo 0) bytes in $(( $(date +%s) - t0 )) s"
     case $rc in
       0) break ;;
       22) echo "$(date +%F' '%T) $name: HTTP error (403 = cookie expired or not logged in); stopping"; return 1 ;;
