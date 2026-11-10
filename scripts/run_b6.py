@@ -939,6 +939,58 @@ def item_dohbrw(a):
     pd.DataFrame(bprobe).to_csv(out / "browser_probe.csv", index=False)
 
 
+def item_browser(a):
+    """Chrome-vs-Firefox probe on DoHBrw benign flows without capture leakage. Firefox is one capture session
+    (1/dump.pcap is a prefix of 2/dump.pcap), so no split can hold out a Firefox capture. Reported instead:
+    (a) leave-one-Chrome-capture-out (5 folds): train on 4 Chrome captures + the first 75% of Firefox in time,
+        test on the held-out Chrome capture + the last 25% of Firefox; per-class recall and balanced accuracy;
+    (b) permutation importance (balanced accuracy drop, 5 repeats) of the G1/G2 model on fold (a) test rows."""
+    from sklearn.inspection import permutation_importance
+    from sklearn.metrics import balanced_accuracy_score, make_scorer
+    import xgboost as xgb
+    out = BENCH / "b6_dohbrw"
+    out.mkdir(parents=True, exist_ok=True)
+    rows, imps = [], []
+    for fs in ("g1g2_notime", "loo_g5"):
+        cols = cols_for(["dohbrw"], fs)
+        d = table("dohbrw")
+        b = dedup(d[d["label"] == 0], cols)[0].reset_index(drop=True)
+        ff = b["k_browser"] == "Firefox"
+        cut = b.loc[ff, "k_first_seen_ms"].quantile(0.75)
+        ff_late = ff & (b["k_first_seen_ms"] > cut)
+        x = to_model_matrix(feature_frame(b, cols), [])[0]
+        y = ff.astype(int).to_numpy()
+        for held in sorted(b.loc[~ff, "k_pcap"].unique()):
+            te = ((b["k_pcap"] == held) | ff_late).to_numpy()
+            tr = ~te & ~((~ff) & (b["k_pcap"] == held)).to_numpy()
+            m = xgb.XGBClassifier(n_estimators=300, max_depth=8, learning_rate=0.1, tree_method="hist",
+                                  n_jobs=a.jobs, random_state=0).fit(x[tr], y[tr])
+            p = m.predict(x[te])
+            rows.append({"probe_features": fs, "held_chrome_capture": held.split("/")[-1],
+                         "n_train": int(tr.sum()), "n_test_chrome": int((y[te] == 0).sum()),
+                         "n_test_firefox_late": int((y[te] == 1).sum()),
+                         "recall_chrome_unseen_capture": float((p[y[te] == 0] == 0).mean()),
+                         "recall_firefox_later_time": float((p[y[te] == 1] == 1).mean()),
+                         "balanced_accuracy": balanced_accuracy_score(y[te], p)})
+            print(rows[-1], flush=True)
+            if fs == "g1g2_notime" and not imps:
+                rng = np.random.default_rng(0)
+                ti = np.where(te)[0]
+                ti = np.concatenate([rng.choice(ti[y[ti] == k], min(5000, (y[ti] == k).sum()), replace=False)
+                                     for k in (0, 1)])
+                pi = permutation_importance(m, x.iloc[ti], y[ti], scoring=make_scorer(balanced_accuracy_score),
+                                            n_repeats=5, random_state=0, n_jobs=8)
+                gain = m.get_booster().get_score(importance_type="gain")
+                imps = [{"feature": c, "perm_drop_mean": pi.importances_mean[i], "perm_drop_std": pi.importances_std[i],
+                         "xgb_gain": gain.get(c, 0.0)} for i, c in enumerate(x.columns)]
+    pd.DataFrame(rows).to_csv(out / "browser_probe_grouped.csv", index=False)
+    imp = pd.DataFrame(imps).sort_values(["perm_drop_mean", "xgb_gain"], ascending=False)
+    imp.to_csv(out / "browser_probe_importance.csv", index=False)
+    print(pd.DataFrame(rows).groupby("probe_features")[["recall_chrome_unseen_capture", "recall_firefox_later_time",
+                                                       "balanced_accuracy"]].agg(["mean", "min"]).to_string())
+    print(imp.head(25).to_string())
+
+
 def item_hosts(a):
     """12: host-level alerting on MTA E3. Flow scores (E3 model, 5 seeds) aggregated per source host
     (k_pcap, k_client_ip) per 1-hour window and per pcap, with max and top-3 mean. A unit is positive if it holds a
@@ -1022,7 +1074,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion",
                                      "rolling_models", "rolling_enc", "post2026", "tls13", "family_models", "padech",
-                                     "lodo", "hosts", "dohbrw"])
+                                     "lodo", "hosts", "dohbrw", "browser"])
     ap.add_argument("--seeds", type=int, default=None)
     ap.add_argument("--jobs", type=int, default=24)
     ap.add_argument("--min-posts", type=int, default=5)
@@ -1032,4 +1084,4 @@ if __name__ == "__main__":
      "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion,
      "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026,
      "tls13": item_tls13, "family_models": item_family_models, "padech": item_padech,
-     "lodo": item_lodo, "hosts": item_hosts, "dohbrw": item_dohbrw}[a.item](a)
+     "lodo": item_lodo, "hosts": item_hosts, "dohbrw": item_dohbrw, "browser": item_browser}[a.item](a)
