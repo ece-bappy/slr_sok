@@ -868,6 +868,77 @@ def item_lodo(a):
     print(pd.DataFrame(probe).to_string())
 
 
+def item_dohbrw(a):
+    """DoHBrw as a fifth source. (a) Origin probe: XGBoost predicting the source dataset of benign flows
+    (up to 50k per source, split grouped by capture/post/host as in item 11); five sources on G1/G2 (HIKARI has
+    no G3-G5), four sources (no HIKARI) on loo_g5. (b) Benign browser variety in DoHBrw: flows, categories,
+    distinct client/server fingerprints per browser, and a Chrome-vs-Firefox probe on benign flows (G1/G2 and
+    loo_g5). Only one Firefox capture is distinct (1/dump is a prefix of 2/dump), so the browser probe uses a
+    stratified 75/25 split, not a grouped one; its accuracy is an upper bound on how easily the browser shows."""
+    from sklearn.metrics import balanced_accuracy_score
+    from sklearn.model_selection import StratifiedGroupKFold
+    import xgboost as xgb
+    out = BENCH / "b6_dohbrw"
+    out.mkdir(parents=True, exist_ok=True)
+    key = {**LODO_KEY, "dohbrw": "k_pcap"}
+
+    def xgbm():
+        return xgb.XGBClassifier(n_estimators=300, max_depth=8, learning_rate=0.1, tree_method="hist",
+                                 n_jobs=a.jobs, random_state=0)
+
+    probe = []
+    for fs, names in (("g1g2_notime", ["mta", "mcfp", "raid", "hikari", "dohbrw"]),
+                      ("loo_g5", ["mta", "mcfp", "raid", "dohbrw"])):
+        cols = cols_for(names, fs)
+        rng = np.random.default_rng(0)
+        parts = []
+        for n in names:
+            t = dedup(table(n), cols)[0]
+            t = t[t["label"] == 0]
+            parts.append(t.iloc[rng.choice(len(t), min(len(t), 50_000), replace=False)].assign(_src=n))
+        ben = pd.concat(parts, ignore_index=True)
+        x = to_model_matrix(feature_frame(ben, cols), [])[0]
+        cat = pd.Categorical(ben["_src"])
+        y = cat.codes
+        groups = ben["_src"] + "|" + ben.apply(lambda r_: str(r_[key[r_["_src"]]]), axis=1)
+        tr_i, te_i = next(StratifiedGroupKFold(n_splits=4, shuffle=True, random_state=0).split(x, y, groups))
+        pred = xgbm().fit(x.iloc[tr_i], y[tr_i]).predict(x.iloc[te_i])
+        rec = {c: float((pred[y[te_i] == k] == k).mean()) for k, c in enumerate(cat.categories) if (y[te_i] == k).any()}
+        probe.append({"probe_features": fs, "sources": "+".join(names), "n_sources": len(names),
+                      "n_train": len(tr_i), "n_test": len(te_i),
+                      "balanced_accuracy": balanced_accuracy_score(y[te_i], pred), "chance": 1 / len(names),
+                      **{f"recall_{c}": v for c, v in rec.items()}})
+        print(probe[-1], flush=True)
+    pd.DataFrame(probe).to_csv(out / "origin_probe_5src.csv", index=False)
+
+    d = table("dohbrw")
+    ben = d[d["label"] == 0]
+    var = ben.groupby(["k_browser", "k_category"]).size().unstack(fill_value=0)
+    for c in G5:
+        if c in ben:
+            var[f"distinct_{c}"] = ben.groupby("k_browser")[c].nunique()
+    var["captures"] = ben.groupby("k_browser")["k_pcap"].nunique()
+    var["servers"] = ben.groupby("k_browser")["k_server_ip"].nunique()
+    var.to_csv(out / "browser_variety.csv")
+    print(var.to_string(), flush=True)
+
+    bprobe = []
+    for fs in ("g1g2_notime", "loo_g5"):
+        cols = cols_for(["dohbrw"], fs)
+        b = dedup(ben, cols)[0].reset_index(drop=True)
+        for subset, bb in (("all benign", b), ("benign DoH only", b[b["k_category"] == "benign DoH"])):
+            bb = bb.reset_index(drop=True)
+            y = (bb["k_browser"] == "Firefox").astype(int).to_numpy()
+            x = to_model_matrix(feature_frame(bb, cols), [])[0]
+            tr_i, te_i = train_test_split(np.arange(len(bb)), test_size=0.25, stratify=y, random_state=0)
+            pred = xgbm().fit(x.iloc[tr_i], y[tr_i]).predict(x.iloc[te_i])
+            bprobe.append({"probe_features": fs, "subset": subset, "n_chrome": int((y == 0).sum()),
+                           "n_firefox": int((y == 1).sum()),
+                           "balanced_accuracy": balanced_accuracy_score(y[te_i], pred), "chance": 0.5})
+            print(bprobe[-1], flush=True)
+    pd.DataFrame(bprobe).to_csv(out / "browser_probe.csv", index=False)
+
+
 def item_hosts(a):
     """12: host-level alerting on MTA E3. Flow scores (E3 model, 5 seeds) aggregated per source host
     (k_pcap, k_client_ip) per 1-hour window and per pcap, with max and top-3 mean. A unit is positive if it holds a
@@ -951,7 +1022,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion",
                                      "rolling_models", "rolling_enc", "post2026", "tls13", "family_models", "padech",
-                                     "lodo", "hosts"])
+                                     "lodo", "hosts", "dohbrw"])
     ap.add_argument("--seeds", type=int, default=None)
     ap.add_argument("--jobs", type=int, default=24)
     ap.add_argument("--min-posts", type=int, default=5)
@@ -961,4 +1032,4 @@ if __name__ == "__main__":
      "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion,
      "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026,
      "tls13": item_tls13, "family_models": item_family_models, "padech": item_padech,
-     "lodo": item_lodo, "hosts": item_hosts}[a.item](a)
+     "lodo": item_lodo, "hosts": item_hosts, "dohbrw": item_dohbrw}[a.item](a)

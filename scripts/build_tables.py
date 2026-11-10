@@ -167,7 +167,7 @@ def one_pcap(task: tuple) -> pd.DataFrame | None:
         return None
     f = pd.read_parquet(p / "flows.parquet")
     f = f[f["protocol"] == 6] if "protocol" in f else f
-    if dataset in ("raid", "mta", "mcfp"):
+    if dataset in ("raid", "mta", "mcfp", "dohbrw"):
         f = f[f["tls_ja3"].notna()] if "tls_ja3" in f else f.iloc[0:0]
     else:
         f = f[f["dst_port"] == 443]
@@ -338,6 +338,37 @@ def label_mcfp(df: pd.DataFrame, card: dict) -> pd.DataFrame:
     return df  # unlabelled rows (label NaN) are filtered in main()
 
 
+# ---------------------------------------------------------------- DoHBrw labels
+# From the dataset's own split only: capture folder (benign browser captures vs malicious tool captures) and
+# whether the flow goes to a public DoH resolver on 443 (the resolvers the dataset names: Cloudflare, Google,
+# Quad9, AdGuard). Never from certificates, SSLBL or JA3/JA4.
+DOH_IPS = {"1.1.1.1", "1.0.0.1", "8.8.8.8", "8.8.4.4", "9.9.9.9", "9.9.9.10", "9.9.9.11", "149.112.112.112",
+           "149.112.112.11", "176.103.130.130", "176.103.130.131", "2606:4700:4700::1111", "2606:4700:4700::1001",
+           "2001:4860:4860::8888", "2001:4860:4860::8844", "2620:fe::fe", "2620:fe::11", "2a00:5a60::ad1:ff",
+           "2a00:5a60::ad2:ff"}
+DOH_SNI = {"cloudflare-dns.com", "mozilla.cloudflare-dns.com", "dns.google", "dns.quad9.net", "dns11.quad9.net",
+           "dns.adguard.com"}
+
+
+def label_dohbrw(df: pd.DataFrame, card: dict) -> pd.DataFrame:
+    """Benign captures: DoH-resolver flows = 'benign DoH', other TLS = 'non-DoH' (both label 0). Malicious
+    captures: DoH-resolver flows = 'malicious DoH (<tool>)' (label 1); their other flows (OS background,
+    e.g. cdn.fwupd.org) are unlabelled and dropped."""
+    doh = (df["k_server_port"] == 443) & (df["k_server_ip"].isin(DOH_IPS) | df["k_sni"].isin(DOH_SNI))
+    mal = df["k_source"] == "dohbrw_malicious"
+    top = df["k_pcap"].str.split("/").str[0]
+    tool = top.str.extract(r"MaliciousDoH-(\w+)-", expand=False)
+    df["k_browser"] = np.where(mal, "", top.str.extract(r"NonDoH-(\w+)-", expand=False).fillna(""))
+    df["k_resolver"] = np.where(doh, df["k_sni"].where(df["k_sni"] != "", df["k_server_ip"]), "")
+    df["k_category"] = np.where(mal, np.where(doh, "malicious DoH (" + tool + ")", None),
+                                np.where(doh, "benign DoH", "non-DoH"))
+    df["label"] = np.where(mal, np.where(doh, 1, np.nan), 0)
+    card.update(dohbrw_malicious_non_doh_dropped=int((mal & ~doh).sum()),
+                dohbrw_empty_pcaps_in_source=1)  # one iodine capture holds 0 packets (24-byte file)
+    df["k_year"] = "2020"
+    return df
+
+
 def hikari_labels() -> dict:
     """(year, src, sport, dst, dport) -> (label, category); contradictory tuples map to None."""
     lab = {}
@@ -356,14 +387,15 @@ def hikari_labels() -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset", choices=["raid", "hikari", "mta", "mcfp"])
+    ap.add_argument("dataset", choices=["raid", "hikari", "mta", "mcfp", "dohbrw"])
     ap.add_argument("--out", default="/data/tls-sok/tables")
     ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--limit", type=int, default=0, help="pcaps per source, for smoke tests")
     a = ap.parse_args()
 
     sources = {"raid": {"raid_ms": 1, "raid_tranco": 0}, "hikari": {"hikari_attack": None, "hikari_benign": None},
-               "mta": {"mta": None}, "mcfp": {"mcfp": None}}[a.dataset]
+               "mta": {"mta": None}, "mcfp": {"mcfp": None},
+               "dohbrw": {"dohbrw_benign": None, "dohbrw_malicious": None}}[a.dataset]
     tasks = []
     for src in sources:
         dirs = sorted(str(Path(m).parent) for m in glob.glob(f"{OUT_ROOT}/{src}/**/manifest.json", recursive=True))
@@ -380,6 +412,9 @@ def main() -> None:
         # every TLS flow including unlabelled ones, for the E5b SSLBL label-circularity audit only
         df.drop_duplicates(["k_client_ip", "k_client_port", "k_server_ip", "k_server_port", "k_first_seen_ms"]).to_parquet(
             f"{a.out}/{tag}_all.parquet", index=False)
+        df = df[df["label"].notna()].astype({"label": int})
+    elif a.dataset == "dohbrw":
+        df = label_dohbrw(df, card)
         df = df[df["label"].notna()].astype({"label": int})
     elif a.dataset == "raid":
         df["label"] = df["k_source"].map(sources)
