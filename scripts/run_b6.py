@@ -991,6 +991,56 @@ def item_browser(a):
     print(imp.head(25).to_string())
 
 
+def item_synsize(a):
+    """DoHBrw malicious DoH vs benign DoH: (1) a decision stump on g2_ps_00 (first-packet = SYN size) only;
+    (2) XGBoost on all G1/G2 (no timing) vs the same without g2_ps_00. Out-of-fold predictions from a
+    5-fold StratifiedGroupKFold grouped by capture (pcap), so no capture is on both sides. Balanced accuracy
+    overall and per tool (mean of that tool's recall and benign-DoH specificity)."""
+    from sklearn.metrics import balanced_accuracy_score
+    from sklearn.model_selection import StratifiedGroupKFold
+    from sklearn.tree import DecisionTreeClassifier
+    import xgboost as xgb
+    out = BENCH / "b6_dohbrw"
+    out.mkdir(parents=True, exist_ok=True)
+    d = table("dohbrw")
+    d = d[d["k_category"] != "non-DoH"]
+    full = cols_for(["dohbrw"], "g1g2_notime")
+    d = dedup(d, full)[0].reset_index(drop=True)
+    y = d["label"].to_numpy()
+    folds = list(StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=0).split(d, y, d["k_pcap"]))
+    tools = d["k_category"].str.extract(r"\((\w+)\)", expand=False)
+    variants = {"stump: g2_ps_00 only": ["g2_ps_00"], "xgb: all G1/G2": full,
+                "xgb: G1/G2 without g2_ps_00": [c for c in full if c != "g2_ps_00"]}
+    rows = []
+    for name, cols in variants.items():
+        x = to_model_matrix(feature_frame(d, cols), [])[0]
+        p = np.zeros(len(d), dtype=int)
+        thr = []
+        for tr, te in folds:
+            if name.startswith("stump"):
+                m = DecisionTreeClassifier(max_depth=1, class_weight="balanced", random_state=0).fit(x.iloc[tr], y[tr])
+                thr.append(float(m.tree_.threshold[0]))
+            else:
+                w = np.where(y[tr] == 1, (y[tr] == 0).sum() / max((y[tr] == 1).sum(), 1), 1.0)
+                m = xgb.XGBClassifier(n_estimators=300, max_depth=8, learning_rate=0.1, tree_method="hist",
+                                      n_jobs=a.jobs, random_state=0).fit(x.iloc[tr], y[tr], sample_weight=w)
+            p[te] = m.predict(x.iloc[te])
+        spec = float((p[y == 0] == 0).mean())
+        r = {"model": name, "n_features": len(cols), "n_benign_doh": int((y == 0).sum()),
+             "n_malicious_doh": int((y == 1).sum()), "benign_specificity": spec,
+             "balanced_accuracy": balanced_accuracy_score(y, p),
+             "stump_thresholds": ";".join(f"{t:g}" for t in thr)}
+        for t in sorted(tools.dropna().unique()):
+            rec = float((p[(tools == t).to_numpy()] == 1).mean())
+            r[f"recall_{t}"] = rec
+            r[f"balanced_accuracy_{t}"] = (rec + spec) / 2
+        rows.append(r)
+        print(r, flush=True)
+    res = pd.DataFrame(rows)
+    res.to_csv(out / "synsize_test.csv", index=False)
+    print(res.T.to_string())
+
+
 def item_hosts(a):
     """12: host-level alerting on MTA E3. Flow scores (E3 model, 5 seeds) aggregated per source host
     (k_pcap, k_client_ip) per 1-hour window and per pcap, with max and top-3 mean. A unit is positive if it holds a
@@ -1074,7 +1124,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("item", choices=["seeds", "baserate", "rolling", "encoding", "ech", "training", "family", "evasion",
                                      "rolling_models", "rolling_enc", "post2026", "tls13", "family_models", "padech",
-                                     "lodo", "hosts", "dohbrw", "browser"])
+                                     "lodo", "hosts", "dohbrw", "browser", "synsize"])
     ap.add_argument("--seeds", type=int, default=None)
     ap.add_argument("--jobs", type=int, default=24)
     ap.add_argument("--min-posts", type=int, default=5)
@@ -1084,4 +1134,4 @@ if __name__ == "__main__":
      "ech": item_ech, "training": item_training, "family": item_family, "evasion": item_evasion,
      "rolling_models": item_rolling_models, "rolling_enc": item_rolling_enc, "post2026": item_post2026,
      "tls13": item_tls13, "family_models": item_family_models, "padech": item_padech,
-     "lodo": item_lodo, "hosts": item_hosts, "dohbrw": item_dohbrw, "browser": item_browser}[a.item](a)
+     "lodo": item_lodo, "hosts": item_hosts, "dohbrw": item_dohbrw, "browser": item_browser, "synsize": item_synsize}[a.item](a)
